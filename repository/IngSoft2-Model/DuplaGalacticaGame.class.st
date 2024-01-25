@@ -55,6 +55,12 @@ DuplaGalacticaGame >> boxes [
 ]
 
 { #category : #Information }
+DuplaGalacticaGame >> cardsInPosetionOf: aPlayer [
+
+	^ cardManager cardsInPosetionOf: aPlayer
+]
+
+{ #category : #Information }
 DuplaGalacticaGame >> currentPlayer [
 
 	^ current color
@@ -140,12 +146,6 @@ DuplaGalacticaGame >> parsecs [
 DuplaGalacticaGame >> playersBox [
 
 	^ players collect: [ :player | player box ]
-]
-
-{ #category : #Information }
-DuplaGalacticaGame >> playersCardInPosetion [
-
-	^ cardManager cardsInPosetionOf: players
 ]
 
 { #category : #Information }

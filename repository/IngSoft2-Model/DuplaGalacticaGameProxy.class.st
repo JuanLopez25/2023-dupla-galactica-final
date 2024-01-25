@@ -31,6 +31,12 @@ DuplaGalacticaGameProxy >> boxes [
 ]
 
 { #category : #Information }
+DuplaGalacticaGameProxy >> cardsInPosetionOf: aPlayerColor [
+
+	^ game cardsInPosetionOf: aPlayerColor
+]
+
+{ #category : #Information }
 DuplaGalacticaGameProxy >> currentPlayer [
 
 	^ game currentPlayer
@@ -75,12 +81,6 @@ DuplaGalacticaGameProxy >> parsecs [
 DuplaGalacticaGameProxy >> playersBox [
 
 	^ game playersBox
-]
-
-{ #category : #Information }
-DuplaGalacticaGameProxy >> playersCardInPosetion [
-
-	^ game playersCardInPosetion
 ]
 
 { #category : #Information }

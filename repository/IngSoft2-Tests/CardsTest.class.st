@@ -1411,8 +1411,11 @@ CardsTest >> testQ045VerifyThatRedoCardCanRepeatTheEffectOfTheRepeatCard [
 	aGame movePlayer.
 
 	self
-		assert: aGame playersCardInPosetion
-		equals: (OrderedCollection with: 2 with: 4)
+		assert: (aGame cardsInPosetionOf: 'red')
+		equals: 2.
+	self
+		assert: (aGame cardsInPosetionOf: 'blue')
+		equals: 4
 ]
 
 { #category : #tests }

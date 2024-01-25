@@ -53,9 +53,9 @@ CardManager >> canBeUse: aCard whenPlay: aPlayer [
 ]
 
 { #category : #Information }
-CardManager >> cardsInPosetionOf: players [
+CardManager >> cardsInPosetionOf: player [
 
-	^ cardsInPosetion cardsOf: players
+	^ cardsInPosetion cardsOf: player
 ]
 
 { #category : #Managing }

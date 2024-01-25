@@ -1,4 +1,4 @@
-#2023-dupla-galactica
+#2023-dupla-galactica-final
 
 [![Coverage Status](https://coveralls.io/repos/github/JuanLopez25/2023-dupla-galactica-final/badge.svg)](https://coveralls.io/github/JuanLopez25/2023-dupla-galactica-final)
 

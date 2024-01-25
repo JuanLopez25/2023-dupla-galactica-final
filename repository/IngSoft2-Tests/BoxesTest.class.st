@@ -355,8 +355,11 @@ BoxesTest >> testR001CheckRandomCardBoxGeneratesARandomCard [
 		         using: (CardDealer with: (OrderedCollection with: (CardProbability using: OverloadCard withChance: 100))).
 	aGame movePlayer.
 	self
-		assert: aGame playersCardInPosetion
-		equals: (OrderedCollection with: 3 with: 2)
+		assert: (aGame cardsInPosetionOf: 'red')
+		equals: 3.
+	self
+		assert: (aGame cardsInPosetionOf: 'blue')
+		equals: 2
 ]
 
 { #category : #tests }
@@ -383,8 +386,11 @@ BoxesTest >> testR002CheckRandomCardBoxGeneratesARandomCardMoreThanOneTimeIfNece
 	aGame movePlayer.
 	aGame movePlayer.
 	self
-		assert: aGame playersCardInPosetion
-		equals: (OrderedCollection with: 4 with: 3)
+		assert: (aGame cardsInPosetionOf: 'red')
+		equals: 4.
+	self
+		assert: (aGame cardsInPosetionOf: 'blue')
+		equals: 3
 ]
 
 { #category : #tests }
@@ -524,4 +530,94 @@ BoxesTest >> testT005CheckPlayerMoveBackwardAsManyLapsAsRequest [
 	self
 		assert: aGame playersBox
 		equals: (OrderedCollection with: 1 with: 1)
+]
+
+{ #category : #tests }
+BoxesTest >> testU001VerifyTheCorrectUseOfSprintBox [
+
+	| aLoadedDie aGame boxes aBoard aShaker |
+	aLoadedDie := LoadedDie with: (OrderedCollection
+			               with: 3
+			               with: 1
+			               with: 5
+			               with: 8).
+	boxes := (BoxCreator use: (OrderedCollection with:
+			           (BoxProbability using: SprintBox new withChance: 100))) 
+		         create: 10.
+	aBoard := Board with: boxes measure: (Parsec worth: 100).
+	aShaker := DiceShaker withDie: aLoadedDie.
+	aGame := DuplaGalacticaGameProxy
+		         with: aColorCollection
+		         and: aBoard
+		         usingToThrow: aShaker
+		         winningWhen: 2
+		         using: (CardDealer with: (OrderedCollection with:
+					           (CardProbability using: OverloadCard withChance: 100))).
+	aGame movePlayer.
+	aGame movePlayer.
+	self
+		assert: aGame playersBox
+		equals: (OrderedCollection with: 6 with: 4)
+]
+
+{ #category : #tests }
+BoxesTest >> testU002VerifyTheCorrectUseOfSprintBoxWhenAPlayerHave1Card [
+
+	| aLoadedDie aGame boxes aBoard aShaker aCard |
+	aLoadedDie := LoadedDie with: (OrderedCollection
+			               with: 1
+			               with: 1
+			               with: 5
+			               with: 8).
+	boxes := (BoxCreator use: (OrderedCollection with:
+			           (BoxProbability using: SprintBox new withChance: 100))) 
+		         create: 10.
+	aBoard := Board with: boxes measure: (Parsec worth: 100).
+	aShaker := DiceShaker withDie: aLoadedDie.
+	aGame := DuplaGalacticaGameProxy
+		         with: aColorCollection
+		         and: aBoard
+		         usingToThrow: aShaker
+		         winningWhen: 2
+		         using: (CardDealer with: (OrderedCollection with:
+					           (CardProbability using: AccelerationCard withChance: 100))).
+	aCard:= (AccelerationCard holder: 'red').
+	aGame apply: aCard.
+	aGame movePlayer.
+	aGame movePlayer.
+	self
+		assert: aGame playersBox
+		equals: (OrderedCollection with: 4 with: 5)
+]
+
+{ #category : #tests }
+BoxesTest >> testU003VerifyTheCorrectUseOfSprintBoxWhenThePlayerDoesNotHaveCards [
+
+	| aLoadedDie aGame boxes aBoard aShaker aCard |
+	aLoadedDie := LoadedDie with: (OrderedCollection
+			               with: 1
+			               with: 1
+			               with: 5
+			               with: 8).
+	boxes := (BoxCreator use: (OrderedCollection with:
+			           (BoxProbability using: SprintBox new withChance: 100))) 
+		         create: 10.
+	aBoard := Board with: boxes measure: (Parsec worth: 100).
+	aShaker := DiceShaker withDie: aLoadedDie.
+	aGame := DuplaGalacticaGameProxy
+		         with: aColorCollection
+		         and: aBoard
+		         usingToThrow: aShaker
+		         winningWhen: 2
+		         using: (CardDealer with: (OrderedCollection with:
+					           (CardProbability using: AccelerationCard withChance: 100))).
+	aCard:= (AccelerationCard holder: 'red').
+	aGame apply: aCard.
+	aCard:= (AccelerationCard holder: 'red').
+	aGame apply: aCard.
+	aGame movePlayer.
+	aGame movePlayer.
+	self
+		assert: aGame playersBox
+		equals: (OrderedCollection with: 4 with: 6)
 ]

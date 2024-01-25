@@ -19,11 +19,9 @@ CardsInPosetion >> addCard: aCard [
 ]
 
 { #category : #'Changing cards' }
-CardsInPosetion >> cardsOf: players [
+CardsInPosetion >> cardsOf: aPlayerColor [
 
-	^ players collect: [ :player | 
-		  (cards select: [ :card | card isHolder: player color ])
-			  size ]
+	^ (cards select: [ :card | card isHolder: aPlayerColor ]) size
 ]
 
 { #category : #'Changing cards' }

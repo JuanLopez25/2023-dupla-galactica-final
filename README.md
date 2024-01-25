@@ -1,6 +1,6 @@
 #2023-dupla-galactica
 
-[![Coverage Status](https://coveralls.io/repos/github/JuanLopez25/2023-dupla-galactica-final/badge.svg?branch=master)](https://coveralls.io/github/JuanLopez25/2023-dupla-galactica-final?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/JuanLopez25/2023-dupla-galactica-final/badge.svg)](https://coveralls.io/github/JuanLopez25/2023-dupla-galactica-final)
 
 ## Metacello
 

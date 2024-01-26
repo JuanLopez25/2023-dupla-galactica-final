@@ -1522,3 +1522,26 @@ CardsTest >> testQ052VerifyThatWhenUsingARedoCardACardHasToBeenPlayedBefore [
 		withMessage:
 		'Redo card cannot be played because there are no cards that have been played before'
 ]
+
+{ #category : #tests }
+CardsTest >> testV001VerifyThatNoCardsHasBeenDiscardAtTheBeggining [
+
+	| aGame aLoadedDie aBoard aShaker |
+	aBoard := self createBoard.
+	aLoadedDie := LoadedDie with: (OrderedCollection
+			               with: 1
+			               with: 2
+			               with: 3
+			               with: 4).
+	aShaker := DiceShaker withDie: aLoadedDie.
+	aGame := DuplaGalacticaGameProxy
+		         with: aColorCollection
+		         and: aBoard
+		         usingToThrow: aShaker
+		         winningWhen: 1
+		         using:
+		         (CardDealer with: (OrderedCollection with: (CardProbability using: RedoCard withChance: 100))).
+	self
+		assert: (aGame discardCardsDeskAmount)
+		equals: 0.
+]

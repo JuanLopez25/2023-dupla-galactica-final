@@ -67,6 +67,11 @@ DuplaGalacticaGame >> currentPlayer [
 ]
 
 { #category : #Information }
+DuplaGalacticaGame >> discardCardsDeskAmount [
+	^ cardManager discardCardsDeskAmount.
+]
+
+{ #category : #Information }
 DuplaGalacticaGame >> goalLaps [
 
 	^ goalLaps

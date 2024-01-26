@@ -43,6 +43,11 @@ DuplaGalacticaGameProxy >> currentPlayer [
 ]
 
 { #category : #Information }
+DuplaGalacticaGameProxy >> discardCardsDeskAmount [
+	^ game discardCardsDeskAmount.
+]
+
+{ #category : #Information }
 DuplaGalacticaGameProxy >> goalLaps [
 
 	^ game goalLaps

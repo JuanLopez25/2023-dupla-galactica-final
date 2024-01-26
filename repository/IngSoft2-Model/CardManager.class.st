@@ -65,6 +65,11 @@ CardManager >> desactivate: anObjectiveCard [
 	activeCards desactivate: anObjectiveCard.
 ]
 
+{ #category : #Information }
+CardManager >> discardCardsDeskAmount [
+	^ 0.
+]
+
 { #category : #Managing }
 CardManager >> hasBeenGiven: aCard [
 

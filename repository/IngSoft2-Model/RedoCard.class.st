@@ -44,6 +44,11 @@ RedoCard >> initializeHolder: aHolder [
 ]
 
 { #category : #Information }
+RedoCard >> isEmpty [
+	^false.
+]
+
+{ #category : #Information }
 RedoCard >> isHolder: aColorPlayer [
 
 	^ holder = aColorPlayer

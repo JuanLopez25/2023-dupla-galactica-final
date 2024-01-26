@@ -15,7 +15,7 @@ CardsInPosetion class >> createDeck [
 { #category : #'Changing cards' }
 CardsInPosetion >> addCard: aCard [
 
-	cards addLast: aCard
+	(aCard isEmpty) ifFalse: [ cards addLast: aCard ].
 ]
 
 { #category : #'Changing cards' }

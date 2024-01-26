@@ -13,6 +13,11 @@ CardProbability class >> using: aCardClass withChance: aChance [
 	^ self new initializeUsing: aCardClass withChance: aChance
 ]
 
+{ #category : #Card }
+CardProbability >> addOne [
+	chance:= chance+1.
+]
+
 { #category : #Information }
 CardProbability >> cardClass [
 	^ cardClass
@@ -27,4 +32,10 @@ CardProbability >> initializeUsing: aCardClass withChance: aChance [
 { #category : #Information }
 CardProbability >> probability [
 	^ chance.
+]
+
+{ #category : #Cards }
+CardProbability >> takeOutOne [
+
+	chance := chance - 1
 ]

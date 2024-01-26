@@ -10,7 +10,9 @@ Class {
 { #category : #Games }
 MovePlayersFromTheGameTest >> gameWithMoreParsecs: aLoadedDie [
 
-	| boxes aBoard aLoadedGame aShaker |
+	| boxes aBoard aLoadedGame aShaker aDeck |
+	aDeck := Deck with:
+		         (CardProbability using: OverloadCard  withChance: 3).
 	boxes := (BoxCreator use: (OrderedCollection with:
 			           (BoxProbability using: NoEffectBox new withChance: 100))) 
 		         create: 10.
@@ -22,14 +24,16 @@ MovePlayersFromTheGameTest >> gameWithMoreParsecs: aLoadedDie [
 		               and: aBoard
 		               usingToThrow: aShaker
 		               winningWhen: 2
-		               using: (CardDealer with: (OrderedCollection with: (CardProbability using: OverloadCard withChance: 100))).
+		               using: (CardDealer with: aDeck).
 	^ aLoadedGame
 ]
 
 { #category : #Games }
 MovePlayersFromTheGameTest >> gameWithOneLap: aLoadedDie [
 
-	| aGame boxes aBoard aShaker |
+	| aGame boxes aBoard aShaker aDeck |
+	aDeck := Deck with:
+		         (CardProbability using: OverloadCard  withChance: 3).
 	boxes := (BoxCreator use: (OrderedCollection with:
 			           (BoxProbability using: NoEffectBox new withChance: 100))) 
 		         create: 10.
@@ -41,7 +45,7 @@ MovePlayersFromTheGameTest >> gameWithOneLap: aLoadedDie [
 		         and: aBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
-		         using: (CardDealer with: (OrderedCollection with: (CardProbability using: OverloadCard withChance: 100))).
+		         using: (CardDealer with: aDeck).
 
 	^ aGame
 ]
@@ -49,7 +53,9 @@ MovePlayersFromTheGameTest >> gameWithOneLap: aLoadedDie [
 { #category : #Games }
 MovePlayersFromTheGameTest >> gameWithTwoLaps: aLoadedDie [
 
-	| boxes aBoard aLoadedGame aShaker |
+	| boxes aBoard aLoadedGame aShaker aDeck |
+	aDeck := Deck with:
+		         (CardProbability using: OverloadCard  withChance: 3).
 	boxes := (BoxCreator use: (OrderedCollection with:
 			           (BoxProbability using: NoEffectBox new withChance: 100))) 
 		         create: 10.
@@ -61,7 +67,7 @@ MovePlayersFromTheGameTest >> gameWithTwoLaps: aLoadedDie [
 		               and: aBoard
 		               usingToThrow: aShaker
 		               winningWhen: 2
-		               using: (CardDealer with: (OrderedCollection with: (CardProbability using: OverloadCard withChance: 100))).
+		               using: (CardDealer with: aDeck).
 	^ aLoadedGame
 ]
 

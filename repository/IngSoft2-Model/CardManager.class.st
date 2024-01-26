@@ -5,7 +5,7 @@ Class {
 		'cardsInPosetion',
 		'lastCardPlay',
 		'activeCards',
-		'discardsCards'
+		'cardDealer'
 	],
 	#category : #'IngSoft2-Model'
 }
@@ -23,9 +23,10 @@ CardManager >> activeCard: aCard [
 ]
 
 { #category : #Managing }
-CardManager >> addCard: aCard [
+CardManager >> addAmountOfCards: anAmount to: aColor [
 
-	cardsInPosetion addCard: aCard
+	anAmount timesRepeat: [ 
+		cardsInPosetion addCard: (cardDealer createCardFor: aColor) ]
 ]
 
 { #category : #Managing }
@@ -36,7 +37,7 @@ CardManager >> apply: aCard at: aGame [
 
 	aCard haveEffect ifTrue: [ lastCardPlay := aCard ].
 	aCard applyCardUsing: self at: aGame.
-	discardsCards addCard: aCard.
+	cardDealer discard: aCard.
 	cardsInPosetion takeOut: aCard
 ]
 
@@ -59,6 +60,11 @@ CardManager >> cardsInPosetionOf: player [
 	^ cardsInPosetion cardsOf: player
 ]
 
+{ #category : #Information }
+CardManager >> cardsToDeal [
+	^ cardDealer cardsToDeal.
+]
+
 { #category : #Managing }
 CardManager >> desactivate: anObjectiveCard [
 
@@ -68,7 +74,7 @@ CardManager >> desactivate: anObjectiveCard [
 
 { #category : #Information }
 CardManager >> discardCardsDeskAmount [
-	^ discardsCards deckSize.
+	^ cardDealer discardCardsDeskAmount.
 ]
 
 { #category : #Managing }
@@ -81,10 +87,12 @@ CardManager >> hasBeenGiven: aCard [
 CardManager >> initializeUsing: aCardDealer with: aColorCollection [
 
 	lastCardPlay := EmptyCard new.
-	discardsCards := DiscardsCards createDeck.
+	cardDealer := aCardDealer.
 	activeCards := ActiveCards createDeck.
 	cardsInPosetion := CardsInPosetion createDeck.
-	aCardDealer dealCards: self to: aColorCollection
+	aColorCollection do: [ :color | 
+		cardsInPosetion addCard: (cardDealer createCardFor: color).
+		cardsInPosetion addCard: (cardDealer createCardFor: color) ]
 ]
 
 { #category : #information }

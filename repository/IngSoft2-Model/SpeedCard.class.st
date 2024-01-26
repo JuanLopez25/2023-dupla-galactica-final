@@ -49,6 +49,11 @@ SpeedCard >> initializeHolder: aHolder [
 ]
 
 { #category : #Information }
+SpeedCard >> isEmpty [
+	^false.
+]
+
+{ #category : #Information }
 SpeedCard >> isHolder: aColorPlayer [
 
 	^ holder = aColorPlayer

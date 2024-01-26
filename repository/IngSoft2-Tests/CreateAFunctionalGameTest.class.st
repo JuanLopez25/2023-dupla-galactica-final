@@ -10,7 +10,9 @@ Class {
 { #category : #Games }
 CreateAFunctionalGameTest >> gameWithLoadedDie [
 
-	| aLoadedGame aLoadedDie aBoard boxes aShaker |
+	| aLoadedGame aLoadedDie aBoard boxes aShaker aDeck |
+	aDeck := Deck with:
+		         (CardProbability using: OverloadCard  withChance: 3).
 	aLoadedDie := LoadedDie with: (OrderedCollection
 			               with: 9
 			               with: 6
@@ -25,14 +27,16 @@ CreateAFunctionalGameTest >> gameWithLoadedDie [
 		         and: aBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
-		         using: (CardDealer with: (OrderedCollection with: (CardProbability using: OverloadCard withChance: 100))).
+		         using: (CardDealer with: aDeck).
 	^ aLoadedGame
 ]
 
 { #category : #Games }
 CreateAFunctionalGameTest >> gameWithTwoLoadedDie [
 
-	| aLoadedDie aSecondLoadedDie aShaker aGame boxes aBoard |
+	| aLoadedDie aSecondLoadedDie aShaker aGame boxes aBoard aDeck |
+	aDeck := Deck with:
+		         (CardProbability using: OverloadCard  withChance: 3).
 	aLoadedDie := LoadedDie with: (OrderedCollection
 			               with: 4
 			               with: 5
@@ -55,7 +59,7 @@ CreateAFunctionalGameTest >> gameWithTwoLoadedDie [
 		         and: aBoard
 		         usingToThrow: aShaker
 		         winningWhen: 2
-		         using: (CardDealer with: (OrderedCollection with: (CardProbability using: OverloadCard withChance: 100))).
+		         using: (CardDealer with: aDeck).
 	^ aGame
 ]
 

@@ -2,32 +2,25 @@ Class {
 	#name : #RandomCardBox,
 	#superclass : #Object,
 	#instVars : [
-		'cards'
+		'cardsAmount'
 	],
 	#category : #'IngSoft2-Model'
 }
 
 { #category : #'Instance creation' }
-RandomCardBox class >> withCards: cardsProbabilities [ 
+RandomCardBox class >> dealing: cardsProbabilities [ 
 
-	(cardsProbabilities sum: [ :cardProbability | 
-		 cardProbability probability ]) = 100 ifFalse: [ 
-		Error signal: 'The sum of probabilities must be 100' ].
-	^ self new intializeUsing: cardsProbabilities.
+	^ self new intializeDealing: cardsProbabilities.
 ]
 
 { #category : #Effect }
 RandomCardBox >> effect: aGame [
 
-	| randomCardGenerator  |
-	
-	randomCardGenerator := RandomCardGenerator dealing: cards.
-	aGame addCard: (randomCardGenerator
-			 createCardFor: aGame currentPlayer)
+	aGame addAmountOfCards: cardsAmount.
 ]
 
 { #category : #Initialization }
-RandomCardBox >> intializeUsing: aCardsProbabilitiesCollection [
+RandomCardBox >> intializeDealing: anAmountOfCards [
 
-	cards := aCardsProbabilitiesCollection
+	cardsAmount := anAmountOfCards
 ]

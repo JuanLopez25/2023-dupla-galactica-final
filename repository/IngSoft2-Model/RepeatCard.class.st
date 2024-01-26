@@ -43,6 +43,11 @@ RepeatCard >> initializeHolder: aHolder [
 ]
 
 { #category : #Information }
+RepeatCard >> isEmpty [
+	^false.
+]
+
+{ #category : #Information }
 RepeatCard >> isHolder: aColorPlayer [
 
 	^ holder = aColorPlayer

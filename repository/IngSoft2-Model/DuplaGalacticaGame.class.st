@@ -34,9 +34,9 @@ DuplaGalacticaGame class >> with: aColorCollection and: aBoard usingToThrow: aDi
 ]
 
 { #category : #Cards }
-DuplaGalacticaGame >> addCard: aCard [
+DuplaGalacticaGame >> addAmountOfCards: anAmountOfCard [ 
 	
-	cardManager addCard: aCard.
+	cardManager addAmountOfCards: anAmountOfCard to: current color.
 ]
 
 { #category : #Cards }
@@ -58,6 +58,11 @@ DuplaGalacticaGame >> boxes [
 DuplaGalacticaGame >> cardsInPosetionOf: aPlayer [
 
 	^ cardManager cardsInPosetionOf: aPlayer
+]
+
+{ #category : #Information }
+DuplaGalacticaGame >> cardsToDeal [
+	^ cardManager cardsToDeal .
 ]
 
 { #category : #Information }

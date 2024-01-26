@@ -50,6 +50,11 @@ OverloadCard >> initializeHolder: aHolder [
 ]
 
 { #category : #Information }
+OverloadCard >> isEmpty [
+	^ false.
+]
+
+{ #category : #Information }
 OverloadCard >> isHolder: aColorPlayer [
 
 	^ holder = aColorPlayer

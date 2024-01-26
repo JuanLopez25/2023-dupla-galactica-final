@@ -43,6 +43,11 @@ CancellationCard >> initializeHolder: aHolder [
 ]
 
 { #category : #Information }
+CancellationCard >> isEmpty [
+	^false.
+]
+
+{ #category : #Information }
 CancellationCard >> isHolder: aColorPlayer [
 
 	^ holder = aColorPlayer

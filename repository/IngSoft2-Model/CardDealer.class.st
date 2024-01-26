@@ -2,32 +2,50 @@ Class {
 	#name : #CardDealer,
 	#superclass : #Object,
 	#instVars : [
-		'cardsProbabilitiesToDeal'
+		'deck',
+		'discardDeck'
 	],
 	#category : #'IngSoft2-Model'
 }
 
 { #category : #'Instance creation' }
-CardDealer class >> with: aCardCollection [ 
+CardDealer class >> with: aDeck [ 
 
-	(aCardCollection sum: [ :cardProbability | 
-		 cardProbability probability ]) = 100 ifFalse: [ 
-		Error signal: 'The sum of probabilities must be 100' ].
-	^ self new intializeWith: aCardCollection.
+	^ self new intializeWith: aDeck.
+]
+
+{ #category : #Information }
+CardDealer >> cardsToDeal [
+
+	^ deck cardsToDeal
 ]
 
 { #category : #Cards }
-CardDealer >> dealCards: aCardManager to: aColorsCollection [
+CardDealer >> createCardFor: aColor [
 
-	| randomCardGenerator |
-	randomCardGenerator := RandomCardGenerator dealing: cardsProbabilitiesToDeal.
+	| aNewDeck |
+	deck isEmpty ifTrue: [ 
+		aNewDeck := discardDeck shuffle.
+		aNewDeck do: [ :card | deck addCard: card ].
+		deck isEmpty ifTrue: [ ^ EmptyCard new ] ].
+	^ deck createCardFor: aColor
+]
 
-	aColorsCollection do: [ :color | 
-		aCardManager addCard: (randomCardGenerator createCardFor: color).
-		aCardManager addCard: (randomCardGenerator createCardFor: color) ]
+{ #category : #Cards }
+CardDealer >> discard: aCard [
+
+	discardDeck addCard: aCard
+]
+
+{ #category : #Information }
+CardDealer >> discardCardsDeskAmount [
+
+	^ discardDeck deckSize
 ]
 
 { #category : #Initialization }
-CardDealer >> intializeWith: aCardProbabilityCollection [ 
-	cardsProbabilitiesToDeal:= aCardProbabilityCollection.
+CardDealer >> intializeWith: aDeck [
+
+	deck := aDeck.
+	discardDeck := DiscardsCards createDeck.
 ]

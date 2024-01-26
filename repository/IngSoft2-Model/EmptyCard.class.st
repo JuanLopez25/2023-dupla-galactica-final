@@ -1,8 +1,22 @@
 Class {
 	#name : #EmptyCard,
 	#superclass : #Object,
+	#classInstVars : [
+		'holder'
+	],
 	#category : #'IngSoft2-Model'
 }
+
+{ #category : #Initialization }
+EmptyCard class >> holder: aColor [ 
+	
+	holder:= aColor.
+]
+
+{ #category : #Information }
+EmptyCard >> isEmpty [
+	^true.
+]
 
 { #category : #Effect }
 EmptyCard >> selectTarget: aTarget [

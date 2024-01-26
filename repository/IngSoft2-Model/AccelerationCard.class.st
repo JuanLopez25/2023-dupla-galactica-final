@@ -47,6 +47,11 @@ AccelerationCard >> initializeHolder: aHolder [
 ]
 
 { #category : #Information }
+AccelerationCard >> isEmpty [
+	^false.
+]
+
+{ #category : #Information }
 AccelerationCard >> isHolder: aColorPlayer [
 
 	^ holder = aColorPlayer

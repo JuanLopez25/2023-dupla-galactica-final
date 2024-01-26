@@ -1540,8 +1540,33 @@ CardsTest >> testV001VerifyThatNoCardsHasBeenDiscardAtTheBeggining [
 		         usingToThrow: aShaker
 		         winningWhen: 1
 		         using:
-		         (CardDealer with: (OrderedCollection with: (CardProbability using: RedoCard withChance: 100))).
+		         (CardDealer with: (OrderedCollection with: (CardProbability using: OverloadCard withChance: 100))).
 	self
 		assert: (aGame discardCardsDeskAmount)
 		equals: 0.
+]
+
+{ #category : #tests }
+CardsTest >> testV002VerifyThatOneCardsHasBeenDiscardWhenItIsUsed [
+
+	| aGame aLoadedDie aBoard aShaker aCard |
+	aBoard := self createBoard.
+	aLoadedDie := LoadedDie with: (OrderedCollection
+			               with: 1
+			               with: 2
+			               with: 3
+			               with: 4).
+	aShaker := DiceShaker withDie: aLoadedDie.
+	aGame := DuplaGalacticaGameProxy
+		         with: aColorCollection
+		         and: aBoard
+		         usingToThrow: aShaker
+		         winningWhen: 1
+		         using:
+		         (CardDealer with: (OrderedCollection with: (CardProbability using: OverloadCard withChance: 100))).
+	aCard := (OverloadCard holder: 'red') selectTarget: 'blue'.
+	aGame apply: aCard.
+	self
+		assert: (aGame discardCardsDeskAmount)
+		equals: 1.
 ]

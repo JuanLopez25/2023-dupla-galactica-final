@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'cardsInPosetion',
 		'lastCardPlay',
-		'activeCards'
+		'activeCards',
+		'discardsCards'
 	],
 	#category : #'IngSoft2-Model'
 }
@@ -35,7 +36,7 @@ CardManager >> apply: aCard at: aGame [
 
 	aCard haveEffect ifTrue: [ lastCardPlay := aCard ].
 	aCard applyCardUsing: self at: aGame.
-
+	discardsCards addCard: aCard.
 	cardsInPosetion takeOut: aCard
 ]
 
@@ -67,7 +68,7 @@ CardManager >> desactivate: anObjectiveCard [
 
 { #category : #Information }
 CardManager >> discardCardsDeskAmount [
-	^ 0.
+	^ discardsCards deckSize.
 ]
 
 { #category : #Managing }
@@ -80,6 +81,7 @@ CardManager >> hasBeenGiven: aCard [
 CardManager >> initializeUsing: aCardDealer with: aColorCollection [
 
 	lastCardPlay := EmptyCard new.
+	discardsCards := DiscardsCards createDeck.
 	activeCards := ActiveCards createDeck.
 	cardsInPosetion := CardsInPosetion createDeck.
 	aCardDealer dealCards: self to: aColorCollection

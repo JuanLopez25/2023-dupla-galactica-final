@@ -1570,3 +1570,69 @@ CardsTest >> testV002VerifyThatOneCardsHasBeenDiscardWhenItIsUsed [
 		assert: (aGame discardCardsDeskAmount)
 		equals: 1.
 ]
+
+{ #category : #tests }
+CardsTest >> testV003VerifyThatTwoCardsHasBeenDiscardWhenAreUsed [
+
+	| aGame aLoadedDie aBoard aShaker aCard |
+	aBoard := self createBoard.
+	aLoadedDie := LoadedDie with: (OrderedCollection
+			               with: 1
+			               with: 2
+			               with: 3
+			               with: 4).
+	aShaker := DiceShaker withDie: aLoadedDie.
+	aGame := DuplaGalacticaGameProxy
+		         with: aColorCollection
+		         and: aBoard
+		         usingToThrow: aShaker
+		         winningWhen: 1
+		         using:
+		         (CardDealer with: (OrderedCollection with: (CardProbability using: OverloadCard withChance: 100))).
+	aCard := (OverloadCard holder: 'red') selectTarget: 'blue'.
+	aGame apply: aCard.
+	aCard := (OverloadCard holder: 'red') selectTarget: 'blue'.
+	aGame apply: aCard.
+	self
+		assert: (aGame discardCardsDeskAmount)
+		equals: 2.
+]
+
+{ #category : #tests }
+CardsTest >> testV004VerifyThatTwoCardsHasBeenDiscardWhenAreUsedDispiteTheyArePermanentOrInstant [
+
+	| aGame aLoadedDie aBoard boxes aShaker aCard aSecondCard |
+	boxes := (BoxCreator use: (OrderedCollection with: (BoxProbability
+				            using:
+				            (RandomCardBox withCards:
+					             (OrderedCollection with: (CardProbability using: CancellationCard withChance: 100)))
+				            withChance: 100))) create: 10.
+	aBoard := Board with: boxes measure: (Parsec worth: 100).
+	aLoadedDie := LoadedDie with: (OrderedCollection
+			               with: 1
+			               with: 2
+			               with: 3
+			               with: 4).
+	aShaker := DiceShaker withDie: aLoadedDie.
+	aGame := DuplaGalacticaGameProxy
+		         with: aColorCollection
+		         and: aBoard
+		         usingToThrow: aShaker
+		         winningWhen: 1
+		         using:
+		         (CardDealer with: (OrderedCollection with: (CardProbability using: OverloadCard withChance: 100))).
+
+	aCard := (OverloadCard holder: 'red') selectTarget: 'blue'.
+	aGame apply: aCard.
+	aGame movePlayer.
+	aGame movePlayer.
+	aSecondCard := (CancellationCard holder: 'red') selectTarget:
+		               (OverloadCard holder: 'blue').
+	aGame apply: aSecondCard.
+
+	aGame movePlayer.
+	aGame movePlayer.
+	self
+		assert: (aGame discardCardsDeskAmount)
+		equals: 2.
+]

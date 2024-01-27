@@ -7,15 +7,10 @@ Class {
 	#category : #'IngSoft2-Model'
 }
 
-{ #category : #Initialization }
-EmptyCard class >> holder: aColor [ 
-	
-	holder:= aColor.
-]
-
 { #category : #Information }
 EmptyCard >> isEmpty [
-	^true.
+
+	^ true
 ]
 
 { #category : #Effect }

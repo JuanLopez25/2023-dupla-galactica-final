@@ -1306,3 +1306,22 @@ CardsTest >> testV008VerifyThatExistAFiniteAmountOfCardsToDealAndTheyAreNotDealB
 	self assert: (aGame cardsInPosetionOf: 'red') equals: 3.
 	self assert: (aGame cardsInPosetionOf: 'blue') equals: 2
 ]
+
+{ #category : #tests }
+CardsTest >> testV009VerifyThatWhenMoreThanOneCardAmountOfTheSameCardEverythingWorksCorrect [
+
+	| aGame aDeck |
+	aDeck := Deck with: (CardProbability using: SpeedCard withChance: 2).
+	aDeck addCard: (CardProbability using: SpeedCard withChance: 3).
+	aGame := DuplaGalacticaGameProxy
+		         with: aColorCollection
+		         and: (self createBoardWithRandomBoxDealing: 1)
+		         usingToThrow: aShaker
+		         winningWhen: 1
+		         using: (CardDealer with: aDeck).
+	aGame movePlayer.
+	aGame movePlayer.
+
+	self assert: (aGame cardsInPosetionOf: 'red') equals: 3.
+	self assert: (aGame cardsInPosetionOf: 'blue') equals: 2
+]

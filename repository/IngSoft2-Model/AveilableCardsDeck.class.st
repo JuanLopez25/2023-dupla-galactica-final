@@ -1,5 +1,5 @@
 Class {
-	#name : #Deck,
+	#name : #AveilableCardsDeck,
 	#superclass : #Object,
 	#instVars : [
 		'cardsInDeck'
@@ -8,41 +8,41 @@ Class {
 }
 
 { #category : #'Instance creation' }
-Deck class >> with: aCardAmount [ 
+AveilableCardsDeck class >> with: aCardAmount [ 
 	^self new initializeWith: aCardAmount.
 ]
 
 { #category : #Cards }
-Deck >> addExistingCards: aCard [
+AveilableCardsDeck >> addExistingCards: aCard [
 
 	cardsInDeck addLast: aCard
 ]
 
 { #category : #Cards }
-Deck >> addNewCards: aCardAmount [
+AveilableCardsDeck >> addNewCards: aCardAmount [
 
 	aCardAmount amountOfCards timesRepeat: [ 
 		cardsInDeck addLast: aCardAmount cardClass create ].
 ]
 
 { #category : #Information }
-Deck >> cardsToDeal [
+AveilableCardsDeck >> cardsToDeal [
 	^ cardsInDeck size.
 ]
 
 { #category : #Cards }
-Deck >> createCardFor: aPlayerColor [
+AveilableCardsDeck >> createCardFor: aPlayerColor [
 
 	| selectedCard aRandomValue |
 	aRandomValue := cardsInDeck size atRandom.
 	selectedCard := cardsInDeck at: aRandomValue.
-	selectedCard holder: aPlayerColor.
+	selectedCard newHolder: aPlayerColor.
 	cardsInDeck remove: selectedCard.
 	^ selectedCard
 ]
 
 { #category : #Initialization }
-Deck >> initializeWith: aCardAmount [
+AveilableCardsDeck >> initializeWith: aCardAmount [
 
 	cardsInDeck := OrderedCollection new.
 	aCardAmount amountOfCards timesRepeat: [ 
@@ -50,6 +50,6 @@ Deck >> initializeWith: aCardAmount [
 ]
 
 { #category : #Information }
-Deck >> isEmpty [
+AveilableCardsDeck >> isEmpty [
 	^ cardsInDeck isEmpty.
 ]

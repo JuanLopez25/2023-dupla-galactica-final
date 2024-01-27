@@ -88,7 +88,7 @@ DuplaGalacticaGame >> initializeWith: aColorsCollection and: aBoard usingToThrow
 	players := aColorsCollection collect: [ :color | Player with: color ].
 	board := aBoard.
 	shaker := aDiceShaker.
-	turnManager := TurnManager with: players.
+	turnManager := QueueManager with: players.
 	goalLaps := aValue.
 	boxes:= aBoard boxes.
 	current:= turnManager current.
@@ -98,6 +98,7 @@ DuplaGalacticaGame >> initializeWith: aColorsCollection and: aBoard usingToThrow
 { #category : #Cards }
 DuplaGalacticaGame >> isValidPlayer: objective [
 
+	objective isEmpty ifTrue: [ Error signal: 'The objective has not been specify' ].
 	self playersColors
 		detect: [ :color | color = objective ]
 		ifFound: [ ^ true ]

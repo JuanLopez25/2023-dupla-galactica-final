@@ -24,7 +24,7 @@ AccelerationCard >> = aCard [
 AccelerationCard >> applyCardUsing: cardManager at: aGame [ 
 
 	aGame playersColors do: [ :color | 
-		cardManager activeCard: (self class create holder: color) ]
+		cardManager activeCard: (self class create newHolder: color) ]
 ]
 
 { #category : #Effect }
@@ -45,13 +45,6 @@ AccelerationCard >> holder [
 	^ holder
 ]
 
-{ #category : #Effect }
-AccelerationCard >> holder: aHolder [
-
-	holder := aHolder
-	
-]
-
 { #category : #Initialization }
 AccelerationCard >> intializeCreate [
 	holder:= EmptyPlayer new.
@@ -66,6 +59,13 @@ AccelerationCard >> isEmpty [
 AccelerationCard >> isPermanent [
 
 	^ true
+]
+
+{ #category : #Effect }
+AccelerationCard >> newHolder: aHolder [
+
+	holder := aHolder
+	
 ]
 
 { #category : #Effect }

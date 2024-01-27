@@ -41,12 +41,6 @@ RedoCard >> holder [
 	^ holder
 ]
 
-{ #category : #Information }
-RedoCard >> holder: aHolder [
-
-	holder := aHolder
-]
-
 { #category : #Initialization }
 RedoCard >> intializeWith [
 	holder:= EmptyPlayer new.
@@ -62,6 +56,12 @@ RedoCard >> isEmpty [
 RedoCard >> isPermanent [
 
 	^ false
+]
+
+{ #category : #Information }
+RedoCard >> newHolder: aHolder [
+
+	holder := aHolder
 ]
 
 { #category : #Information }

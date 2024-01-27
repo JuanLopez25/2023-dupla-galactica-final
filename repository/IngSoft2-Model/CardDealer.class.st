@@ -47,5 +47,5 @@ CardDealer >> discardCardsDeskAmount [
 CardDealer >> intializeWith: aDeck [
 
 	deck := aDeck.
-	discardDeck := DiscardsCards createDeck.
+	discardDeck := DiscardsCardsDeck createDeck.
 ]

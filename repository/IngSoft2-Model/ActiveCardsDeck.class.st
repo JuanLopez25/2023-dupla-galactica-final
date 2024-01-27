@@ -1,5 +1,5 @@
 Class {
-	#name : #ActiveCards,
+	#name : #ActiveCardsDeck,
 	#superclass : #Object,
 	#instVars : [
 		'cards'
@@ -8,24 +8,24 @@ Class {
 }
 
 { #category : #'Instance creation' }
-ActiveCards class >> createDeck [
+ActiveCardsDeck class >> createDeck [
 	^ self new initializeDeck.
 ]
 
 { #category : #Activation }
-ActiveCards >> activeCard: aCard [ 
+ActiveCardsDeck >> activeCard: aCard [ 
 	cards addLast: aCard
 ]
 
 { #category : #Effects }
-ActiveCards >> calculateEffectOn: aColorPlayer [
+ActiveCardsDeck >> calculateEffectOn: aColorPlayer [
 
 	^ (cards select: [ :card | card holder = aColorPlayer ]) sum: [ :card | 
 		  card applyEffect ]
 ]
 
 { #category : #Desactivation }
-ActiveCards >> desactivate: anObjectiveCard [ 
+ActiveCardsDeck >> desactivate: anObjectiveCard [ 
 	self isEmpty.
 	cards
 		detect: [ :card | card = anObjectiveCard ]
@@ -37,12 +37,12 @@ ActiveCards >> desactivate: anObjectiveCard [
 ]
 
 { #category : #Initialization }
-ActiveCards >> initializeDeck [
+ActiveCardsDeck >> initializeDeck [
 	cards:= OrderedCollection new.
 ]
 
 { #category : #Cards }
-ActiveCards >> isEmpty [
+ActiveCardsDeck >> isEmpty [
 
 	cards isEmpty ifTrue: [ Error signal: 'There are no permanent cards' ]
 ]

@@ -26,7 +26,7 @@ OverloadCard >> applyCardUsing: cardManager at: aGame [
 
 	
 	aGame isValidPlayer: target.
-	cardManager activeCard: (self class create holder: target).
+	cardManager activeCard: (self class create newHolder: target).
 ]
 
 { #category : #Effect }
@@ -47,12 +47,6 @@ OverloadCard >> holder [
 	^ holder
 ]
 
-{ #category : #Information }
-OverloadCard >> holder: aHolder [
-
-	holder := aHolder
-]
-
 { #category : #Initialization }
 OverloadCard >> initializeCreate [
 	holder:= EmptyPlayer new.
@@ -68,6 +62,12 @@ OverloadCard >> isEmpty [
 OverloadCard >> isPermanent [
 
 	^ true
+]
+
+{ #category : #Information }
+OverloadCard >> newHolder: aHolder [
+
+	holder := aHolder
 ]
 
 { #category : #Information }

@@ -89,8 +89,8 @@ CardManager >> initializeUsing: aCardDealer with: aColorCollection [
 
 	lastCardPlay := EmptyCard new.
 	cardDealer := aCardDealer.
-	activeCards := ActiveCards createDeck.
-	cardsInPosetion := CardsInPosetion createDeck.
+	activeCards := ActiveCardsDeck createDeck.
+	cardsInPosetion := CardsInPosetionDeck createDeck.
 	aColorCollection do: [ :color | 
 		cardsInPosetion addCard: (cardDealer createCardFor: color).
 		cardsInPosetion addCard: (cardDealer createCardFor: color) ]

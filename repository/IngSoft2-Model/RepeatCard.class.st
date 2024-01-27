@@ -40,12 +40,6 @@ RepeatCard >> holder [
 	^ holder
 ]
 
-{ #category : #Information }
-RepeatCard >> holder: aHolder [
-
-	holder := aHolder
-]
-
 { #category : #Initialization }
 RepeatCard >> intializeWith [
 	holder:= EmptyPlayer new.
@@ -61,6 +55,12 @@ RepeatCard >> isEmpty [
 RepeatCard >> isPermanent [
 
 	^ false
+]
+
+{ #category : #Information }
+RepeatCard >> newHolder: aHolder [
+
+	holder := aHolder
 ]
 
 { #category : #Information }

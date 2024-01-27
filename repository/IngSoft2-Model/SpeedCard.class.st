@@ -25,7 +25,7 @@ SpeedCard >> = aCard [
 SpeedCard >> applyCardUsing: cardManager at: aGame [
 
 	aGame isValidPlayer: target.
-	cardManager activeCard: ((self class create )holder: target).
+	cardManager activeCard: ((self class create )newHolder: target).
 ]
 
 { #category : #Effect }
@@ -46,12 +46,6 @@ SpeedCard >> holder [
 	^ holder
 ]
 
-{ #category : #Effect }
-SpeedCard >> holder: aHolder [
-
-	holder := aHolder
-]
-
 { #category : #Initialization }
 SpeedCard >> initializeCreate [
 	holder:= EmptyPlayer new.
@@ -67,6 +61,12 @@ SpeedCard >> isEmpty [
 SpeedCard >> isPermanent [
 
 	^ true
+]
+
+{ #category : #Effect }
+SpeedCard >> newHolder: aHolder [
+
+	holder := aHolder
 ]
 
 { #category : #Initialization }

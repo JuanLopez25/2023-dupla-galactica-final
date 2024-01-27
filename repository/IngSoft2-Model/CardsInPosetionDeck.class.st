@@ -1,5 +1,5 @@
 Class {
-	#name : #CardsInPosetion,
+	#name : #CardsInPosetionDeck,
 	#superclass : #Object,
 	#instVars : [
 		'cards'
@@ -8,24 +8,24 @@ Class {
 }
 
 { #category : #'Instance creation' }
-CardsInPosetion class >> createDeck [
+CardsInPosetionDeck class >> createDeck [
 	^ self new initializeDeck.
 ]
 
 { #category : #'Changing cards' }
-CardsInPosetion >> addCard: aCard [
+CardsInPosetionDeck >> addCard: aCard [
 
 	(aCard isEmpty) ifFalse: [ cards addLast: aCard ].
 ]
 
 { #category : #'Changing cards' }
-CardsInPosetion >> cardsOf: aPlayerColor [
+CardsInPosetionDeck >> cardsOf: aPlayerColor [
 
 	^ (cards select: [ :card | card holder = aPlayerColor ]) size
 ]
 
 { #category : #'Changing cards' }
-CardsInPosetion >> hasBeenGiven: aCard [
+CardsInPosetionDeck >> hasBeenGiven: aCard [
 
 	cards
 		detect: [ :card | card = aCard ]
@@ -34,12 +34,12 @@ CardsInPosetion >> hasBeenGiven: aCard [
 ]
 
 { #category : #Initialization }
-CardsInPosetion >> initializeDeck [
+CardsInPosetionDeck >> initializeDeck [
 	cards:= OrderedCollection new.
 ]
 
 { #category : #Initialization }
-CardsInPosetion >> takeOut: aCard [
+CardsInPosetionDeck >> takeOut: aCard [
 
 	cards remove: aCard.
 ]

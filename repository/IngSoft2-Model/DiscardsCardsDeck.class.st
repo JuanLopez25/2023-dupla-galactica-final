@@ -1,5 +1,5 @@
 Class {
-	#name : #DiscardsCards,
+	#name : #DiscardsCardsDeck,
 	#superclass : #Object,
 	#instVars : [
 		'deck'
@@ -8,34 +8,34 @@ Class {
 }
 
 { #category : #'Instance creation' }
-DiscardsCards class >> createDeck [
+DiscardsCardsDeck class >> createDeck [
 	^ self new intializeCreateDeck.
 ]
 
 { #category : #Cards }
-DiscardsCards >> addCard: aCard [ 
+DiscardsCardsDeck >> addCard: aCard [ 
 	
 	deck addLast: aCard.
 ]
 
 { #category : #Information }
-DiscardsCards >> deckSize [
+DiscardsCardsDeck >> deckSize [
 
 	^ deck size.
 ]
 
 { #category : #Initialization }
-DiscardsCards >> intializeCreateDeck [
+DiscardsCardsDeck >> intializeCreateDeck [
 	
 	deck := OrderedCollection new.
 ]
 
 { #category : #Card }
-DiscardsCards >> shuffle [
+DiscardsCardsDeck >> shuffle [
 
 	|aNewDeck|
 	deck isEmpty ifTrue: [ ^ OrderedCollection new ].
-	deck do: [ :card | card holder: EmptyPlayer new].
+	deck do: [ :card | card newHolder: EmptyPlayer new].
 	aNewDeck:= deck.
 	deck := OrderedCollection new.
 	^aNewDeck.

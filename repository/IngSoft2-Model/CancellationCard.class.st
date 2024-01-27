@@ -24,6 +24,9 @@ CancellationCard >> = aCard [
 { #category : #Effect }
 CancellationCard >> applyCardUsing: cardManager at: aGame [
 
+	target isEmpty ifTrue: [ 
+		Error signal:
+			'The objective has not been specify' ].
 	cardManager desactivate: target
 ]
 
@@ -37,12 +40,6 @@ CancellationCard >> haveEffect [
 CancellationCard >> holder [
 
 	^ holder
-]
-
-{ #category : #Information }
-CancellationCard >> holder: aNewHolder [
-
-	holder:= aNewHolder
 ]
 
 { #category : #Initialization }
@@ -60,6 +57,12 @@ CancellationCard >> isEmpty [
 CancellationCard >> isPermanent [
 
 	^ false
+]
+
+{ #category : #Information }
+CancellationCard >> newHolder: aNewHolder [
+
+	holder:= aNewHolder
 ]
 
 { #category : #Information }

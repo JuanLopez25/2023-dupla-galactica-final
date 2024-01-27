@@ -22,7 +22,7 @@ CreateAFunctionalGameWithDifferentLengthMeasuresTest >> setUp [
 	boxes := (BoxCreator use:
 		          (OrderedCollection with: (BoxProbability using: NoEffectBox new withChance: 100))) 
 		         create: 10.
-	aDeck := Deck with:
+	aDeck := AveilableCardsDeck with:
 		         (CardAmount usingType: OverloadCard  amount: 4).
 ]
 

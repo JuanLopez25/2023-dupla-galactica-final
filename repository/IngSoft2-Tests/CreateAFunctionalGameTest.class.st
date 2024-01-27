@@ -11,7 +11,7 @@ Class {
 CreateAFunctionalGameTest >> gameWithLoadedDie [
 
 	| aLoadedGame aLoadedDie aBoard boxes aShaker aDeck |
-	aDeck := Deck with:
+	aDeck := AveilableCardsDeck with:
 		         (CardAmount usingType: OverloadCard  amount: 3).
 	aLoadedDie := LoadedDie with: (OrderedCollection
 			               with: 9
@@ -35,7 +35,7 @@ CreateAFunctionalGameTest >> gameWithLoadedDie [
 CreateAFunctionalGameTest >> gameWithTwoLoadedDie [
 
 	| aLoadedDie aSecondLoadedDie aShaker aGame boxes aBoard aDeck |
-	aDeck := Deck with:
+	aDeck := AveilableCardsDeck with:
 		         (CardAmount usingType: OverloadCard  amount: 3).
 	aLoadedDie := LoadedDie with: (OrderedCollection
 			               with: 4

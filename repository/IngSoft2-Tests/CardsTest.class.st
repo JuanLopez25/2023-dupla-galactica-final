@@ -287,12 +287,12 @@ CardsTest >> testQ011VerifyTheCorrectUseOfCancellationCard [
 CardsTest >> testQ012VerifyTheCorrectUseOfCancellationCardWhenThePlayerHasMoreThanOneCard [
 
 	| aGame aCard aDeck |
-	aDeck := Deck with: (CardProbability using: SpeedCard withChance: 3).
+	aDeck := Deck with: (CardProbability using: SpeedCard withChance: 4).
 	aDeck addCard:
 		(CardProbability using: CancellationCard withChance: 3).
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
-		         and: (self createBoardWithRandomBoxDealing: 2)
+		         and: (self createBoardWithRandomBoxDealing: 3)
 		         usingToThrow: aShaker
 		         winningWhen: 1
 		         using: (CardDealer with: aDeck).

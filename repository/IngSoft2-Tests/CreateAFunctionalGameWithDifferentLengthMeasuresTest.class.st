@@ -5,7 +5,8 @@ Class {
 		'aColorCollection',
 		'aLoadedDie',
 		'boxes',
-		'aShaker'
+		'aShaker',
+		'aDeck'
 	],
 	#category : #'IngSoft2-Tests'
 }
@@ -21,14 +22,14 @@ CreateAFunctionalGameWithDifferentLengthMeasuresTest >> setUp [
 	boxes := (BoxCreator use:
 		          (OrderedCollection with: (BoxProbability using: NoEffectBox new withChance: 100))) 
 		         create: 10.
+	aDeck := Deck with:
+		         (CardProbability using: OverloadCard  withChance: 4).
 ]
 
 { #category : #tests }
 CreateAFunctionalGameWithDifferentLengthMeasuresTest >> testS001CreateABordWithParsec [
 
-	| aBoard oneHundredParsecs aGame aDeck |
-	aDeck := Deck with:
-		         (CardProbability using: OverloadCard  withChance: 3).
+	| aBoard oneHundredParsecs aGame |
 	oneHundredParsecs := Parsec worth: 100.
 	aShaker := DiceShaker withDie: aLoadedDie.
 	aBoard := Board with: boxes measure: oneHundredParsecs.
@@ -45,9 +46,7 @@ CreateAFunctionalGameWithDifferentLengthMeasuresTest >> testS001CreateABordWithP
 { #category : #tests }
 CreateAFunctionalGameWithDifferentLengthMeasuresTest >> testS002CreateABordWithLigthYear [
 
-	| aBoard threeHundredLigthYears aGame aDeck |
-	aDeck := Deck with:
-		         (CardProbability using: OverloadCard  withChance: 3).
+	| aBoard threeHundredLigthYears aGame|
 	threeHundredLigthYears := LigthYear worth: 300.
 	aBoard := Board with: boxes measure: threeHundredLigthYears.
 	aGame := DuplaGalacticaGameProxy
@@ -63,9 +62,7 @@ CreateAFunctionalGameWithDifferentLengthMeasuresTest >> testS002CreateABordWithL
 { #category : #tests }
 CreateAFunctionalGameWithDifferentLengthMeasuresTest >> testS003CreateABordWithParsecAndAskForLightYear [
 
-	| aBoard oneHundredParsecs aGame aDeck |
-	aDeck := Deck with:
-		         (CardProbability using: OverloadCard  withChance: 3).
+	| aBoard oneHundredParsecs aGame|
 	oneHundredParsecs := Parsec worth: 100.
 	aBoard := Board with: boxes measure: oneHundredParsecs.
 	aGame := DuplaGalacticaGameProxy

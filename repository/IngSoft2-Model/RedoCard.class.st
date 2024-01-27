@@ -8,12 +8,6 @@ Class {
 	#category : #'IngSoft2-Model'
 }
 
-{ #category : #'Instance creation' }
-RedoCard class >> holder: aHolder [
-
-	^ self new initializeHolder: aHolder
-]
-
 { #category : #Information }
 RedoCard >> = aCard [
 
@@ -36,11 +30,10 @@ RedoCard >> haveEffect [
 	^ false
 ]
 
-{ #category : #Initialization }
-RedoCard >> initializeHolder: aHolder [
+{ #category : #Information }
+RedoCard >> holder: aHolder [
 
-	holder := aHolder.
-	target:= EmptyPlayer new.
+	holder := aHolder
 ]
 
 { #category : #Information }

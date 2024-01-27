@@ -8,12 +8,6 @@ Class {
 	#category : #'IngSoft2-Model'
 }
 
-{ #category : #'Instance creation' }
-RepeatCard class >> holder: aHolder [
-
-	^ self new initializeHolder: aHolder
-]
-
 { #category : #Information }
 RepeatCard >> = aCard [
 
@@ -35,11 +29,10 @@ RepeatCard >> haveEffect [
 	^ true
 ]
 
-{ #category : #Initialization }
-RepeatCard >> initializeHolder: aHolder [
+{ #category : #Information }
+RepeatCard >> holder: aHolder [
 
-	holder := aHolder.
-	target:= EmptyPlayer new.
+	holder := aHolder
 ]
 
 { #category : #Information }

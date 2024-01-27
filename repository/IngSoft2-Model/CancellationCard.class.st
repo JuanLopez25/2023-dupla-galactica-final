@@ -8,12 +8,6 @@ Class {
 	#category : #'IngSoft2-Model'
 }
 
-{ #category : #'Instance creation' }
-CancellationCard class >> holder: aHolder [
-
-	^ self new initializeHolder: aHolder
-]
-
 { #category : #Information }
 CancellationCard >> = aCard [
 
@@ -34,12 +28,10 @@ CancellationCard >> haveEffect [
 	^ true
 ]
 
-{ #category : #Initialization }
-CancellationCard >> initializeHolder: aHolder [
+{ #category : #Information }
+CancellationCard >> holder: aHolder [
 
-	holder := aHolder.
-	target := EmptyCard new.
-	
+	holder := aHolder
 ]
 
 { #category : #Information }

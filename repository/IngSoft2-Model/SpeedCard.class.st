@@ -8,12 +8,6 @@ Class {
 	#category : #'IngSoft2-Model'
 }
 
-{ #category : #'Instance creation' }
-SpeedCard class >> holder: aHolder [
-
-	^ self new initializeHolder: aHolder
-]
-
 { #category : #Information }
 SpeedCard >> = aCard [
 
@@ -26,7 +20,7 @@ SpeedCard >> = aCard [
 SpeedCard >> applyCardUsing: cardManager at: aGame [
 
 	aGame isValidPlayer: target.
-	cardManager activeCard: (self class holder: target).
+	cardManager activeCard: ((self class new )holder: target).
 ]
 
 { #category : #Effect }
@@ -41,11 +35,10 @@ SpeedCard >> haveEffect [
 	^ true
 ]
 
-{ #category : #Initialization }
-SpeedCard >> initializeHolder: aHolder [
+{ #category : #Effect }
+SpeedCard >> holder: aHolder [
 
-	holder := aHolder.
-	target:= EmptyPlayer new.
+	holder := aHolder
 ]
 
 { #category : #Information }

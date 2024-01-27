@@ -33,15 +33,6 @@ DiscardsCards >> intializeCreateDeck [
 { #category : #Card }
 DiscardsCards >> shuffle [
 
-	| aNewDeck |
 	deck isEmpty ifTrue: [ ^ OrderedCollection new ].
-	aNewDeck := OrderedCollection new.
-
-	deck do: [ :card | 
-		aNewDeck
-			detect: [ :cardAmount | cardAmount cardClass = card class ]
-			ifFound: [ :cardAmount | cardAmount addOne ]
-			ifNone: [ 
-			aNewDeck addLast: (CardProbability using: card class withChance: 1) ] ].
-	^aNewDeck.
+	^deck.
 ]

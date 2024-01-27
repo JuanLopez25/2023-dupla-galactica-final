@@ -7,12 +7,6 @@ Class {
 	#category : #'IngSoft2-Model'
 }
 
-{ #category : #'Instance creation' }
-AccelerationCard class >> holder: aHolder [
-
-	^ self new initializeHolder: aHolder
-]
-
 { #category : #Information }
 AccelerationCard >> = aCard [
 
@@ -25,7 +19,7 @@ AccelerationCard >> = aCard [
 AccelerationCard >> applyCardUsing: cardManager at: aGame [ 
 
 	aGame playersColors do: [ :color | 
-		cardManager activeCard: (self class holder: color) ]
+		cardManager activeCard: (self class new holder: color) ]
 ]
 
 { #category : #Effect }
@@ -40,10 +34,11 @@ AccelerationCard >> haveEffect [
 	^ true
 ]
 
-{ #category : #Initialization }
-AccelerationCard >> initializeHolder: aHolder [
+{ #category : #Effect }
+AccelerationCard >> holder: aHolder [
 
-	holder := aHolder.
+	holder := aHolder
+	
 ]
 
 { #category : #Information }

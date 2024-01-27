@@ -12,44 +12,41 @@ Deck class >> with: aCardAmount [
 	^self new initializeWith: aCardAmount.
 ]
 
-{ #category : #Card }
-Deck >> addCard: aCardAmount [
+{ #category : #Cards }
+Deck >> addExistingCards: aCard [
 
-	cardsInDeck addLast: aCardAmount
+	cardsInDeck addLast: aCard
+]
+
+{ #category : #Cards }
+Deck >> addNewCards: aCardAmount [
+
+	aCardAmount probability timesRepeat: [ 
+		cardsInDeck addLast: aCardAmount cardClass new ].
 ]
 
 { #category : #Information }
 Deck >> cardsToDeal [
-	^ cardsInDeck sum: [:card| card probability].
+	^ cardsInDeck size.
 ]
 
 { #category : #Cards }
 Deck >> createCardFor: aPlayerColor [
 
-	| selectedCard aRandomValue sum |
-	sum := 0.
-	aRandomValue := (cardsInDeck size) atRandom.
-	selectedCard := (cardsInDeck detect: [ :card | 
-		   sum := sum + card probability.
-		   aRandomValue <= sum ]) cardClass.
-	self hasBeenTaken: selectedCard.
-	^ selectedCard holder: aPlayerColor.
-]
-
-{ #category : #Cards }
-Deck >> hasBeenTaken: aCardClass [
-
-	| aSelectedCard |
-	aSelectedCard := cardsInDeck detect: [ :card | 
-		                 card cardClass = aCardClass ].
-	aSelectedCard takeOutOne.
-	(aSelectedCard probability = 0) ifTrue: [ cardsInDeck remove: aSelectedCard ]
+	| selectedCard aRandomValue |
+	aRandomValue := cardsInDeck size atRandom.
+	selectedCard := cardsInDeck at: aRandomValue.
+	selectedCard holder: aPlayerColor.
+	cardsInDeck remove: selectedCard.
+	^ selectedCard
 ]
 
 { #category : #Initialization }
-Deck >> initializeWith: aCardAmount [ 
-	
-	cardsInDeck := OrderedCollection with: aCardAmount .
+Deck >> initializeWith: aCardAmount [
+
+	cardsInDeck := OrderedCollection new.
+	aCardAmount probability timesRepeat: [ 
+		cardsInDeck addLast: aCardAmount cardClass new ]
 ]
 
 { #category : #Information }

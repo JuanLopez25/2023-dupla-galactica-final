@@ -603,7 +603,7 @@ BoxesTest >> testU002VerifyTheCorrectUseOfSprintBoxWhenAPlayerHave1Card [
 		         usingToThrow: aShaker
 		         winningWhen: 2
 		         using: (CardDealer with: aDeck).
-	aCard:= (AccelerationCard new holder: 'red').
+	aCard:= ((AccelerationCard create) holder: 'red').
 	aGame apply: aCard.
 	aGame movePlayer.
 	aGame movePlayer.
@@ -632,9 +632,9 @@ BoxesTest >> testU003VerifyTheCorrectUseOfSprintBoxWhenThePlayerDoesNotHaveCards
 		         usingToThrow: aShaker
 		         winningWhen: 2
 		         using: (CardDealer with: aDeck).
-	aCard:= (AccelerationCard new holder: 'red').
+	aCard:= (AccelerationCard create holder: 'red').
 	aGame apply: aCard.
-	aCard:= (AccelerationCard new holder: 'red').
+	aCard:= (AccelerationCard create holder: 'red').
 	aGame apply: aCard.
 	aGame movePlayer.
 	aGame movePlayer.

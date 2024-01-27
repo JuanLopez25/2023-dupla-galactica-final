@@ -33,6 +33,9 @@ DiscardsCards >> intializeCreateDeck [
 { #category : #Card }
 DiscardsCards >> shuffle [
 
+	|aNewDeck|
 	deck isEmpty ifTrue: [ ^ OrderedCollection new ].
-	^deck.
+	aNewDeck:= deck.
+	deck := OrderedCollection new.
+	^aNewDeck.
 ]

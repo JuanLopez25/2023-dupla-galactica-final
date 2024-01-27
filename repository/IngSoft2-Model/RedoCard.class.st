@@ -8,11 +8,16 @@ Class {
 	#category : #'IngSoft2-Model'
 }
 
+{ #category : #'Instance creation' }
+RedoCard class >> create [
+	^self new intializeWith.
+]
+
 { #category : #Information }
 RedoCard >> = aCard [
 
 	(aCard isKindOf: self class)
-		ifTrue: [ ^ aCard isHolder: holder ]
+		ifTrue: [ ^ aCard holder = holder ]
 		ifFalse: [ ^ false ]
 ]
 
@@ -31,20 +36,26 @@ RedoCard >> haveEffect [
 ]
 
 { #category : #Information }
+RedoCard >> holder [
+
+	^ holder
+]
+
+{ #category : #Information }
 RedoCard >> holder: aHolder [
 
 	holder := aHolder
 ]
 
-{ #category : #Information }
-RedoCard >> isEmpty [
-	^false.
+{ #category : #Initialization }
+RedoCard >> intializeWith [
+	holder:= EmptyPlayer new.
+	target:= EmptyPlayer new.
 ]
 
 { #category : #Information }
-RedoCard >> isHolder: aColorPlayer [
-
-	^ holder = aColorPlayer
+RedoCard >> isEmpty [
+	^false.
 ]
 
 { #category : #Information }

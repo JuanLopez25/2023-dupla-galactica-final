@@ -78,9 +78,7 @@ CreateAFunctionalGameWithDifferentLengthMeasuresTest >> testS003CreateABordWithP
 { #category : #tests }
 CreateAFunctionalGameWithDifferentLengthMeasuresTest >> testS004CreateABordWithLigthYearAndAskForParsec [
 
-	| aBoard threeHundredLigthYears aGame aDeck |
-	aDeck := Deck with:
-		         (CardProbability using: OverloadCard  withChance: 3).
+	| aBoard threeHundredLigthYears aGame |
 	threeHundredLigthYears := LigthYear worth: 300.
 	aBoard := Board with: boxes measure: threeHundredLigthYears.
 	aGame := DuplaGalacticaGameProxy

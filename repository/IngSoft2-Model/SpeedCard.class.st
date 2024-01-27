@@ -8,11 +8,16 @@ Class {
 	#category : #'IngSoft2-Model'
 }
 
+{ #category : #'Intance creation' }
+SpeedCard class >> create [
+	^ self new initializeCreate.
+]
+
 { #category : #Information }
 SpeedCard >> = aCard [
 
 	(aCard isKindOf: self class)
-		ifTrue: [ ^ aCard isHolder: holder ]
+		ifTrue: [ ^ aCard holder = holder ]
 		ifFalse: [ ^ false ]
 ]
 
@@ -20,7 +25,7 @@ SpeedCard >> = aCard [
 SpeedCard >> applyCardUsing: cardManager at: aGame [
 
 	aGame isValidPlayer: target.
-	cardManager activeCard: ((self class new )holder: target).
+	cardManager activeCard: ((self class create )holder: target).
 ]
 
 { #category : #Effect }
@@ -36,20 +41,26 @@ SpeedCard >> haveEffect [
 ]
 
 { #category : #Effect }
+SpeedCard >> holder [
+
+	^ holder
+]
+
+{ #category : #Effect }
 SpeedCard >> holder: aHolder [
 
 	holder := aHolder
 ]
 
-{ #category : #Information }
-SpeedCard >> isEmpty [
-	^false.
+{ #category : #Initialization }
+SpeedCard >> initializeCreate [
+	holder:= EmptyPlayer new.
+	target:= EmptyPlayer new.
 ]
 
 { #category : #Information }
-SpeedCard >> isHolder: aColorPlayer [
-
-	^ holder = aColorPlayer
+SpeedCard >> isEmpty [
+	^false.
 ]
 
 { #category : #Information }

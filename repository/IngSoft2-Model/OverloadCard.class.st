@@ -8,11 +8,16 @@ Class {
 	#category : #'IngSoft2-Model'
 }
 
+{ #category : #'Instance creation' }
+OverloadCard class >> create [
+	^ self new initializeCreate.
+]
+
 { #category : #Information }
 OverloadCard >> = aCard [
 
 	(aCard isKindOf: self class)
-		ifTrue: [ ^ aCard isHolder:holder ]
+		ifTrue: [ ^ aCard holder = holder ]
 		ifFalse: [ ^ false ]
 ]
 
@@ -21,7 +26,7 @@ OverloadCard >> applyCardUsing: cardManager at: aGame [
 
 	
 	aGame isValidPlayer: target.
-	cardManager activeCard: (self class new holder: target).
+	cardManager activeCard: (self class create holder: target).
 ]
 
 { #category : #Effect }
@@ -37,20 +42,26 @@ OverloadCard >> haveEffect [
 ]
 
 { #category : #Information }
+OverloadCard >> holder [
+
+	^ holder
+]
+
+{ #category : #Information }
 OverloadCard >> holder: aHolder [
 
 	holder := aHolder
 ]
 
-{ #category : #Information }
-OverloadCard >> isEmpty [
-	^ false.
+{ #category : #Initialization }
+OverloadCard >> initializeCreate [
+	holder:= EmptyPlayer new.
+	target:= EmptyPlayer new.
 ]
 
 { #category : #Information }
-OverloadCard >> isHolder: aColorPlayer [
-
-	^ holder = aColorPlayer
+OverloadCard >> isEmpty [
+	^ false.
 ]
 
 { #category : #Information }

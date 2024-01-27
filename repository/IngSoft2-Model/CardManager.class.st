@@ -50,7 +50,8 @@ CardManager >> calculateEffectOn: aColorPlayer [
 { #category : #Managing }
 CardManager >> canBeUse: aCard whenPlay: aPlayer [
 
-	^ (aCard isPermanent and: (aCard isHolder: aPlayer)) or:
+	(aCard holder) isEmpty ifTrue: [ Error signal:'The card does not have a holder'].
+	^ (aCard isPermanent and: (aCard holder = aPlayer)) or:
 		  aCard isPermanent not
 ]
 

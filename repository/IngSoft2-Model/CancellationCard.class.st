@@ -8,11 +8,16 @@ Class {
 	#category : #'IngSoft2-Model'
 }
 
+{ #category : #'Instance creation' }
+CancellationCard class >> create [
+	^self new initializeCreate.
+]
+
 { #category : #Information }
 CancellationCard >> = aCard [
 
 	(aCard isKindOf: self class)
-		ifTrue: [ ^ aCard isHolder:holder ]
+		ifTrue: [ ^ aCard holder = holder ]
 		ifFalse: [ ^ false ]
 ]
 
@@ -29,20 +34,26 @@ CancellationCard >> haveEffect [
 ]
 
 { #category : #Information }
-CancellationCard >> holder: aHolder [
+CancellationCard >> holder [
 
-	holder := aHolder
+	^ holder
+]
+
+{ #category : #Information }
+CancellationCard >> holder: aNewHolder [
+
+	holder:= aNewHolder
+]
+
+{ #category : #Initialization }
+CancellationCard >> initializeCreate [
+	holder:= EmptyPlayer new.
+	target:= EmptyPlayer new.
 ]
 
 { #category : #Information }
 CancellationCard >> isEmpty [
 	^false.
-]
-
-{ #category : #Information }
-CancellationCard >> isHolder: aColorPlayer [
-
-	^ holder = aColorPlayer
 ]
 
 { #category : #Information }

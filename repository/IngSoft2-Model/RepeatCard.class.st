@@ -8,11 +8,16 @@ Class {
 	#category : #'IngSoft2-Model'
 }
 
+{ #category : #'Intance creation' }
+RepeatCard class >> create [
+	^self new intializeWith.
+]
+
 { #category : #Information }
 RepeatCard >> = aCard [
 
 	(aCard isKindOf: self class)
-		ifTrue: [ ^ aCard isHolder: holder ]
+		ifTrue: [ ^ aCard holder = holder ]
 		ifFalse: [ ^ false ]
 ]
 
@@ -30,20 +35,26 @@ RepeatCard >> haveEffect [
 ]
 
 { #category : #Information }
+RepeatCard >> holder [
+
+	^ holder
+]
+
+{ #category : #Information }
 RepeatCard >> holder: aHolder [
 
 	holder := aHolder
 ]
 
-{ #category : #Information }
-RepeatCard >> isEmpty [
-	^false.
+{ #category : #Initialization }
+RepeatCard >> intializeWith [
+	holder:= EmptyPlayer new.
+	target:= EmptyPlayer new.
 ]
 
 { #category : #Information }
-RepeatCard >> isHolder: aColorPlayer [
-
-	^ holder = aColorPlayer
+RepeatCard >> isEmpty [
+	^false.
 ]
 
 { #category : #Information }

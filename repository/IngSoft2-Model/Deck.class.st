@@ -15,6 +15,7 @@ Deck class >> with: aCardAmount [
 { #category : #Cards }
 Deck >> addExistingCards: aCard [
 
+	aCard holder: (EmptyPlayer new).
 	cardsInDeck addLast: aCard
 ]
 
@@ -22,7 +23,7 @@ Deck >> addExistingCards: aCard [
 Deck >> addNewCards: aCardAmount [
 
 	aCardAmount probability timesRepeat: [ 
-		cardsInDeck addLast: aCardAmount cardClass new ].
+		cardsInDeck addLast: aCardAmount cardClass create ].
 ]
 
 { #category : #Information }
@@ -46,7 +47,7 @@ Deck >> initializeWith: aCardAmount [
 
 	cardsInDeck := OrderedCollection new.
 	aCardAmount probability timesRepeat: [ 
-		cardsInDeck addLast: aCardAmount cardClass new ]
+		cardsInDeck addLast: aCardAmount cardClass create ]
 ]
 
 { #category : #Information }

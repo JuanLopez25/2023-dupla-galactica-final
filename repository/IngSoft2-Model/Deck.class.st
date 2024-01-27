@@ -15,7 +15,6 @@ Deck class >> with: aCardAmount [
 { #category : #Cards }
 Deck >> addExistingCards: aCard [
 
-	aCard holder: (EmptyPlayer new).
 	cardsInDeck addLast: aCard
 ]
 

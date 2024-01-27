@@ -35,6 +35,7 @@ DiscardsCards >> shuffle [
 
 	|aNewDeck|
 	deck isEmpty ifTrue: [ ^ OrderedCollection new ].
+	deck do: [ :card | card holder: EmptyPlayer new].
 	aNewDeck:= deck.
 	deck := OrderedCollection new.
 	^aNewDeck.

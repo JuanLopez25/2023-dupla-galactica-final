@@ -27,7 +27,7 @@ CardDealer >> createCardFor: aColor [
 	deck isEmpty ifTrue: [ 
 		aNewDeck := discardDeck shuffle.
 		aNewDeck do: [ :card | deck addExistingCards: card ].
-		deck isEmpty ifTrue: [ ^ EmptyCard new ] ].
+		deck isEmpty ifTrue: [ ^ EmptyObject new ] ].
 	^ deck createCardFor: aColor
 ]
 

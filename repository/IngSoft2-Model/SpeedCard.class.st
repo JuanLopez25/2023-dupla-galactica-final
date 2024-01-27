@@ -48,8 +48,8 @@ SpeedCard >> holder [
 
 { #category : #Initialization }
 SpeedCard >> initializeCreate [
-	holder:= EmptyPlayer new.
-	target:= EmptyPlayer new.
+	holder:= EmptyObject new.
+	target:= EmptyObject new.
 ]
 
 { #category : #Information }

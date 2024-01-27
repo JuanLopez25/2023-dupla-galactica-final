@@ -24,9 +24,14 @@ RedoCard >> = aCard [
 { #category : #Initialization }
 RedoCard >> applyCardUsing: cardManager at: aGame [
 
-	(cardManager lastCardPlay selectTarget: target)
-		applyCardUsing: cardManager
-		at: aGame
+	cardManager lastCardPlay isEmpty
+		ifFalse: [ 
+			(cardManager lastCardPlay selectTarget: target)
+				applyCardUsing: cardManager
+				at: aGame ]
+		ifTrue: [ 
+			Error signal:
+				'Redo card cannot be played because there are no cards that have been played before' ]
 ]
 
 { #category : #Information }
@@ -43,8 +48,8 @@ RedoCard >> holder [
 
 { #category : #Initialization }
 RedoCard >> intializeWith [
-	holder:= EmptyPlayer new.
-	target:= EmptyPlayer new.
+	holder:= EmptyObject new.
+	target:= EmptyObject new.
 ]
 
 { #category : #Information }

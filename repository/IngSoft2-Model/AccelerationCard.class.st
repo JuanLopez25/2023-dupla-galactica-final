@@ -47,7 +47,7 @@ AccelerationCard >> holder [
 
 { #category : #Initialization }
 AccelerationCard >> intializeCreate [
-	holder:= EmptyPlayer new.
+	holder:= EmptyObject new.
 ]
 
 { #category : #Information }

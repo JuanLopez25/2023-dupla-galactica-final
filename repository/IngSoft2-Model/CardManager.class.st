@@ -87,7 +87,7 @@ CardManager >> hasBeenGiven: aCard [
 { #category : #Initialization }
 CardManager >> initializeUsing: aCardDealer with: aColorCollection [
 
-	lastCardPlay := EmptyCard new.
+	lastCardPlay := EmptyObject new.
 	cardDealer := aCardDealer.
 	activeCards := ActiveCardsDeck createDeck.
 	cardsInPosetion := CardsInPosetionDeck createDeck.

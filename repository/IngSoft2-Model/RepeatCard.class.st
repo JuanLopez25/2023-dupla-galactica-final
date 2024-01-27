@@ -42,8 +42,8 @@ RepeatCard >> holder [
 
 { #category : #Initialization }
 RepeatCard >> intializeWith [
-	holder:= EmptyPlayer new.
-	target:= EmptyPlayer new.
+	holder:= EmptyObject new.
+	target:= EmptyObject new.
 ]
 
 { #category : #Information }

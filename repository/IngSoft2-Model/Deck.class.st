@@ -22,7 +22,7 @@ Deck >> addExistingCards: aCard [
 { #category : #Cards }
 Deck >> addNewCards: aCardAmount [
 
-	aCardAmount probability timesRepeat: [ 
+	aCardAmount amountOfCards timesRepeat: [ 
 		cardsInDeck addLast: aCardAmount cardClass create ].
 ]
 
@@ -46,7 +46,7 @@ Deck >> createCardFor: aPlayerColor [
 Deck >> initializeWith: aCardAmount [
 
 	cardsInDeck := OrderedCollection new.
-	aCardAmount probability timesRepeat: [ 
+	aCardAmount amountOfCards timesRepeat: [ 
 		cardsInDeck addLast: aCardAmount cardClass create ]
 ]
 

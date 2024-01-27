@@ -14,7 +14,7 @@ CreateDuplaGalacticaGameTest >> createGameWithEffects [
 
 	| aGame aBoard aBoxCreator boxes boxesProbabilities aDeck |
 	aDeck := Deck with:
-		         (CardProbability using: OverloadCard  withChance: 3).
+		         (CardAmount usingType: OverloadCard  amount: 3).
 	boxesProbabilities := OrderedCollection
 		                      with:
 		                      (BoxProbability

@@ -18,7 +18,7 @@ CreatingPlayersFromTheGameTest >> setUp [
 	| aDeck |
 	super setUp.
 	aDeck := Deck with:
-		         (CardProbability using: OverloadCard  withChance: 3).
+		         (CardAmount usingType: OverloadCard  amount: 3).
 	aColorCollection := OrderedCollection with: 'red'.
 	aLoadedDie := LoadedDie with: (OrderedCollection
 			               with: 8

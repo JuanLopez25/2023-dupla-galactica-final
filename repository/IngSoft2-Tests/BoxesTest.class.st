@@ -15,7 +15,7 @@ BoxesTest >> setUp [
 
 	aColorCollection := OrderedCollection with: 'red' with: 'blue'.
 	aDeck := Deck with:
-		         (CardProbability using: AccelerationCard  withChance: 7).
+		         (CardAmount usingType: AccelerationCard  amount: 7).
 ]
 
 { #category : #tests }

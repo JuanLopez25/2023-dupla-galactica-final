@@ -12,7 +12,7 @@ CreateAFunctionalGameTest >> gameWithLoadedDie [
 
 	| aLoadedGame aLoadedDie aBoard boxes aShaker aDeck |
 	aDeck := Deck with:
-		         (CardProbability using: OverloadCard  withChance: 3).
+		         (CardAmount usingType: OverloadCard  amount: 3).
 	aLoadedDie := LoadedDie with: (OrderedCollection
 			               with: 9
 			               with: 6
@@ -36,7 +36,7 @@ CreateAFunctionalGameTest >> gameWithTwoLoadedDie [
 
 	| aLoadedDie aSecondLoadedDie aShaker aGame boxes aBoard aDeck |
 	aDeck := Deck with:
-		         (CardProbability using: OverloadCard  withChance: 3).
+		         (CardAmount usingType: OverloadCard  amount: 3).
 	aLoadedDie := LoadedDie with: (OrderedCollection
 			               with: 4
 			               with: 5

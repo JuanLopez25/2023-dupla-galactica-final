@@ -1657,7 +1657,7 @@ CardsTest >> testV003VerifyThatTwoCardsHasBeenDiscardWhenAreUsed [
 { #category : #tests }
 CardsTest >> testV005VerifyThatExistAFiniteAmountOfCardsToDeal [
 
-	| aGame aLoadedDie aBoard aShaker aDeck |
+	| aGame aLoadedDie aBoard aShaker aDeck|
 	aBoard := self createBoard.
 	aLoadedDie := LoadedDie with: (OrderedCollection
 			               with: 1
@@ -1673,4 +1673,95 @@ CardsTest >> testV005VerifyThatExistAFiniteAmountOfCardsToDeal [
 		         winningWhen: 1
 		         using: (CardDealer with: aDeck).
 	self assert: aGame cardsToDeal equals: 1
+]
+
+{ #category : #tests }
+CardsTest >> testV006VerifyThatExistAFiniteAmountOfCardsToDealWhenTheyAreStolenFromARandomCardBox [
+
+	| aGame aLoadedDie aBoard aShaker aDeck boxes |
+	boxes := (BoxCreator use: (OrderedCollection with: (BoxProbability
+				            using:
+					            (RandomCardBox dealing: 2)
+				            withChance: 100))) create: 10.
+	aBoard := Board with: boxes measure: (Parsec worth: 100).
+	aLoadedDie := LoadedDie with: (OrderedCollection
+			               with: 1
+			               with: 2
+			               with: 3
+			               with: 4).
+	aShaker := DiceShaker withDie: aLoadedDie.
+	aDeck := Deck with: (CardProbability using: OverloadCard withChance: 5).
+	aGame := DuplaGalacticaGameProxy
+		         with: aColorCollection
+		         and: aBoard
+		         usingToThrow: aShaker
+		         winningWhen: 1
+		         using: (CardDealer with: aDeck).
+	aGame movePlayer.
+	self assert: aGame cardsToDeal equals: 0
+]
+
+{ #category : #tests }
+CardsTest >> testV007VerifyThatExistAFiniteAmountOfCardsToDealWhenTheyAreShuffle [
+
+	| aGame aLoadedDie aBoard aShaker aDeck boxes aCard |
+	boxes := (BoxCreator use: (OrderedCollection with: (BoxProbability
+				            using:
+					            (RandomCardBox dealing: 1)
+				            withChance: 100))) create: 10.
+	aBoard := Board with: boxes measure: (Parsec worth: 100).
+	aLoadedDie := LoadedDie with: (OrderedCollection
+			               with: 1
+			               with: 2
+			               with: 3
+			               with: 4).
+	aShaker := DiceShaker withDie: aLoadedDie.
+	aDeck := Deck with: (CardProbability using: SpeedCard withChance: 5).
+	aGame := DuplaGalacticaGameProxy
+		         with: aColorCollection
+		         and: aBoard
+		         usingToThrow: aShaker
+		         winningWhen: 1
+		         using: (CardDealer with: aDeck).
+	aCard := (SpeedCard holder: 'red') selectTarget: 'red'.
+	aGame apply: aCard.
+	aCard := (SpeedCard holder: 'red') selectTarget: 'red'.
+	aGame apply: aCard.
+	aGame movePlayer.
+	aCard := (SpeedCard holder: 'blue') selectTarget: 'blue'.
+	aGame apply: aCard.
+	aCard := (SpeedCard holder: 'blue') selectTarget: 'blue'.
+	aGame apply: aCard.
+	aGame movePlayer.
+	
+	self assert: aGame cardsToDeal equals: 3
+]
+
+{ #category : #tests }
+CardsTest >> testV008VerifyThatExistAFiniteAmountOfCardsToDealAndTheyAreNotDealBesidesThePlayerIsInARandomCardBox [
+
+	| aGame aLoadedDie aBoard aShaker aDeck boxes|
+	boxes := (BoxCreator use: (OrderedCollection with: (BoxProbability
+				            using:
+					            (RandomCardBox dealing: 1)
+				            withChance: 100))) create: 10.
+	aBoard := Board with: boxes measure: (Parsec worth: 100).
+	aLoadedDie := LoadedDie with: (OrderedCollection
+			               with: 1
+			               with: 2
+			               with: 3
+			               with: 4).
+	aShaker := DiceShaker withDie: aLoadedDie.
+	aDeck := Deck with: (CardProbability using: SpeedCard withChance: 5).
+	aGame := DuplaGalacticaGameProxy
+		         with: aColorCollection
+		         and: aBoard
+		         usingToThrow: aShaker
+		         winningWhen: 1
+		         using: (CardDealer with: aDeck).
+	aGame movePlayer.
+	aGame movePlayer.
+	
+	self assert: (aGame cardsInPosetionOf: 'red') equals: 3.
+	self assert: (aGame cardsInPosetionOf: 'blue') equals: 2
 ]

@@ -1582,3 +1582,25 @@ CardsTest >> testW012VerifyTheAmountOfAveilableCardsAfterActivatingOne [
 	aGame apply: aCard.
 	self assert: aGame discardCardsDeskAmount equals: 0
 ]
+
+{ #category : #tests }
+CardsTest >> testW013VerifyTheAmountOfDiscardCardsAfterDesactivatingOne [
+
+	| aGame aCard aDeck |
+	aDeck := AveilableCardsDeck with: (CardAmount usingType: SpeedCard amount: 3).
+	aDeck addNewCards: (CardAmount usingType: CancellationCard amount: 3).
+	aGame := DuplaGalacticaGameProxy
+		         with: aColorCollection
+		         and: (self createBoardWithRandomBoxDealing: 2)
+		         usingToThrow: aShaker
+		         winningWhen: 1
+		         using:
+		         (CardDealer with: aDeck).
+	aGame movePlayer.
+	aGame movePlayer.
+	aCard := (SpeedCard create newHolder: 'red') selectTarget: 'red'.
+	aGame apply: aCard.
+	aCard := (CancellationCard create newHolder: 'red') selectTarget: (SpeedCard create selectTarget: 'red').
+	aGame apply: aCard.
+	self assert: aGame discardCardsDeskAmount equals: 2
+]

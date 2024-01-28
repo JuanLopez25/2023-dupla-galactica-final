@@ -2,7 +2,8 @@ Class {
 	#name : #AccelerationCard,
 	#superclass : #Object,
 	#instVars : [
-		'holder'
+		'holder',
+		'target'
 	],
 	#category : #'IngSoft2-Model'
 }
@@ -24,7 +25,7 @@ AccelerationCard >> = aCard [
 AccelerationCard >> applyCardUsing: cardManager at: aGame [ 
 
 	aGame playersColors do: [ :color | 
-		cardManager activeCard: (self class create newHolder: color) ]
+		cardManager activeCard: ((self class create) selectTarget: color) ]
 ]
 
 { #category : #Effect }
@@ -48,6 +49,7 @@ AccelerationCard >> holder [
 { #category : #Initialization }
 AccelerationCard >> intializeCreate [
 	holder:= EmptyObject new.
+	target:= EmptyObject new.
 ]
 
 { #category : #Information }
@@ -69,6 +71,15 @@ AccelerationCard >> newHolder: aHolder [
 ]
 
 { #category : #Effect }
-AccelerationCard >> selectTarget: anEmptyPlayer [ 
+AccelerationCard >> selectTarget: aPlayer [
+
+	target:= aPlayer.
 	
+
+]
+
+{ #category : #Information }
+AccelerationCard >> target [
+
+	^ target
 ]

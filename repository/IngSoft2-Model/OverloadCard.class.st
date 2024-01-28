@@ -26,7 +26,7 @@ OverloadCard >> applyCardUsing: cardManager at: aGame [
 
 	
 	aGame isValidPlayer: target.
-	cardManager activeCard: (self class create newHolder: target).
+	cardManager activeCard: (self class create selectTarget: target).
 ]
 
 { #category : #Effect }
@@ -74,4 +74,10 @@ OverloadCard >> newHolder: aHolder [
 OverloadCard >> selectTarget: aNewTarget [
 
 	target:= aNewTarget.
+]
+
+{ #category : #Information }
+OverloadCard >> target [
+
+	^ target
 ]

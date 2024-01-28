@@ -68,5 +68,6 @@ CancellationCard >> newHolder: aNewHolder [
 { #category : #Information }
 CancellationCard >> selectTarget: aNewTarget [
 
+	
 	target:= aNewTarget.
 ]

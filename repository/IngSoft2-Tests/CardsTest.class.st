@@ -274,7 +274,7 @@ CardsTest >> testQ011VerifyTheCorrectUseOfCancellationCard [
 	aCard := (OverloadCard create newHolder: 'red') selectTarget: 'blue'.
 	aGame apply: aCard.
 	aCard := (CancellationCard create newHolder: 'red') selectTarget:
-		         (OverloadCard create newHolder: 'blue').
+		         (OverloadCard create selectTarget: 'blue').
 	aGame apply: aCard.
 	aGame movePlayer.
 	aGame movePlayer.
@@ -303,7 +303,7 @@ CardsTest >> testQ012VerifyTheCorrectUseOfCancellationCardWhenThePlayerHasMoreTh
 	aCard := (SpeedCard create newHolder: 'red') selectTarget: 'blue'.
 	aGame apply: aCard.
 	aCard := (CancellationCard create newHolder: 'red') selectTarget:
-		         (SpeedCard create newHolder: 'blue').
+		         (SpeedCard create selectTarget: 'blue').
 	aGame apply: aCard.
 	aGame movePlayer.
 	aGame movePlayer.
@@ -332,10 +332,10 @@ CardsTest >> testQ013VerifyTheCorrectUseOfTwoCancellationCards [
 	aCard := (SpeedCard create newHolder: 'red') selectTarget: 'red'.
 	aGame apply: aCard.
 	aCard := (CancellationCard create newHolder: 'red') selectTarget:
-		         (SpeedCard create newHolder: 'red').
+		         (SpeedCard create selectTarget: 'red').
 	aGame apply: aCard.
 	aCard := (CancellationCard create newHolder: 'red') selectTarget:
-		         (SpeedCard create newHolder: 'red').
+		         (SpeedCard create selectTarget: 'red').
 	aGame apply: aCard.
 	aGame movePlayer.
 	aGame movePlayer.
@@ -657,10 +657,10 @@ CardsTest >> testQ027UseTwoCancellationCardsFromTheSamePlayer [
 	aCard := AccelerationCard create newHolder: 'red'.
 	aGame apply: aCard.
 	aCard := (CancellationCard create newHolder: 'red') selectTarget:
-		         (AccelerationCard create newHolder: 'blue').
+		         (AccelerationCard create selectTarget: 'blue').
 	aGame apply: aCard.
 	aCard := (CancellationCard create newHolder: 'red') selectTarget:
-		         (AccelerationCard create newHolder: 'blue').
+		         (AccelerationCard create selectTarget: 'blue').
 	aGame apply: aCard.
 	aGame movePlayer.
 	aGame movePlayer.
@@ -715,10 +715,10 @@ CardsTest >> testQ030VerifyTheCorrectUseOfRedoCardWhenLastCardPlayedIsACancellat
 	aCard := (SpeedCard create newHolder: 'red') selectTarget: 'red'.
 	aGame apply: aCard.
 	aCard := (CancellationCard create newHolder: 'red') selectTarget:
-		         (SpeedCard create newHolder: 'red').
+		         (SpeedCard create selectTarget: 'red').
 	aGame apply: aCard.
 	aCard := (RedoCard create newHolder: 'red') selectTarget:
-		         (SpeedCard create newHolder: 'red').
+		         (SpeedCard create selectTarget: 'red').
 	aGame apply: aCard.
 	aGame movePlayer.
 	aGame movePlayer.
@@ -1013,7 +1013,7 @@ CardsTest >> testQ042VerifyThatCancellationCardCanBePlayWheneverThePlayerWants [
 	aGame apply: aCard.
 	aGame movePlayer.
 	aCard := (CancellationCard create newHolder: 'red') selectTarget:
-		         (AccelerationCard create newHolder: 'blue').
+		         (AccelerationCard create selectTarget: 'blue').
 	aGame apply: aCard.
 	aGame movePlayer.
 

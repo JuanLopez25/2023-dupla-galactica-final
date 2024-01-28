@@ -62,7 +62,8 @@ DuplaGalacticaGame >> cardsInPosetionOf: aPlayer [
 
 { #category : #Information }
 DuplaGalacticaGame >> cardsToDeal [
-	^ cardManager cardsToDeal .
+
+	^ cardManager cardsToDeal
 ]
 
 { #category : #Information }

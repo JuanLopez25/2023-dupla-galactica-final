@@ -641,7 +641,7 @@ CardsTest >> testQ027UseTwoCancellationCardsFromTheSamePlayer [
 
 	| aGame aCard aDeck |
 	aDeck := AveilableCardsDeck with:
-		         (CardAmount usingType: AccelerationCard amount: 4).
+		         (CardAmount usingType: OverloadCard amount: 4).
 	aDeck addNewCards:
 		(CardAmount usingType: CancellationCard amount: 4).
 	aGame := DuplaGalacticaGameProxy
@@ -652,21 +652,18 @@ CardsTest >> testQ027UseTwoCancellationCardsFromTheSamePlayer [
 		         using: (CardDealer with: aDeck).
 	aGame movePlayer.
 	aGame movePlayer.
-	aCard := AccelerationCard create newHolder: 'red'.
+	aCard := (OverloadCard create newHolder: 'red') selectTarget: 'red'.
 	aGame apply: aCard.
-	aCard := AccelerationCard create newHolder: 'red'.
-	aGame apply: aCard.
-	aCard := (CancellationCard create newHolder: 'red') selectTarget:
-		         (AccelerationCard create selectTarget: 'blue').
+	aCard := (OverloadCard create newHolder: 'red') selectTarget: 'blue'.
 	aGame apply: aCard.
 	aCard := (CancellationCard create newHolder: 'red') selectTarget:
-		         (AccelerationCard create selectTarget: 'blue').
+		         (OverloadCard create selectTarget: 'blue').
 	aGame apply: aCard.
 	aGame movePlayer.
 	aGame movePlayer.
 	self
 		assert: aGame playersBox
-		equals: (OrderedCollection with: 6 with: 4)
+		equals: (OrderedCollection with: 2 with: 4)
 ]
 
 { #category : #tests }
@@ -1196,7 +1193,7 @@ CardsTest >> testV001VerifyThatNoCardsHasBeenDiscardAtTheBeggining [
 ]
 
 { #category : #tests }
-CardsTest >> testV002VerifyThatOneCardsHasBeenDiscardWhenItIsUsed [
+CardsTest >> testV002VerifyThatOneCardHasBeenDiscardWhenItIsUsed [
 
 	| aGame aCard aDeck |
 	aDeck := AveilableCardsDeck with: (CardAmount usingType: OverloadCard amount: 5).
@@ -1211,7 +1208,7 @@ CardsTest >> testV002VerifyThatOneCardsHasBeenDiscardWhenItIsUsed [
 	aGame apply: aCard.
 	self
 		assert: (aGame discardCardsDeskAmount)
-		equals: 1.
+		equals: 0.
 ]
 
 { #category : #tests }
@@ -1230,7 +1227,7 @@ CardsTest >> testV003VerifyThatTwoCardsHasBeenDiscardWhenAreUsed [
 	aGame apply: aCard.
 	aCard := (OverloadCard create newHolder: 'red') selectTarget: 'blue'.
 	aGame apply: aCard.
-	self assert: aGame discardCardsDeskAmount equals: 2
+	self assert: aGame discardCardsDeskAmount equals: 0
 ]
 
 { #category : #tests }
@@ -1284,7 +1281,7 @@ CardsTest >> testV007VerifyThatExistAFiniteAmountOfCardsToDealWhenTheyAreShuffle
 	aGame apply: aCard.
 	aGame movePlayer.
 
-	self assert: aGame cardsToDeal equals: 3
+	self assert: aGame cardsToDeal equals: 0
 ]
 
 { #category : #tests }
@@ -1322,6 +1319,26 @@ CardsTest >> testV009VerifyThatWhenMoreThanOneCardAmountOfTheSameCardEverythingW
 
 	self assert: (aGame cardsInPosetionOf: 'red') equals: 3.
 	self assert: (aGame cardsInPosetionOf: 'blue') equals: 2
+]
+
+{ #category : #tests }
+CardsTest >> testV010VerifyThatOneCardHasBeenDiscardWhenItIsUsed [
+
+	| aGame aCard aDeck |
+	aDeck := AveilableCardsDeck with: (CardAmount usingType: RepeatCard amount: 10).
+	aGame := DuplaGalacticaGameProxy
+		         with: aColorCollection
+		         and: (self createBoardWithRandomBoxDealing: 1)
+		         usingToThrow: aShaker
+		         winningWhen: 1
+		         using:
+		         (CardDealer with: aDeck).
+	aGame movePlayer.
+	aCard := (RepeatCard  create newHolder: 'red') selectTarget: 'red'.
+	aGame apply: aCard.
+	self
+		assert: (aGame discardCardsDeskAmount)
+		equals: 1.
 ]
 
 { #category : #tests }
@@ -1547,4 +1564,21 @@ CardsTest >> testW011TryingToUseARepeatCardWithoutSettingAnObjective [
 		aGame apply:aCard ]
 		raise: Error
 		withMessage: 'The objective has not been specify'
+]
+
+{ #category : #tests }
+CardsTest >> testW012VerifyTheAmountOfAveilableCardsAfterActivatingOne [
+
+	| aGame aCard aDeck |
+	aDeck := AveilableCardsDeck with: (CardAmount usingType: SpeedCard amount: 4).
+	aGame := DuplaGalacticaGameProxy
+		         with: aColorCollection
+		         and: (self createBoard)
+		         usingToThrow: aShaker
+		         winningWhen: 1
+		         using:
+		         (CardDealer with: aDeck).
+	aCard := (SpeedCard create newHolder: 'red') selectTarget: 'red'.
+	aGame apply: aCard.
+	self assert: aGame discardCardsDeskAmount equals: 0
 ]

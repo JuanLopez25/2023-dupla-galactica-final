@@ -3,7 +3,8 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'holder',
-		'target'
+		'target',
+		'copying'
 	],
 	#category : #'IngSoft2-Model'
 }
@@ -26,7 +27,7 @@ RedoCard >> applyCardUsing: cardManager at: aGame [
 
 	cardManager lastCardPlay isEmpty
 		ifFalse: [ 
-			(cardManager lastCardPlay selectTarget: target)
+			((cardManager lastCardPlay newHolder: self) selectTarget: target)
 				applyCardUsing: cardManager
 				at: aGame ]
 		ifTrue: [ 
@@ -50,6 +51,7 @@ RedoCard >> holder [
 RedoCard >> intializeWith [
 	holder:= EmptyObject new.
 	target:= EmptyObject new.
+	copying := EmptyObject new.
 ]
 
 { #category : #Information }

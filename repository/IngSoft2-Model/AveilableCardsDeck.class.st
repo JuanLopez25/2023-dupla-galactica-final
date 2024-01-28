@@ -27,7 +27,8 @@ AveilableCardsDeck >> addNewCards: aCardAmount [
 
 { #category : #Information }
 AveilableCardsDeck >> cardsToDeal [
-	^ cardsInDeck size.
+
+	^ cardsInDeck size
 ]
 
 { #category : #Cards }

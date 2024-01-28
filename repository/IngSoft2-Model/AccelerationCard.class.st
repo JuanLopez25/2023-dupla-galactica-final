@@ -25,7 +25,7 @@ AccelerationCard >> = aCard [
 AccelerationCard >> applyCardUsing: cardManager at: aGame [ 
 
 	aGame playersColors do: [ :color | 
-		cardManager activeCard: ((self class create) selectTarget: color) ]
+		cardManager activeCard: ((self class create newHolder: holder) selectTarget: color) ]
 ]
 
 { #category : #Effect }
@@ -54,7 +54,8 @@ AccelerationCard >> intializeCreate [
 
 { #category : #Information }
 AccelerationCard >> isEmpty [
-	^false.
+
+	^ false
 ]
 
 { #category : #Information }

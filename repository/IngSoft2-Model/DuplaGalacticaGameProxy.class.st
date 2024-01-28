@@ -38,7 +38,8 @@ DuplaGalacticaGameProxy >> cardsInPosetionOf: aPlayerColor [
 
 { #category : #Information }
 DuplaGalacticaGameProxy >> cardsToDeal [
-	^ game cardsToDeal.
+
+	^ game cardsToDeal
 ]
 
 { #category : #Information }

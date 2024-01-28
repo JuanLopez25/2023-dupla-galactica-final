@@ -27,14 +27,17 @@ ActiveCardsDeck >> calculateEffectOn: aColorPlayer [
 { #category : #Desactivation }
 ActiveCardsDeck >> desactivate: anObjectiveCard [
 
+	| i newDeck |
+	i := 0.
 	self isEmpty.
-	cards
-		detect: [ :card | (card class = anObjectiveCard class) and: [ card target = anObjectiveCard target ] ]
-		ifFound: [ :card | cards remove: card ]
-		ifNone: [ 
-			Error signal:
-				'There are no that type of cards activate in this player or is not a valid objective' ]
-			
+	newDeck := OrderedCollection new.
+	cards do: [ :card | 
+		(i=0 and: (card class = anObjectiveCard class and:
+			 [ card target = anObjectiveCard target ]))
+			ifFalse: [ newDeck addLast: card ]
+			ifTrue: [ i := 1 ] ].
+	cards size = newDeck size ifTrue: [ Error signal: 'There are no that type of cards activate in this player or is not a valid objective' ].
+	cards := newDeck
 ]
 
 { #category : #Initialization }

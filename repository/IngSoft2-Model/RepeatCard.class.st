@@ -26,6 +26,7 @@ RepeatCard >> applyCardUsing: cardManager at: aGame [
 
 	aGame isValidPlayer: target.
 	aGame repeatEffectTo: target.
+	cardManager discard: self.
 ]
 
 { #category : #Information }

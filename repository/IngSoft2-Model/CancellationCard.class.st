@@ -27,7 +27,8 @@ CancellationCard >> applyCardUsing: cardManager at: aGame [
 	target isEmpty ifTrue: [ 
 		Error signal:
 			'The objective has not been specify' ].
-	cardManager desactivate: target
+	cardManager desactivate: target.
+	cardManager discard: self.
 ]
 
 { #category : #Information }

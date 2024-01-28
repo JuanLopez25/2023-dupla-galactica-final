@@ -13,9 +13,11 @@ DiscardsCardsDeck class >> createDeck [
 ]
 
 { #category : #Cards }
-DiscardsCardsDeck >> addCard: aCard [ 
-	
-	deck addLast: aCard.
+DiscardsCardsDeck >> addCard: aCard [
+
+	(aCard holder isString or: [ aCard holder isEmpty ])
+		ifTrue: [ deck addLast: aCard ]
+		ifFalse: [ deck addLast: RedoCard create ]
 ]
 
 { #category : #Information }
@@ -33,10 +35,12 @@ DiscardsCardsDeck >> intializeCreateDeck [
 { #category : #Card }
 DiscardsCardsDeck >> shuffle [
 
-	|aNewDeck|
+	| aNewDeck |
 	deck isEmpty ifTrue: [ ^ OrderedCollection new ].
-	deck do: [ :card | card newHolder: EmptyObject new].
-	aNewDeck:= deck.
+	deck do: [ :card | 
+		card newHolder: EmptyObject new.
+		card selectTarget: EmptyObject new ].
+	aNewDeck := deck.
 	deck := OrderedCollection new.
-	^aNewDeck.
+	^ aNewDeck
 ]

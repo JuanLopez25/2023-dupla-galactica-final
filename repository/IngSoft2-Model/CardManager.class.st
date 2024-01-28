@@ -37,7 +37,6 @@ CardManager >> apply: aCard at: aGame [
 
 	aCard haveEffect ifTrue: [ lastCardPlay := aCard ].
 	aCard applyCardUsing: self at: aGame.
-	cardDealer discard: aCard.
 	cardsInPosetion takeOut: aCard
 ]
 
@@ -63,7 +62,8 @@ CardManager >> cardsInPosetionOf: player [
 
 { #category : #Information }
 CardManager >> cardsToDeal [
-	^ cardDealer cardsToDeal.
+
+	^ cardDealer cardsToDeal
 ]
 
 { #category : #Managing }
@@ -71,6 +71,13 @@ CardManager >> desactivate: anObjectiveCard [
 
 
 	activeCards desactivate: anObjectiveCard.
+	cardDealer discard: anObjectiveCard.
+]
+
+{ #category : #Cards }
+CardManager >> discard: aCard [
+
+	cardDealer discard: aCard
 ]
 
 { #category : #Information }

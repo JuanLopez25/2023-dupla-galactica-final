@@ -1193,7 +1193,7 @@ CardsTest >> testV001VerifyThatNoCardsHasBeenDiscardAtTheBeggining [
 ]
 
 { #category : #tests }
-CardsTest >> testV002VerifyThatOneCardHasBeenDiscardWhenItIsUsed [
+CardsTest >> testV002VerifyThatOneCardHasNotBeenDiscardWhenItIsUsedBecauseItIsPermanent [
 
 	| aGame aCard aDeck |
 	aDeck := AveilableCardsDeck with: (CardAmount usingType: OverloadCard amount: 5).
@@ -1212,7 +1212,7 @@ CardsTest >> testV002VerifyThatOneCardHasBeenDiscardWhenItIsUsed [
 ]
 
 { #category : #tests }
-CardsTest >> testV003VerifyThatTwoCardsHasBeenDiscardWhenAreUsed [
+CardsTest >> testV003VerifyThatTwoCardsHasNotBeenDiscardWhenAreUsedBecauseTheyArePermanent [
 
 	| aGame aCard aDeck |
 	aDeck := AveilableCardsDeck with:
@@ -1248,7 +1248,7 @@ CardsTest >> testV005VerifyThatExistAFiniteAmountOfCardsToDeal [
 CardsTest >> testV006VerifyThatExistAFiniteAmountOfCardsToDealWhenTheyAreStolenFromARandomCardBox [
 
 	| aGame aDeck |
-	aDeck := AveilableCardsDeck with: (CardAmount usingType: OverloadCard amount: 5).
+	aDeck := AveilableCardsDeck with: (CardAmount usingType: OverloadCard amount: 6).
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: (self createBoardWithRandomBoxDealing: 1)
@@ -1256,7 +1256,7 @@ CardsTest >> testV006VerifyThatExistAFiniteAmountOfCardsToDealWhenTheyAreStolenF
 		         winningWhen: 1
 		         using: (CardDealer with: aDeck).
 	aGame movePlayer.
-	self assert: aGame cardsToDeal equals: 0
+	self assert: aGame cardsToDeal equals: 1
 ]
 
 { #category : #tests }
@@ -1285,7 +1285,7 @@ CardsTest >> testV007VerifyThatExistAFiniteAmountOfCardsToDealWhenTheyAreShuffle
 ]
 
 { #category : #tests }
-CardsTest >> testV008VerifyThatExistAFiniteAmountOfCardsToDealAndTheyAreNotDealBesidesThePlayerIsInARandomCardBox [
+CardsTest >> testV008VerifyThatExistAFiniteAmountOfCardsToDealAndTheyAreNotDealDespiteThePlayerIsInARandomCardBox [
 
 	| aGame aDeck |
 	aDeck := AveilableCardsDeck with: (CardAmount usingType: SpeedCard amount: 5).
@@ -1303,7 +1303,7 @@ CardsTest >> testV008VerifyThatExistAFiniteAmountOfCardsToDealAndTheyAreNotDealB
 ]
 
 { #category : #tests }
-CardsTest >> testV009VerifyThatWhenMoreThanOneCardAmountOfTheSameCardEverythingWorksCorrect [
+CardsTest >> testV009VerifyThatWhenThereAreMoreThanOneCardAmountOfTheSameCardEverythingWorksCorrect [
 
 	| aGame aDeck |
 	aDeck := AveilableCardsDeck with: (CardAmount usingType: SpeedCard amount: 2).
@@ -1644,7 +1644,7 @@ CardsTest >> testW014VerifyThatWhenARedoCardIsDiscardARedoCardGoToTheDiscardDeck
 ]
 
 { #category : #tests }
-CardsTest >> testW015VerifyTheCorrectDiscardOfAnAccelerationCard [
+CardsTest >> testW015VerifyTheCorrectDesactivationOfAnAccelerationCard [
 
 	| aGame aCard aDeck |
 	aDeck := AveilableCardsDeck with:
@@ -1671,7 +1671,7 @@ CardsTest >> testW015VerifyTheCorrectDiscardOfAnAccelerationCard [
 ]
 
 { #category : #tests }
-CardsTest >> testW016VerifyTheCorrectDiscardOfAnAccelerationCardSpecifyingOtherPlayerColors [
+CardsTest >> testW016VerifyTheCorrectDesactivationOfAnAccelerationCardSpecifyingOtherPlayerColors [
 
 	| aGame aCard aDeck |
 	aDeck := AveilableCardsDeck with:
@@ -1698,7 +1698,7 @@ CardsTest >> testW016VerifyTheCorrectDiscardOfAnAccelerationCardSpecifyingOtherP
 ]
 
 { #category : #tests }
-CardsTest >> testW017VerifyTheCorrectDiscardOfAnAccelerationWithoutSpecifyingTarget [
+CardsTest >> testW017VerifyTheCorrectDesactivationOfAnAccelerationWithoutSpecifyingTarget [
 
 	| aGame aCard aDeck |
 	aDeck := AveilableCardsDeck with:
@@ -1754,5 +1754,6 @@ CardsTest >> testW018VerifyTheCorrectDiscardOfAnAccelerationAnTryingToReuseItThe
 	aGame apply: aCard.
 	self
 		assert: aGame playersBox
-		equals: (OrderedCollection with: 6 with: 4)
+		equals: (OrderedCollection with: 6 with: 4).
+	self assert: aGame discardCardsDeskAmount equals: 2.
 ]

@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'cardsInPosetion',
 		'lastCardPlay',
-		'activeCards'
+		'activeCards',
+		'cardDealer'
 	],
 	#category : #'IngSoft2-Model'
 }
@@ -15,72 +16,96 @@ CardManager class >> using: aCardDealer with: aColorCollection [
 	^ self new initializeUsing: aCardDealer with: aColorCollection
 ]
 
-{ #category : #Information }
+{ #category : #information }
 CardManager >> activeCard: aCard [
 
 	activeCards activeCard: aCard
 ]
 
-{ #category : #Managing }
-CardManager >> addCard: aCard [
+{ #category : #cards }
+CardManager >> addAmountOfCards: anAmount to: aColor [
 
-	cardsInPosetion addCard: aCard
+	anAmount timesRepeat: [ 
+		cardsInPosetion addCard: (cardDealer createCardFor: aColor) ]
 ]
 
-{ #category : #Managing }
+{ #category : #cards }
 CardManager >> apply: aCard at: aGame [
 
 	(self hasBeenGiven: aCard) ifFalse: [ 
 		Error signal: 'The player does not have that card in posetion' ].
 
-	aCard haveEffect ifTrue: [ lastCardPlay := aCard ].
+	aCard hasEffect ifTrue: [ lastCardPlay := aCard ].
 	aCard applyCardUsing: self at: aGame.
-
 	cardsInPosetion takeOut: aCard
 ]
 
-{ #category : #Managing }
+{ #category : #cards }
 CardManager >> calculateEffectOn: aColorPlayer [
 
 	^ activeCards calculateEffectOn: aColorPlayer
 ]
 
-{ #category : #Managing }
+{ #category : #cards }
 CardManager >> canBeUse: aCard whenPlay: aPlayer [
 
-	^ (aCard isPermanent and: (aCard isHolder: aPlayer)) or:
+	aCard holder isEmpty ifTrue: [ 
+		Error signal: 'The card does not have a holder' ].
+	^ (aCard isPermanent and: aCard holder = aPlayer) or:
 		  aCard isPermanent not
 ]
 
-{ #category : #Information }
+{ #category : #information }
 CardManager >> cardsInPosetionOf: player [
 
 	^ cardsInPosetion cardsOf: player
 ]
 
-{ #category : #Managing }
-CardManager >> desactivate: anObjectiveCard [
+{ #category : #information }
+CardManager >> cardsToDeal [
 
-
-	activeCards desactivate: anObjectiveCard.
+	^ cardDealer cardsToDeal
 ]
 
-{ #category : #Managing }
+{ #category : #cards }
+CardManager >> desactivate: anObjectiveCard [
+
+	activeCards desactivate: anObjectiveCard.
+	cardDealer discard: anObjectiveCard
+]
+
+{ #category : #cards }
+CardManager >> discard: aCard [
+
+	cardDealer discard: aCard
+]
+
+{ #category : #information }
+CardManager >> discardCardsDeskAmount [
+
+	^ cardDealer discardCardsDeskAmount
+]
+
+{ #category : #cards }
 CardManager >> hasBeenGiven: aCard [
 
 	^ cardsInPosetion hasBeenGiven: aCard
 ]
 
-{ #category : #Initialization }
+{ #category : #initialization }
 CardManager >> initializeUsing: aCardDealer with: aColorCollection [
 
-	lastCardPlay := EmptyCard new.
-	activeCards := ActiveCards createDeck.
-	cardsInPosetion := CardsInPosetion createDeck.
-	aCardDealer dealCards: self to: aColorCollection
+	lastCardPlay := EmptyObject new.
+	cardDealer := aCardDealer.
+	activeCards := ActiveCardsDeck createDeck.
+	cardsInPosetion := CardsInPosetionDeck createDeck.
+	aColorCollection do: [ :color | 
+		cardsInPosetion addCard: (cardDealer createCardFor: color).
+		cardsInPosetion addCard: (cardDealer createCardFor: color) ]
 ]
 
 { #category : #information }
 CardManager >> lastCardPlay [
+
 	^ lastCardPlay
 ]

@@ -9,53 +9,66 @@ Class {
 }
 
 { #category : #'Instance creation' }
-CancellationCard class >> holder: aHolder [
-
-	^ self new initializeHolder: aHolder
+CancellationCard class >> create [
+	^self new initializeCreate.
 ]
 
-{ #category : #Information }
+{ #category : #information }
 CancellationCard >> = aCard [
 
 	(aCard isKindOf: self class)
-		ifTrue: [ ^ aCard isHolder:holder ]
+		ifTrue: [ ^ aCard holder = holder ]
 		ifFalse: [ ^ false ]
 ]
 
-{ #category : #Effect }
+{ #category : #effect }
 CancellationCard >> applyCardUsing: cardManager at: aGame [
 
-	cardManager desactivate: target
+	target isEmpty ifTrue: [ 
+		Error signal:
+			'The objective has not been specify' ].
+	cardManager desactivate: target.
+	cardManager discard: self.
 ]
 
-{ #category : #Information }
-CancellationCard >> haveEffect [
+{ #category : #information }
+CancellationCard >> hasEffect [
 
 	^ true
 ]
 
-{ #category : #Initialization }
-CancellationCard >> initializeHolder: aHolder [
+{ #category : #information }
+CancellationCard >> holder [
 
-	holder := aHolder.
-	target := EmptyCard new.
-	
+	^ holder
 ]
 
-{ #category : #Information }
-CancellationCard >> isHolder: aColorPlayer [
-
-	^ holder = aColorPlayer
+{ #category : #initialization }
+CancellationCard >> initializeCreate [
+	holder:= EmptyObject new.
+	target:= EmptyObject new.
 ]
 
-{ #category : #Information }
+{ #category : #information }
+CancellationCard >> isEmpty [
+
+	^ false
+]
+
+{ #category : #information }
 CancellationCard >> isPermanent [
 
 	^ false
 ]
 
-{ #category : #Information }
+{ #category : #information }
+CancellationCard >> newHolder: aNewHolder [
+
+	holder:= aNewHolder
+]
+
+{ #category : #information }
 CancellationCard >> selectTarget: aNewTarget [
 
-	target:= aNewTarget.
+	target := aNewTarget
 ]

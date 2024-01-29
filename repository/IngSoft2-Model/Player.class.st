@@ -15,25 +15,26 @@ Player class >> with: aSpaceship [
 	^ self new initializeWith: aSpaceship
 ]
 
-{ #category : #Sort }
+{ #category : #sort }
 Player >> aheadOf: aPlayer [
 
 	^ aPlayer lap < position lap or:
 		  (position lap = aPlayer lap and: position box > aPlayer box)
 ]
 
-{ #category : #Information }
+{ #category : #information }
 Player >> box [
-	^ position box.
+
+	^ position box
 ]
 
-{ #category : #Information }
+{ #category : #information }
 Player >> color [
 
 	^ color
 ]
 
-{ #category : #Initialization }
+{ #category : #initialization }
 Player >> initializeWith: aColor [
 
 	color := aColor.
@@ -41,20 +42,20 @@ Player >> initializeWith: aColor [
 	lap := 0.
 ]
 
-{ #category : #Information }
+{ #category : #information }
 Player >> lap [ 
 
 	^ position lap.
 ]
 
-{ #category : #PositionControl }
+{ #category : #'position control' }
 Player >> move: aValue andUpdateLap: aLength [
 	
 	position move: aValue.
 	self updateLap: aLength
 ]
 
-{ #category : #Information }
+{ #category : #information }
 Player >> updateLap: aLength [
 
 	position box  > aLength ifTrue: [ 

@@ -4,7 +4,7 @@ Class {
 	#category : #'IngSoft2-Model'
 }
 
-{ #category : #Effect }
+{ #category : #effect }
 SprintBox >> effect: aGame [
 
 	aGame moveCurrent: (aGame cardsInPosetionOf: aGame currentPlayer)

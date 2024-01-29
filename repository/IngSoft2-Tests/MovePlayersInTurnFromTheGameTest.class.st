@@ -15,8 +15,10 @@ Class {
 { #category : #running }
 MovePlayersInTurnFromTheGameTest >> setUp [
 
+	| aDeck |
 	super setUp.
-
+	aDeck := AveilableCardsDeck with:
+		         (CardAmount usingType: OverloadCard  amount: 3).
 	aColorCollection := OrderedCollection with: 'red' with: 'blue'.
 	aLoadedDie := LoadedDie with:
 		              (OrderedCollection with: 1 with: 2 with: 3).
@@ -31,7 +33,7 @@ MovePlayersInTurnFromTheGameTest >> setUp [
 		         and: aBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
-		         using: (CardDealer with: (OrderedCollection with: (CardProbability using: OverloadCard withChance: 100)))
+		         using: (CardDealer with: aDeck)
 ]
 
 { #category : #tests }

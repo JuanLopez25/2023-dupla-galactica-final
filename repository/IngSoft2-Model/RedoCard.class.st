@@ -9,53 +9,69 @@ Class {
 }
 
 { #category : #'Instance creation' }
-RedoCard class >> holder: aHolder [
-
-	^ self new initializeHolder: aHolder
+RedoCard class >> create [
+	^self new intializeWith.
 ]
 
-{ #category : #Information }
+{ #category : #information }
 RedoCard >> = aCard [
 
 	(aCard isKindOf: self class)
-		ifTrue: [ ^ aCard isHolder: holder ]
+		ifTrue: [ ^ aCard holder = holder ]
 		ifFalse: [ ^ false ]
 ]
 
-{ #category : #Initialization }
+{ #category : #initialization }
 RedoCard >> applyCardUsing: cardManager at: aGame [
 
-	(cardManager lastCardPlay selectTarget: target)
-		applyCardUsing: cardManager
-		at: aGame
+	cardManager lastCardPlay isEmpty
+		ifFalse: [ 
+			((cardManager lastCardPlay newHolder: self) selectTarget: target)
+				applyCardUsing: cardManager
+				at: aGame ]
+		ifTrue: [ 
+			Error signal:
+				'Redo card cannot be played because there are no cards that have been played before' ]
 ]
 
-{ #category : #Information }
-RedoCard >> haveEffect [
+{ #category : #information }
+RedoCard >> hasEffect [
 
 	^ false
 ]
 
-{ #category : #Initialization }
-RedoCard >> initializeHolder: aHolder [
+{ #category : #information }
+RedoCard >> holder [
 
-	holder := aHolder.
-	target:= EmptyPlayer new.
+	^ holder
 ]
 
-{ #category : #Information }
-RedoCard >> isHolder: aColorPlayer [
+{ #category : #initialization }
+RedoCard >> intializeWith [
 
-	^ holder = aColorPlayer
+	holder := EmptyObject new.
+	target := EmptyObject new.
 ]
 
-{ #category : #Information }
+{ #category : #information }
+RedoCard >> isEmpty [
+
+	^ false
+]
+
+{ #category : #information }
 RedoCard >> isPermanent [
 
 	^ false
 ]
 
-{ #category : #Information }
+{ #category : #information }
+RedoCard >> newHolder: aHolder [
+
+	holder := aHolder
+]
+
+{ #category : #information }
 RedoCard >> selectTarget: aNewTarget [
 
 	target:= aNewTarget.

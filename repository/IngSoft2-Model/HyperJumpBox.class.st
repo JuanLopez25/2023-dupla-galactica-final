@@ -16,13 +16,13 @@ HyperJumpBox class >> with: aParsecCollection [
 	^ self new initializeWith: aParsecCollection
 ]
 
-{ #category : #Information }
+{ #category : #information }
 HyperJumpBox >> currentValue [
 
 	^ parsecManager current
 ]
 
-{ #category : #Effect }
+{ #category : #effect }
 HyperJumpBox >> effect: aGame [
 
 	aGame moveCurrent: self currentValue parsecs nominalValue
@@ -31,11 +31,11 @@ HyperJumpBox >> effect: aGame [
 	parsecManager goNext
 ]
 
-{ #category : #Initialization }
+{ #category : #initialization }
 HyperJumpBox >> initializeWith: aParsecCollection [
 
 	aParsecCollection sort: [ :value1 :value2 | 
 		value2 parsecs nominalValue > value1 parsecs nominalValue ].
 	parsecs := aParsecCollection.
-	parsecManager := TurnManager with: parsecs
+	parsecManager := QueueManager with: parsecs
 ]

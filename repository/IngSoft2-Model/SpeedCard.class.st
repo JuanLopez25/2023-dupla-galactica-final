@@ -8,60 +8,78 @@ Class {
 	#category : #'IngSoft2-Model'
 }
 
-{ #category : #'Instance creation' }
-SpeedCard class >> holder: aHolder [
-
-	^ self new initializeHolder: aHolder
+{ #category : #'Intance creation' }
+SpeedCard class >> create [
+	^ self new initializeCreate.
 ]
 
-{ #category : #Information }
+{ #category : #information }
 SpeedCard >> = aCard [
 
 	(aCard isKindOf: self class)
-		ifTrue: [ ^ aCard isHolder: holder ]
+		ifTrue: [ ^ aCard holder = holder ]
 		ifFalse: [ ^ false ]
 ]
 
-{ #category : #Effect }
+{ #category : #effect }
 SpeedCard >> applyCardUsing: cardManager at: aGame [
 
-	aGame isValidPlayer: target.
-	cardManager activeCard: (self class holder: target).
+	aGame isPlaying: target.
+	cardManager activeCard:
+		((self class create newHolder: holder) selectTarget: target)
 ]
 
-{ #category : #Effect }
+{ #category : #effect }
 SpeedCard >> applyEffect [
 
 	^ 1
 ]
 
-{ #category : #Information }
-SpeedCard >> haveEffect [
+{ #category : #information }
+SpeedCard >> hasEffect [
 
 	^ true
 ]
 
-{ #category : #Initialization }
-SpeedCard >> initializeHolder: aHolder [
+{ #category : #effect }
+SpeedCard >> holder [
 
-	holder := aHolder.
-	target:= EmptyPlayer new.
+	^ holder
 ]
 
-{ #category : #Information }
-SpeedCard >> isHolder: aColorPlayer [
+{ #category : #initialization }
+SpeedCard >> initializeCreate [
 
-	^ holder = aColorPlayer
+	holder := EmptyObject new.
+	target := EmptyObject new
 ]
 
-{ #category : #Information }
+{ #category : #information }
+SpeedCard >> isEmpty [
+
+	^ false
+]
+
+{ #category : #information }
 SpeedCard >> isPermanent [
 
 	^ true
 ]
 
-{ #category : #Initialization }
+{ #category : #effect }
+SpeedCard >> newHolder: aHolder [
+
+	holder := aHolder
+]
+
+{ #category : #initialization }
 SpeedCard >> selectTarget: aNewTarget [
 
 	target:= aNewTarget.
+]
+
+{ #category : #information }
+SpeedCard >> target [
+
+	^ target
 ]

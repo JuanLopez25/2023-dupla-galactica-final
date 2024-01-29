@@ -2,63 +2,85 @@ Class {
 	#name : #AccelerationCard,
 	#superclass : #Object,
 	#instVars : [
-		'holder'
+		'holder',
+		'target'
 	],
 	#category : #'IngSoft2-Model'
 }
 
-{ #category : #'Instance creation' }
-AccelerationCard class >> holder: aHolder [
+{ #category : #'Intance creation' }
+AccelerationCard class >> create [
 
-	^ self new initializeHolder: aHolder
+	^ self new intializeCreate
 ]
 
-{ #category : #Information }
+{ #category : #comparing }
 AccelerationCard >> = aCard [
 
 	(aCard isKindOf: self class)
-		ifTrue: [ ^ aCard isHolder: holder ]
+		ifTrue: [ ^ aCard holder = holder ]
 		ifFalse: [ ^ false ]
 ]
 
-{ #category : #Effect }
-AccelerationCard >> applyCardUsing: cardManager at: aGame [ 
+{ #category : #effect }
+AccelerationCard >> applyCardUsing: cardManager at: aGame [
 
-	aGame playersColors do: [ :color | 
-		cardManager activeCard: (self class holder: color) ]
+	cardManager activeCard: (self class create newHolder: holder)
 ]
 
-{ #category : #Effect }
+{ #category : #effect }
 AccelerationCard >> applyEffect [
 
 	^ 1
 ]
 
-{ #category : #Information }
-AccelerationCard >> haveEffect [
+{ #category : #information }
+AccelerationCard >> hasEffect [
 
 	^ true
 ]
 
-{ #category : #Initialization }
-AccelerationCard >> initializeHolder: aHolder [
+{ #category : #information }
+AccelerationCard >> holder [
 
-	holder := aHolder.
+	^ holder
 ]
 
-{ #category : #Information }
-AccelerationCard >> isHolder: aColorPlayer [
+{ #category : #initialization }
+AccelerationCard >> intializeCreate [
 
-	^ holder = aColorPlayer
+	holder := EmptyObject new.
+	target := EveryPlayer new
 ]
 
-{ #category : #Information }
+{ #category : #information }
+AccelerationCard >> isEmpty [
+
+	^ false
+]
+
+{ #category : #information }
 AccelerationCard >> isPermanent [
 
 	^ true
 ]
 
-{ #category : #Effect }
-AccelerationCard >> selectTarget: anEmptyPlayer [ 
+{ #category : #effect }
+AccelerationCard >> newHolder: aHolder [
+
+	holder := aHolder
 	
+]
+
+{ #category : #effect }
+AccelerationCard >> selectTarget: aPlayer [
+
+
+
+]
+
+{ #category : #information }
+AccelerationCard >> target [
+
+	^ target
 ]

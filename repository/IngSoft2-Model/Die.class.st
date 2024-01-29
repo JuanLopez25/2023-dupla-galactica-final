@@ -16,19 +16,19 @@ Die class >> with: aValue [
 	^ self new initializeWith: aValue
 ]
 
-{ #category : #Information }
+{ #category : #information }
 Die >> faces [
 
 	^ faces
 ]
 
-{ #category : #Initialization }
+{ #category : #initialization }
 Die >> initializeWith: aValue [
 
 	faces := aValue
 ]
 
-{ #category : #Throw }
+{ #category : #throw }
 Die >> throw [
 
 	^ faces atRandom

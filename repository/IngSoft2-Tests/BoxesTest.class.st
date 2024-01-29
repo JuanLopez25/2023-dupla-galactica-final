@@ -2,7 +2,8 @@ Class {
 	#name : #BoxesTest,
 	#superclass : #TestCase,
 	#instVars : [
-		'aColorCollection'
+		'aColorCollection',
+		'aDeck'
 	],
 	#category : #'IngSoft2-Tests'
 }
@@ -13,6 +14,8 @@ BoxesTest >> setUp [
 	super setUp.
 
 	aColorCollection := OrderedCollection with: 'red' with: 'blue'.
+	aDeck := AveilableCardsDeck with:
+		         (CardAmount usingType: AccelerationCard  amount: 7).
 ]
 
 { #category : #tests }
@@ -28,7 +31,7 @@ BoxesTest >> should: anErrorBlock raise: anExceptionClass withMessage: anErrorMe
 { #category : #tests }
 BoxesTest >> testN001CheckNoEffectBoxDoesNotApplyAnyEffectThenValuePositions [
 
-	| aLoadedDie aGame boxes aBoard aShaker |
+	| aLoadedDie aGame boxes aBoard aShaker|
 	aLoadedDie := LoadedDie with: (OrderedCollection
 			               with: 6
 			               with: 8
@@ -45,7 +48,7 @@ BoxesTest >> testN001CheckNoEffectBoxDoesNotApplyAnyEffectThenValuePositions [
 		         and: aBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
-		         using: (CardDealer with: (OrderedCollection with: (CardProbability using: OverloadCard withChance: 100))).
+		         using: (CardDealer with: aDeck).
 	aGame movePlayer.
 	aGame movePlayer.
 	self
@@ -56,7 +59,7 @@ BoxesTest >> testN001CheckNoEffectBoxDoesNotApplyAnyEffectThenValuePositions [
 { #category : #tests }
 BoxesTest >> testN002CheckTheWormHoleBoxApplyANegativeEffectThenValuePositions [
 
-	| aLoadedDie aGame boxes aBoard aShaker |
+	| aLoadedDie aGame boxes aBoard aShaker|
 	aLoadedDie := LoadedDie with: (OrderedCollection
 			               with: 5
 			               with: 8
@@ -73,7 +76,7 @@ BoxesTest >> testN002CheckTheWormHoleBoxApplyANegativeEffectThenValuePositions [
 		         and: aBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
-		         using: (CardDealer with: (OrderedCollection with: (CardProbability using: OverloadCard withChance: 100))).
+		         using: (CardDealer with: aDeck).
 	aGame movePlayer.
 	aGame movePlayer.
 	self
@@ -101,7 +104,7 @@ BoxesTest >> testN003CheckSpeedUpBoxApplyAPositiveEffectOnThePositionThenValuePo
 		         and: aBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
-		         using: (CardDealer with: (OrderedCollection with: (CardProbability using: OverloadCard withChance: 100))).
+		         using: (CardDealer with: aDeck).
 	aGame movePlayer.
 	aGame movePlayer.
 	self
@@ -129,7 +132,7 @@ BoxesTest >> testN004CheckMoonWalkBoxApplyTheCorrectEffectOnTheOtherPlayersThenV
 		         and: aBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
-		         using: (CardDealer with: (OrderedCollection with: (CardProbability using: OverloadCard withChance: 100))).
+		         using: (CardDealer with: aDeck).
 	aGame movePlayer.
 	aGame movePlayer.
 	self
@@ -156,7 +159,7 @@ BoxesTest >> testN005CheckAtomicBombBoxMoveAllPlayersToTheBeginning [
 		         and: aBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
-		         using: (CardDealer with: (OrderedCollection with: (CardProbability using: OverloadCard withChance: 100))).
+		         using: (CardDealer with: aDeck).
 	self
 		assert: aGame playersBox
 		equals: (OrderedCollection with: 1 with: 1)
@@ -184,7 +187,7 @@ BoxesTest >> testN006CheckHyperJumpBoxMoveTheCorrectAmountOfParsecsWhenTheyAreEn
 		         and: aBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
-		         using: (CardDealer with:(OrderedCollection with: (CardProbability using: OverloadCard withChance: 100))).
+		         using: (CardDealer with:aDeck).
 	aGame movePlayer.
 	aGame movePlayer.
 	self
@@ -211,7 +214,7 @@ BoxesTest >> testN007CheckWormHoleBoxDoesNotAllowPlayerToBeAtANegativePosition [
 		         and: aBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
-		         using: (CardDealer with: (OrderedCollection with: (CardProbability using: OverloadCard withChance: 100))).
+		         using: (CardDealer with: aDeck).
 	aGame movePlayer.
 	aGame movePlayer.
 	self
@@ -239,7 +242,7 @@ BoxesTest >> testN008CheckMoonWalkBoxDoesNotAllowPlayersToBeAtANegativePosition 
 		         and: aBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
-		         using: (CardDealer with: (OrderedCollection with: (CardProbability using: OverloadCard withChance: 100))).
+		         using: (CardDealer with: aDeck).
 	aGame movePlayer.
 	aGame movePlayer.
 	self
@@ -250,7 +253,7 @@ BoxesTest >> testN008CheckMoonWalkBoxDoesNotAllowPlayersToBeAtANegativePosition 
 { #category : #tests }
 BoxesTest >> testN009CheckHyperJumpBoxDoesNotAllowPlayersToBeAtANegativePosition [
 
-	| aLoadedDie aGame boxes aBoard aShaker |
+	| aLoadedDie aGame boxes aBoard aShaker  |
 	aLoadedDie := LoadedDie with: (OrderedCollection
 			               with: 3
 			               with: 3
@@ -269,7 +272,7 @@ BoxesTest >> testN009CheckHyperJumpBoxDoesNotAllowPlayersToBeAtANegativePosition
 		         and: aBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
-		         using: (CardDealer with: (OrderedCollection with: (CardProbability using: OverloadCard withChance: 100))).
+		         using: (CardDealer with: aDeck).
 	aGame movePlayer.
 	aGame movePlayer.
 	self
@@ -296,7 +299,7 @@ BoxesTest >> testN010CheckTheEffectApplysAlsoWhenTheSpaceshipReachTheGoal [
 		         and: aBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
-		         using: (CardDealer with: (OrderedCollection with: (CardProbability using: OverloadCard withChance: 100))).
+		         using: (CardDealer with: aDeck).
 	aGame movePlayer.
 	self
 		should: [ aGame winner ]
@@ -325,7 +328,7 @@ BoxesTest >> testN011CheckHyperJumpBoxMoveTheCorrectAmountOfParsecsWhenTheyAreNo
 		         and: aBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
-		         using: (CardDealer with: (OrderedCollection with: (CardProbability using: OverloadCard withChance: 100))).
+		         using: (CardDealer with: aDeck).
 	aGame movePlayer.
 	aGame movePlayer.
 	self
@@ -343,7 +346,7 @@ BoxesTest >> testR001CheckRandomCardBoxGeneratesARandomCard [
 			               with: 5
 			               with: 8).
 	boxes := (BoxCreator use:
-		          (OrderedCollection with: (BoxProbability using: (RandomCardBox withCards: (OrderedCollection with: (CardProbability using: OverloadCard withChance: 100)))  withChance: 100))) 
+		          (OrderedCollection with: (BoxProbability using: (RandomCardBox dealing: 1)  withChance: 100))) 
 		         create: 10.
 	aBoard := Board with: boxes measure: (Parsec worth: 100).
 	aShaker := DiceShaker withDie: aLoadedDie.
@@ -352,7 +355,7 @@ BoxesTest >> testR001CheckRandomCardBoxGeneratesARandomCard [
 		         and: aBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
-		         using: (CardDealer with: (OrderedCollection with: (CardProbability using: OverloadCard withChance: 100))).
+		         using: (CardDealer with: aDeck).
 	aGame movePlayer.
 	self
 		assert: (aGame cardsInPosetionOf: 'red')
@@ -372,7 +375,7 @@ BoxesTest >> testR002CheckRandomCardBoxGeneratesARandomCardMoreThanOneTimeIfNece
 			               with: 3
 			               with: 8).
 	boxes := (BoxCreator use:
-		          (OrderedCollection with: (BoxProbability using: (RandomCardBox withCards: (OrderedCollection with: (CardProbability using: OverloadCard withChance: 100))) withChance: 100))) 
+		          (OrderedCollection with: (BoxProbability using: (RandomCardBox dealing: 1) withChance: 100))) 
 		         create: 10.
 	aBoard := Board with: boxes measure: (Parsec worth: 100).
 	aShaker := DiceShaker withDie: aLoadedDie.
@@ -381,7 +384,7 @@ BoxesTest >> testR002CheckRandomCardBoxGeneratesARandomCardMoreThanOneTimeIfNece
 		         and: aBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
-		         using: (CardDealer with: (OrderedCollection with: (CardProbability using: OverloadCard withChance: 100))).
+		         using: (CardDealer with: aDeck).
 	aGame movePlayer.
 	aGame movePlayer.
 	aGame movePlayer.
@@ -394,13 +397,34 @@ BoxesTest >> testR002CheckRandomCardBoxGeneratesARandomCardMoreThanOneTimeIfNece
 ]
 
 { #category : #tests }
-BoxesTest >> testR003TryToCreateARandomCardBoxGeneratorWithMoreThan100Probability [
+BoxesTest >> testR003CheckRandomCardBoxGeneratesAsRandomCardsAsSpecify [
 
+	| aLoadedDie aGame boxes aBoard aShaker |
+	aLoadedDie := LoadedDie with: (OrderedCollection
+			               with: 3
+			               with: 3
+			               with: 3
+			               with: 8).
+	boxes := (BoxCreator use:
+		          (OrderedCollection with: (BoxProbability using: (RandomCardBox dealing: 2) withChance: 100))) 
+		         create: 10.
+	aBoard := Board with: boxes measure: (Parsec worth: 100).
+	aShaker := DiceShaker withDie: aLoadedDie.
+	aGame := DuplaGalacticaGameProxy
+		         with: aColorCollection
+		         and: aBoard
+		         usingToThrow: aShaker
+		         winningWhen: 1
+		         using: (CardDealer with: aDeck).
+	aGame movePlayer.
+	aGame movePlayer.
+	aGame movePlayer.
 	self
-		should: [ 
-			(RandomCardBox withCards: (OrderedCollection with: (CardProbability using: OverloadCard withChance: 10)))]
-		raise: Error
-		withMessage: 'The sum of probabilities must be 100'
+		assert: (aGame cardsInPosetionOf: 'red')
+		equals: 4.
+	self
+		assert: (aGame cardsInPosetionOf: 'blue')
+		equals: 3.
 ]
 
 { #category : #tests }
@@ -424,7 +448,7 @@ BoxesTest >> testT001CheckHyperJumpBoxMoveTheCorrectAmountOfBoxesWhenTheValuesAr
 		         and: aBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
-		         using: (CardDealer with: (OrderedCollection with: (CardProbability using: OverloadCard withChance: 100))).
+		         using: (CardDealer with: aDeck).
 	aGame movePlayer.
 	aGame movePlayer.
 	self
@@ -435,7 +459,7 @@ BoxesTest >> testT001CheckHyperJumpBoxMoveTheCorrectAmountOfBoxesWhenTheValuesAr
 { #category : #tests }
 BoxesTest >> testT002CheckHyperJumpBoxMoveTheCorrectAmountOfBoxesWhenTheValuesAreGivenInLightYearsAndParsecs [
 
-	| aLoadedDie aGame boxes aBoard aShaker |
+	| aLoadedDie aGame boxes aBoard aShaker|
 	aLoadedDie := LoadedDie with: (OrderedCollection
 			               with: 3
 			               with: 3
@@ -453,7 +477,7 @@ BoxesTest >> testT002CheckHyperJumpBoxMoveTheCorrectAmountOfBoxesWhenTheValuesAr
 		         and: aBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
-		         using: (CardDealer with: (OrderedCollection with: (CardProbability using: OverloadCard withChance: 100))).
+		         using: (CardDealer with: aDeck).
 	aGame movePlayer.
 	aGame movePlayer.
 	self
@@ -495,7 +519,7 @@ BoxesTest >> testT004CheckHyperJumpBoxMoveTheCorrectAmountOfBoxesWhenTheValuesAr
 		         and: aBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
-		         using: (CardDealer with: (OrderedCollection with: (CardProbability using: OverloadCard withChance: 100))).
+		         using: (CardDealer with: aDeck).
 	aGame movePlayer.
 	aGame movePlayer.
 	self
@@ -506,7 +530,7 @@ BoxesTest >> testT004CheckHyperJumpBoxMoveTheCorrectAmountOfBoxesWhenTheValuesAr
 { #category : #tests }
 BoxesTest >> testT005CheckPlayerMoveBackwardAsManyLapsAsRequest [
 
-	| aLoadedDie aGame boxes aBoard aShaker |
+	| aLoadedDie aGame boxes aBoard aShaker|
 	aLoadedDie := LoadedDie with: (OrderedCollection
 			               with: 3
 			               with: 10
@@ -524,7 +548,7 @@ BoxesTest >> testT005CheckPlayerMoveBackwardAsManyLapsAsRequest [
 		         and: aBoard
 		         usingToThrow: aShaker
 		         winningWhen: 2
-		         using: (CardDealer with: (OrderedCollection with: (CardProbability using: OverloadCard withChance: 100))).
+		         using: (CardDealer with: aDeck).
 	aGame movePlayer.
 	aGame movePlayer.
 	self
@@ -551,8 +575,7 @@ BoxesTest >> testU001VerifyTheCorrectUseOfSprintBox [
 		         and: aBoard
 		         usingToThrow: aShaker
 		         winningWhen: 2
-		         using: (CardDealer with: (OrderedCollection with:
-					           (CardProbability using: OverloadCard withChance: 100))).
+		         using: (CardDealer with: aDeck).
 	aGame movePlayer.
 	aGame movePlayer.
 	self
@@ -563,7 +586,7 @@ BoxesTest >> testU001VerifyTheCorrectUseOfSprintBox [
 { #category : #tests }
 BoxesTest >> testU002VerifyTheCorrectUseOfSprintBoxWhenAPlayerHave1Card [
 
-	| aLoadedDie aGame boxes aBoard aShaker aCard |
+	| aLoadedDie aGame boxes aBoard aShaker aCard|
 	aLoadedDie := LoadedDie with: (OrderedCollection
 			               with: 1
 			               with: 1
@@ -579,9 +602,8 @@ BoxesTest >> testU002VerifyTheCorrectUseOfSprintBoxWhenAPlayerHave1Card [
 		         and: aBoard
 		         usingToThrow: aShaker
 		         winningWhen: 2
-		         using: (CardDealer with: (OrderedCollection with:
-					           (CardProbability using: AccelerationCard withChance: 100))).
-	aCard:= (AccelerationCard holder: 'red').
+		         using: (CardDealer with: aDeck).
+	aCard:= ((AccelerationCard create) newHolder: 'red').
 	aGame apply: aCard.
 	aGame movePlayer.
 	aGame movePlayer.
@@ -609,11 +631,10 @@ BoxesTest >> testU003VerifyTheCorrectUseOfSprintBoxWhenThePlayerDoesNotHaveCards
 		         and: aBoard
 		         usingToThrow: aShaker
 		         winningWhen: 2
-		         using: (CardDealer with: (OrderedCollection with:
-					           (CardProbability using: AccelerationCard withChance: 100))).
-	aCard:= (AccelerationCard holder: 'red').
+		         using: (CardDealer with: aDeck).
+	aCard:= (AccelerationCard create newHolder: 'red').
 	aGame apply: aCard.
-	aCard:= (AccelerationCard holder: 'red').
+	aCard:= (AccelerationCard create newHolder: 'red').
 	aGame apply: aCard.
 	aGame movePlayer.
 	aGame movePlayer.

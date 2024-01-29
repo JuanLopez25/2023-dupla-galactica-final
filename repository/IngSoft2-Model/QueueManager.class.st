@@ -1,5 +1,5 @@
 Class {
-	#name : #TurnManager,
+	#name : #QueueManager,
 	#superclass : #Object,
 	#instVars : [
 		'max',
@@ -10,34 +10,35 @@ Class {
 }
 
 { #category : #'Instance creation' }
-TurnManager class >> with: anAmount [
+QueueManager class >> with: anAmount [
 
 	^ self new initializeWith: anAmount
 ]
 
-{ #category : #ManageTurns }
-TurnManager >> current [
+{ #category : #'manage turns' }
+QueueManager >> current [
 
 	^ values at: current 
 ]
 
-{ #category : #ManageTurns }
-TurnManager >> goNext [
+{ #category : #'manage turns' }
+QueueManager >> goNext [
 
 	current := current == max
 		           ifTrue: [ 1 ]
 		           ifFalse: [ current + 1 ]
 ]
 
-{ #category : #Initialization }
-TurnManager >> initializeWith: aValuesCollection [
+{ #category : #initialization }
+QueueManager >> initializeWith: aValuesCollection [
 
 	values	:= aValuesCollection.
 	max := aValuesCollection size.
 	current := 1
 ]
 
-{ #category : #Information }
-TurnManager >> valuesSize [
-	^ max.
+{ #category : #information }
+QueueManager >> valuesOnQueue [
+
+	^ max
 ]

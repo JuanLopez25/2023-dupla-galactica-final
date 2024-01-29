@@ -18,32 +18,32 @@ Board class >> with: aBoxCollection measure: aLengthMeasure [
 	^ self new initializeWith: aBoxCollection measure: aLengthMeasure
 ]
 
-{ #category : #Information }
+{ #category : #information }
 Board >> boxes [
 
 	^ boxes size
 ]
 
-{ #category : #BoxManager }
+{ #category : #'box effect' }
 Board >> effectAt: aPosition In: aGame [
 
 	(boxes at: aPosition) effect: aGame 
 ]
 
-{ #category : #Initialization }
+{ #category : #initialization }
 Board >> initializeWith: aBoxCollection measure: aLengthMeasure [
 
 	lengthMeasure := aLengthMeasure.
 	boxes := aBoxCollection
 ]
 
-{ #category : #Information }
+{ #category : #information }
 Board >> lightYears [
 
 	^ lengthMeasure lightYears
 ]
 
-{ #category : #Information }
+{ #category : #information }
 Board >> parsecs [
 
 	^ lengthMeasure parsecs

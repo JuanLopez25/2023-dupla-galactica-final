@@ -12,7 +12,9 @@ Class {
 { #category : #Games }
 CreateDuplaGalacticaGameTest >> createGameWithEffects [
 
-	| aGame aBoard aBoxCreator boxes boxesProbabilities |
+	| aGame aBoard aBoxCreator boxes boxesProbabilities aDeck |
+	aDeck := AveilableCardsDeck with:
+		         (CardAmount usingType: OverloadCard  amount: 3).
 	boxesProbabilities := OrderedCollection
 		                      with:
 		                      (BoxProbability
@@ -40,10 +42,8 @@ CreateDuplaGalacticaGameTest >> createGameWithEffects [
 							                         with: (Parsec worth: 40)
 							                         with: (Parsec worth: 30)))
 				                       withChance: 8).
-	boxesProbabilities addLast: (BoxProbability
-			 using: (RandomCardBox withCards: (OrderedCollection with:
-						   (CardProbability using: CancellationCard withChance: 100)))
-			 withChance: 10).
+	boxesProbabilities addLast:
+		(BoxProbability using: (RandomCardBox dealing: 1) withChance: 10).
 	aBoxCreator := BoxCreator use: boxesProbabilities.
 	boxes := aBoxCreator create: 10.
 	aBoard := Board with: boxes measure: (Parsec worth: 200).
@@ -52,8 +52,7 @@ CreateDuplaGalacticaGameTest >> createGameWithEffects [
 		         and: aBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
-		         using: (CardDealer with: (OrderedCollection with:
-					           (CardProbability using: OverloadCard withChance: 100))).
+		         using: (CardDealer with: aDeck).
 	^ aGame
 ]
 
@@ -220,43 +219,4 @@ CreateDuplaGalacticaGameTest >> testP020TryToCreateAGameWithDuplicateColorsThenI
 				using: CardDealer new ]
 		raise: Error
 		withMessage: 'Cannot create a game with duplicate colors'
-]
-
-{ #category : #tests }
-CreateDuplaGalacticaGameTest >> testP021TryToCreateAGameWithMoreThan100PercentOfProbabilityOfBoxAppearances [
-
-	| boxesProbabilities aBoxCreator |
-	boxesProbabilities := OrderedCollection with:
-		                      (BoxProbability
-			                       using: NoEffectBox new
-			                       withChance: 130).
-	self
-		should: [ 
-			aBoxCreator := BoxCreator use: boxesProbabilities.]
-		raise: Error
-		withMessage: 'The sum of probabilities must be 100'
-]
-
-{ #category : #tests }
-CreateDuplaGalacticaGameTest >> testP022TryToCreateAGameWithMoreThan100PercentOfProbabilityOfCardAppearances [
-
-	| boxesProbabilities aBoxCreator boxes aBoard aGame |
-	boxesProbabilities := OrderedCollection with:
-		                      (BoxProbability
-			                       using: NoEffectBox new
-			                       withChance: 100).
-	aBoxCreator := BoxCreator use: boxesProbabilities.
-	boxes := aBoxCreator create: 10.
-	aBoard := Board with: boxes measure: (Parsec worth: 200).
-	self
-		should: [ 
-			aGame := DuplaGalacticaGameProxy
-		         with: aColorCollection
-		         and: aBoard
-		         usingToThrow: aShaker
-		         winningWhen: 1
-		         using: (CardDealer with: (OrderedCollection with:
-					           (CardProbability using: OverloadCard withChance: 120))).]
-		raise: Error
-		withMessage: 'The sum of probabilities must be 100'
 ]

@@ -5,7 +5,8 @@ Class {
 		'aColorCollection',
 		'aLoadedDie',
 		'boxes',
-		'aShaker'
+		'aShaker',
+		'aDeck'
 	],
 	#category : #'IngSoft2-Tests'
 }
@@ -21,6 +22,8 @@ CreateAFunctionalGameWithDifferentLengthMeasuresTest >> setUp [
 	boxes := (BoxCreator use:
 		          (OrderedCollection with: (BoxProbability using: NoEffectBox new withChance: 100))) 
 		         create: 10.
+	aDeck := AveilableCardsDeck with:
+		         (CardAmount usingType: OverloadCard  amount: 4).
 ]
 
 { #category : #tests }
@@ -35,7 +38,7 @@ CreateAFunctionalGameWithDifferentLengthMeasuresTest >> testS001CreateABordWithP
 		         and: aBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
-		         using: (CardDealer with: (OrderedCollection with: (CardProbability using: OverloadCard withChance: 100))).
+		         using: (CardDealer with: aDeck).
 
 	self assert: aGame parsecs nominalValue equals: 100
 ]
@@ -43,7 +46,7 @@ CreateAFunctionalGameWithDifferentLengthMeasuresTest >> testS001CreateABordWithP
 { #category : #tests }
 CreateAFunctionalGameWithDifferentLengthMeasuresTest >> testS002CreateABordWithLigthYear [
 
-	| aBoard threeHundredLigthYears aGame |
+	| aBoard threeHundredLigthYears aGame|
 	threeHundredLigthYears := LigthYear worth: 300.
 	aBoard := Board with: boxes measure: threeHundredLigthYears.
 	aGame := DuplaGalacticaGameProxy
@@ -51,7 +54,7 @@ CreateAFunctionalGameWithDifferentLengthMeasuresTest >> testS002CreateABordWithL
 		         and: aBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
-		         using: (CardDealer with: (OrderedCollection with: (CardProbability using: OverloadCard withChance: 100))).
+		         using: (CardDealer with: aDeck).
 
 	self assert: aGame lightYears nominalValue equals: 300
 ]
@@ -59,7 +62,7 @@ CreateAFunctionalGameWithDifferentLengthMeasuresTest >> testS002CreateABordWithL
 { #category : #tests }
 CreateAFunctionalGameWithDifferentLengthMeasuresTest >> testS003CreateABordWithParsecAndAskForLightYear [
 
-	| aBoard oneHundredParsecs aGame |
+	| aBoard oneHundredParsecs aGame|
 	oneHundredParsecs := Parsec worth: 100.
 	aBoard := Board with: boxes measure: oneHundredParsecs.
 	aGame := DuplaGalacticaGameProxy
@@ -67,7 +70,7 @@ CreateAFunctionalGameWithDifferentLengthMeasuresTest >> testS003CreateABordWithP
 		         and: aBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
-		         using: (CardDealer with: (OrderedCollection with: (CardProbability using: OverloadCard withChance: 100))).
+		         using: (CardDealer with: aDeck).
 
 	self assert: aGame lightYears nominalValue equals: 300
 ]
@@ -83,7 +86,7 @@ CreateAFunctionalGameWithDifferentLengthMeasuresTest >> testS004CreateABordWithL
 		         and: aBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
-		         using: (CardDealer with: (OrderedCollection with: (CardProbability using: OverloadCard withChance: 100))).
+		         using: (CardDealer with: aDeck).
 
 	self assert: aGame parsecs nominalValue equals: 100
 ]

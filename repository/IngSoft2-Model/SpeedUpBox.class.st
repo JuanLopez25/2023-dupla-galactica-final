@@ -4,7 +4,7 @@ Class {
 	#category : #'IngSoft2-Model'
 }
 
-{ #category : #Effect }
+{ #category : #effect }
 SpeedUpBox >> effect: aGame [
 
 	aGame moveCurrent: 4.

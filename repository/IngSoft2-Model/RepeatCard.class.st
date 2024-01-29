@@ -8,53 +8,65 @@ Class {
 	#category : #'IngSoft2-Model'
 }
 
-{ #category : #'Instance creation' }
-RepeatCard class >> holder: aHolder [
-
-	^ self new initializeHolder: aHolder
+{ #category : #'Intance creation' }
+RepeatCard class >> create [
+	^self new intializeWith.
 ]
 
-{ #category : #Information }
+{ #category : #information }
 RepeatCard >> = aCard [
 
 	(aCard isKindOf: self class)
-		ifTrue: [ ^ aCard isHolder: holder ]
+		ifTrue: [ ^ aCard holder = holder ]
 		ifFalse: [ ^ false ]
 ]
 
-{ #category : #Effect }
+{ #category : #effect }
 RepeatCard >> applyCardUsing: cardManager at: aGame [
 
-	aGame isValidPlayer: target.
+	aGame isPlaying: target.
 	aGame repeatEffectTo: target.
+	cardManager discard: self.
 ]
 
-{ #category : #Information }
-RepeatCard >> haveEffect [
+{ #category : #information }
+RepeatCard >> hasEffect [
 
 	^ true
 ]
 
-{ #category : #Initialization }
-RepeatCard >> initializeHolder: aHolder [
+{ #category : #information }
+RepeatCard >> holder [
 
-	holder := aHolder.
-	target:= EmptyPlayer new.
+	^ holder
 ]
 
-{ #category : #Information }
-RepeatCard >> isHolder: aColorPlayer [
+{ #category : #initialization }
+RepeatCard >> intializeWith [
 
-	^ holder = aColorPlayer
+	holder := EmptyObject new.
+	target := EmptyObject new
 ]
 
-{ #category : #Information }
+{ #category : #information }
+RepeatCard >> isEmpty [
+
+	^ false
+]
+
+{ #category : #information }
 RepeatCard >> isPermanent [
 
 	^ false
 ]
 
-{ #category : #Information }
+{ #category : #information }
+RepeatCard >> newHolder: aHolder [
+
+	holder := aHolder
+]
+
+{ #category : #information }
 RepeatCard >> selectTarget: aNewTarget [
 
 	target:= aNewTarget.

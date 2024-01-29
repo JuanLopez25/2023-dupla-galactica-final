@@ -9,60 +9,76 @@ Class {
 }
 
 { #category : #'Instance creation' }
-OverloadCard class >> holder: aHolder [
-
-	^ self new initializeHolder: aHolder
+OverloadCard class >> create [
+	^ self new initializeCreate.
 ]
 
-{ #category : #Information }
+{ #category : #information }
 OverloadCard >> = aCard [
 
 	(aCard isKindOf: self class)
-		ifTrue: [ ^ aCard isHolder:holder ]
+		ifTrue: [ ^ aCard holder = holder ]
 		ifFalse: [ ^ false ]
 ]
 
-{ #category : #Effect }
+{ #category : #effect }
 OverloadCard >> applyCardUsing: cardManager at: aGame [
 
 	
-	aGame isValidPlayer: target.
-	cardManager activeCard: (self class holder: target).
+	aGame isPlaying: target.
+	cardManager activeCard: ((self class create) selectTarget: target)
 ]
 
-{ #category : #Effect }
+{ #category : #effect }
 OverloadCard >> applyEffect [
 
 	^ -2
 ]
 
-{ #category : #Information }
-OverloadCard >> haveEffect [
+{ #category : #information }
+OverloadCard >> hasEffect [
 
 	^ true
 ]
 
-{ #category : #Initialization }
-OverloadCard >> initializeHolder: aHolder [
+{ #category : #information }
+OverloadCard >> holder [
 
-	holder := aHolder.
-	target := EmptyPlayer new.
+	^ holder
 ]
 
-{ #category : #Information }
-OverloadCard >> isHolder: aColorPlayer [
-
-	^ holder = aColorPlayer
+{ #category : #initialization }
+OverloadCard >> initializeCreate [
+	holder:= EmptyObject new.
+	target:= EmptyObject new.
 ]
 
-{ #category : #Information }
+{ #category : #information }
+OverloadCard >> isEmpty [
+
+	^ false
+]
+
+{ #category : #information }
 OverloadCard >> isPermanent [
 
 	^ true
 ]
 
-{ #category : #Information }
+{ #category : #information }
+OverloadCard >> newHolder: aHolder [
+
+	holder := aHolder
+]
+
+{ #category : #information }
 OverloadCard >> selectTarget: aNewTarget [
 
 	target:= aNewTarget.
+]
+
+{ #category : #information }
+OverloadCard >> target [
+
+	^ target
 ]

@@ -37,8 +37,9 @@ CancellationCard >> holder [
 
 { #category : #initialization }
 CancellationCard >> initializeCreate [
-	holder:= EmptyObject new.
-	target:= EmptyObject new.
+
+	holder := EmptyObject new.
+	target := EmptyObject new
 ]
 
 { #category : #information }

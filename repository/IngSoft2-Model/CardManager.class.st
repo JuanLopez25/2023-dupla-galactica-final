@@ -23,10 +23,9 @@ CardManager >> activeCard: aCard [
 ]
 
 { #category : #cards }
-CardManager >> addAmountOfCards: anAmount to: aColor [
+CardManager >> addCardTo: aColor [
 
-	anAmount timesRepeat: [ 
-		cardsInPosetion addCard: (cardDealer createCardFor: aColor) ]
+	cardsInPosetion addCard: (cardDealer createCardFor: aColor)
 ]
 
 { #category : #cards }
@@ -70,8 +69,7 @@ CardManager >> cardsToDeal [
 { #category : #cards }
 CardManager >> desactivate: anObjectiveCard [
 
-	activeCards desactivate: anObjectiveCard.
-	cardDealer discard: anObjectiveCard
+	cardDealer discard: (activeCards desactivate: anObjectiveCard).
 ]
 
 { #category : #cards }

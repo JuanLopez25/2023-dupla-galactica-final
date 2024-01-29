@@ -42,7 +42,7 @@ CreateDuplaGalacticaGameTest >> createGameWithEffects [
 							                         with: (Parsec worth: 30)))
 				                       withChance: 8).
 	boxesProbabilities addLast:
-		(BoxProbability using: (RandomCardBox dealing: 1) withChance: 10).
+		(BoxProbability using: (RandomCardBox new) withChance: 10).
 	aBoxCreator := BoxCreator use: boxesProbabilities.
 	boxes := aBoxCreator create: 10.
 	aBoard := Board with: boxes measure: (Parsec worth: 200).

@@ -346,7 +346,7 @@ BoxesTest >> testR001CheckRandomCardBoxGeneratesARandomCard [
 			               with: 5
 			               with: 8).
 	boxes := (BoxCreator use:
-		          (OrderedCollection with: (BoxProbability using: (RandomCardBox dealing: 1)  withChance: 100))) 
+		          (OrderedCollection with: (BoxProbability using: (RandomCardBox new)  withChance: 100))) 
 		         create: 10.
 	aBoard := Board with: boxes measure: (Parsec worth: 100).
 	aShaker := DiceShaker withDie: aLoadedDie.
@@ -375,7 +375,7 @@ BoxesTest >> testR002CheckRandomCardBoxGeneratesARandomCardMoreThanOneTimeIfNece
 			               with: 3
 			               with: 8).
 	boxes := (BoxCreator use:
-		          (OrderedCollection with: (BoxProbability using: (RandomCardBox dealing: 1) withChance: 100))) 
+		          (OrderedCollection with: (BoxProbability using: (RandomCardBox new) withChance: 100))) 
 		         create: 10.
 	aBoard := Board with: boxes measure: (Parsec worth: 100).
 	aShaker := DiceShaker withDie: aLoadedDie.
@@ -406,7 +406,7 @@ BoxesTest >> testR003CheckRandomCardBoxGeneratesAsRandomCardsAsSpecify [
 			               with: 3
 			               with: 8).
 	boxes := (BoxCreator use:
-		          (OrderedCollection with: (BoxProbability using: (RandomCardBox dealing: 2) withChance: 100))) 
+		          (OrderedCollection with: (BoxProbability using: (RandomCardBox new) withChance: 100))) 
 		         create: 10.
 	aBoard := Board with: boxes measure: (Parsec worth: 100).
 	aShaker := DiceShaker withDie: aLoadedDie.

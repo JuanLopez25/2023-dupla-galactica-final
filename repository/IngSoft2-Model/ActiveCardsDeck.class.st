@@ -33,7 +33,7 @@ ActiveCardsDeck >> desactivate: anObjectiveCard [
 		detect: [ :card | 
 			anObjectiveCard isString not and: [ 
 				card sameTarget: anObjectiveCard ] ]
-		ifFound: [ :card | cards remove: card ]
+		ifFound: [ :card | cards remove: card. ^ card ]
 		ifNone: [ 
 			Error signal:
 				'There are no that type of cards activate in this player or is not a valid objective' ]

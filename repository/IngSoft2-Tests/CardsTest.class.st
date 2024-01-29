@@ -1604,3 +1604,41 @@ CardsTest >> testW013VerifyTheAmountOfDiscardCardsAfterDesactivatingOne [
 	aGame apply: aCard.
 	self assert: aGame discardCardsDeskAmount equals: 2
 ]
+
+{ #category : #tests }
+CardsTest >> testW014VerifyThatWhenARedoCardIsDiscardARedoCardGoToTheDiscardDeck [
+
+	| aGame aCard aDeck |
+	aDeck := AveilableCardsDeck with: (CardAmount usingType: SpeedCard amount: 4).
+	aDeck addNewCards: (CardAmount usingType: RedoCard amount: 3).
+	aDeck addNewCards: (CardAmount usingType: CancellationCard amount: 3).
+	aGame := DuplaGalacticaGameProxy
+		         with: aColorCollection
+		         and: (self createBoardWithRandomBoxDealing: 6)
+		         usingToThrow: aShaker
+		         winningWhen: 1
+		         using:
+		         (CardDealer with: aDeck).
+	aGame movePlayer.
+	aGame movePlayer.
+	aCard := (SpeedCard create newHolder: 'red') selectTarget: 'red'.
+	aGame apply: aCard.
+	aCard := (SpeedCard create newHolder: 'red') selectTarget: 'red'.
+	aGame apply: aCard.
+	aGame movePlayer.
+	aCard := (CancellationCard create newHolder: 'red') selectTarget: (SpeedCard create selectTarget: 'red').
+	aGame apply: aCard.
+	aCard := (RedoCard create newHolder: 'red') selectTarget: (SpeedCard create selectTarget: 'red').
+	aGame apply: aCard.
+	aGame movePlayer.
+	aGame movePlayer.
+	aCard := (SpeedCard create newHolder: 'blue') selectTarget: 'red'.
+	aGame apply: aCard.
+	aCard := (SpeedCard create newHolder: 'blue') selectTarget: 'red'.
+	aGame apply: aCard.
+	aCard := (CancellationCard create newHolder: 'blue') selectTarget: (SpeedCard create selectTarget: 'red').
+	aGame apply: aCard.
+	aCard := (RedoCard create newHolder: 'blue') selectTarget: (SpeedCard create selectTarget: 'red').
+	aGame apply: aCard.
+	self assert: aGame discardCardsDeskAmount equals: 4
+]

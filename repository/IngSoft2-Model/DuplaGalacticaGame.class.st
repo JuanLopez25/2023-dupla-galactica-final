@@ -97,7 +97,7 @@ DuplaGalacticaGame >> initializeWith: aColorsCollection and: aBoard usingToThrow
 ]
 
 { #category : #Cards }
-DuplaGalacticaGame >> isValidPlayer: objective [
+DuplaGalacticaGame >> isPlaying: objective [
 
 	objective isEmpty ifTrue: [ Error signal: 'The objective has not been specify' ].
 	self playersColors

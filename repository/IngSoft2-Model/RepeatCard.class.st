@@ -24,7 +24,7 @@ RepeatCard >> = aCard [
 { #category : #Effect }
 RepeatCard >> applyCardUsing: cardManager at: aGame [
 
-	aGame isValidPlayer: target.
+	aGame isPlaying: target.
 	aGame repeatEffectTo: target.
 	cardManager discard: self.
 ]

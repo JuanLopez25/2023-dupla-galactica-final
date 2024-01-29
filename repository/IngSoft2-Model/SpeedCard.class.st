@@ -24,7 +24,7 @@ SpeedCard >> = aCard [
 { #category : #Effect }
 SpeedCard >> applyCardUsing: cardManager at: aGame [
 
-	aGame isValidPlayer: target.
+	aGame isPlaying: target.
 	cardManager activeCard:
 		((self class create newHolder: holder) selectTarget: target)
 ]

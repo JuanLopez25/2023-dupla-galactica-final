@@ -13,7 +13,7 @@ AccelerationCard class >> create [
 	^self new intializeCreate.
 ]
 
-{ #category : #Information }
+{ #category : #comparing }
 AccelerationCard >> = aCard [
 
 	(aCard isKindOf: self class)
@@ -21,63 +21,64 @@ AccelerationCard >> = aCard [
 		ifFalse: [ ^ false ]
 ]
 
-{ #category : #Effect }
+{ #category : #effect }
 AccelerationCard >> applyCardUsing: cardManager at: aGame [
 
 	cardManager activeCard: (self class create newHolder: holder)
 ]
 
-{ #category : #Effect }
+{ #category : #effect }
 AccelerationCard >> applyEffect [
 
 	^ 1
 ]
 
-{ #category : #Information }
+{ #category : #information }
 AccelerationCard >> haveEffect [
 
 	^ true
 ]
 
-{ #category : #Information }
+{ #category : #information }
 AccelerationCard >> holder [
 
 	^ holder
 ]
 
-{ #category : #Initialization }
+{ #category : #initialization }
 AccelerationCard >> intializeCreate [
-	holder:= EmptyObject new.
-	target:= EveryPlayer new.
+
+	holder := EmptyObject new.
+	target := EveryPlayer new
 ]
 
-{ #category : #Information }
+{ #category : #information }
 AccelerationCard >> isEmpty [
 
 	^ false
 ]
 
-{ #category : #Information }
+{ #category : #information }
 AccelerationCard >> isPermanent [
 
 	^ true
 ]
 
-{ #category : #Effect }
+{ #category : #effect }
 AccelerationCard >> newHolder: aHolder [
 
 	holder := aHolder
 	
 ]
 
-{ #category : #Effect }
+{ #category : #effect }
 AccelerationCard >> selectTarget: aPlayer [
 
 
 
 ]
 
-{ #category : #Information }
+{ #category : #information }
 AccelerationCard >> target [
 
 	^ target

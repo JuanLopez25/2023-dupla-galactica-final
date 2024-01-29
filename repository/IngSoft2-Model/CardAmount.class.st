@@ -13,18 +13,21 @@ CardAmount class >> usingType: aCardClass amount: aChance [
 	^ self new initializeUsingType: aCardClass withAmount: aChance
 ]
 
-{ #category : #Information }
+{ #category : #information }
 CardAmount >> amountOfCards [
-	^ chance.
+
+	^ chance
 ]
 
-{ #category : #Information }
+{ #category : #information }
 CardAmount >> cardClass [
+
 	^ cardClass
 ]
 
-{ #category : #Initialization }
-CardAmount >> initializeUsingType: aCardClass withAmount: aChance [ 
-	cardClass:= aCardClass.
-	chance:= aChance.
+{ #category : #initialization }
+CardAmount >> initializeUsingType: aCardClass withAmount: aChance [
+
+	cardClass := aCardClass.
+	chance := aChance
 ]

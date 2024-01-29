@@ -16,20 +16,20 @@ CardManager class >> using: aCardDealer with: aColorCollection [
 	^ self new initializeUsing: aCardDealer with: aColorCollection
 ]
 
-{ #category : #Information }
+{ #category : #information }
 CardManager >> activeCard: aCard [
 
 	activeCards activeCard: aCard
 ]
 
-{ #category : #Managing }
+{ #category : #cards }
 CardManager >> addAmountOfCards: anAmount to: aColor [
 
 	anAmount timesRepeat: [ 
 		cardsInPosetion addCard: (cardDealer createCardFor: aColor) ]
 ]
 
-{ #category : #Managing }
+{ #category : #cards }
 CardManager >> apply: aCard at: aGame [
 
 	(self hasBeenGiven: aCard) ifFalse: [ 
@@ -40,58 +40,59 @@ CardManager >> apply: aCard at: aGame [
 	cardsInPosetion takeOut: aCard
 ]
 
-{ #category : #Managing }
+{ #category : #cards }
 CardManager >> calculateEffectOn: aColorPlayer [
 
 	^ activeCards calculateEffectOn: aColorPlayer
 ]
 
-{ #category : #Managing }
+{ #category : #cards }
 CardManager >> canBeUse: aCard whenPlay: aPlayer [
 
-	(aCard holder) isEmpty ifTrue: [ Error signal:'The card does not have a holder'].
-	^ (aCard isPermanent and: (aCard holder = aPlayer)) or:
+	aCard holder isEmpty ifTrue: [ 
+		Error signal: 'The card does not have a holder' ].
+	^ (aCard isPermanent and: aCard holder = aPlayer) or:
 		  aCard isPermanent not
 ]
 
-{ #category : #Information }
+{ #category : #information }
 CardManager >> cardsInPosetionOf: player [
 
 	^ cardsInPosetion cardsOf: player
 ]
 
-{ #category : #Information }
+{ #category : #information }
 CardManager >> cardsToDeal [
 
 	^ cardDealer cardsToDeal
 ]
 
-{ #category : #Managing }
+{ #category : #cards }
 CardManager >> desactivate: anObjectiveCard [
 
-
 	activeCards desactivate: anObjectiveCard.
-	cardDealer discard: anObjectiveCard.
+	cardDealer discard: anObjectiveCard
 ]
 
-{ #category : #Cards }
+{ #category : #cards }
 CardManager >> discard: aCard [
 
 	cardDealer discard: aCard
 ]
 
-{ #category : #Information }
+{ #category : #information }
 CardManager >> discardCardsDeskAmount [
-	^ cardDealer discardCardsDeskAmount.
+
+	^ cardDealer discardCardsDeskAmount
 ]
 
-{ #category : #Managing }
+{ #category : #cards }
 CardManager >> hasBeenGiven: aCard [
 
 	^ cardsInPosetion hasBeenGiven: aCard
 ]
 
-{ #category : #Initialization }
+{ #category : #initialization }
 CardManager >> initializeUsing: aCardDealer with: aColorCollection [
 
 	lastCardPlay := EmptyObject new.
@@ -105,5 +106,6 @@ CardManager >> initializeUsing: aCardDealer with: aColorCollection [
 
 { #category : #information }
 CardManager >> lastCardPlay [
+
 	^ lastCardPlay
 ]

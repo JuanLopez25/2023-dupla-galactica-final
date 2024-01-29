@@ -14,13 +14,13 @@ CardDealer class >> with: aDeck [
 	^ self new intializeWith: aDeck.
 ]
 
-{ #category : #Information }
+{ #category : #information }
 CardDealer >> cardsToDeal [
 
 	^ deck cardsToDeal
 ]
 
-{ #category : #Cards }
+{ #category : #cards }
 CardDealer >> createCardFor: aColor [
 
 	| aNewDeck |
@@ -31,19 +31,19 @@ CardDealer >> createCardFor: aColor [
 	^ deck createCardFor: aColor
 ]
 
-{ #category : #Cards }
+{ #category : #cards }
 CardDealer >> discard: aCard [
 
 	discardDeck addCard: aCard
 ]
 
-{ #category : #Information }
+{ #category : #information }
 CardDealer >> discardCardsDeskAmount [
 
 	^ discardDeck deckSize
 ]
 
-{ #category : #Initialization }
+{ #category : #initialization }
 CardDealer >> intializeWith: aDeck [
 
 	deck := aDeck.

@@ -8,21 +8,15 @@ Class {
 }
 
 { #category : #'Instance creation' }
-AveilableCardsDeck class >> with: aCardAmount [ 
-	^self new initializeWith: aCardAmount.
+AveilableCardsDeck class >> with: aCard amount: anAmount [
+	^self new initializeWith: aCard amount: anAmount.
 ]
 
 { #category : #cards }
-AveilableCardsDeck >> addExistingCards: aCard [
+AveilableCardsDeck >> addCard: aCard amount: anAmount [
 
-	cardsInDeck addLast: aCard
-]
-
-{ #category : #cards }
-AveilableCardsDeck >> addNewCards: aCardAmount [
-
-	aCardAmount amountOfCards timesRepeat: [ 
-		cardsInDeck addLast: aCardAmount cardClass create ].
+	anAmount timesRepeat: [ 
+		cardsInDeck addLast: aCard class create ].
 ]
 
 { #category : #information }
@@ -43,11 +37,12 @@ AveilableCardsDeck >> createCardFor: aPlayerColor [
 ]
 
 { #category : #initialization }
-AveilableCardsDeck >> initializeWith: aCardAmount [
+AveilableCardsDeck >> initializeWith: aCard amount: anAmount [
 
 	cardsInDeck := OrderedCollection new.
-	aCardAmount amountOfCards timesRepeat: [ 
-		cardsInDeck addLast: aCardAmount cardClass create ]
+	aCard isEmpty ifFalse: [ 
+	anAmount timesRepeat: [ 
+		cardsInDeck addLast: aCard class create ]].
 ]
 
 { #category : #information }

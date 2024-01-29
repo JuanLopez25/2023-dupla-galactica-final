@@ -14,8 +14,7 @@ BoxesTest >> setUp [
 	super setUp.
 
 	aColorCollection := OrderedCollection with: 'red' with: 'blue'.
-	aDeck := AveilableCardsDeck with:
-		         (CardAmount usingType: AccelerationCard  amount: 7).
+	aDeck := AveilableCardsDeck with: AccelerationCard create amount: 7.
 ]
 
 { #category : #tests }
@@ -31,18 +30,19 @@ BoxesTest >> should: anErrorBlock raise: anExceptionClass withMessage: anErrorMe
 { #category : #tests }
 BoxesTest >> testN001CheckNoEffectBoxDoesNotApplyAnyEffectThenValuePositions [
 
-	| aLoadedDie aGame boxes aBoard aShaker|
+	| aLoadedDie aGame boxes aBoard aShaker |
 	aLoadedDie := LoadedDie with: (OrderedCollection
 			               with: 6
 			               with: 8
 			               with: 5
 			               with: 8).
-	boxes := boxes := (BoxCreator use:
-		                   (OrderedCollection with:
-			                    (BoxProbability using: NoEffectBox new withChance: 100))) create: 10.
+	boxes := boxes := (BoxCreator use: (OrderedCollection with:
+			                    (BoxProbability
+				                     using: NoEffectBox new
+				                     withChance: 100))) create: 10.
 	aBoard := Board with: boxes measure: (Parsec worth: 100).
 	aShaker := DiceShaker withDie: aLoadedDie.
-	
+
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: aBoard

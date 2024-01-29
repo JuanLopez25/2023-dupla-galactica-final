@@ -30,7 +30,9 @@ ActiveCardsDeck >> desactivate: anObjectiveCard [
 
 	self isEmpty.
 	cards
-		detect: [ :card | anObjectiveCard isString not and: [card sameTarget: anObjectiveCard] ]
+		detect: [ :card | 
+			anObjectiveCard isString not and: [ 
+				card sameTarget: anObjectiveCard ] ]
 		ifFound: [ :card | cards remove: card ]
 		ifNone: [ 
 			Error signal:

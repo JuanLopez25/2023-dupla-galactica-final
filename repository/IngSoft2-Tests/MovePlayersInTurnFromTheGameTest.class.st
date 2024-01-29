@@ -17,8 +17,7 @@ MovePlayersInTurnFromTheGameTest >> setUp [
 
 	| aDeck |
 	super setUp.
-	aDeck := AveilableCardsDeck with:
-		         (CardAmount usingType: OverloadCard  amount: 3).
+	aDeck := AveilableCardsDeck with: OverloadCard create amount: 3.
 	aColorCollection := OrderedCollection with: 'red' with: 'blue'.
 	aLoadedDie := LoadedDie with:
 		              (OrderedCollection with: 1 with: 2 with: 3).

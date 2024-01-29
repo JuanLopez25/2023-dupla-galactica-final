@@ -16,7 +16,7 @@ BoxCreator class >> use: aBoxesProbabilitiesCollection [
 	^ self new initializeUse: aBoxesProbabilitiesCollection
 ]
 
-{ #category : #Creation }
+{ #category : #creation }
 BoxCreator >> create: aNumberOfBoxes [
 
 	| boxesCreated |
@@ -26,13 +26,13 @@ BoxCreator >> create: aNumberOfBoxes [
 	^ boxesCreated
 ]
 
-{ #category : #Initialization }
+{ #category : #initialization }
 BoxCreator >> initializeUse: aBoxesCollection [
 
 	boxes := aBoxesCollection
 ]
 
-{ #category : #Creation }
+{ #category : #creation }
 BoxCreator >> oneRandomBoxOf [
 
 	| aRandomValue sum|

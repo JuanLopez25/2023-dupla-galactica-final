@@ -12,26 +12,26 @@ AveilableCardsDeck class >> with: aCardAmount [
 	^self new initializeWith: aCardAmount.
 ]
 
-{ #category : #Cards }
+{ #category : #cards }
 AveilableCardsDeck >> addExistingCards: aCard [
 
 	cardsInDeck addLast: aCard
 ]
 
-{ #category : #Cards }
+{ #category : #cards }
 AveilableCardsDeck >> addNewCards: aCardAmount [
 
 	aCardAmount amountOfCards timesRepeat: [ 
 		cardsInDeck addLast: aCardAmount cardClass create ].
 ]
 
-{ #category : #Information }
+{ #category : #information }
 AveilableCardsDeck >> cardsToDeal [
 
 	^ cardsInDeck size
 ]
 
-{ #category : #Cards }
+{ #category : #cards }
 AveilableCardsDeck >> createCardFor: aPlayerColor [
 
 	| selectedCard aRandomValue |
@@ -42,7 +42,7 @@ AveilableCardsDeck >> createCardFor: aPlayerColor [
 	^ selectedCard
 ]
 
-{ #category : #Initialization }
+{ #category : #initialization }
 AveilableCardsDeck >> initializeWith: aCardAmount [
 
 	cardsInDeck := OrderedCollection new.
@@ -50,7 +50,8 @@ AveilableCardsDeck >> initializeWith: aCardAmount [
 		cardsInDeck addLast: aCardAmount cardClass create ]
 ]
 
-{ #category : #Information }
+{ #category : #information }
 AveilableCardsDeck >> isEmpty [
-	^ cardsInDeck isEmpty.
+
+	^ cardsInDeck isEmpty
 ]

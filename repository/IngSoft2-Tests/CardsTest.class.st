@@ -361,7 +361,7 @@ CardsTest >> testQ014TryToCancellAPermanentCardWhenThePlayerDoesNotHaveOne [
 	self
 		should: [ aGame apply: aCard ]
 		raise: Error
-		withMessage: 'There are no permanent cards'
+		withMessage: 'There are no active permanent cards'
 ]
 
 { #category : #tests }

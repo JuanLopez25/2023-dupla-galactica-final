@@ -56,7 +56,8 @@ RedoCard >> intializeWith [
 
 { #category : #Information }
 RedoCard >> isEmpty [
-	^false.
+
+	^ false
 ]
 
 { #category : #Information }

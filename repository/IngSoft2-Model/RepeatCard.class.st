@@ -49,7 +49,8 @@ RepeatCard >> intializeWith [
 
 { #category : #Information }
 RepeatCard >> isEmpty [
-	^false.
+
+	^ false
 ]
 
 { #category : #Information }

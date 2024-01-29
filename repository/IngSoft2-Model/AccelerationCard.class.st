@@ -10,7 +10,8 @@ Class {
 
 { #category : #'Intance creation' }
 AccelerationCard class >> create [
-	^self new intializeCreate.
+
+	^ self new intializeCreate
 ]
 
 { #category : #comparing }

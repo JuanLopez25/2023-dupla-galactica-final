@@ -12,19 +12,20 @@ ActiveCardsDeck class >> createDeck [
 	^ self new initializeDeck.
 ]
 
-{ #category : #Activation }
-ActiveCardsDeck >> activeCard: aCard [ 
+{ #category : #activation }
+ActiveCardsDeck >> activeCard: aCard [
+
 	cards addLast: aCard
 ]
 
-{ #category : #Effects }
+{ #category : #effects }
 ActiveCardsDeck >> calculateEffectOn: aColorPlayer [
 
 	^ (cards select: [ :card | card target = aColorPlayer ]) sum: [ :card | 
 		  card applyEffect ]
 ]
 
-{ #category : #Desactivation }
+{ #category : #desactivation }
 ActiveCardsDeck >> desactivate: anObjectiveCard [
 
 	| i newDeck |
@@ -40,13 +41,14 @@ ActiveCardsDeck >> desactivate: anObjectiveCard [
 	cards := newDeck
 ]
 
-{ #category : #Initialization }
+{ #category : #initialization }
 ActiveCardsDeck >> initializeDeck [
-	cards:= OrderedCollection new.
+
+	cards := OrderedCollection new
 ]
 
-{ #category : #Cards }
+{ #category : #cards }
 ActiveCardsDeck >> isEmpty [
 
-	cards isEmpty ifTrue: [ Error signal: 'There are no permanent cards' ]
+	cards isEmpty ifTrue: [ Error signal: 'There are no active permanent cards' ]
 ]

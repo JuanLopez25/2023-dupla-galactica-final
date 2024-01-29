@@ -13,7 +13,7 @@ CancellationCard class >> create [
 	^self new initializeCreate.
 ]
 
-{ #category : #Information }
+{ #category : #information }
 CancellationCard >> = aCard [
 
 	(aCard isKindOf: self class)
@@ -21,7 +21,7 @@ CancellationCard >> = aCard [
 		ifFalse: [ ^ false ]
 ]
 
-{ #category : #Effect }
+{ #category : #effect }
 CancellationCard >> applyCardUsing: cardManager at: aGame [
 
 	target isEmpty ifTrue: [ 
@@ -31,44 +31,44 @@ CancellationCard >> applyCardUsing: cardManager at: aGame [
 	cardManager discard: self.
 ]
 
-{ #category : #Information }
+{ #category : #information }
 CancellationCard >> haveEffect [
 
 	^ true
 ]
 
-{ #category : #Information }
+{ #category : #information }
 CancellationCard >> holder [
 
 	^ holder
 ]
 
-{ #category : #Initialization }
+{ #category : #initialization }
 CancellationCard >> initializeCreate [
 	holder:= EmptyObject new.
 	target:= EmptyObject new.
 ]
 
-{ #category : #Information }
+{ #category : #information }
 CancellationCard >> isEmpty [
-	^false.
+
+	^ false
 ]
 
-{ #category : #Information }
+{ #category : #information }
 CancellationCard >> isPermanent [
 
 	^ false
 ]
 
-{ #category : #Information }
+{ #category : #information }
 CancellationCard >> newHolder: aNewHolder [
 
 	holder:= aNewHolder
 ]
 
-{ #category : #Information }
+{ #category : #information }
 CancellationCard >> selectTarget: aNewTarget [
 
-	
-	target:= aNewTarget.
+	target := aNewTarget
 ]

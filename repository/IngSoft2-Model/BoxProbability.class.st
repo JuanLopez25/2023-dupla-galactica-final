@@ -14,20 +14,20 @@ BoxProbability class >> using: aBox withChance: aProbability [
 	^ self new initializeUsing: aBox withChance: aProbability
 ]
 
-{ #category : #Information }
+{ #category : #information }
 BoxProbability >> box [
 
 	^ box
 ]
 
-{ #category : #Initialization }
+{ #category : #initialization }
 BoxProbability >> initializeUsing: aBox withChance: aProbability [
 
 	box := aBox.
 	probability := aProbability
 ]
 
-{ #category : #Information }
+{ #category : #information }
 BoxProbability >> probability [
 
 	^ probability

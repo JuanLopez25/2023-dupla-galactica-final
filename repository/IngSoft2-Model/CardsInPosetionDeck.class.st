@@ -28,7 +28,7 @@ CardsInPosetionDeck >> cardsOf: aPlayerColor [
 CardsInPosetionDeck >> hasBeenGiven: aCard [
 
 	cards
-		detect: [ :card | card = aCard ]
+		detect: [ :card | card sameHolder: aCard ]
 		ifFound: [ :card | ^ true ]
 		ifNone: [ ^ false ]
 ]
@@ -42,5 +42,7 @@ CardsInPosetionDeck >> initializeDeck [
 { #category : #initialization }
 CardsInPosetionDeck >> takeOut: aCard [
 
-	cards remove: aCard.
+	cards
+		detect: [ :card | card sameHolder: aCard ]
+		ifFound: [ :card | cards remove: card ]
 ]

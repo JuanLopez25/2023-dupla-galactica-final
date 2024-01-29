@@ -14,14 +14,6 @@ AccelerationCard class >> create [
 	^ self new intializeCreate
 ]
 
-{ #category : #comparing }
-AccelerationCard >> = aCard [
-
-	(aCard isKindOf: self class)
-		ifTrue: [ ^ aCard holder = holder ]
-		ifFalse: [ ^ false ]
-]
-
 { #category : #effect }
 AccelerationCard >> applyCardUsing: cardManager at: aGame [
 
@@ -70,6 +62,18 @@ AccelerationCard >> newHolder: aHolder [
 
 	holder := aHolder
 	
+]
+
+{ #category : #comparing }
+AccelerationCard >> sameHolder: aCard [ 
+	
+	^ self class = aCard class and: holder = aCard holder.
+]
+
+{ #category : #comparing }
+AccelerationCard >> sameTarget: aCard [ 
+	
+	^ aCard class = self class and: target = aCard target.
 ]
 
 { #category : #effect }

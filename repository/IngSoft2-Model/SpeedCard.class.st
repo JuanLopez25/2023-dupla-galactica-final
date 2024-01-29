@@ -13,14 +13,6 @@ SpeedCard class >> create [
 	^ self new initializeCreate.
 ]
 
-{ #category : #information }
-SpeedCard >> = aCard [
-
-	(aCard isKindOf: self class)
-		ifTrue: [ ^ aCard holder = holder ]
-		ifFalse: [ ^ false ]
-]
-
 { #category : #effect }
 SpeedCard >> applyCardUsing: cardManager at: aGame [
 
@@ -70,6 +62,18 @@ SpeedCard >> isPermanent [
 SpeedCard >> newHolder: aHolder [
 
 	holder := aHolder
+]
+
+{ #category : #comparing }
+SpeedCard >> sameHolder: aCard [ 
+	
+	^ self class = aCard class and: holder = aCard holder.
+]
+
+{ #category : #comparing }
+SpeedCard >> sameTarget: aCard [ 
+	
+	^ aCard class = self class and: target = aCard target.
 ]
 
 { #category : #initialization }

@@ -13,14 +13,6 @@ OverloadCard class >> create [
 	^ self new initializeCreate.
 ]
 
-{ #category : #information }
-OverloadCard >> = aCard [
-
-	(aCard isKindOf: self class)
-		ifTrue: [ ^ aCard holder = holder ]
-		ifFalse: [ ^ false ]
-]
-
 { #category : #effect }
 OverloadCard >> applyCardUsing: cardManager at: aGame [
 
@@ -69,6 +61,18 @@ OverloadCard >> isPermanent [
 OverloadCard >> newHolder: aHolder [
 
 	holder := aHolder
+]
+
+{ #category : #comparing }
+OverloadCard >> sameHolder: aCard [ 
+	
+	^ self class = aCard class and: holder = aCard holder.
+]
+
+{ #category : #comparing }
+OverloadCard >> sameTarget: aCard [ 
+	
+	^ aCard class = self class and: target = aCard target.
 ]
 
 { #category : #information }

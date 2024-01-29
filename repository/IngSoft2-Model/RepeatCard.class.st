@@ -13,14 +13,6 @@ RepeatCard class >> create [
 	^self new intializeWith.
 ]
 
-{ #category : #information }
-RepeatCard >> = aCard [
-
-	(aCard isKindOf: self class)
-		ifTrue: [ ^ aCard holder = holder ]
-		ifFalse: [ ^ false ]
-]
-
 { #category : #effect }
 RepeatCard >> applyCardUsing: cardManager at: aGame [
 
@@ -64,6 +56,12 @@ RepeatCard >> isPermanent [
 RepeatCard >> newHolder: aHolder [
 
 	holder := aHolder
+]
+
+{ #category : #comparing }
+RepeatCard >> sameHolder: aCard [ 
+	
+	^ self class = aCard class and: holder = aCard holder.
 ]
 
 { #category : #information }

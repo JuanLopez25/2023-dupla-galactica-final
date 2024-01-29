@@ -13,14 +13,6 @@ RedoCard class >> create [
 	^self new intializeWith.
 ]
 
-{ #category : #information }
-RedoCard >> = aCard [
-
-	(aCard isKindOf: self class)
-		ifTrue: [ ^ aCard holder = holder ]
-		ifFalse: [ ^ false ]
-]
-
 { #category : #initialization }
 RedoCard >> applyCardUsing: cardManager at: aGame [
 
@@ -69,6 +61,12 @@ RedoCard >> isPermanent [
 RedoCard >> newHolder: aHolder [
 
 	holder := aHolder
+]
+
+{ #category : #comparing }
+RedoCard >> sameHolder: aCard [ 
+	
+	^ self class = aCard class and: holder = aCard holder.
 ]
 
 { #category : #information }

@@ -13,14 +13,6 @@ CancellationCard class >> create [
 	^self new initializeCreate.
 ]
 
-{ #category : #information }
-CancellationCard >> = aCard [
-
-	(aCard isKindOf: self class)
-		ifTrue: [ ^ aCard holder = holder ]
-		ifFalse: [ ^ false ]
-]
-
 { #category : #effect }
 CancellationCard >> applyCardUsing: cardManager at: aGame [
 
@@ -65,6 +57,12 @@ CancellationCard >> isPermanent [
 CancellationCard >> newHolder: aNewHolder [
 
 	holder:= aNewHolder
+]
+
+{ #category : #comparing }
+CancellationCard >> sameHolder: aCard [ 
+	
+	^ self class = aCard class and: holder = aCard holder.
 ]
 
 { #category : #information }

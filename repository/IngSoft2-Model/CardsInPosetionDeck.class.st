@@ -12,19 +12,19 @@ CardsInPosetionDeck class >> createDeck [
 	^ self new initializeDeck.
 ]
 
-{ #category : #'Changing cards' }
+{ #category : #'changing cards' }
 CardsInPosetionDeck >> addCard: aCard [
 
 	(aCard isEmpty) ifFalse: [ cards addLast: aCard ].
 ]
 
-{ #category : #'Changing cards' }
+{ #category : #'changing cards' }
 CardsInPosetionDeck >> cardsOf: aPlayerColor [
 
 	^ (cards select: [ :card | card holder = aPlayerColor ]) size
 ]
 
-{ #category : #'Changing cards' }
+{ #category : #'changing cards' }
 CardsInPosetionDeck >> hasBeenGiven: aCard [
 
 	cards
@@ -33,12 +33,13 @@ CardsInPosetionDeck >> hasBeenGiven: aCard [
 		ifNone: [ ^ false ]
 ]
 
-{ #category : #Initialization }
+{ #category : #initialization }
 CardsInPosetionDeck >> initializeDeck [
-	cards:= OrderedCollection new.
+
+	cards := OrderedCollection new
 ]
 
-{ #category : #Initialization }
+{ #category : #initialization }
 CardsInPosetionDeck >> takeOut: aCard [
 
 	cards remove: aCard.

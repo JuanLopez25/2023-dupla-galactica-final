@@ -13,7 +13,7 @@ SpeedCard class >> create [
 	^ self new initializeCreate.
 ]
 
-{ #category : #Information }
+{ #category : #information }
 SpeedCard >> = aCard [
 
 	(aCard isKindOf: self class)
@@ -21,7 +21,7 @@ SpeedCard >> = aCard [
 		ifFalse: [ ^ false ]
 ]
 
-{ #category : #Effect }
+{ #category : #effect }
 SpeedCard >> applyCardUsing: cardManager at: aGame [
 
 	aGame isPlaying: target.
@@ -29,54 +29,56 @@ SpeedCard >> applyCardUsing: cardManager at: aGame [
 		((self class create newHolder: holder) selectTarget: target)
 ]
 
-{ #category : #Effect }
+{ #category : #effect }
 SpeedCard >> applyEffect [
 
 	^ 1
 ]
 
-{ #category : #Information }
-SpeedCard >> haveEffect [
+{ #category : #information }
+SpeedCard >> hasEffect [
 
 	^ true
 ]
 
-{ #category : #Effect }
+{ #category : #effect }
 SpeedCard >> holder [
 
 	^ holder
 ]
 
-{ #category : #Initialization }
+{ #category : #initialization }
 SpeedCard >> initializeCreate [
-	holder:= EmptyObject new.
-	target:= EmptyObject new.
+
+	holder := EmptyObject new.
+	target := EmptyObject new
 ]
 
-{ #category : #Information }
+{ #category : #information }
 SpeedCard >> isEmpty [
-	^false.
+
+	^ false
 ]
 
-{ #category : #Information }
+{ #category : #information }
 SpeedCard >> isPermanent [
 
 	^ true
 ]
 
-{ #category : #Effect }
+{ #category : #effect }
 SpeedCard >> newHolder: aHolder [
 
 	holder := aHolder
 ]
 
-{ #category : #Initialization }
+{ #category : #initialization }
 SpeedCard >> selectTarget: aNewTarget [
 
 	target:= aNewTarget.
 ]
 
-{ #category : #Information }
+{ #category : #information }
 SpeedCard >> target [
 
 	^ target

@@ -12,7 +12,7 @@ DiscardsCardsDeck class >> createDeck [
 	^ self new intializeCreateDeck.
 ]
 
-{ #category : #Cards }
+{ #category : #cards }
 DiscardsCardsDeck >> addCard: aCard [
 
 	(aCard holder isString or: [ aCard holder isEmpty ])
@@ -20,19 +20,19 @@ DiscardsCardsDeck >> addCard: aCard [
 		ifFalse: [ deck addLast: RedoCard create ]
 ]
 
-{ #category : #Information }
+{ #category : #information }
 DiscardsCardsDeck >> deckSize [
 
 	^ deck size.
 ]
 
-{ #category : #Initialization }
+{ #category : #initialization }
 DiscardsCardsDeck >> intializeCreateDeck [
 	
 	deck := OrderedCollection new.
 ]
 
-{ #category : #Card }
+{ #category : #cards }
 DiscardsCardsDeck >> shuffle [
 
 	| aNewDeck |

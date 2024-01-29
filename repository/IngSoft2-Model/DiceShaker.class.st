@@ -12,17 +12,20 @@ DiceShaker class >> withDie: aDie [
 	^self new initializeWithDie: aDie.
 ]
 
-{ #category : #Dice }
-DiceShaker >> addDie: aDie [ 
-	dice addLast: aDie.
+{ #category : #dice }
+DiceShaker >> addDie: aDie [
+
+	dice addLast: aDie
 ]
 
-{ #category : #Initialization }
-DiceShaker >> initializeWithDie: aDie [ 
-	dice := OrderedCollection with: aDie.
+{ #category : #initialization }
+DiceShaker >> initializeWithDie: aDie [
+
+	dice := OrderedCollection with: aDie
 ]
 
-{ #category : #Dice }
+{ #category : #dice }
 DiceShaker >> throwDice [
+
 	^ dice sumNumbers: [ :die | die throw ]
 ]

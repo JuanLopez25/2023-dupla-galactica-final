@@ -13,13 +13,13 @@ RandomCardBox class >> dealing: cardsProbabilities [
 	^ self new intializeDealing: cardsProbabilities.
 ]
 
-{ #category : #Effect }
+{ #category : #effect }
 RandomCardBox >> effect: aGame [
 
 	aGame addAmountOfCards: cardsAmount.
 ]
 
-{ #category : #Initialization }
+{ #category : #initialization }
 RandomCardBox >> intializeDealing: anAmountOfCards [
 
 	cardsAmount := anAmountOfCards

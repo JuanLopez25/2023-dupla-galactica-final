@@ -24,7 +24,7 @@ Board >> boxes [
 	^ boxes size
 ]
 
-{ #category : #boxEffect }
+{ #category : #'box effect' }
 Board >> effectAt: aPosition In: aGame [
 
 	(boxes at: aPosition) effect: aGame 

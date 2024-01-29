@@ -7,5 +7,5 @@ Class {
 { #category : #comparing }
 EveryPlayer >> = aPlayer [
 
-	^true.
+	^ true
 ]

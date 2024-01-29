@@ -35,7 +35,7 @@ CardManager >> apply: aCard at: aGame [
 	(self hasBeenGiven: aCard) ifFalse: [ 
 		Error signal: 'The player does not have that card in posetion' ].
 
-	aCard haveEffect ifTrue: [ lastCardPlay := aCard ].
+	aCard hasEffect ifTrue: [ lastCardPlay := aCard ].
 	aCard applyCardUsing: self at: aGame.
 	cardsInPosetion takeOut: aCard
 ]

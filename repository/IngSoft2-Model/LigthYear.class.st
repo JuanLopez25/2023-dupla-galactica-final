@@ -13,25 +13,25 @@ LigthYear class >> worth: aNominalValue [
 	^ self new initializeWorth: aNominalValue
 ]
 
-{ #category : #Initialization }
+{ #category : #initialization }
 LigthYear >> initializeWorth: aNominalValue [
 
 	nominalValue := aNominalValue
 ]
 
-{ #category : #Information }
+{ #category : #information }
 LigthYear >> lightYears [
 
 	^ self
 ]
 
-{ #category : #Information }
+{ #category : #information }
 LigthYear >> nominalValue [
 
 	^ nominalValue
 ]
 
-{ #category : #Information }
+{ #category : #information }
 LigthYear >> parsecs [
 
 	^ Parsec worth: nominalValue // 3

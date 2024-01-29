@@ -13,7 +13,7 @@ OverloadCard class >> create [
 	^ self new initializeCreate.
 ]
 
-{ #category : #Information }
+{ #category : #information }
 OverloadCard >> = aCard [
 
 	(aCard isKindOf: self class)
@@ -21,7 +21,7 @@ OverloadCard >> = aCard [
 		ifFalse: [ ^ false ]
 ]
 
-{ #category : #Effect }
+{ #category : #effect }
 OverloadCard >> applyCardUsing: cardManager at: aGame [
 
 	
@@ -29,54 +29,55 @@ OverloadCard >> applyCardUsing: cardManager at: aGame [
 	cardManager activeCard: ((self class create) selectTarget: target)
 ]
 
-{ #category : #Effect }
+{ #category : #effect }
 OverloadCard >> applyEffect [
 
 	^ -2
 ]
 
-{ #category : #Information }
-OverloadCard >> haveEffect [
+{ #category : #information }
+OverloadCard >> hasEffect [
 
 	^ true
 ]
 
-{ #category : #Information }
+{ #category : #information }
 OverloadCard >> holder [
 
 	^ holder
 ]
 
-{ #category : #Initialization }
+{ #category : #initialization }
 OverloadCard >> initializeCreate [
 	holder:= EmptyObject new.
 	target:= EmptyObject new.
 ]
 
-{ #category : #Information }
+{ #category : #information }
 OverloadCard >> isEmpty [
-	^ false.
+
+	^ false
 ]
 
-{ #category : #Information }
+{ #category : #information }
 OverloadCard >> isPermanent [
 
 	^ true
 ]
 
-{ #category : #Information }
+{ #category : #information }
 OverloadCard >> newHolder: aHolder [
 
 	holder := aHolder
 ]
 
-{ #category : #Information }
+{ #category : #information }
 OverloadCard >> selectTarget: aNewTarget [
 
 	target:= aNewTarget.
 ]
 
-{ #category : #Information }
+{ #category : #information }
 OverloadCard >> target [
 
 	^ target

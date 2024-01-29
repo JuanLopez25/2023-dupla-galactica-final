@@ -4,7 +4,8 @@ Class {
 	#category : #'IngSoft2-Model'
 }
 
-{ #category : #Information }
+{ #category : #information }
 EmptyObject >> isEmpty [
-	^true.
+
+	^ true
 ]

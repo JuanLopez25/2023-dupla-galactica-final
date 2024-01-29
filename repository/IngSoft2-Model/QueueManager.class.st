@@ -15,13 +15,13 @@ QueueManager class >> with: anAmount [
 	^ self new initializeWith: anAmount
 ]
 
-{ #category : #ManageTurns }
+{ #category : #'manage turns' }
 QueueManager >> current [
 
 	^ values at: current 
 ]
 
-{ #category : #ManageTurns }
+{ #category : #'manage turns' }
 QueueManager >> goNext [
 
 	current := current == max
@@ -29,7 +29,7 @@ QueueManager >> goNext [
 		           ifFalse: [ current + 1 ]
 ]
 
-{ #category : #Initialization }
+{ #category : #initialization }
 QueueManager >> initializeWith: aValuesCollection [
 
 	values	:= aValuesCollection.
@@ -37,7 +37,8 @@ QueueManager >> initializeWith: aValuesCollection [
 	current := 1
 ]
 
-{ #category : #Information }
+{ #category : #information }
 QueueManager >> valuesOnQueue [
-	^ max.
+
+	^ max
 ]

@@ -13,7 +13,7 @@ RepeatCard class >> create [
 	^self new intializeWith.
 ]
 
-{ #category : #Information }
+{ #category : #information }
 RepeatCard >> = aCard [
 
 	(aCard isKindOf: self class)
@@ -21,7 +21,7 @@ RepeatCard >> = aCard [
 		ifFalse: [ ^ false ]
 ]
 
-{ #category : #Effect }
+{ #category : #effect }
 RepeatCard >> applyCardUsing: cardManager at: aGame [
 
 	aGame isPlaying: target.
@@ -29,43 +29,44 @@ RepeatCard >> applyCardUsing: cardManager at: aGame [
 	cardManager discard: self.
 ]
 
-{ #category : #Information }
-RepeatCard >> haveEffect [
+{ #category : #information }
+RepeatCard >> hasEffect [
 
 	^ true
 ]
 
-{ #category : #Information }
+{ #category : #information }
 RepeatCard >> holder [
 
 	^ holder
 ]
 
-{ #category : #Initialization }
+{ #category : #initialization }
 RepeatCard >> intializeWith [
-	holder:= EmptyObject new.
-	target:= EmptyObject new.
+
+	holder := EmptyObject new.
+	target := EmptyObject new
 ]
 
-{ #category : #Information }
+{ #category : #information }
 RepeatCard >> isEmpty [
 
 	^ false
 ]
 
-{ #category : #Information }
+{ #category : #information }
 RepeatCard >> isPermanent [
 
 	^ false
 ]
 
-{ #category : #Information }
+{ #category : #information }
 RepeatCard >> newHolder: aHolder [
 
 	holder := aHolder
 ]
 
-{ #category : #Information }
+{ #category : #information }
 RepeatCard >> selectTarget: aNewTarget [
 
 	target:= aNewTarget.

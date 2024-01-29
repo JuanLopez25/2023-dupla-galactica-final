@@ -35,7 +35,7 @@ AccelerationCard >> applyEffect [
 ]
 
 { #category : #information }
-AccelerationCard >> haveEffect [
+AccelerationCard >> hasEffect [
 
 	^ true
 ]

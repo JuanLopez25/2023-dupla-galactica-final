@@ -18,48 +18,49 @@ DuplaGalacticaGameProxy class >> with: aColorCollection and: aBoard usingToThrow
 		  using: aCardDealer
 ]
 
-{ #category : #Cards }
+{ #category : #cards }
 DuplaGalacticaGameProxy >> apply: aCard [
 
 	game apply: aCard
 ]
 
-{ #category : #Information }
+{ #category : #information }
 DuplaGalacticaGameProxy >> boxes [
 
 	^ game boxes
 ]
 
-{ #category : #Information }
+{ #category : #information }
 DuplaGalacticaGameProxy >> cardsInPosetionOf: aPlayerColor [
 
 	^ game cardsInPosetionOf: aPlayerColor
 ]
 
-{ #category : #Information }
+{ #category : #information }
 DuplaGalacticaGameProxy >> cardsToDeal [
 
 	^ game cardsToDeal
 ]
 
-{ #category : #Information }
+{ #category : #information }
 DuplaGalacticaGameProxy >> currentPlayer [
 
 	^ game currentPlayer
 ]
 
-{ #category : #Information }
+{ #category : #information }
 DuplaGalacticaGameProxy >> discardCardsDeskAmount [
-	^ game discardCardsDeskAmount.
+
+	^ game discardCardsDeskAmount
 ]
 
-{ #category : #Information }
+{ #category : #information }
 DuplaGalacticaGameProxy >> goalLaps [
 
 	^ game goalLaps
 ]
 
-{ #category : #Initialization }
+{ #category : #initialization }
 DuplaGalacticaGameProxy >> initializeWith: aColorsCollection and: aBoard usingToThrow: aDiceShaker winningWhen: aValue using: aCardDealer [
 
 	game := DuplaGalacticaGame
@@ -70,49 +71,49 @@ DuplaGalacticaGameProxy >> initializeWith: aColorsCollection and: aBoard usingTo
 		        using: aCardDealer
 ]
 
-{ #category : #Information }
+{ #category : #information }
 DuplaGalacticaGameProxy >> lightYears [
 
 	^ game lightYears
 ]
 
-{ #category : #Movement }
+{ #category : #movement }
 DuplaGalacticaGameProxy >> movePlayer [
 
 	^ game movePlayer
 ]
 
-{ #category : #Information }
+{ #category : #information }
 DuplaGalacticaGameProxy >> parsecs [
 
 	^ game parsecs
 ]
 
-{ #category : #Information }
+{ #category : #information }
 DuplaGalacticaGameProxy >> playersBox [
 
 	^ game playersBox
 ]
 
-{ #category : #Information }
+{ #category : #information }
 DuplaGalacticaGameProxy >> playersLaps [
 
 	^ game playersLaps
 ]
 
-{ #category : #Information }
+{ #category : #information }
 DuplaGalacticaGameProxy >> playersPositions [
 
 	^ game playersPositions
 ]
 
-{ #category : #Finalization }
+{ #category : #finalization }
 DuplaGalacticaGameProxy >> ranking [
 
 	^ game ranking
 ]
 
-{ #category : #Finalization }
+{ #category : #finalization }
 DuplaGalacticaGameProxy >> winner [
 
 	^ game winner

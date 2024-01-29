@@ -13,25 +13,25 @@ Parsec class >> worth: aNominalValue [
 	^ self new initializeWith: aNominalValue
 ]
 
-{ #category : #Initialization }
+{ #category : #initialization }
 Parsec >> initializeWith: aNominalValue [
 
 	nominalValue := aNominalValue
 ]
 
-{ #category : #Information }
+{ #category : #information }
 Parsec >> lightYears [
 
 	^ LigthYear worth: nominalValue * 3
 ]
 
-{ #category : #Information }
+{ #category : #information }
 Parsec >> nominalValue [
 
 	^ nominalValue
 ]
 
-{ #category : #Information }
+{ #category : #information }
 Parsec >> parsecs [
 
 	^ self

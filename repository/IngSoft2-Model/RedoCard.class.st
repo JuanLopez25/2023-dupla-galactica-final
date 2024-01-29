@@ -3,8 +3,7 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'holder',
-		'target',
-		'copying'
+		'target'
 	],
 	#category : #'IngSoft2-Model'
 }
@@ -14,7 +13,7 @@ RedoCard class >> create [
 	^self new intializeWith.
 ]
 
-{ #category : #Information }
+{ #category : #information }
 RedoCard >> = aCard [
 
 	(aCard isKindOf: self class)
@@ -22,7 +21,7 @@ RedoCard >> = aCard [
 		ifFalse: [ ^ false ]
 ]
 
-{ #category : #Initialization }
+{ #category : #initialization }
 RedoCard >> applyCardUsing: cardManager at: aGame [
 
 	cardManager lastCardPlay isEmpty
@@ -35,44 +34,44 @@ RedoCard >> applyCardUsing: cardManager at: aGame [
 				'Redo card cannot be played because there are no cards that have been played before' ]
 ]
 
-{ #category : #Information }
-RedoCard >> haveEffect [
+{ #category : #information }
+RedoCard >> hasEffect [
 
 	^ false
 ]
 
-{ #category : #Information }
+{ #category : #information }
 RedoCard >> holder [
 
 	^ holder
 ]
 
-{ #category : #Initialization }
+{ #category : #initialization }
 RedoCard >> intializeWith [
-	holder:= EmptyObject new.
-	target:= EmptyObject new.
-	copying := EmptyObject new.
+
+	holder := EmptyObject new.
+	target := EmptyObject new.
 ]
 
-{ #category : #Information }
+{ #category : #information }
 RedoCard >> isEmpty [
 
 	^ false
 ]
 
-{ #category : #Information }
+{ #category : #information }
 RedoCard >> isPermanent [
 
 	^ false
 ]
 
-{ #category : #Information }
+{ #category : #information }
 RedoCard >> newHolder: aHolder [
 
 	holder := aHolder
 ]
 
-{ #category : #Information }
+{ #category : #information }
 RedoCard >> selectTarget: aNewTarget [
 
 	target:= aNewTarget.

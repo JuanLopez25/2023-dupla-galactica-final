@@ -32,7 +32,7 @@ CancellationCard >> applyCardUsing: cardManager at: aGame [
 ]
 
 { #category : #information }
-CancellationCard >> haveEffect [
+CancellationCard >> hasEffect [
 
 	^ true
 ]

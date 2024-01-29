@@ -22,37 +22,38 @@ Position >> = aPosition [
 		ifFalse: [ ^ false ]
 ]
 
-{ #category : #Information }
+{ #category : #information }
 Position >> box [
+
 	^ box
 ]
 
-{ #category : #Information }
+{ #category : #information }
 Position >> boxNumber [
 
 	^ box
 ]
 
-{ #category : #Initialization }
+{ #category : #initialization }
 Position >> initializeAtTheBeginning [
 
 	box := 1.
 	lap := 0
 ]
 
-{ #category : #Information }
+{ #category : #information }
 Position >> lap [
 
 	^ lap
 ]
 
-{ #category : #Movement }
+{ #category : #movement }
 Position >> move: aValue [
 
 	box := box + aValue
 ]
 
-{ #category : #Movement }
+{ #category : #movement }
 Position >> moveBackwardsLaps: aLength [
 
 	lap := lap - (box abs // aLength + 1).
@@ -66,7 +67,7 @@ Position >> moveBackwardsLaps: aLength [
 				       ifFalse: [ aLength - box abs ] ]
 ]
 
-{ #category : #Movement }
+{ #category : #movement }
 Position >> moveForwardLaps: aLength [
 
 	lap := lap + (box // aLength).

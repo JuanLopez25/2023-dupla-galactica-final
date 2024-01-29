@@ -22,10 +22,9 @@ AccelerationCard >> = aCard [
 ]
 
 { #category : #Effect }
-AccelerationCard >> applyCardUsing: cardManager at: aGame [ 
+AccelerationCard >> applyCardUsing: cardManager at: aGame [
 
-	aGame playersColors do: [ :color | 
-		cardManager activeCard: ((self class create newHolder: holder) selectTarget: color) ]
+	cardManager activeCard: (self class create newHolder: holder)
 ]
 
 { #category : #Effect }
@@ -49,7 +48,7 @@ AccelerationCard >> holder [
 { #category : #Initialization }
 AccelerationCard >> intializeCreate [
 	holder:= EmptyObject new.
-	target:= EmptyObject new.
+	target:= EveryPlayer new.
 ]
 
 { #category : #Information }
@@ -74,8 +73,7 @@ AccelerationCard >> newHolder: aHolder [
 { #category : #Effect }
 AccelerationCard >> selectTarget: aPlayer [
 
-	target:= aPlayer.
-	
+
 
 ]
 

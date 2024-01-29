@@ -1642,3 +1642,117 @@ CardsTest >> testW014VerifyThatWhenARedoCardIsDiscardARedoCardGoToTheDiscardDeck
 	aGame apply: aCard.
 	self assert: aGame discardCardsDeskAmount equals: 4
 ]
+
+{ #category : #tests }
+CardsTest >> testW015VerifyTheCorrectDiscardOfAnAccelerationCard [
+
+	| aGame aCard aDeck |
+	aDeck := AveilableCardsDeck with:
+		         (CardAmount usingType: AccelerationCard amount: 3).
+	aDeck addNewCards: (CardAmount usingType: CancellationCard amount: 3).
+	aGame := DuplaGalacticaGameProxy
+		         with: aColorCollection
+		         and: (self createBoardWithRandomBoxDealing: 2)
+		         usingToThrow: aShaker
+		         winningWhen: 1
+		         using: (CardDealer with: aDeck).
+	aGame movePlayer.
+	aGame movePlayer.
+	aCard := AccelerationCard create newHolder: 'red'.
+	aGame apply: aCard.
+	aCard := (CancellationCard create newHolder: 'red') selectTarget:
+		         (AccelerationCard create selectTarget: 'red').
+	aGame apply: aCard.
+	aGame movePlayer.
+	aGame movePlayer.
+	self
+		assert: aGame playersBox
+		equals: (OrderedCollection with: 4 with: 4)
+]
+
+{ #category : #tests }
+CardsTest >> testW016VerifyTheCorrectDiscardOfAnAccelerationCardSpecifyingOtherPlayerColors [
+
+	| aGame aCard aDeck |
+	aDeck := AveilableCardsDeck with:
+		         (CardAmount usingType: AccelerationCard amount: 3).
+	aDeck addNewCards: (CardAmount usingType: CancellationCard amount: 3).
+	aGame := DuplaGalacticaGameProxy
+		         with: aColorCollection
+		         and: (self createBoardWithRandomBoxDealing: 2)
+		         usingToThrow: aShaker
+		         winningWhen: 1
+		         using: (CardDealer with: aDeck).
+	aGame movePlayer.
+	aGame movePlayer.
+	aCard := AccelerationCard create newHolder: 'red'.
+	aGame apply: aCard.
+	aCard := (CancellationCard create newHolder: 'red') selectTarget:
+		         (AccelerationCard create selectTarget: 'blue').
+	aGame apply: aCard.
+	aGame movePlayer.
+	aGame movePlayer.
+	self
+		assert: aGame playersBox
+		equals: (OrderedCollection with: 4 with: 4)
+]
+
+{ #category : #tests }
+CardsTest >> testW017VerifyTheCorrectDiscardOfAnAccelerationWithoutSpecifyingTarget [
+
+	| aGame aCard aDeck |
+	aDeck := AveilableCardsDeck with:
+		         (CardAmount usingType: AccelerationCard amount: 3).
+	aDeck addNewCards: (CardAmount usingType: CancellationCard amount: 3).
+	aGame := DuplaGalacticaGameProxy
+		         with: aColorCollection
+		         and: (self createBoardWithRandomBoxDealing: 2)
+		         usingToThrow: aShaker
+		         winningWhen: 1
+		         using: (CardDealer with: aDeck).
+	aGame movePlayer.
+	aGame movePlayer.
+	aCard := AccelerationCard create newHolder: 'red'.
+	aGame apply: aCard.
+	aCard := (CancellationCard create newHolder: 'red') selectTarget:
+		         (AccelerationCard create).
+	aGame apply: aCard.
+	aGame movePlayer.
+	aGame movePlayer.
+	self
+		assert: aGame playersBox
+		equals: (OrderedCollection with: 4 with: 4)
+]
+
+{ #category : #tests }
+CardsTest >> testW018VerifyTheCorrectDiscardOfAnAccelerationAnTryingToReuseItThen [
+
+	| aGame aCard aDeck |
+	aDeck := AveilableCardsDeck with:
+		         (CardAmount usingType: AccelerationCard amount: 3).
+	aDeck addNewCards: (CardAmount usingType: CancellationCard amount: 3).
+	aGame := DuplaGalacticaGameProxy
+		         with: aColorCollection
+		         and: (self createBoardWithRandomBoxDealing: 2)
+		         usingToThrow: aShaker
+		         winningWhen: 1
+		         using: (CardDealer with: aDeck).
+	aGame movePlayer.
+	aGame movePlayer.
+	aCard := AccelerationCard create newHolder: 'red'.
+	aGame apply: aCard.
+	aGame movePlayer.
+	aCard := (CancellationCard create newHolder: 'red') selectTarget:
+		         AccelerationCard create.
+	aGame apply: aCard.
+	aGame movePlayer.
+	aGame movePlayer.
+	aCard := AccelerationCard create newHolder: 'blue'.
+	aGame apply: aCard.
+	aCard := (CancellationCard create newHolder: 'blue') selectTarget:
+		         AccelerationCard create.
+	aGame apply: aCard.
+	self
+		assert: aGame playersBox
+		equals: (OrderedCollection with: 6 with: 4)
+]

@@ -33,7 +33,9 @@ ActiveCardsDeck >> desactivate: anObjectiveCard [
 		detect: [ :card | 
 			anObjectiveCard isString not and: [ 
 				card sameTarget: anObjectiveCard ] ]
-		ifFound: [ :card | cards remove: card. ^ card ]
+		ifFound: [ :card | 
+			cards remove: card.
+			^ card ]
 		ifNone: [ 
 			Error signal:
 				'There are no that type of cards activate in this player or is not a valid objective' ]
@@ -48,5 +50,6 @@ ActiveCardsDeck >> initializeDeck [
 { #category : #cards }
 ActiveCardsDeck >> isEmpty [
 
-	cards isEmpty ifTrue: [ Error signal: 'There are no active permanent cards' ]
+	cards isEmpty ifTrue: [ 
+		Error signal: 'There are no active permanent cards' ]
 ]

@@ -33,7 +33,6 @@ CardManager >> apply: aCard at: aGame [
 
 	(self hasBeenGiven: aCard) ifFalse: [ 
 		Error signal: 'The player does not have that card in posetion' ].
-
 	aCard hasEffect ifTrue: [ lastCardPlay := aCard ].
 	aCard applyCardUsing: self at: aGame.
 	cardsInPosetion takeOut: aCard
@@ -69,7 +68,7 @@ CardManager >> cardsToDeal [
 { #category : #cards }
 CardManager >> desactivate: anObjectiveCard [
 
-	cardDealer discard: (activeCards desactivate: anObjectiveCard).
+	cardDealer discard: (activeCards desactivate: anObjectiveCard)
 ]
 
 { #category : #cards }

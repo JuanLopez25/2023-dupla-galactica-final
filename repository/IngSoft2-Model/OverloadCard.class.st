@@ -41,8 +41,9 @@ OverloadCard >> holder [
 
 { #category : #initialization }
 OverloadCard >> initializeCreate [
-	holder:= EmptyObject new.
-	target:= EmptyObject new.
+
+	holder := EmptyObject new.
+	target := EmptyObject new
 ]
 
 { #category : #information }

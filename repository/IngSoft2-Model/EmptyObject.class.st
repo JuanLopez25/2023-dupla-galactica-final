@@ -4,6 +4,12 @@ Class {
 	#category : #'IngSoft2-Model'
 }
 
+{ #category : #Information }
+EmptyObject >> effect: aGame [ 
+
+
+]
+
 { #category : #information }
 EmptyObject >> isEmpty [
 

@@ -92,9 +92,9 @@ DuplaGalacticaGame >> initializeWith: aColorsCollection and: aBoard usingToThrow
 	shaker := aDiceShaker.
 	turnManager := QueueManager with: players.
 	goalLaps := aValue.
-	boxes:= aBoard boxes.
-	current:= turnManager current.
-	cardManager := CardManager using: aCardDealer with: aColorsCollection.
+	boxes := aBoard boxes.
+	current := turnManager current.
+	cardManager := CardManager using: aCardDealer with: aColorsCollection
 ]
 
 { #category : #cards }
@@ -116,7 +116,8 @@ DuplaGalacticaGame >> lightYears [
 { #category : #player }
 DuplaGalacticaGame >> moveAllToTheStart [
 
-	players do: [ :player | player move: ((player box)*(-1) + 1) andUpdateLap: boxes ]
+	players do: [ :player | 
+		player move: player box * -1 + 1 andUpdateLap: boxes ]
 ]
 
 { #category : #player }

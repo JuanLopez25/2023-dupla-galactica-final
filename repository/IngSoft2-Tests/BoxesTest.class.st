@@ -38,7 +38,7 @@ BoxesTest >> testN001CheckNoEffectBoxDoesNotApplyAnyEffectThenValuePositions [
 			               with: 8).
 	boxes := boxes := (BoxCreator use: (OrderedCollection with:
 			                    (BoxProbability
-				                     using: NoEffectBox new
+				                     using: EmptyObject new
 				                     withChance: 100))) create: 10.
 	aBoard := Board with: boxes measure: (Parsec worth: 100).
 	aShaker := DiceShaker withDie: aLoadedDie.

@@ -29,8 +29,8 @@ CardsInPosetionDeck >> hasBeenGiven: aCard [
 
 	cards
 		detect: [ :card | card sameHolder: aCard ]
-		ifFound: [ :card | ^ true ]
-		ifNone: [ ^ false ]
+		ifFound: [ :card | ^ true ].
+	^false
 ]
 
 { #category : #initialization }

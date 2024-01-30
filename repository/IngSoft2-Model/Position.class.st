@@ -9,7 +9,7 @@ Class {
 }
 
 { #category : #'Instance creation' }
-Position class >> atTheBeginning [
+Position class >> create [
 
 	^ self new initializeAtTheBeginning
 ]

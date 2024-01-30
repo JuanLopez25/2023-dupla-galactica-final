@@ -28,7 +28,8 @@ ActiveCardsDeck >> calculateEffectOn: aColorPlayer [
 { #category : #desactivation }
 ActiveCardsDeck >> desactivate: anObjectiveCard [
 
-	self isEmpty.
+	cards isEmpty ifTrue: [ 
+		Error signal: 'There are no active permanent cards' ].
 	cards
 		detect: [ :card | 
 			anObjectiveCard isString not and: [ 
@@ -45,11 +46,4 @@ ActiveCardsDeck >> desactivate: anObjectiveCard [
 ActiveCardsDeck >> initializeDeck [
 
 	cards := OrderedCollection new
-]
-
-{ #category : #cards }
-ActiveCardsDeck >> isEmpty [
-
-	cards isEmpty ifTrue: [ 
-		Error signal: 'There are no active permanent cards' ]
 ]

@@ -103,7 +103,8 @@ DuplaGalacticaGame >> initializeWith: aColorsCollection and: aBoard usingToThrow
 { #category : #cards }
 DuplaGalacticaGame >> isPlaying: objective [
 
-	objective isEmpty ifTrue: [ Error signal: 'The objective has not been specify' ].
+	objective isEmpty ifTrue: [ 
+		Error signal: 'The objective has not been specify' ].
 	self playersColors
 		detect: [ :color | color = objective ]
 		ifFound: [ ^ true ]
@@ -179,7 +180,7 @@ DuplaGalacticaGame >> playersLaps [
 DuplaGalacticaGame >> playersPositions [
 
 	^ players collect: [ :player | 
-		  Position atTheBeginning move:
+		  Position create move:
 			  boxes * player lap + player box - 1 ]
 ]
 

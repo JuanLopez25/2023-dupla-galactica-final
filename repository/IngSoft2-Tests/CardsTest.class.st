@@ -97,8 +97,8 @@ CardsTest >> testQ003VerifyTheCorrectUseOfOverloadCardWhenThePlayerHasToGoBackwa
 CardsTest >> testQ004VerifyTheCorrectUseOfOverloadCardWhenThePlayerHasToGoBackwardsInTheFirstLapDueToANegativeEffect [
 
 	| aGame aRedPosition aBluePosition aCard aDeck |
-	aRedPosition := Position atTheBeginning.
-	aBluePosition := Position atTheBeginning move: 2.
+	aRedPosition := Position create.
+	aBluePosition := Position create move: 2.
 	aDeck := AveilableCardsDeck with: OverloadCard create amount: 3.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection

@@ -38,7 +38,7 @@ Player >> color [
 Player >> initializeWith: aColor [
 
 	color := aColor.
-	position := Position atTheBeginning.
+	position := Position create.
 	lap := 0.
 ]
 

@@ -586,7 +586,7 @@ BoxesTest >> testU001VerifyTheCorrectUseOfSprintBox [
 { #category : #tests }
 BoxesTest >> testU002VerifyTheCorrectUseOfSprintBoxWhenAPlayerHave1Card [
 
-	| aLoadedDie aGame boxes aBoard aShaker aCard|
+	| aLoadedDie aGame boxes aBoard aShaker aCard |
 	aLoadedDie := LoadedDie with: (OrderedCollection
 			               with: 1
 			               with: 1
@@ -603,8 +603,8 @@ BoxesTest >> testU002VerifyTheCorrectUseOfSprintBoxWhenAPlayerHave1Card [
 		         usingToThrow: aShaker
 		         winningWhen: 2
 		         using: (CardDealer with: aDeck).
-	aCard:= ((AccelerationCard create) newHolder: 'red').
-	aGame apply: aCard.
+	aCard := AccelerationCard create.
+	aGame apply: aCard to: EveryPlayer new from: 'red'.
 	aGame movePlayer.
 	aGame movePlayer.
 	self
@@ -632,10 +632,10 @@ BoxesTest >> testU003VerifyTheCorrectUseOfSprintBoxWhenThePlayerDoesNotHaveCards
 		         usingToThrow: aShaker
 		         winningWhen: 2
 		         using: (CardDealer with: aDeck).
-	aCard:= (AccelerationCard create newHolder: 'red').
-	aGame apply: aCard.
-	aCard:= (AccelerationCard create newHolder: 'red').
-	aGame apply: aCard.
+	aCard := AccelerationCard create.
+	aGame apply: aCard to: EveryPlayer new from: 'red'.
+	aCard := AccelerationCard create.
+	aGame apply: aCard to: EveryPlayer new from: 'red'.
 	aGame movePlayer.
 	aGame movePlayer.
 	self

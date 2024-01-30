@@ -15,9 +15,9 @@ AccelerationCard class >> create [
 ]
 
 { #category : #effect }
-AccelerationCard >> applyCardUsing: cardManager at: aGame [
+AccelerationCard >> applyCardUsing: cardManager at: aGame to: anObjectiveCard [
 
-	cardManager activeCard: (self class create newHolder: holder)
+	cardManager activeCard: (self class create) to: EveryPlayer new.
 ]
 
 { #category : #effect }

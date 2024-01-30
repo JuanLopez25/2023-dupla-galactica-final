@@ -2,48 +2,57 @@ Class {
 	#name : #ActiveCardsDeck,
 	#superclass : #Object,
 	#instVars : [
-		'cards'
+		'hands'
 	],
 	#category : #'IngSoft2-Model'
 }
 
 { #category : #'Instance creation' }
-ActiveCardsDeck class >> createDeck [
-	^ self new initializeDeck.
+ActiveCardsDeck class >> createDeckFor: aColorCollection [
+	^ self new initializeDeckFor: aColorCollection.
 ]
 
 { #category : #activation }
-ActiveCardsDeck >> activeCard: aCard [
+ActiveCardsDeck >> activeCard: aCard to: aPlayer [
 
-	cards addLast: aCard
+	aPlayer isString
+		ifTrue: [ 
+			(hands detect: [ :hand | 
+				 hand owner = aPlayer and: [ hand owner class ~= EveryPlayer ] ]) 
+				addCard: aCard ]
+		ifFalse: [ 
+		(hands detect: [ :hand | hand owner = aPlayer ]) addCard: aCard ]
 ]
 
 { #category : #effects }
 ActiveCardsDeck >> calculateEffectOn: aColorPlayer [
 
-	^ (cards select: [ :card | card target = aColorPlayer ]) sum: [ :card | 
-		  card applyEffect ]
+	^ (hands select: [ :hand | hand owner = aColorPlayer ]) sum: [ :hand | 
+		  hand applyEffect ]
 ]
 
 { #category : #desactivation }
-ActiveCardsDeck >> desactivate: anObjectiveCard [
+ActiveCardsDeck >> desactivate: aCard to: aPlayer [
 
-	cards isEmpty ifTrue: [ 
-		Error signal: 'There are no active permanent cards' ].
-	cards
-		detect: [ :card | 
-			anObjectiveCard isString not and: [ 
-				card sameTarget: anObjectiveCard ] ]
-		ifFound: [ :card | 
-			cards remove: card.
-			^ card ]
-		ifNone: [ 
-			Error signal:
-				'There are no that type of cards activate in this player or is not a valid objective' ]
+	aPlayer isString
+		ifTrue: [ 
+			hands
+				detect: [ :hand | hand owner = aPlayer and: [ hand owner class ~= EveryPlayer] ]
+				ifFound: [ :hand | ^ hand takeOut: aCard ]
+				ifNone: [ 
+					Error signal:
+						'There are no that type of cards activate in this player or is not a valid objective' ] ]
+		ifFalse: [ hands
+				detect: [ :hand | hand owner = aPlayer ]
+				ifFound: [ :hand | ^ hand takeOut: aCard ]
+				ifNone: [ 
+					Error signal:
+						'There are no that type of cards activate in this player or is not a valid objective' ] ] 
 ]
 
 { #category : #initialization }
-ActiveCardsDeck >> initializeDeck [
+ActiveCardsDeck >> initializeDeckFor: aColorCollection [
 
-	cards := OrderedCollection new
+	hands := OrderedCollection with: (PlayerHand of: EveryPlayer new).
+	aColorCollection do: [ :color | hands addLast: (PlayerHand of: color) ]
 ]

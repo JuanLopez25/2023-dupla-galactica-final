@@ -2,47 +2,51 @@ Class {
 	#name : #CardsInPosetionDeck,
 	#superclass : #Object,
 	#instVars : [
-		'cards'
+		'playersHands'
 	],
 	#category : #'IngSoft2-Model'
 }
 
 { #category : #'Instance creation' }
-CardsInPosetionDeck class >> createDeck [
-	^ self new initializeDeck.
+CardsInPosetionDeck class >> createDeckFor: aColorCollection [
+
+	^ self new initializeDeckFor: aColorCollection
 ]
 
 { #category : #'changing cards' }
-CardsInPosetionDeck >> addCard: aCard [
+CardsInPosetionDeck >> addCard: aCard to: aColorPlayer [
 
-	(aCard isEmpty) ifFalse: [ cards addLast: aCard ].
+	aCard isEmpty ifFalse: [ 
+		(playersHands detect: [ :playerHand | playerHand owner = aColorPlayer ]) 
+			addCard: aCard ]
 ]
 
 { #category : #'changing cards' }
 CardsInPosetionDeck >> cardsOf: aPlayerColor [
 
-	^ (cards select: [ :card | card holder = aPlayerColor ]) size
+	^ (playersHands detect: [ :hand | hand owner = aPlayerColor ]) size
 ]
 
 { #category : #'changing cards' }
-CardsInPosetionDeck >> hasBeenGiven: aCard [
+CardsInPosetionDeck >> hasBeenGiven: aCard to: aPlayerColor [
 
-	cards
-		detect: [ :card | card sameHolder: aCard ]
-		ifFound: [ :card | ^ true ].
-	^false
+	playersHands
+		detect: [ :hand | hand owner = aPlayerColor and: [ hand has: aCard ] ]
+		ifFound: [ :hand | ^ true ].
+	^ false
 ]
 
 { #category : #initialization }
-CardsInPosetionDeck >> initializeDeck [
+CardsInPosetionDeck >> initializeDeckFor: aColorCollection [
 
-	cards := OrderedCollection new
+	playersHands := OrderedCollection new.
+	aColorCollection do: [ :color | playersHands addLast: (PlayerHand of: color) ]
 ]
 
 { #category : #initialization }
-CardsInPosetionDeck >> takeOut: aCard [
+CardsInPosetionDeck >> takeOut: aCard to: aColorPlayer [
 
-	cards
-		detect: [ :card | card sameHolder: aCard ]
-		ifFound: [ :card | cards remove: card ]
+	aCard isEmpty ifFalse: [ 
+		(playersHands detect: [ :playerHand | playerHand owner = aColorPlayer ]) 
+			takeOut: aCard ]
 ]

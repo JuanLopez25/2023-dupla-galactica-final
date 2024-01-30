@@ -14,11 +14,10 @@ OverloadCard class >> create [
 ]
 
 { #category : #effect }
-OverloadCard >> applyCardUsing: cardManager at: aGame [
+OverloadCard >> applyCardUsing: cardManager at: aGame to: anObjective [
 
-	
-	aGame isPlaying: target.
-	cardManager activeCard: ((self class create newHolder: holder) selectTarget: target)
+	aGame isPlaying: anObjective.
+	cardManager activeCard: self class create to: anObjective
 ]
 
 { #category : #effect }

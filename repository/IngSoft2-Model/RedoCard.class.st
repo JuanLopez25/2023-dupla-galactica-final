@@ -14,13 +14,14 @@ RedoCard class >> create [
 ]
 
 { #category : #initialization }
-RedoCard >> applyCardUsing: cardManager at: aGame [
+RedoCard >> applyCardUsing: cardManager at: aGame to: anObjective [
 
 	cardManager lastCardPlay isEmpty
 		ifFalse: [ 
-			((cardManager lastCardPlay newHolder: self) selectTarget: target)
+			(cardManager lastCardPlay newHolder: self)
 				applyCardUsing: cardManager
-				at: aGame ]
+				at: aGame
+				to: anObjective ]
 		ifTrue: [ 
 			Error signal:
 				'Redo card cannot be played because there are no cards that have been played before' ]

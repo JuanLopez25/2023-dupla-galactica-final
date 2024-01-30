@@ -14,11 +14,10 @@ SpeedCard class >> create [
 ]
 
 { #category : #effect }
-SpeedCard >> applyCardUsing: cardManager at: aGame [
+SpeedCard >> applyCardUsing: cardManager at: aGame to: anObjective [
 
-	aGame isPlaying: target.
-	cardManager activeCard:
-		((self class create newHolder: holder) selectTarget: target)
+	aGame isPlaying: anObjective.
+	cardManager activeCard: (self class create newHolder: holder) to: anObjective
 ]
 
 { #category : #effect }

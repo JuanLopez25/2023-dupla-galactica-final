@@ -21,11 +21,10 @@ LoadedDeck >> addCard: aCard amount: anAmount [
 ]
 
 { #category : #initialization }
-LoadedDeck >> dealCardFor: aPlayerColor [
+LoadedDeck >> dealCard [
 
 	| selectedCard |
 	selectedCard := cardsInDeck at: 1.
-	selectedCard newHolder: aPlayerColor.
 	cardsInDeck remove: selectedCard.
 	^ selectedCard
 ]

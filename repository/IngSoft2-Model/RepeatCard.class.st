@@ -14,10 +14,10 @@ RepeatCard class >> create [
 ]
 
 { #category : #effect }
-RepeatCard >> applyCardUsing: cardManager at: aGame [
+RepeatCard >> applyCardUsing: cardManager at: aGame to: anObjective [
 
-	aGame isPlaying: target.
-	aGame repeatEffectTo: target.
+	aGame isPlaying: anObjective.
+	aGame repeatEffectTo: anObjective.
 	cardManager discard: self.
 ]
 

@@ -27,12 +27,11 @@ AveilableCardsDeck >> cardsToDeal [
 ]
 
 { #category : #cards }
-AveilableCardsDeck >> dealCardFor: aPlayerColor [
+AveilableCardsDeck >> dealCard [
 
 	| selectedCard aRandomValue |
 	aRandomValue := cardsInDeck size atRandom.
 	selectedCard := cardsInDeck at: aRandomValue.
-	selectedCard newHolder: aPlayerColor.
 	cardsInDeck remove: selectedCard.
 	^ selectedCard
 ]

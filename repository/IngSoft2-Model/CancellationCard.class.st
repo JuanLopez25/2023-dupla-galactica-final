@@ -14,12 +14,9 @@ CancellationCard class >> create [
 ]
 
 { #category : #effect }
-CancellationCard >> applyCardUsing: cardManager at: aGame [
+CancellationCard >> applyCardUsing: cardManager at: aGame to: anObjectiveCard [
 
-	target isEmpty ifTrue: [ 
-		Error signal:
-			'The objective has not been specify' ].
-	cardManager desactivate: target.
+	cardManager desactivate: anObjectiveCard.
 	cardManager discard: self.
 ]
 

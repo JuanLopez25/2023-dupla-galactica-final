@@ -18,6 +18,13 @@ Board class >> with: aBoxCollection measure: aLengthMeasure [
 	^ self new initializeWith: aBoxCollection measure: aLengthMeasure
 ]
 
+{ #category : #information }
+Board >> amountToBoxes: anAmount [
+
+	^ anAmount parsecs nominalValue
+	  // (lengthMeasure parsecs nominalValue// self size)
+]
+
 { #category : #'box effect' }
 Board >> effectAt: aPosition in: aGame to: aPlayer [
 

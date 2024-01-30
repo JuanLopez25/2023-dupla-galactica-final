@@ -8,7 +8,7 @@ Class {
 		'turnManager',
 		'cardManager',
 		'shaker',
-		'boardSize'
+		'conversor'
 	],
 	#category : #'IngSoft2-Model'
 }
@@ -41,6 +41,12 @@ DuplaGalacticaGame >> addCardTo: aPlayer [
 	cardManager addCardTo: aPlayer color.
 ]
 
+{ #category : #Information }
+DuplaGalacticaGame >> amountToBoxes: anAmount [
+	
+	^ board amountToBoxes: anAmount.
+]
+
 { #category : #cards }
 DuplaGalacticaGame >> apply: aCard [
 	
@@ -53,7 +59,7 @@ DuplaGalacticaGame >> apply: aCard [
 { #category : #information }
 DuplaGalacticaGame >> boxes [
 
-	^ boardSize
+	^ board size
 ]
 
 { #category : #information }
@@ -94,7 +100,6 @@ DuplaGalacticaGame >> initializeWith: aColorsCollection and: aBoard usingToThrow
 	shaker := aDiceShaker.
 	turnManager := QueueManager with: players.
 	goalLaps := aValue.
-	boardSize := aBoard size.
 	cardManager := CardManager using: aCardDealer with: aColorsCollection
 ]
 
@@ -118,14 +123,14 @@ DuplaGalacticaGame >> lightYears [
 { #category : #player }
 DuplaGalacticaGame >> move: aPlayer amount: anAmount [
 
-	aPlayer move: anAmount andUpdateLap: boardSize
+	aPlayer move: anAmount andUpdateLap: board size
 ]
 
 { #category : #player }
 DuplaGalacticaGame >> moveAllToTheStart [
 
 	players do: [ :player | 
-		player move: player box * -1 + 1 andUpdateLap: boardSize ]
+		player move: player box * -1 + 1 andUpdateLap: board size ]
 ]
 
 { #category : #player }
@@ -133,7 +138,7 @@ DuplaGalacticaGame >> moveEveryone: effectValue except: aPlayer [
 
 	(players reject: [ :player | 
 		 player color == aPlayer color ]) do: [ :player | 
-		player move: effectValue andUpdateLap: boardSize]
+		player move: effectValue andUpdateLap: board size]
 ]
 
 { #category : #player }
@@ -146,7 +151,7 @@ DuplaGalacticaGame >> movePlayer [
 	               +
 	               (cardManager calculateEffectOn:
 		                turnManager current color).
-	turnManager current move: boxesToMove andUpdateLap: boardSize.
+	turnManager current move: boxesToMove andUpdateLap: board size.
 	board
 		effectAt: turnManager current box
 		in: self

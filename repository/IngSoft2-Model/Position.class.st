@@ -14,15 +14,6 @@ Position class >> create [
 	^ self new initializeCreate
 ]
 
-{ #category : #comparing }
-Position >> = aPosition [ 
-
-	(lap = aPosition lap and: box = aPosition box)
-		ifTrue: [ ^ true ]
-		ifFalse: [ ^ false ]
-
-]
-
 { #category : #information }
 Position >> box [
 

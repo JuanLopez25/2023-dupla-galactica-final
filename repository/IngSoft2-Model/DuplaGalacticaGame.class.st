@@ -142,11 +142,16 @@ DuplaGalacticaGame >> movePlayer [
 	| boxesToMove |
 	self winnerExists ifTrue: [ ^ self ].
 	boxesToMove := shaker throwDice.
-	boxesToMove := boxesToMove + (cardManager calculateEffectOn: turnManager current color).
-	self winnerExists ifTrue: [ ^ self ].
+	boxesToMove := boxesToMove
+	               +
+	               (cardManager calculateEffectOn:
+		                turnManager current color).
 	turnManager current move: boxesToMove andUpdateLap: boardSize.
-	board effectAt: turnManager current box in: self to: turnManager current.
-	turnManager goNext.
+	board
+		effectAt: turnManager current box
+		in: self
+		to: turnManager current.
+	turnManager goNext
 ]
 
 { #category : #information }
@@ -171,14 +176,6 @@ DuplaGalacticaGame >> playersColors [
 DuplaGalacticaGame >> playersLaps [
 
 	^ players collect: [ :player | player lap ]
-]
-
-{ #category : #information }
-DuplaGalacticaGame >> playersPositions [
-
-	^ players collect: [ :player | 
-		  Position create move:
-			  boardSize * player lap + player box - 1 ]
 ]
 
 { #category : #finalization }

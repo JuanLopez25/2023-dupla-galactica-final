@@ -96,9 +96,8 @@ CardsTest >> testQ003VerifyTheCorrectUseOfOverloadCardWhenThePlayerHasToGoBackwa
 { #category : #tests }
 CardsTest >> testQ004VerifyTheCorrectUseOfOverloadCardWhenThePlayerHasToGoBackwardsInTheFirstLapDueToANegativeEffect [
 
-	| aGame aRedPosition aBluePosition aCard aDeck |
-	aRedPosition := Position create.
-	aBluePosition := Position create move: 2.
+	| aGame aCard aDeck |
+
 	aDeck := AveilableCardsDeck with: OverloadCard create amount: 3.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
@@ -111,8 +110,11 @@ CardsTest >> testQ004VerifyTheCorrectUseOfOverloadCardWhenThePlayerHasToGoBackwa
 	aGame movePlayer.
 	aGame movePlayer.
 	self
-		assert: aGame playersPositions
-		equals: (OrderedCollection with: aRedPosition with: aBluePosition)
+		assert: aGame playersBox
+		equals: (OrderedCollection with: 1 with: 3).
+	self
+		assert: aGame playersLaps
+		equals: (OrderedCollection with: 0 with: 0)
 ]
 
 { #category : #tests }

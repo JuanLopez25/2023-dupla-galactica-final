@@ -101,12 +101,6 @@ DuplaGalacticaGameProxy >> playersLaps [
 	^ game playersLaps
 ]
 
-{ #category : #information }
-DuplaGalacticaGameProxy >> playersPositions [
-
-	^ game playersPositions
-]
-
 { #category : #finalization }
 DuplaGalacticaGameProxy >> ranking [
 

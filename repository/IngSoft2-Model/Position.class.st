@@ -11,7 +11,7 @@ Class {
 { #category : #'Instance creation' }
 Position class >> create [
 
-	^ self new initializeAtTheBeginning
+	^ self new initializeCreate
 ]
 
 { #category : #comparing }
@@ -30,7 +30,7 @@ Position >> box [
 ]
 
 { #category : #initialization }
-Position >> initializeAtTheBeginning [
+Position >> initializeCreate [
 
 	box := 1.
 	lap := 0

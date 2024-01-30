@@ -21,7 +21,7 @@ LoadedDeck >> addCard: aCard amount: anAmount [
 ]
 
 { #category : #initialization }
-LoadedDeck >> createCardFor: aPlayerColor [
+LoadedDeck >> dealCardFor: aPlayerColor [
 
 	| selectedCard |
 	selectedCard := cardsInDeck at: 1.

@@ -21,14 +21,12 @@ CardDealer >> cardsToDeal [
 ]
 
 { #category : #cards }
-CardDealer >> createCardFor: aColor [
+CardDealer >> dealCardFor: aColor [
 
-	| aNewDeck |
 	deck isEmpty ifTrue: [ 
-		aNewDeck := discardDeck shuffle.
-		aNewDeck do: [ :card | deck addCard: card amount: 1 ].
+		discardDeck shuffle do: [ :card | deck addCard: card amount: 1 ].
 		deck isEmpty ifTrue: [ ^ EmptyObject new ] ].
-	^ deck createCardFor: aColor
+	^ deck dealCardFor: aColor
 ]
 
 { #category : #cards }

@@ -15,21 +15,16 @@ Position class >> create [
 ]
 
 { #category : #comparing }
-Position >> = aPosition [
+Position >> = aPosition [ 
 
-	(lap = aPosition lap and: box = aPosition boxNumber)
+	(lap = aPosition lap and: box = aPosition box)
 		ifTrue: [ ^ true ]
 		ifFalse: [ ^ false ]
+
 ]
 
 { #category : #information }
 Position >> box [
-
-	^ box
-]
-
-{ #category : #information }
-Position >> boxNumber [
 
 	^ box
 ]

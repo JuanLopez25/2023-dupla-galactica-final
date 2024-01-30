@@ -18,12 +18,6 @@ Board class >> with: aBoxCollection measure: aLengthMeasure [
 	^ self new initializeWith: aBoxCollection measure: aLengthMeasure
 ]
 
-{ #category : #information }
-Board >> boxes [
-
-	^ boxes size
-]
-
 { #category : #'box effect' }
 Board >> effectAt: aPosition In: aGame [
 
@@ -47,4 +41,10 @@ Board >> lightYears [
 Board >> parsecs [
 
 	^ lengthMeasure parsecs
+]
+
+{ #category : #information }
+Board >> size [
+
+	^ boxes size
 ]

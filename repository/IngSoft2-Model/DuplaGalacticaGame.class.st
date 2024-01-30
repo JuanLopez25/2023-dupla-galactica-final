@@ -8,8 +8,8 @@ Class {
 		'turnManager',
 		'current',
 		'cardManager',
-		'boxes',
-		'shaker'
+		'shaker',
+		'boardSize'
 	],
 	#category : #'IngSoft2-Model'
 }
@@ -54,7 +54,7 @@ DuplaGalacticaGame >> apply: aCard [
 { #category : #information }
 DuplaGalacticaGame >> boxes [
 
-	^ boxes
+	^ boardSize
 ]
 
 { #category : #information }
@@ -95,7 +95,7 @@ DuplaGalacticaGame >> initializeWith: aColorsCollection and: aBoard usingToThrow
 	shaker := aDiceShaker.
 	turnManager := QueueManager with: players.
 	goalLaps := aValue.
-	boxes := aBoard boxes.
+	boardSize := aBoard size.
 	current := turnManager current.
 	cardManager := CardManager using: aCardDealer with: aColorsCollection
 ]
@@ -121,13 +121,13 @@ DuplaGalacticaGame >> lightYears [
 DuplaGalacticaGame >> moveAllToTheStart [
 
 	players do: [ :player | 
-		player move: player box * -1 + 1 andUpdateLap: boxes ]
+		player move: player box * -1 + 1 andUpdateLap: boardSize ]
 ]
 
 { #category : #player }
 DuplaGalacticaGame >> moveCurrent: aValue [
 
-	current move: aValue andUpdateLap: boxes
+	current move: aValue andUpdateLap: boardSize
 ]
 
 { #category : #player }
@@ -135,7 +135,7 @@ DuplaGalacticaGame >> moveOthers: aValue [
 
 	(players reject: [ :player | 
 		 player color == current color ]) do: [ :player | 
-		player move: aValue andUpdateLap: boxes]
+		player move: aValue andUpdateLap: boardSize]
 ]
 
 { #category : #player }
@@ -146,7 +146,7 @@ DuplaGalacticaGame >> movePlayer [
 	boxesToMove := shaker throwDice.
 	boxesToMove := boxesToMove + (cardManager calculateEffectOn: current color).
 	self winnerExists ifTrue: [ ^ self ].
-	current move: boxesToMove andUpdateLap: boxes.
+	current move: boxesToMove andUpdateLap: boardSize.
 	board effectAt: current box In: self.
 	turnManager goNext.
 	current := turnManager current
@@ -181,7 +181,7 @@ DuplaGalacticaGame >> playersPositions [
 
 	^ players collect: [ :player | 
 		  Position create move:
-			  boxes * player lap + player box - 1 ]
+			  boardSize * player lap + player box - 1 ]
 ]
 
 { #category : #finalization }

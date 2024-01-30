@@ -27,7 +27,7 @@ AveilableCardsDeck >> cardsToDeal [
 ]
 
 { #category : #cards }
-AveilableCardsDeck >> createCardFor: aPlayerColor [
+AveilableCardsDeck >> dealCardFor: aPlayerColor [
 
 	| selectedCard aRandomValue |
 	aRandomValue := cardsInDeck size atRandom.

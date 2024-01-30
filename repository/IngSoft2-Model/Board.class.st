@@ -19,9 +19,9 @@ Board class >> with: aBoxCollection measure: aLengthMeasure [
 ]
 
 { #category : #'box effect' }
-Board >> effectAt: aPosition In: aGame [
+Board >> effectAt: aPosition in: aGame to: aPlayer [
 
-	(boxes at: aPosition) effect: aGame 
+	(boxes at: aPosition) effect: aPlayer in: aGame.
 ]
 
 { #category : #initialization }

@@ -5,7 +5,7 @@ Class {
 }
 
 { #category : #Information }
-EmptyObject >> effect: aGame [ 
+EmptyObject >> effect: aPlayer in: aGame [ 
 
 
 ]

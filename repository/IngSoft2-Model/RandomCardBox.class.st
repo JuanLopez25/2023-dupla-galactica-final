@@ -8,7 +8,7 @@ Class {
 }
 
 { #category : #effect }
-RandomCardBox >> effect: aGame [
+RandomCardBox >> effect: aPlayer in: aGame [
 
-	aGame addCardToCurrent.
+	aGame addCardTo: aPlayer.
 ]

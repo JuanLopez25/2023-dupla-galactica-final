@@ -5,7 +5,7 @@ Class {
 }
 
 { #category : #effect }
-SpeedUpBox >> effect: aGame [
+SpeedUpBox >> effect: aPlayer in: aGame [
 
-	aGame moveCurrent: 4.
+	aGame move: aPlayer amount: 4.
 ]

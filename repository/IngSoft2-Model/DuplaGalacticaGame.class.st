@@ -17,12 +17,15 @@ Class {
 { #category : #'Instance creation' }
 DuplaGalacticaGame class >> with: aColorCollection and: aBoard usingToThrow: aDiceShaker winningWhen: aValue using: aCardDealer [
 
+	| duplicateColors |
 	aColorCollection size <= 0 ifTrue: [ 
 		Error signal: 'Cannot create a game with no players' ].
-	aColorCollection do: [ :colorToTest | 
-		(aColorCollection select: [ :color | color = colorToTest ]) size > 1 
-			ifTrue: [ 
-			Error signal: 'Cannot create a game with duplicate colors' ] ].
+	duplicateColors := aColorCollection
+		                   detect: [ :color | 
+		                   (aColorCollection occurrencesOf: color) > 1 ]
+		                   ifNone: [ nil ].
+	duplicateColors ifNotNil: [ 
+		Error signal: 'Cannot create a game with duplicate colors' ].
 	aValue <= 0 ifTrue: [ 
 		Error signal: 'Cannot create a game with that goal laps' ].
 	^ self new

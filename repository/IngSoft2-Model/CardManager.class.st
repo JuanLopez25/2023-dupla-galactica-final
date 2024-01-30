@@ -97,8 +97,8 @@ CardManager >> initializeUsing: aCardDealer with: aColorCollection [
 	activeCards := ActiveCardsDeck createDeck.
 	cardsInPosetion := CardsInPosetionDeck createDeck.
 	aColorCollection do: [ :color | 
-		cardsInPosetion addCard: (cardDealer createCardFor: color).
-		cardsInPosetion addCard: (cardDealer createCardFor: color) ]
+		2 timesRepeat: [ 
+			cardsInPosetion addCard: (cardDealer createCardFor: color) ] ]
 ]
 
 { #category : #information }

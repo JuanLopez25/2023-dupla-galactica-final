@@ -17,7 +17,7 @@ CreateDuplaGalacticaGameTest >> createGameWithEffects [
 	boxesProbabilities := OrderedCollection
 		                      with:
 		                      (BoxProbability
-			                       using: NoEffectBox new
+			                       using: EmptyObject new
 			                       withChance: 30)
 		                      with:
 		                      (BoxProbability
@@ -155,7 +155,7 @@ CreateDuplaGalacticaGameTest >> testP017VerifyTheCorrectCreationOfGameWhenNoColo
 		should: [ 
 			DuplaGalacticaGameProxy
 				with: OrderedCollection new
-				and: (Board with: (OrderedCollection with: (NoEffectBox new) with: (NoEffectBox new) with: (NoEffectBox new) with: (NoEffectBox new)) measure: (Parsec worth: 200))
+				and: (Board with: (OrderedCollection with: (EmptyObject new) with: (EmptyObject new) with: (EmptyObject new) with: (EmptyObject new)) measure: (Parsec worth: 200))
 				usingToThrow: (OrderedCollection with: aLoadedDie)
 				winningWhen: 1
 				using: CardDealer new]
@@ -172,10 +172,10 @@ CreateDuplaGalacticaGameTest >> testP018VerifyTheCorrectCreationOfGameWhenTheGoa
 				with: aColorCollection
 				and: (Board
 						 with: (OrderedCollection
-								  with: NoEffectBox new
-								  with: NoEffectBox new
-								  with: NoEffectBox new
-								  with: NoEffectBox new)
+								  with: EmptyObject new
+								  with: EmptyObject new
+								  with: EmptyObject new
+								  with: EmptyObject new)
 						 measure: (Parsec worth: 200))
 				usingToThrow: (DiceShaker withDie: aLoadedDie)
 				winningWhen: -1
@@ -206,7 +206,7 @@ CreateDuplaGalacticaGameTest >> testP020TryToCreateAGameWithDuplicateColorsThenI
 	aDuplicateColorCollection := OrderedCollection
 		                             with: 'red'
 		                             with: 'red'.
-	boxes := (BoxCreator use: (OrderedCollection with: (BoxProbability using: NoEffectBox new withChance: 100))) create: 10.
+	boxes := (BoxCreator use: (OrderedCollection with: (BoxProbability using: EmptyObject new withChance: 100))) create: 10.
 	aBoard := Board with: boxes measure: (Parsec worth: 100).
 	self
 		should: [ 

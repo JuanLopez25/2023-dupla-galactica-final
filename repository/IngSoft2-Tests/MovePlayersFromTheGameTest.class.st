@@ -13,7 +13,7 @@ MovePlayersFromTheGameTest >> gameWithMoreParsecs: aLoadedDie [
 	| boxes aBoard aLoadedGame aShaker aDeck |
 	aDeck := AveilableCardsDeck with: OverloadCard create amount: 3.
 	boxes := (BoxCreator use: (OrderedCollection with:
-			           (BoxProbability using: NoEffectBox new withChance: 100))) 
+			           (BoxProbability using: EmptyObject new withChance: 100))) 
 		         create: 10.
 	aBoard := Board with: boxes measure: (Parsec worth: 200).
 
@@ -33,7 +33,7 @@ MovePlayersFromTheGameTest >> gameWithOneLap: aLoadedDie [
 	| aGame boxes aBoard aShaker aDeck |
 	aDeck := AveilableCardsDeck with: OverloadCard create amount: 3.
 	boxes := (BoxCreator use: (OrderedCollection with:
-			           (BoxProbability using: NoEffectBox new withChance: 100))) 
+			           (BoxProbability using: EmptyObject new withChance: 100))) 
 		         create: 10.
 	aBoard := Board with: boxes measure: (Parsec worth: 100).
 
@@ -54,7 +54,7 @@ MovePlayersFromTheGameTest >> gameWithTwoLaps: aLoadedDie [
 	| boxes aBoard aLoadedGame aShaker aDeck |
 	aDeck := AveilableCardsDeck with: OverloadCard create amount: 3.
 	boxes := (BoxCreator use: (OrderedCollection with:
-			           (BoxProbability using: NoEffectBox new withChance: 100))) 
+			           (BoxProbability using: EmptyObject new withChance: 100))) 
 		         create: 10.
 	aBoard := Board with: boxes measure: (Parsec worth: 100).
 

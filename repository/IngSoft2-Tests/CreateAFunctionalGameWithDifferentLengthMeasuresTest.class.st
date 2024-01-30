@@ -20,7 +20,7 @@ CreateAFunctionalGameWithDifferentLengthMeasuresTest >> setUp [
 		              (OrderedCollection with: 1 with: 2 with: 3).
 	aShaker := DiceShaker withDie: aLoadedDie.
 	boxes := (BoxCreator use:
-		          (OrderedCollection with: (BoxProbability using: NoEffectBox new withChance: 100))) 
+		          (OrderedCollection with: (BoxProbability using: EmptyObject new withChance: 100))) 
 		         create: 10.
 	aDeck := AveilableCardsDeck with: OverloadCard create amount: 4.
 ]

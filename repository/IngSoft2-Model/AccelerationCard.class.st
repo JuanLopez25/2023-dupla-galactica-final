@@ -64,25 +64,6 @@ AccelerationCard >> newHolder: aHolder [
 	
 ]
 
-{ #category : #comparing }
-AccelerationCard >> sameHolder: aCard [ 
-	
-	^ self class = aCard class and: holder = aCard holder.
-]
-
-{ #category : #comparing }
-AccelerationCard >> sameTarget: aCard [ 
-	
-	^ aCard class = self class and: target = aCard target.
-]
-
-{ #category : #effect }
-AccelerationCard >> selectTarget: aPlayer [
-
-
-
-]
-
 { #category : #information }
 AccelerationCard >> target [
 

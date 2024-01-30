@@ -128,7 +128,7 @@ CardsTest >> testQ005VerifyTheCorrectUseOfASpeedCard [
 		         usingToThrow: aShaker
 		         winningWhen: 1
 		         using: (CardDealer with: aDeck).
-	aCard := (SpeedCard create newHolder: 'red') selectTarget: 'red'.
+	aCard := (SpeedCard create).
 	aGame apply: aCard to: 'red' from: 'red'.
 	aGame movePlayer.
 	aGame movePlayer.
@@ -377,7 +377,7 @@ CardsTest >> testQ015TryToCancellAPermanentCardWithATypeOfCardThatIsNotActivate 
 		         usingToThrow: aShaker
 		         winningWhen: 1
 		         using: (CardDealer with: aDeck).
-	aCard := (OverloadCard create newHolder: 'red') selectTarget: 'blue'.
+	aCard := (OverloadCard create).
 	aGame
 		apply: aCard
 		to: 'blue'
@@ -424,7 +424,7 @@ CardsTest >> testQ018TryToUseASpeedCardWhenThePlayerDoesNotHaveOne [
 		         usingToThrow: aShaker
 		         winningWhen: 1
 		         using: (CardDealer with: aDeck).
-	aCard := (SpeedCard create newHolder: 'red') selectTarget: 'red'.
+	aCard := (SpeedCard create).
 	self
 		should: [ aGame apply: aCard to: 'red' from: 'red' ]
 		raise: Error
@@ -679,10 +679,10 @@ CardsTest >> testQ029VerifyTheCorrectUseOfRedoCardWhenLastCardPlayIsAnOverloadCa
 		         usingToThrow: aShaker
 		         winningWhen: 1
 		         using: (CardDealer with: aDeck).
-	aCard := (OverloadCard create newHolder: 'red') selectTarget: 'blue'.
+	aCard := (OverloadCard create).
 	aGame apply: aCard to: 'blue' from: 'red'.
 	aGame movePlayer.
-	aCard := (RedoCard create newHolder: 'blue') selectTarget: 'red'.
+	aCard := (RedoCard create).
 	aGame apply: aCard to: 'red' from: 'blue'.
 	aGame movePlayer.
 	self
@@ -703,9 +703,9 @@ CardsTest >> testQ030VerifyTheCorrectUseOfRedoCardWhenLastCardPlayedIsACancellat
 		         usingToThrow: aShaker
 		         winningWhen: 1
 		         using: (CardDealer with: aDeck).
-	aCard := (SpeedCard create newHolder: 'red') selectTarget: 'red'.
+	aCard := (SpeedCard create).
 	aGame apply: aCard to: 'red' from: 'red'.
-	aCard := (SpeedCard create newHolder: 'red') selectTarget: 'red'.
+	aCard := (SpeedCard create).
 	aGame apply: aCard to: 'red' from: 'red'.
 	aCard := CancellationCard create.
 	aGame
@@ -738,10 +738,10 @@ CardsTest >> testQ031VerifyTheCorrectUseOfRedoCardWhenLastCardPlayedIsASpeedCard
 		         usingToThrow: aShaker
 		         winningWhen: 1
 		         using: (CardDealer with: aDeck).
-	aCard := (SpeedCard create newHolder: 'red') selectTarget: 'red'.
+	aCard := (SpeedCard create).
 	aGame apply: aCard to: 'red' from: 'red'.
 	aGame movePlayer.
-	aCard := (RedoCard create newHolder: 'blue') selectTarget: 'blue'.
+	aCard := (RedoCard create).
 	aGame apply: aCard to: 'blue' from: 'blue'.
 	aGame movePlayer.
 	self
@@ -881,7 +881,7 @@ CardsTest >> testQ036VerifyTheCorrectUseOfRepeatCardWhenLastBoxIsAMoonWalkOne [
 
 	aGame movePlayer.
 	aGame movePlayer.
-	aCard := (RepeatCard create newHolder: 'red') selectTarget: 'red'.
+	aCard := (RepeatCard create).
 	aGame apply: aCard to: 'red' from: 'red'.
 
 	self
@@ -906,7 +906,7 @@ CardsTest >> testQ037VerifyTheCorrectUseOfRepeatCardWhenLastBoxIsAnAtomicBombOne
 		         using: (CardDealer with: aDeck).
 	aGame movePlayer.
 	aGame movePlayer.
-	aCard := (RepeatCard create newHolder: 'red') selectTarget: 'red'.
+	aCard := (RepeatCard create).
 	aGame apply: aCard to: 'red' from: 'red'.
 
 
@@ -934,7 +934,7 @@ CardsTest >> testQ038VerifyTheCorrectUseOfRepeatCardWhenLastBoxIsHyperJumpOne [
 		         using: (CardDealer with: aDeck).
 	aGame movePlayer.
 	aGame movePlayer.
-	aCard := (RepeatCard create newHolder: 'red') selectTarget: 'red'.
+	aCard := (RepeatCard create).
 	aGame apply: aCard to: 'red' from: 'red'.
 
 
@@ -1343,7 +1343,7 @@ CardsTest >> testW013VerifyTheAmountOfDiscardCardsAfterDesactivatingOne [
 		         winningWhen: 1
 		         using:
 		         (CardDealer with: aDeck).
-	aCard := (SpeedCard create newHolder: 'red') selectTarget: 'red'.
+	aCard := (SpeedCard create).
 	aGame apply: aCard to: 'red' from: 'red'.
 	aCard := (CancellationCard create).
 	aGame apply: aCard to: SpeedCard create of: 'red' from: 'blue'.

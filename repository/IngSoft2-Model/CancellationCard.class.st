@@ -56,15 +56,3 @@ CancellationCard >> newHolder: aNewHolder [
 
 	holder:= aNewHolder
 ]
-
-{ #category : #comparing }
-CancellationCard >> sameHolder: aCard [ 
-	
-	^ self class = aCard class and: holder = aCard holder.
-]
-
-{ #category : #information }
-CancellationCard >> selectTarget: aNewTarget [
-
-	target := aNewTarget
-]

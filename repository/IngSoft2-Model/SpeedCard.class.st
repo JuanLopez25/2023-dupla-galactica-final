@@ -63,24 +63,6 @@ SpeedCard >> newHolder: aHolder [
 	holder := aHolder
 ]
 
-{ #category : #comparing }
-SpeedCard >> sameHolder: aCard [ 
-	
-	^ self class = aCard class and: holder = aCard holder.
-]
-
-{ #category : #comparing }
-SpeedCard >> sameTarget: aCard [ 
-	
-	^ aCard class = self class and: target = aCard target.
-]
-
-{ #category : #initialization }
-SpeedCard >> selectTarget: aNewTarget [
-
-	target:= aNewTarget.
-]
-
 { #category : #information }
 SpeedCard >> target [
 

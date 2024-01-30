@@ -57,15 +57,3 @@ RepeatCard >> newHolder: aHolder [
 
 	holder := aHolder
 ]
-
-{ #category : #comparing }
-RepeatCard >> sameHolder: aCard [ 
-	
-	^ self class = aCard class and: holder = aCard holder.
-]
-
-{ #category : #information }
-RepeatCard >> selectTarget: aNewTarget [
-
-	target:= aNewTarget.
-]

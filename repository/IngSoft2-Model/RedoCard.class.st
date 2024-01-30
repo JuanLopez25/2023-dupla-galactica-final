@@ -63,15 +63,3 @@ RedoCard >> newHolder: aHolder [
 
 	holder := aHolder
 ]
-
-{ #category : #comparing }
-RedoCard >> sameHolder: aCard [ 
-	
-	^ self class = aCard class and: holder = aCard holder.
-]
-
-{ #category : #information }
-RedoCard >> selectTarget: aNewTarget [
-
-	target:= aNewTarget.
-]

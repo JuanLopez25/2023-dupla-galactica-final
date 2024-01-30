@@ -63,24 +63,6 @@ OverloadCard >> newHolder: aHolder [
 	holder := aHolder
 ]
 
-{ #category : #comparing }
-OverloadCard >> sameHolder: aCard [ 
-	
-	^ self class = aCard class and: holder = aCard holder.
-]
-
-{ #category : #comparing }
-OverloadCard >> sameTarget: aCard [ 
-	
-	^ aCard class = self class and: target = aCard target.
-]
-
-{ #category : #information }
-OverloadCard >> selectTarget: aNewTarget [
-
-	target:= aNewTarget.
-]
-
 { #category : #information }
 OverloadCard >> target [
 

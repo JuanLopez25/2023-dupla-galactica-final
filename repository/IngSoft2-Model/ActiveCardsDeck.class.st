@@ -15,39 +15,31 @@ ActiveCardsDeck class >> createDeckFor: aColorCollection [
 { #category : #activation }
 ActiveCardsDeck >> activeCard: aCard to: aPlayer [
 
-	aPlayer isString
-		ifTrue: [ 
-			(hands detect: [ :hand | 
-				 hand owner = aPlayer and: [ hand owner class ~= EveryPlayer ] ]) 
-				addCard: aCard ]
-		ifFalse: [ 
-		(hands detect: [ :hand | hand owner = aPlayer ]) addCard: aCard ]
+	hands
+		detect: [ :hand | hand owner = aPlayer ]
+		ifFound: [ :hand | hand addCard: aCard ]
+		ifNone: [ 
+			Error signal:
+				'There are no that type of cards activate in this player or is not a valid objective' ]
 ]
 
 { #category : #effects }
 ActiveCardsDeck >> calculateEffectOn: aColorPlayer [
 
-	^ (hands select: [ :hand | hand owner = aColorPlayer ]) sum: [ :hand | 
-		  hand applyEffect ]
+	^ (hands select: [ :hand | 
+		   hand owner = aColorPlayer or: hand owner = EveryPlayer new ]) 
+		  sum: [ :hand | hand applyEffect ]
 ]
 
 { #category : #desactivation }
 ActiveCardsDeck >> desactivate: aCard to: aPlayer [
 
-	aPlayer isString
-		ifTrue: [ 
-			hands
-				detect: [ :hand | hand owner = aPlayer and: [ hand owner class ~= EveryPlayer] ]
-				ifFound: [ :hand | ^ hand takeOut: aCard ]
-				ifNone: [ 
-					Error signal:
-						'There are no that type of cards activate in this player or is not a valid objective' ] ]
-		ifFalse: [ hands
-				detect: [ :hand | hand owner = aPlayer ]
-				ifFound: [ :hand | ^ hand takeOut: aCard ]
-				ifNone: [ 
-					Error signal:
-						'There are no that type of cards activate in this player or is not a valid objective' ] ] 
+	hands
+		detect: [ :hand | hand owner = aPlayer ]
+		ifFound: [ :hand | ^ hand takeOut: aCard ]
+		ifNone: [ 
+			Error signal:
+				'There are no that type of cards activate in this player or is not a valid objective' ]
 ]
 
 { #category : #initialization }

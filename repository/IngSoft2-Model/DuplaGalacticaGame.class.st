@@ -112,17 +112,6 @@ DuplaGalacticaGame >> initializeWith: aColorsCollection and: aBoard usingToThrow
 	cardManager := CardManager using: aCardDealer with: aColorsCollection
 ]
 
-{ #category : #cards }
-DuplaGalacticaGame >> isPlaying: objective [
-
-	objective isEmpty ifTrue: [ 
-		Error signal: 'The objective has not been specify' ].
-	self playersColors
-		detect: [ :color | color = objective ]
-		ifFound: [ ^ true ]
-		ifNone: [ Error signal: 'That is not a valid objective' ]
-]
-
 { #category : #information }
 DuplaGalacticaGame >> lightYears [
 
@@ -205,10 +194,9 @@ DuplaGalacticaGame >> ranking [
 { #category : #cards }
 DuplaGalacticaGame >> repeatEffectTo: aColorPlayer [
 
-	board
-		effectAt: turnManager current box
-		in: self
-		to: (players detect: [ :player | player color = aColorPlayer ])
+	board effectAt: turnManager current box in: self to: (players
+			 detect: [ :player | player color = aColorPlayer ]
+			 ifNone: [ Error signal: 'That is not a valid objective' ])
 ]
 
 { #category : #finalization }

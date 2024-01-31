@@ -7,9 +7,8 @@ Class {
 { #category : #effect }
 RepeatCard >> applyCardUsing: cardManager at: aGame to: anObjective [
 
-	aGame isPlaying: anObjective.
 	aGame repeatEffectTo: anObjective.
-	^ EmptyObject new.
+	^ EmptyObject new
 ]
 
 { #category : #information }

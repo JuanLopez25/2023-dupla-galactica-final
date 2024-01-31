@@ -993,7 +993,7 @@ CardsTest >> testQ042VerifyThatCancellationCardCanBePlayWheneverThePlayerWants [
 	aGame
 		apply: aCard
 		to: AccelerationCard new
-		of: EveryPlayer
+		of: EveryPlayer new
 		from: 'red'.
 	aGame movePlayer.
 
@@ -1087,7 +1087,7 @@ CardsTest >> testQ048VerifyThatWhenUsingAnOverloadCardTheObjectiveMustBeAValidPl
 	self
 		should: [ aGame apply: aCard to: AccelerationCard new from: 'red' ]
 		raise: Error
-		withMessage: 'That is not a valid objective'
+		withMessage: 'There are no that type of cards activate in this player or is not a valid objective'
 ]
 
 { #category : #tests }
@@ -1105,7 +1105,7 @@ CardsTest >> testQ050VerifyThatWhenUsingASpeedCardTheObjectiveMustBeAValidPlayer
 	self
 		should: [ aGame apply: aCard to: AccelerationCard new from: 'red' ]
 		raise: Error
-		withMessage: 'That is not a valid objective'
+		withMessage: 'There are no that type of cards activate in this player or is not a valid objective'
 ]
 
 { #category : #tests }

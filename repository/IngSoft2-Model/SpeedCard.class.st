@@ -7,7 +7,6 @@ Class {
 { #category : #effect }
 SpeedCard >> applyCardUsing: cardManager at: aGame to: anObjective [
 
-	aGame isPlaying: anObjective.
 	^ anObjective
 ]
 

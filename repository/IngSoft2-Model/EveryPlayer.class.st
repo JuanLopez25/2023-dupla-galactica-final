@@ -4,10 +4,10 @@ Class {
 	#category : #'IngSoft2-Model'
 }
 
-{ #category : #comparing }
+{ #category : #information }
 EveryPlayer >> = aPlayer [
 
-	^ true
+	^ aPlayer class = self class
 ]
 
 { #category : #information }

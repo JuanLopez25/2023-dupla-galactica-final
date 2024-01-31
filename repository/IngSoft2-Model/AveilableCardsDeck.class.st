@@ -16,7 +16,8 @@ AveilableCardsDeck class >> create [
 { #category : #cards }
 AveilableCardsDeck >> addCard: aCardClass amount: anAmount [
 
-	anAmount timesRepeat: [ cardsInDeck addLast: aCardClass new ]
+	aCardClass new isEmpty ifFalse: [ 
+		anAmount timesRepeat: [ cardsInDeck addLast: aCardClass new ] ]
 ]
 
 { #category : #information }

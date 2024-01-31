@@ -9,9 +9,3 @@ EveryPlayer >> = aPlayer [
 
 	^ aPlayer class = self class
 ]
-
-{ #category : #information }
-EveryPlayer >> isEmpty [
-
-	^ false
-]

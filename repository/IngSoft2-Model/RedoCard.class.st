@@ -2,48 +2,36 @@ Class {
 	#name : #RedoCard,
 	#superclass : #Object,
 	#instVars : [
-		'holder',
-		'target'
+		'redoing'
 	],
 	#category : #'IngSoft2-Model'
 }
-
-{ #category : #'Instance creation' }
-RedoCard class >> create [
-	^self new intializeWith.
-]
 
 { #category : #initialization }
 RedoCard >> applyCardUsing: cardManager at: aGame to: anObjective [
 
 	cardManager lastCardPlay isEmpty
 		ifFalse: [ 
-			(cardManager lastCardPlay newHolder: self)
-				applyCardUsing: cardManager
-				at: aGame
-				to: anObjective ]
+			redoing := cardManager lastCardPlay.
+			^ cardManager lastCardPlay
+				  applyCardUsing: cardManager
+				  at: aGame
+				  to: anObjective ]
 		ifTrue: [ 
 			Error signal:
 				'Redo card cannot be played because there are no cards that have been played before' ]
+]
+
+{ #category : #card }
+RedoCard >> applyEffect [
+
+	^ redoing applyEffect
 ]
 
 { #category : #information }
 RedoCard >> hasEffect [
 
 	^ false
-]
-
-{ #category : #information }
-RedoCard >> holder [
-
-	^ holder
-]
-
-{ #category : #initialization }
-RedoCard >> intializeWith [
-
-	holder := EmptyObject new.
-	target := EmptyObject new.
 ]
 
 { #category : #information }
@@ -56,10 +44,4 @@ RedoCard >> isEmpty [
 RedoCard >> isPermanent [
 
 	^ false
-]
-
-{ #category : #information }
-RedoCard >> newHolder: aHolder [
-
-	holder := aHolder
 ]

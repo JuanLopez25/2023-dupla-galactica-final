@@ -1,23 +1,14 @@
 Class {
 	#name : #OverloadCard,
 	#superclass : #Object,
-	#instVars : [
-		'holder',
-		'target'
-	],
 	#category : #'IngSoft2-Model'
 }
-
-{ #category : #'Instance creation' }
-OverloadCard class >> create [
-	^ self new initializeCreate.
-]
 
 { #category : #effect }
 OverloadCard >> applyCardUsing: cardManager at: aGame to: anObjective [
 
 	aGame isPlaying: anObjective.
-	cardManager activeCard: self class create to: anObjective
+	^ anObjective.
 ]
 
 { #category : #effect }
@@ -33,19 +24,6 @@ OverloadCard >> hasEffect [
 ]
 
 { #category : #information }
-OverloadCard >> holder [
-
-	^ holder
-]
-
-{ #category : #initialization }
-OverloadCard >> initializeCreate [
-
-	holder := EmptyObject new.
-	target := EmptyObject new
-]
-
-{ #category : #information }
 OverloadCard >> isEmpty [
 
 	^ false
@@ -55,16 +33,4 @@ OverloadCard >> isEmpty [
 OverloadCard >> isPermanent [
 
 	^ true
-]
-
-{ #category : #information }
-OverloadCard >> newHolder: aHolder [
-
-	holder := aHolder
-]
-
-{ #category : #information }
-OverloadCard >> target [
-
-	^ target
 ]

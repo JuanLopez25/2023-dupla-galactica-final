@@ -17,7 +17,7 @@ AveilableCardsDeck class >> with: aCard amount: anAmount [
 AveilableCardsDeck >> addCard: aCard amount: anAmount [
 
 	anAmount timesRepeat: [ 
-		cardsInDeck addLast: aCard class create ].
+		cardsInDeck addLast: aCard class new ].
 ]
 
 { #category : #information }
@@ -42,7 +42,7 @@ AveilableCardsDeck >> initializeWith: aCard amount: anAmount [
 	cardsInDeck := OrderedCollection new.
 	aCard isEmpty ifFalse: [ 
 	anAmount timesRepeat: [ 
-		cardsInDeck addLast: aCard class create ]].
+		cardsInDeck addLast: aCard class new ]].
 ]
 
 { #category : #information }

@@ -9,3 +9,9 @@ EveryPlayer >> = aPlayer [
 
 	^ true
 ]
+
+{ #category : #information }
+EveryPlayer >> isEmpty [
+
+	^ false
+]

@@ -15,9 +15,7 @@ DiscardsCardsDeck class >> createDeck [
 { #category : #cards }
 DiscardsCardsDeck >> addCard: aCard [
 
-	(aCard holder isString or: [aCard holder isEmpty])
-		ifTrue: [ deck addLast: aCard ]
-		ifFalse: [ deck addLast: RedoCard create ]
+	deck addLast: aCard 
 ]
 
 { #category : #information }

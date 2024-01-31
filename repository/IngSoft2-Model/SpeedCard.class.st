@@ -1,23 +1,14 @@
 Class {
 	#name : #SpeedCard,
 	#superclass : #Object,
-	#instVars : [
-		'holder',
-		'target'
-	],
 	#category : #'IngSoft2-Model'
 }
-
-{ #category : #'Intance creation' }
-SpeedCard class >> create [
-	^ self new initializeCreate.
-]
 
 { #category : #effect }
 SpeedCard >> applyCardUsing: cardManager at: aGame to: anObjective [
 
 	aGame isPlaying: anObjective.
-	cardManager activeCard: (self class create newHolder: holder) to: anObjective
+	^ anObjective
 ]
 
 { #category : #effect }
@@ -32,19 +23,6 @@ SpeedCard >> hasEffect [
 	^ true
 ]
 
-{ #category : #effect }
-SpeedCard >> holder [
-
-	^ holder
-]
-
-{ #category : #initialization }
-SpeedCard >> initializeCreate [
-
-	holder := EmptyObject new.
-	target := EmptyObject new
-]
-
 { #category : #information }
 SpeedCard >> isEmpty [
 
@@ -55,16 +33,4 @@ SpeedCard >> isEmpty [
 SpeedCard >> isPermanent [
 
 	^ true
-]
-
-{ #category : #effect }
-SpeedCard >> newHolder: aHolder [
-
-	holder := aHolder
-]
-
-{ #category : #information }
-SpeedCard >> target [
-
-	^ target
 ]

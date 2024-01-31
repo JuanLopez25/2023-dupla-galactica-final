@@ -54,15 +54,14 @@ CardsTest >> should: anErrorBlock raise: anExceptionClass withMessage: anErrorMe
 CardsTest >> testQ001VerifyTheCorrectUseOfOverloadCard [
 
 	| aGame aCard aDeck |
-	aDeck := AveilableCardsDeck with: OverloadCard create amount: 3.
+	aDeck := AveilableCardsDeck with: OverloadCard new amount: 3.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
-		         using:
-		         (CardDealer with: aDeck).
-	aCard := (OverloadCard create).
+		         using: (CardDealer with: aDeck).
+	aCard := OverloadCard new.
 	aGame apply: aCard to: 'blue' from: 'red'.
 	aGame movePlayer.
 	aGame movePlayer.
@@ -75,14 +74,14 @@ CardsTest >> testQ001VerifyTheCorrectUseOfOverloadCard [
 CardsTest >> testQ003VerifyTheCorrectUseOfOverloadCardWhenThePlayerHasToGoBackwardsDueToANegativeEffect [
 
 	| aGame aCard aDeck |
-	aDeck := AveilableCardsDeck with: OverloadCard create amount: 3.
+	aDeck := AveilableCardsDeck with: OverloadCard new amount: 3.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
 		         using: (CardDealer with: aDeck).
-	aCard := (OverloadCard create).
+	aCard := OverloadCard new.
 	aGame apply: aCard to: 'blue' from: 'red'.
 	aGame movePlayer.
 	aGame movePlayer.
@@ -97,15 +96,14 @@ CardsTest >> testQ003VerifyTheCorrectUseOfOverloadCardWhenThePlayerHasToGoBackwa
 CardsTest >> testQ004VerifyTheCorrectUseOfOverloadCardWhenThePlayerHasToGoBackwardsInTheFirstLapDueToANegativeEffect [
 
 	| aGame aCard aDeck |
-
-	aDeck := AveilableCardsDeck with: OverloadCard create amount: 3.
+	aDeck := AveilableCardsDeck with: OverloadCard new amount: 3.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
 		         using: (CardDealer with: aDeck).
-	aCard := (OverloadCard create).
+	aCard := OverloadCard new.
 	aGame apply: aCard to: 'red' from: 'red'.
 	aGame movePlayer.
 	aGame movePlayer.
@@ -121,14 +119,14 @@ CardsTest >> testQ004VerifyTheCorrectUseOfOverloadCardWhenThePlayerHasToGoBackwa
 CardsTest >> testQ005VerifyTheCorrectUseOfASpeedCard [
 
 	| aGame aCard aDeck |
-	aDeck := AveilableCardsDeck with: SpeedCard create amount: 3.
+	aDeck := AveilableCardsDeck with: SpeedCard new amount: 3.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
 		         using: (CardDealer with: aDeck).
-	aCard := (SpeedCard create).
+	aCard := SpeedCard new.
 	aGame apply: aCard to: 'red' from: 'red'.
 	aGame movePlayer.
 	aGame movePlayer.
@@ -141,14 +139,14 @@ CardsTest >> testQ005VerifyTheCorrectUseOfASpeedCard [
 CardsTest >> testQ006VerifyTheCorrectUseOfASpeedCardWhenThrowingMoreThanOneTime [
 
 	| aGame aCard aDeck |
-	aDeck := AveilableCardsDeck with: SpeedCard create amount: 3.
+	aDeck := AveilableCardsDeck with: SpeedCard new amount: 3.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
 		         using: (CardDealer with: aDeck).
-	aCard := SpeedCard create.
+	aCard := SpeedCard new.
 	aGame apply: aCard to: 'red' from: 'red'.
 	aGame movePlayer.
 	aGame movePlayer.
@@ -169,14 +167,14 @@ CardsTest >> testQ007VerifyTheCorrectUseOfASpeedCardWhenHasToRaiseALap [
 			         with: 3
 			         with: 5).
 	aLoadedShaker := DiceShaker withDie: aDie.
-	aDeck := AveilableCardsDeck with: SpeedCard create amount: 3.
+	aDeck := AveilableCardsDeck with: SpeedCard new amount: 3.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
 		         usingToThrow: aLoadedShaker
 		         winningWhen: 1
 		         using: (CardDealer with: aDeck).
-	aCard := SpeedCard create.
+	aCard := SpeedCard new.
 	aGame apply: aCard to: 'red' from: 'red'.
 	aGame movePlayer.
 	aGame movePlayer.
@@ -189,16 +187,16 @@ CardsTest >> testQ007VerifyTheCorrectUseOfASpeedCardWhenHasToRaiseALap [
 CardsTest >> testQ008VerifyTheCorrectUseOfPermanentCardsWhenAPlayerHasMoreThanOneActive [
 
 	| aGame aCard aDeck |
-	aDeck := AveilableCardsDeck with: SpeedCard create amount: 3.
+	aDeck := AveilableCardsDeck with: SpeedCard new amount: 3.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
 		         using: (CardDealer with: aDeck).
-	aCard := (SpeedCard create).
+	aCard := SpeedCard new.
 	aGame apply: aCard to: 'red' from: 'red'.
-	aCard := (SpeedCard create).
+	aCard := SpeedCard new.
 	aGame apply: aCard to: 'red' from: 'red'.
 	aGame movePlayer.
 	aGame movePlayer.
@@ -211,14 +209,14 @@ CardsTest >> testQ008VerifyTheCorrectUseOfPermanentCardsWhenAPlayerHasMoreThanOn
 CardsTest >> testQ009VerifyTheCorrectUseOfAccelerationCard [
 
 	| aGame aCard aDeck |
-	aDeck := AveilableCardsDeck with: AccelerationCard create amount: 3.
+	aDeck := AveilableCardsDeck with: AccelerationCard new amount: 3.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
 		         using: (CardDealer with: aDeck).
-	aCard := AccelerationCard create.
+	aCard := AccelerationCard new.
 	aGame apply: aCard to: EveryPlayer new from: 'red'.
 	aGame movePlayer.
 	aGame movePlayer.
@@ -231,16 +229,16 @@ CardsTest >> testQ009VerifyTheCorrectUseOfAccelerationCard [
 CardsTest >> testQ010VerifyTheCorrectUseOfAccelerationCardWhenHasToRaiseALap [
 
 	| aGame aCard aDeck |
-	aDeck := AveilableCardsDeck with: AccelerationCard create amount: 3.
+	aDeck := AveilableCardsDeck with: AccelerationCard new amount: 3.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
 		         using: (CardDealer with: aDeck).
-	aCard := AccelerationCard create.
+	aCard := AccelerationCard new.
 	aGame apply: aCard to: EveryPlayer new from: 'red'.
-	aCard := AccelerationCard create.
+	aCard := AccelerationCard new.
 	aGame apply: aCard to: EveryPlayer new from: 'red'.
 	aGame movePlayer.
 	aGame movePlayer.
@@ -256,20 +254,20 @@ CardsTest >> testQ010VerifyTheCorrectUseOfAccelerationCardWhenHasToRaiseALap [
 CardsTest >> testQ011VerifyTheCorrectUseOfCancellationCard [
 
 	| aGame aCard aDeck |
-	aDeck := LoadedDeck with: OverloadCard create amount: 2.
-	aDeck addCard: CancellationCard create amount: 2.
+	aDeck := LoadedDeck with: OverloadCard new amount: 2.
+	aDeck addCard: CancellationCard new amount: 2.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
 		         using: (CardDealer with: aDeck).
-	aCard := OverloadCard create.
+	aCard := OverloadCard new.
 	aGame apply: aCard to: 'blue' from: 'red'.
-	aCard := CancellationCard create.
+	aCard := CancellationCard new.
 	aGame
 		apply: aCard
-		to: OverloadCard create
+		to: OverloadCard new
 		of: 'blue'
 		from: 'blue'.
 	aGame movePlayer.
@@ -283,22 +281,22 @@ CardsTest >> testQ011VerifyTheCorrectUseOfCancellationCard [
 CardsTest >> testQ012VerifyTheCorrectUseOfCancellationCardWhenThePlayerHasMoreThanOneCard [
 
 	| aGame aCard aDeck |
-	aDeck := LoadedDeck with: SpeedCard create amount: 2.
-	aDeck addCard: CancellationCard create amount: 2.
+	aDeck := LoadedDeck with: SpeedCard new amount: 2.
+	aDeck addCard: CancellationCard new amount: 2.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
 		         using: (CardDealer with: aDeck).
-	aCard := SpeedCard create.
+	aCard := SpeedCard new.
 	aGame apply: aCard to: 'red' from: 'red'.
-	aCard := SpeedCard create.
+	aCard := SpeedCard new.
 	aGame apply: aCard to: 'red' from: 'red'.
-	aCard := CancellationCard create.
+	aCard := CancellationCard new.
 	aGame
 		apply: aCard
-		to: SpeedCard create
+		to: SpeedCard new
 		of: 'red'
 		from: 'blue'.
 	aGame movePlayer.
@@ -311,28 +309,28 @@ CardsTest >> testQ012VerifyTheCorrectUseOfCancellationCardWhenThePlayerHasMoreTh
 CardsTest >> testQ013VerifyTheCorrectUseOfTwoCancellationCards [
 
 	| aGame aCard aDeck |
-	aDeck := LoadedDeck with: SpeedCard create amount: 2.
-	aDeck addCard: CancellationCard create amount: 2.
+	aDeck := LoadedDeck with: SpeedCard new amount: 2.
+	aDeck addCard: CancellationCard new amount: 2.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
 		         using: (CardDealer with: aDeck).
-	aCard := SpeedCard create.
+	aCard := SpeedCard new.
 	aGame apply: aCard to: 'red' from: 'red'.
-	aCard := SpeedCard create.
+	aCard := SpeedCard new.
 	aGame apply: aCard to: 'red' from: 'red'.
-	aCard := CancellationCard create.
+	aCard := CancellationCard new.
 	aGame
 		apply: aCard
-		to: SpeedCard create
+		to: SpeedCard new
 		of: 'red'
 		from: 'blue'.
-	aCard := CancellationCard create.
+	aCard := CancellationCard new.
 	aGame
 		apply: aCard
-		to: SpeedCard create
+		to: SpeedCard new
 		of: 'red'
 		from: 'blue'.
 	aGame movePlayer.
@@ -346,19 +344,19 @@ CardsTest >> testQ013VerifyTheCorrectUseOfTwoCancellationCards [
 CardsTest >> testQ014TryToCancellAPermanentCardWhenThePlayerDoesNotHaveOne [
 
 	| aGame aCard aDeck |
-	aDeck := AveilableCardsDeck with: CancellationCard create amount: 4.
+	aDeck := AveilableCardsDeck with: CancellationCard new amount: 4.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
 		         using: (CardDealer with: aDeck).
-	aCard := CancellationCard create.
+	aCard := CancellationCard new.
 	self
 		should: [ 
 			aGame
 				apply: aCard
-				to: OverloadCard create
+				to: OverloadCard new
 				of: 'red'
 				from: 'red' ]
 		raise: Error
@@ -369,25 +367,25 @@ CardsTest >> testQ014TryToCancellAPermanentCardWhenThePlayerDoesNotHaveOne [
 CardsTest >> testQ015TryToCancellAPermanentCardWithATypeOfCardThatIsNotActivate [
 
 	| aGame aCard aDeck |
-	aDeck := LoadedDeck with: OverloadCard create amount: 2.
-	aDeck addCard: CancellationCard create amount: 2.
+	aDeck := LoadedDeck with: OverloadCard new amount: 2.
+	aDeck addCard: CancellationCard new amount: 2.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
 		         using: (CardDealer with: aDeck).
-	aCard := (OverloadCard create).
+	aCard := (OverloadCard new).
 	aGame
 		apply: aCard
 		to: 'blue'
 		from: 'red'.
-	aCard := CancellationCard create.
+	aCard := CancellationCard new.
 	self
 		should: [ 
 			aGame
 				apply: aCard
-				to: OverloadCard create
+				to: OverloadCard new
 				of: 'red'
 				from: 'blue' ]
 		raise: Error
@@ -399,14 +397,14 @@ CardsTest >> testQ015TryToCancellAPermanentCardWithATypeOfCardThatIsNotActivate 
 CardsTest >> testQ017TryToUseAnOverLoadCardWhenThePlayerDoesNotHaveOne [
 
 	| aGame aCard aDeck |
-	aDeck := AveilableCardsDeck with: OverloadCard create amount: 4.
+	aDeck := AveilableCardsDeck with: OverloadCard new amount: 4.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
 		         using: (CardDealer with: aDeck).
-	aCard := OverloadCard create.
+	aCard := OverloadCard new.
 	self
 		should: [ aGame apply: aCard to: 'red' from: 'blue' ]
 		raise: Error
@@ -417,14 +415,14 @@ CardsTest >> testQ017TryToUseAnOverLoadCardWhenThePlayerDoesNotHaveOne [
 CardsTest >> testQ018TryToUseASpeedCardWhenThePlayerDoesNotHaveOne [
 
 	| aGame aCard aDeck |
-	aDeck := AveilableCardsDeck with: OverloadCard create amount: 4.
+	aDeck := AveilableCardsDeck with: OverloadCard new amount: 4.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
 		         using: (CardDealer with: aDeck).
-	aCard := (SpeedCard create).
+	aCard := SpeedCard new.
 	self
 		should: [ aGame apply: aCard to: 'red' from: 'red' ]
 		raise: Error
@@ -435,21 +433,17 @@ CardsTest >> testQ018TryToUseASpeedCardWhenThePlayerDoesNotHaveOne [
 CardsTest >> testQ019TryToUseAnAccelerationCardWhenThePlayerDoesNotHaveOne [
 
 	| aGame aCard aDeck |
-	aDeck := AveilableCardsDeck with: OverloadCard create amount: 4.
+	aDeck := AveilableCardsDeck with: OverloadCard new amount: 4.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
-		         and: self createBoard 
+		         and: self createBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
-		         using:
-		         (CardDealer with: aDeck).
-	aCard := (AccelerationCard create).
+		         using: (CardDealer with: aDeck).
+	aCard := AccelerationCard new.
 
 	self
-		should: [ aGame
-		apply: aCard
-		to: 'red'
-		from: 'red'. ]
+		should: [ aGame apply: aCard to: 'red' from: 'red' ]
 		raise: Error
 		withMessage: 'The player does not have that card in posetion'
 ]
@@ -458,16 +452,16 @@ CardsTest >> testQ019TryToUseAnAccelerationCardWhenThePlayerDoesNotHaveOne [
 CardsTest >> testQ020UseTwoOverLoadCardsFromTheSamePlayerToTheSamePlayer [
 
 	| aGame aCard aDeck |
-	aDeck := AveilableCardsDeck with: OverloadCard create amount: 4.
+	aDeck := AveilableCardsDeck with: OverloadCard new amount: 4.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
 		         using: (CardDealer with: aDeck).
-	aCard := OverloadCard create.
+	aCard := OverloadCard new.
 	aGame apply: aCard to: 'blue' from: 'red'.
-	aCard := OverloadCard create.
+	aCard := OverloadCard new.
 	aGame apply: aCard to: 'blue' from: 'red'.
 
 	aGame movePlayer.
@@ -481,18 +475,18 @@ CardsTest >> testQ020UseTwoOverLoadCardsFromTheSamePlayerToTheSamePlayer [
 CardsTest >> testQ021UseAnOverLoadCardAndThenTryToUseItAgainButItHasGoneAway [
 
 	| aGame aCard aDeck |
-	aDeck := AveilableCardsDeck with: OverloadCard create amount: 4.
+	aDeck := AveilableCardsDeck with: OverloadCard new amount: 4.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
 		         using: (CardDealer with: aDeck).
-	aCard := OverloadCard create.
+	aCard := OverloadCard new.
 	aGame apply: aCard to: 'blue' from: 'red'.
-	aCard := OverloadCard create.
+	aCard := OverloadCard new.
 	aGame apply: aCard to: 'blue' from: 'red'.
-	aCard := OverloadCard create.
+	aCard := OverloadCard new.
 	self
 		should: [ aGame apply: aCard to: 'blue' from: 'red' ]
 		raise: Error
@@ -503,16 +497,16 @@ CardsTest >> testQ021UseAnOverLoadCardAndThenTryToUseItAgainButItHasGoneAway [
 CardsTest >> testQ022UseTwoSpeedCardsFromTheSamePlayerToTheSamePlayer [
 
 	| aGame aCard aDeck |
-	aDeck := AveilableCardsDeck with: SpeedCard create amount: 4.
+	aDeck := AveilableCardsDeck with: SpeedCard new amount: 4.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
 		         using: (CardDealer with: aDeck).
-	aCard := SpeedCard create.
+	aCard := SpeedCard new.
 	aGame apply: aCard to: 'red' from: 'red'.
-	aCard := SpeedCard create.
+	aCard := SpeedCard new.
 	aGame apply: aCard to: 'red' from: 'red'.
 
 	aGame movePlayer.
@@ -526,18 +520,18 @@ CardsTest >> testQ022UseTwoSpeedCardsFromTheSamePlayerToTheSamePlayer [
 CardsTest >> testQ023UseASpeedCardAndThenTryToUseItAgainButItHasGoneAway [
 
 	| aGame aCard aDeck |
-	aDeck := AveilableCardsDeck with: SpeedCard create amount: 4.
+	aDeck := AveilableCardsDeck with: SpeedCard new amount: 4.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
 		         using: (CardDealer with: aDeck).
-	aCard := SpeedCard create.
+	aCard := SpeedCard new.
 	aGame apply: aCard to: 'red' from: 'red'.
-	aCard := SpeedCard create.
+	aCard := SpeedCard new.
 	aGame apply: aCard to: 'red' from: 'red'.
-	aCard := SpeedCard create.
+	aCard := SpeedCard new.
 	self
 		should: [ aGame apply: aCard to: 'red' from: 'red' ]
 		raise: Error
@@ -548,16 +542,16 @@ CardsTest >> testQ023UseASpeedCardAndThenTryToUseItAgainButItHasGoneAway [
 CardsTest >> testQ024UseTwoAccelerationCardsFromTheSamePlayer [
 
 	| aGame aCard aDeck |
-	aDeck := AveilableCardsDeck with: AccelerationCard create amount: 4.
+	aDeck := AveilableCardsDeck with: AccelerationCard new amount: 4.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
 		         using: (CardDealer with: aDeck).
-	aCard := AccelerationCard create.
+	aCard := AccelerationCard new.
 	aGame apply: aCard to: EveryPlayer new from: 'red'.
-	aCard := AccelerationCard create.
+	aCard := AccelerationCard new.
 	aGame apply: aCard to: EveryPlayer new from: 'red'.
 
 	aGame movePlayer.
@@ -571,18 +565,18 @@ CardsTest >> testQ024UseTwoAccelerationCardsFromTheSamePlayer [
 CardsTest >> testQ025UseAnAccelerationCardAnThenTryToUseItAgainButItHasGoneAway [
 
 	| aGame aCard aDeck |
-	aDeck := AveilableCardsDeck with: AccelerationCard create amount: 6.
+	aDeck := AveilableCardsDeck with: AccelerationCard new amount: 6.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
 		         using: (CardDealer with: aDeck).
-	aCard := AccelerationCard create.
+	aCard := AccelerationCard new.
 	aGame apply: aCard to: EveryPlayer new from: 'red'.
-	aCard := AccelerationCard create.
+	aCard := AccelerationCard new.
 	aGame apply: aCard to: EveryPlayer new from: 'red'.
-	aCard := AccelerationCard create.
+	aCard := AccelerationCard new.
 	self
 		should: [ aGame apply: aCard to: EveryPlayer new from: 'red' ]
 		raise: Error
@@ -593,7 +587,7 @@ CardsTest >> testQ025UseAnAccelerationCardAnThenTryToUseItAgainButItHasGoneAway 
 CardsTest >> testQ026TryToUseACancellationCardWhenThePlayerDoesNotHaveOne [
 
 	| aGame aCard aDeck |
-	aDeck := AveilableCardsDeck with: OverloadCard create amount: 4.
+	aDeck := AveilableCardsDeck with: OverloadCard new amount: 4.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
@@ -601,9 +595,9 @@ CardsTest >> testQ026TryToUseACancellationCardWhenThePlayerDoesNotHaveOne [
 		         winningWhen: 1
 		         using: (CardDealer with: aDeck).
 
-	aCard := OverloadCard create.
+	aCard := OverloadCard new.
 	aGame apply: aCard to: 'blue' from: 'red'.
-	aCard := CancellationCard create.
+	aCard := CancellationCard new.
 	self
 		should: [ aGame apply: aCard to: 'blue' from: 'red' ]
 		raise: Error
@@ -614,19 +608,19 @@ CardsTest >> testQ026TryToUseACancellationCardWhenThePlayerDoesNotHaveOne [
 CardsTest >> testQ026TryToUseACancellationCardWithANonValidObjective [
 
 	| aGame aCard aDeck |
-	aDeck := LoadedDeck with: OverloadCard create amount: 2.
-	aDeck addCard: CancellationCard create amount: 2.
+	aDeck := LoadedDeck with: OverloadCard new amount: 2.
+	aDeck addCard: CancellationCard new amount: 2.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
-		         and: (self createBoard)
+		         and: self createBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
 		         using: (CardDealer with: aDeck).
-	aCard := (OverloadCard create).
+	aCard := OverloadCard new.
 	aGame apply: aCard to: 'blue' from: 'red'.
-	aCard := (CancellationCard create).
+	aCard := CancellationCard new.
 	self
-		should: [ aGame apply: aCard to: 'red' from: 'blue'. ]
+		should: [ aGame apply: aCard to: 'red' from: 'blue' ]
 		raise: Error
 		withMessage:
 		'There are no that type of cards activate in this player or is not a valid objective'
@@ -636,28 +630,28 @@ CardsTest >> testQ026TryToUseACancellationCardWithANonValidObjective [
 CardsTest >> testQ027UseTwoCancellationCardsFromTheSamePlayer [
 
 	| aGame aCard aDeck |
-	aDeck := LoadedDeck with: OverloadCard create amount: 2.
-	aDeck addCard: CancellationCard create amount: 2.
+	aDeck := LoadedDeck with: OverloadCard new amount: 2.
+	aDeck addCard: CancellationCard new amount: 2.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
 		         usingToThrow: aShaker
 		         winningWhen: 2
 		         using: (CardDealer with: aDeck).
-	aCard := OverloadCard create.
+	aCard := OverloadCard new.
 	aGame apply: aCard to: 'blue' from: 'red'.
-	aCard := OverloadCard create.
+	aCard := OverloadCard new.
 	aGame apply: aCard to: 'blue' from: 'red'.
-	aCard := CancellationCard create.
+	aCard := CancellationCard new.
 	aGame
 		apply: aCard
-		to: OverloadCard create
+		to: OverloadCard new
 		of: 'blue'
 		from: 'blue'.
-	aCard := CancellationCard create.
+	aCard := CancellationCard new.
 	aGame
 		apply: aCard
-		to: OverloadCard create
+		to: OverloadCard new
 		of: 'blue'
 		from: 'blue'.
 	aGame movePlayer.
@@ -671,18 +665,18 @@ CardsTest >> testQ027UseTwoCancellationCardsFromTheSamePlayer [
 CardsTest >> testQ029VerifyTheCorrectUseOfRedoCardWhenLastCardPlayIsAnOverloadCard [
 
 	| aGame aCard aDeck |
-	aDeck := LoadedDeck with: OverloadCard create amount: 2.
-	aDeck addCard: RedoCard create amount: 2.
+	aDeck := LoadedDeck with: OverloadCard new amount: 2.
+	aDeck addCard: RedoCard new amount: 2.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: (self createBoard)
 		         usingToThrow: aShaker
 		         winningWhen: 1
 		         using: (CardDealer with: aDeck).
-	aCard := (OverloadCard create).
+	aCard := (OverloadCard new).
 	aGame apply: aCard to: 'blue' from: 'red'.
 	aGame movePlayer.
-	aCard := (RedoCard create).
+	aCard := (RedoCard new).
 	aGame apply: aCard to: 'red' from: 'blue'.
 	aGame movePlayer.
 	self
@@ -694,29 +688,29 @@ CardsTest >> testQ029VerifyTheCorrectUseOfRedoCardWhenLastCardPlayIsAnOverloadCa
 CardsTest >> testQ030VerifyTheCorrectUseOfRedoCardWhenLastCardPlayedIsACancellationCard [
 
 	| aGame aCard aDeck |
-	aDeck := LoadedDeck with: SpeedCard create amount: 2.
-	aDeck addCard: CancellationCard create amount: 1.
-	aDeck addCard: RedoCard create amount: 1.
+	aDeck := LoadedDeck with: SpeedCard new amount: 2.
+	aDeck addCard: CancellationCard new amount: 1.
+	aDeck addCard: RedoCard new amount: 1.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
 		         using: (CardDealer with: aDeck).
-	aCard := (SpeedCard create).
+	aCard := SpeedCard new.
 	aGame apply: aCard to: 'red' from: 'red'.
-	aCard := (SpeedCard create).
+	aCard := SpeedCard new.
 	aGame apply: aCard to: 'red' from: 'red'.
-	aCard := CancellationCard create.
+	aCard := CancellationCard new.
 	aGame
 		apply: aCard
-		to: SpeedCard create
+		to: SpeedCard new
 		of: 'red'
 		from: 'blue'.
-	aCard := RedoCard create.
+	aCard := RedoCard new.
 	aGame
 		apply: aCard
-		to: SpeedCard create
+		to: SpeedCard new
 		of: 'red'
 		from: 'blue'.
 	aGame movePlayer.
@@ -730,18 +724,18 @@ CardsTest >> testQ030VerifyTheCorrectUseOfRedoCardWhenLastCardPlayedIsACancellat
 CardsTest >> testQ031VerifyTheCorrectUseOfRedoCardWhenLastCardPlayedIsASpeedCard [
 
 	| aGame aCard aDeck |
-	aDeck := LoadedDeck with: SpeedCard create amount: 2.
-	aDeck addCard: RedoCard create amount: 2.
+	aDeck := LoadedDeck with: SpeedCard new amount: 2.
+	aDeck addCard: RedoCard new amount: 2.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
 		         using: (CardDealer with: aDeck).
-	aCard := (SpeedCard create).
+	aCard := SpeedCard new.
 	aGame apply: aCard to: 'red' from: 'red'.
 	aGame movePlayer.
-	aCard := (RedoCard create).
+	aCard := RedoCard new.
 	aGame apply: aCard to: 'blue' from: 'blue'.
 	aGame movePlayer.
 	self
@@ -753,18 +747,18 @@ CardsTest >> testQ031VerifyTheCorrectUseOfRedoCardWhenLastCardPlayedIsASpeedCard
 CardsTest >> testQ032VerifyTheCorrectUseOfRedoCardWhenLastCardPlayedIsAnAccelerationCard [
 
 	| aGame aCard aDeck |
-	aDeck := LoadedDeck with: AccelerationCard create amount: 2.
-	aDeck addCard: RedoCard create amount: 2.
+	aDeck := LoadedDeck with: AccelerationCard new amount: 2.
+	aDeck addCard: RedoCard new amount: 2.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
 		         using: (CardDealer with: aDeck).
-	aCard := AccelerationCard create newHolder: 'red'.
+	aCard := AccelerationCard new.
 	aGame apply: aCard to: EveryPlayer new from: 'red'.
 	aGame movePlayer.
-	aCard := RedoCard create newHolder: 'blue'.
+	aCard := RedoCard new.
 	aGame apply: aCard to: EveryPlayer new from: 'blue'.
 	aGame movePlayer.
 	self
@@ -776,20 +770,20 @@ CardsTest >> testQ032VerifyTheCorrectUseOfRedoCardWhenLastCardPlayedIsAnAccelera
 CardsTest >> testQ033VerifyTheCorrectUseOfRedoCardWhenLastCardPlayedIsARedoCard [
 
 	| aGame aCard aDeck |
-	aDeck := LoadedDeck with: AccelerationCard create amount: 2.
-	aDeck addCard: RedoCard create amount: 2.
+	aDeck := LoadedDeck with: AccelerationCard new amount: 2.
+	aDeck addCard: RedoCard new amount: 2.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
 		         using: (CardDealer with: aDeck).
-	aCard := AccelerationCard create.
+	aCard := AccelerationCard new.
 	aGame apply: aCard to: EveryPlayer new from: 'red'.
 	aGame movePlayer.
-	aCard := RedoCard create.
+	aCard := RedoCard new.
 	aGame apply: aCard to: EveryPlayer new from: 'blue'.
-	aCard := RedoCard create.
+	aCard := RedoCard new.
 	aGame apply: aCard to: EveryPlayer new from: 'blue'.
 	aGame movePlayer.
 
@@ -802,7 +796,7 @@ CardsTest >> testQ033VerifyTheCorrectUseOfRedoCardWhenLastCardPlayedIsARedoCard 
 CardsTest >> testQ034VerifyTheCorrectUseOfRepeatCardWhenLastBoxIsASpeedUpOne [
 
 	| aGame aCard aDeck boxes aBoard |
-	aDeck := AveilableCardsDeck with: RepeatCard create amount: 4.
+	aDeck := AveilableCardsDeck with: RepeatCard new amount: 4.
 	boxes := (BoxCreator use: (OrderedCollection with:
 			           (BoxProbability using: SpeedUpBox new withChance: 100))) 
 		         create: 10.
@@ -815,7 +809,7 @@ CardsTest >> testQ034VerifyTheCorrectUseOfRepeatCardWhenLastBoxIsASpeedUpOne [
 		         using: (CardDealer with: aDeck).
 	aGame movePlayer.
 	aGame movePlayer.
-	aCard := RepeatCard create.
+	aCard := RepeatCard new.
 	aGame apply: aCard to: 'red' from: 'red'.
 
 	self
@@ -827,7 +821,7 @@ CardsTest >> testQ034VerifyTheCorrectUseOfRepeatCardWhenLastBoxIsASpeedUpOne [
 CardsTest >> testQ035VerifyTheCorrectUseOfRepeatCardWhenLastBoxIsAWormHoleOne [
 
 	| aGame boxes aBoard aCard aDeck aDie aLoadedShaker |
-	aDeck := AveilableCardsDeck with: RepeatCard create amount: 4.
+	aDeck := AveilableCardsDeck with: RepeatCard new amount: 4.
 	aDie := LoadedDie with: (OrderedCollection
 			         with: 4
 			         with: 9
@@ -846,7 +840,7 @@ CardsTest >> testQ035VerifyTheCorrectUseOfRepeatCardWhenLastBoxIsAWormHoleOne [
 		         using: (CardDealer with: aDeck).
 	aGame movePlayer.
 	aGame movePlayer.
-	aCard := (RepeatCard create).
+	aCard := RepeatCard new.
 	aGame apply: aCard to: 'blue' from: 'red'.
 
 	self
@@ -858,7 +852,7 @@ CardsTest >> testQ035VerifyTheCorrectUseOfRepeatCardWhenLastBoxIsAWormHoleOne [
 CardsTest >> testQ036VerifyTheCorrectUseOfRepeatCardWhenLastBoxIsAMoonWalkOne [
 
 	| aGame aLoadedDie boxes aBoard aLoadedShaker aCard aDeck |
-	aDeck := AveilableCardsDeck with: RepeatCard create amount: 4.
+	aDeck := AveilableCardsDeck with: RepeatCard new amount: 4.
 	aLoadedDie := LoadedDie with: (OrderedCollection
 			               with: 4
 			               with: 5
@@ -875,13 +869,12 @@ CardsTest >> testQ036VerifyTheCorrectUseOfRepeatCardWhenLastBoxIsAMoonWalkOne [
 		         and: aBoard
 		         usingToThrow: aLoadedShaker
 		         winningWhen: 1
-		         using:
-		         (CardDealer with: aDeck).
+		         using: (CardDealer with: aDeck).
 
 
 	aGame movePlayer.
 	aGame movePlayer.
-	aCard := (RepeatCard create).
+	aCard := RepeatCard new.
 	aGame apply: aCard to: 'red' from: 'red'.
 
 	self
@@ -893,7 +886,7 @@ CardsTest >> testQ036VerifyTheCorrectUseOfRepeatCardWhenLastBoxIsAMoonWalkOne [
 CardsTest >> testQ037VerifyTheCorrectUseOfRepeatCardWhenLastBoxIsAnAtomicBombOne [
 
 	| aGame boxes aBoard aCard aDeck |
-	aDeck := AveilableCardsDeck with: RepeatCard create amount: 4.
+	aDeck := AveilableCardsDeck with: RepeatCard new amount: 4.
 	boxes := (BoxCreator use: (OrderedCollection with:
 			           (BoxProbability using: AtomicBombBox new withChance: 100))) 
 		         create: 10.
@@ -906,7 +899,7 @@ CardsTest >> testQ037VerifyTheCorrectUseOfRepeatCardWhenLastBoxIsAnAtomicBombOne
 		         using: (CardDealer with: aDeck).
 	aGame movePlayer.
 	aGame movePlayer.
-	aCard := (RepeatCard create).
+	aCard := RepeatCard new.
 	aGame apply: aCard to: 'red' from: 'red'.
 
 
@@ -919,7 +912,7 @@ CardsTest >> testQ037VerifyTheCorrectUseOfRepeatCardWhenLastBoxIsAnAtomicBombOne
 CardsTest >> testQ038VerifyTheCorrectUseOfRepeatCardWhenLastBoxIsHyperJumpOne [
 
 	| aGame boxes aBoard aCard aDeck |
-	aDeck := AveilableCardsDeck with: RepeatCard create amount: 4.
+	aDeck := AveilableCardsDeck with: RepeatCard new amount: 4.
 	boxes := (BoxCreator use: (OrderedCollection with: (BoxProbability
 				            using:
 				            (HyperJumpBox with:
@@ -934,7 +927,7 @@ CardsTest >> testQ038VerifyTheCorrectUseOfRepeatCardWhenLastBoxIsHyperJumpOne [
 		         using: (CardDealer with: aDeck).
 	aGame movePlayer.
 	aGame movePlayer.
-	aCard := (RepeatCard create).
+	aCard := RepeatCard new.
 	aGame apply: aCard to: 'red' from: 'red'.
 
 
@@ -947,7 +940,7 @@ CardsTest >> testQ038VerifyTheCorrectUseOfRepeatCardWhenLastBoxIsHyperJumpOne [
 CardsTest >> testQ039VerifyThatAccelerationCardCanOnlyBePlayedAtPlayersTurns [
 
 	| aGame aDeck |
-	aDeck := AveilableCardsDeck with: AccelerationCard create amount: 4.
+	aDeck := AveilableCardsDeck with: AccelerationCard new amount: 4.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
@@ -956,7 +949,8 @@ CardsTest >> testQ039VerifyThatAccelerationCardCanOnlyBePlayedAtPlayersTurns [
 		         using: (CardDealer with: aDeck).
 	aGame movePlayer.
 	self
-		should: [ aGame apply: (AccelerationCard create) to: EveryPlayer new from: 'red' ]
+		should: [ 
+		aGame apply: AccelerationCard new to: EveryPlayer new from: 'red' ]
 		raise: Error
 		withMessage: 'A permanent card can only be use when it is your turn'
 ]
@@ -965,7 +959,7 @@ CardsTest >> testQ039VerifyThatAccelerationCardCanOnlyBePlayedAtPlayersTurns [
 CardsTest >> testQ041VerifyThatSpeedCardCanOnlyBePlayedAtPlayersTurns [
 
 	| aGame aCard aDeck |
-	aDeck := AveilableCardsDeck with: SpeedCard create amount: 4.
+	aDeck := AveilableCardsDeck with: SpeedCard new amount: 4.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
@@ -973,7 +967,7 @@ CardsTest >> testQ041VerifyThatSpeedCardCanOnlyBePlayedAtPlayersTurns [
 		         winningWhen: 1
 		         using: (CardDealer with: aDeck).
 	aGame movePlayer.
-	aCard := SpeedCard create.
+	aCard := SpeedCard new.
 	self
 		should: [ aGame apply: aCard to: 'red' from: 'red' ]
 		raise: Error
@@ -984,8 +978,8 @@ CardsTest >> testQ041VerifyThatSpeedCardCanOnlyBePlayedAtPlayersTurns [
 CardsTest >> testQ042VerifyThatCancellationCardCanBePlayWheneverThePlayerWants [
 
 	| aGame aCard aDeck |
-	aDeck := LoadedDeck with: CancellationCard create amount: 2.
-	aDeck addCard: AccelerationCard create amount: 2.
+	aDeck := LoadedDeck with: CancellationCard new amount: 2.
+	aDeck addCard: AccelerationCard new amount: 2.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
@@ -993,12 +987,12 @@ CardsTest >> testQ042VerifyThatCancellationCardCanBePlayWheneverThePlayerWants [
 		         winningWhen: 1
 		         using: (CardDealer with: aDeck).
 	aGame movePlayer.
-	aCard := AccelerationCard create newHolder: 'blue'.
+	aCard := AccelerationCard new.
 	aGame apply: aCard to: EveryPlayer from: 'blue'.
-	aCard := CancellationCard create.
+	aCard := CancellationCard new.
 	aGame
 		apply: aCard
-		to: AccelerationCard create
+		to: AccelerationCard new
 		of: EveryPlayer
 		from: 'red'.
 	aGame movePlayer.
@@ -1012,17 +1006,17 @@ CardsTest >> testQ042VerifyThatCancellationCardCanBePlayWheneverThePlayerWants [
 CardsTest >> testQ043VerifyThatRedoCardCanBePlayWheneverThePlayerWants [
 
 	| aGame aCard aDeck |
-	aDeck := LoadedDeck with: AccelerationCard create amount: 2.
-	aDeck addCard: RedoCard create amount: 2.
+	aDeck := LoadedDeck with: AccelerationCard new amount: 2.
+	aDeck addCard: RedoCard new amount: 2.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
 		         using: (CardDealer with: aDeck).
-	aCard := AccelerationCard create.
+	aCard := AccelerationCard new.
 	aGame apply: aCard to: EveryPlayer new from: 'red'.
-	aCard := RedoCard create.
+	aCard := RedoCard new.
 	aGame apply: aCard to: EveryPlayer new from: 'blue'.
 	aGame movePlayer.
 	self
@@ -1034,7 +1028,7 @@ CardsTest >> testQ043VerifyThatRedoCardCanBePlayWheneverThePlayerWants [
 CardsTest >> testQ044VerifyThatRepeatCardCanBePlayWheneverThePlayerWants [
 
 	| aGame boxes aBoard aCard aDeck |
-	aDeck := AveilableCardsDeck with: RepeatCard create amount: 4.
+	aDeck := AveilableCardsDeck with: RepeatCard new amount: 4.
 	boxes := (BoxCreator use: (OrderedCollection with:
 			           (BoxProbability using: SpeedUpBox new withChance: 100))) 
 		         create: 10.
@@ -1046,7 +1040,7 @@ CardsTest >> testQ044VerifyThatRepeatCardCanBePlayWheneverThePlayerWants [
 		         winningWhen: 1
 		         using: (CardDealer with: aDeck).
 	aGame movePlayer.
-	aCard := RepeatCard create.
+	aCard := RepeatCard new.
 	aGame apply: aCard to: 'red' from: 'red'.
 	aGame movePlayer.
 
@@ -1059,8 +1053,8 @@ CardsTest >> testQ044VerifyThatRepeatCardCanBePlayWheneverThePlayerWants [
 CardsTest >> testQ045VerifyThatRedoCardCanRepeatTheEffectOfTheRepeatCard [
 
 	| aGame aCard aDeck |
-	aDeck := LoadedDeck with: RepeatCard create amount: 2.
-	aDeck addCard: RedoCard create amount: 2.
+	aDeck := LoadedDeck with: RepeatCard new amount: 2.
+	aDeck addCard: RedoCard new amount: 2.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoardWithRandomCardBoxes
@@ -1069,9 +1063,9 @@ CardsTest >> testQ045VerifyThatRedoCardCanRepeatTheEffectOfTheRepeatCard [
 		         using: (CardDealer with: aDeck).
 
 	aGame movePlayer.
-	aCard := (RepeatCard create).
+	aCard := RepeatCard new.
 	aGame apply: aCard to: 'red' from: 'red'.
-	aCard := (RedoCard create).
+	aCard := RedoCard new.
 	aGame apply: aCard to: 'blue' from: 'blue'.
 
 	self assert: (aGame cardsInPosetionOf: 'red') equals: 1.
@@ -1082,17 +1076,16 @@ CardsTest >> testQ045VerifyThatRedoCardCanRepeatTheEffectOfTheRepeatCard [
 CardsTest >> testQ048VerifyThatWhenUsingAnOverloadCardTheObjectiveMustBeAValidPlayer [
 
 	| aGame aCard aDeck |
-	aDeck := AveilableCardsDeck with: OverloadCard create amount: 5.
+	aDeck := AveilableCardsDeck with: OverloadCard new amount: 5.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
-		         and: (self createBoard)
+		         and: self createBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
-		         using:
-		         (CardDealer with: aDeck).
-	aCard := (OverloadCard create).
+		         using: (CardDealer with: aDeck).
+	aCard := OverloadCard new.
 	self
-		should: [ aGame apply: aCard to: AccelerationCard create from: 'red'. ]
+		should: [ aGame apply: aCard to: AccelerationCard new from: 'red' ]
 		raise: Error
 		withMessage: 'That is not a valid objective'
 ]
@@ -1101,18 +1094,16 @@ CardsTest >> testQ048VerifyThatWhenUsingAnOverloadCardTheObjectiveMustBeAValidPl
 CardsTest >> testQ050VerifyThatWhenUsingASpeedCardTheObjectiveMustBeAValidPlayer [
 
 	| aGame aCard aDeck |
-	aDeck := AveilableCardsDeck with: SpeedCard create amount: 5.
+	aDeck := AveilableCardsDeck with: SpeedCard new amount: 5.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
-		         and: (self createBoard)
+		         and: self createBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
-		         using:
-		         (CardDealer with: aDeck).
-	aCard := (SpeedCard create).
+		         using: (CardDealer with: aDeck).
+	aCard := SpeedCard new.
 	self
-		should: [ 
-			aGame apply: aCard to: AccelerationCard create from: 'red'.]
+		should: [ aGame apply: aCard to: AccelerationCard new from: 'red' ]
 		raise: Error
 		withMessage: 'That is not a valid objective'
 ]
@@ -1121,18 +1112,16 @@ CardsTest >> testQ050VerifyThatWhenUsingASpeedCardTheObjectiveMustBeAValidPlayer
 CardsTest >> testQ051VerifyThatWhenUsingARepeatCardTheObjectiveMustBeAValidPlayer [
 
 	| aGame aCard aDeck |
-	aDeck := AveilableCardsDeck with: RepeatCard create amount: 5.
+	aDeck := AveilableCardsDeck with: RepeatCard new amount: 5.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
-		         and: (self createBoard)
+		         and: self createBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
-		         using:
-		         (CardDealer with: aDeck).
-	aCard := (RepeatCard create).
+		         using: (CardDealer with: aDeck).
+	aCard := RepeatCard new.
 	self
-		should: [ 
-		aGame apply: aCard to: 'pepe' from: 'red'. ]
+		should: [ aGame apply: aCard to: 'pepe' from: 'red' ]
 		raise: Error
 		withMessage: 'That is not a valid objective'
 ]
@@ -1141,15 +1130,14 @@ CardsTest >> testQ051VerifyThatWhenUsingARepeatCardTheObjectiveMustBeAValidPlaye
 CardsTest >> testQ052VerifyThatWhenUsingARedoCardACardHasToBeenPlayedBefore [
 
 	| aGame aCard aDeck |
-	aDeck := AveilableCardsDeck with: RedoCard create amount: 5.
+	aDeck := AveilableCardsDeck with: RedoCard new amount: 5.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
-		         and: (self createBoard)
+		         and: self createBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
-		         using:
-		         (CardDealer with: aDeck).
-	aCard := (RedoCard create).
+		         using: (CardDealer with: aDeck).
+	aCard := RedoCard new.
 	self
 		should: [ aGame apply: aCard to: 'pepe' from: 'red' ]
 		raise: Error
@@ -1161,7 +1149,7 @@ CardsTest >> testQ052VerifyThatWhenUsingARedoCardACardHasToBeenPlayedBefore [
 CardsTest >> testV001VerifyThatNoCardsHasBeenDiscardAtTheBeggining [
 
 	| aGame aDeck |
-	aDeck := AveilableCardsDeck with: RedoCard create amount: 5.
+	aDeck := AveilableCardsDeck with: RedoCard new amount: 5.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: (self createBoard)
@@ -1178,35 +1166,32 @@ CardsTest >> testV001VerifyThatNoCardsHasBeenDiscardAtTheBeggining [
 CardsTest >> testV002VerifyThatOneCardHasNotBeenDiscardWhenItIsUsedBecauseItIsPermanent [
 
 	| aGame aCard aDeck |
-	aDeck := AveilableCardsDeck with: OverloadCard create amount: 5.
-	aGame := DuplaGalacticaGameProxy
-		         with: aColorCollection
-		         and: (self createBoard)
-		         usingToThrow: aShaker
-		         winningWhen: 1
-		         using:
-		         (CardDealer with: aDeck).
-	aCard := (OverloadCard create).
-	aGame apply: aCard to: 'blue' from: 'red'.
-	self
-		assert: (aGame discardCardsDeskAmount)
-		equals: 0.
-]
-
-{ #category : #tests }
-CardsTest >> testV003VerifyThatTwoCardsHasNotBeenDiscardWhenAreUsedBecauseTheyArePermanent [
-
-	| aGame aCard aDeck |
-	aDeck := AveilableCardsDeck with: OverloadCard create amount: 5.
+	aDeck := AveilableCardsDeck with: OverloadCard new amount: 5.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
 		         using: (CardDealer with: aDeck).
-	aCard := (OverloadCard create).
+	aCard := OverloadCard new.
 	aGame apply: aCard to: 'blue' from: 'red'.
-	aCard := (OverloadCard create).
+	self assert: aGame discardCardsDeskAmount equals: 0
+]
+
+{ #category : #tests }
+CardsTest >> testV003VerifyThatTwoCardsHasNotBeenDiscardWhenAreUsedBecauseTheyArePermanent [
+
+	| aGame aCard aDeck |
+	aDeck := AveilableCardsDeck with: OverloadCard new amount: 5.
+	aGame := DuplaGalacticaGameProxy
+		         with: aColorCollection
+		         and: self createBoard
+		         usingToThrow: aShaker
+		         winningWhen: 1
+		         using: (CardDealer with: aDeck).
+	aCard := OverloadCard new.
+	aGame apply: aCard to: 'blue' from: 'red'.
+	aCard := OverloadCard new.
 	aGame apply: aCard to: 'blue' from: 'red'.
 	self assert: aGame discardCardsDeskAmount equals: 0
 ]
@@ -1215,7 +1200,7 @@ CardsTest >> testV003VerifyThatTwoCardsHasNotBeenDiscardWhenAreUsedBecauseTheyAr
 CardsTest >> testV005VerifyThatExistAFiniteAmountOfCardsToDeal [
 
 	| aGame aDeck|
-	aDeck := AveilableCardsDeck with: OverloadCard create amount: 5.
+	aDeck := AveilableCardsDeck with: OverloadCard new amount: 5.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: (self createBoard)
@@ -1229,7 +1214,7 @@ CardsTest >> testV005VerifyThatExistAFiniteAmountOfCardsToDeal [
 CardsTest >> testV006VerifyThatExistAFiniteAmountOfCardsToDealWhenTheyAreStolenFromARandomCardBox [
 
 	| aGame aDeck |
-	aDeck := AveilableCardsDeck with: OverloadCard create amount: 6.
+	aDeck := AveilableCardsDeck with: OverloadCard new amount: 6.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: (self createBoardWithRandomCardBoxes)
@@ -1244,7 +1229,7 @@ CardsTest >> testV006VerifyThatExistAFiniteAmountOfCardsToDealWhenTheyAreStolenF
 CardsTest >> testV007VerifyThatExistAFiniteAmountOfCardsToDealWhenTheyAreShuffle [
 
 	| aGame aDeck |
-	aDeck := AveilableCardsDeck with: SpeedCard create amount: 5.
+	aDeck := AveilableCardsDeck with: SpeedCard new amount: 5.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: (self createBoardWithRandomCardBoxes)
@@ -1260,7 +1245,7 @@ CardsTest >> testV007VerifyThatExistAFiniteAmountOfCardsToDealWhenTheyAreShuffle
 CardsTest >> testV008VerifyThatExistAFiniteAmountOfCardsToDealAndTheyAreNotDealDespiteThePlayerIsInARandomCardBox [
 
 	| aGame aDeck |
-	aDeck := AveilableCardsDeck with: SpeedCard create amount: 5.
+	aDeck := AveilableCardsDeck with: SpeedCard new amount: 5.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: (self createBoardWithRandomCardBoxes)
@@ -1278,8 +1263,8 @@ CardsTest >> testV008VerifyThatExistAFiniteAmountOfCardsToDealAndTheyAreNotDealD
 CardsTest >> testV009VerifyThatWhenThereAreMoreThanOneCardAmountOfTheSameCardEverythingWorksCorrect [
 
 	| aGame aDeck |
-	aDeck := AveilableCardsDeck with: SpeedCard create amount: 2.
-	aDeck addCard: SpeedCard create amount: 3.
+	aDeck := AveilableCardsDeck with: SpeedCard new amount: 2.
+	aDeck addCard: SpeedCard new amount: 3.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: (self createBoardWithRandomCardBoxes)
@@ -1297,35 +1282,31 @@ CardsTest >> testV009VerifyThatWhenThereAreMoreThanOneCardAmountOfTheSameCardEve
 CardsTest >> testV010VerifyThatOneCardHasBeenDiscardWhenItIsUsed [
 
 	| aGame aCard aDeck |
-	aDeck := AveilableCardsDeck with: RepeatCard create amount: 10.
+	aDeck := AveilableCardsDeck with: RepeatCard new amount: 10.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
-		         and: (self createBoardWithRandomCardBoxes)
+		         and: self createBoardWithRandomCardBoxes
 		         usingToThrow: aShaker
 		         winningWhen: 1
-		         using:
-		         (CardDealer with: aDeck).
+		         using: (CardDealer with: aDeck).
 	aGame movePlayer.
-	aCard := (RepeatCard  create).
+	aCard := RepeatCard new.
 	aGame apply: aCard to: 'red' from: 'red'.
-	self
-		assert: (aGame discardCardsDeskAmount)
-		equals: 1.
+	self assert: aGame discardCardsDeskAmount equals: 1
 ]
 
 { #category : #tests }
 CardsTest >> testW012VerifyTheAmountOfAveilableCardsAfterActivatingOne [
 
 	| aGame aCard aDeck |
-	aDeck := AveilableCardsDeck with: SpeedCard create amount: 4.
+	aDeck := AveilableCardsDeck with: SpeedCard new amount: 4.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
-		         and: (self createBoard)
+		         and: self createBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
-		         using:
-		         (CardDealer with: aDeck).
-	aCard := (SpeedCard create).
+		         using: (CardDealer with: aDeck).
+	aCard := SpeedCard new.
 	aGame apply: aCard to: 'red' from: 'red'.
 	self assert: aGame discardCardsDeskAmount equals: 0
 ]
@@ -1334,19 +1315,22 @@ CardsTest >> testW012VerifyTheAmountOfAveilableCardsAfterActivatingOne [
 CardsTest >> testW013VerifyTheAmountOfDiscardCardsAfterDesactivatingOne [
 
 	| aGame aCard aDeck |
-	aDeck := LoadedDeck with: SpeedCard create amount: 2.
-	aDeck addCard: CancellationCard create amount: 2.
+	aDeck := LoadedDeck with: SpeedCard new amount: 2.
+	aDeck addCard: CancellationCard new amount: 2.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
-		         and: (self createBoard)
+		         and: self createBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
-		         using:
-		         (CardDealer with: aDeck).
-	aCard := (SpeedCard create).
+		         using: (CardDealer with: aDeck).
+	aCard := SpeedCard new.
 	aGame apply: aCard to: 'red' from: 'red'.
-	aCard := (CancellationCard create).
-	aGame apply: aCard to: SpeedCard create of: 'red' from: 'blue'.
+	aCard := CancellationCard new.
+	aGame
+		apply: aCard
+		to: SpeedCard new
+		of: 'red'
+		from: 'blue'.
 	self assert: aGame discardCardsDeskAmount equals: 2
 ]
 
@@ -1354,36 +1338,51 @@ CardsTest >> testW013VerifyTheAmountOfDiscardCardsAfterDesactivatingOne [
 CardsTest >> testW014VerifyThatWhenARedoCardIsDiscardARedoCardGoToTheDiscardDeck [
 
 	| aGame aCard aDeck |
-	aDeck := LoadedDeck with: SpeedCard create amount: 1.
-	aDeck addCard: RedoCard create amount: 1.
-	aDeck addCard: CancellationCard create amount: 2.
+	aDeck := LoadedDeck with: SpeedCard new amount: 1.
+	aDeck addCard: RedoCard new amount: 1.
+	aDeck addCard: CancellationCard new amount: 2.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
-		         and: (self createBoardWithRandomCardBoxes)
+		         and: self createBoardWithRandomCardBoxes
 		         usingToThrow: aShaker
 		         winningWhen: 1
-		         using:
-		         (CardDealer with: aDeck).
-	aCard := (SpeedCard create).
+		         using: (CardDealer with: aDeck).
+	aCard := SpeedCard new.
 	aGame apply: aCard to: 'red' from: 'red'.
-	aCard := (RedoCard create).
+	aCard := RedoCard new.
 	aGame apply: aCard to: 'red' from: 'red'.
-	aCard := (CancellationCard create).
-	aGame apply: aCard to: SpeedCard create of: 'red' from: 'blue'.
-	aCard := (CancellationCard create).
-	aGame apply: aCard to: SpeedCard create of: 'red' from: 'blue'.
+	aCard := CancellationCard new.
+	aGame
+		apply: aCard
+		to: SpeedCard new
+		of: 'red'
+		from: 'blue'.
+	aCard := CancellationCard new.
+	aGame
+		apply: aCard
+		to: RedoCard new
+		of: 'red'
+		from: 'blue'.
 	aGame movePlayer.
 	aGame movePlayer.
 	aGame movePlayer.
 	aGame movePlayer.
-	aCard := (SpeedCard create).
+	aCard := SpeedCard new.
 	aGame apply: aCard to: 'red' from: 'red'.
-	aCard := (RedoCard create).
+	aCard := RedoCard new.
 	aGame apply: aCard to: 'red' from: 'red'.
-	aCard := (CancellationCard create).
-	aGame apply: aCard to: SpeedCard create of: 'red' from: 'blue'.
-	aCard := (CancellationCard create).
-	aGame apply: aCard to: SpeedCard create of: 'red' from: 'blue'.
+	aCard := CancellationCard new.
+	aGame
+		apply: aCard
+		to: SpeedCard new
+		of: 'red'
+		from: 'blue'.
+	aCard := CancellationCard new.
+	aGame
+		apply: aCard
+		to: RedoCard new
+		of: 'red'
+		from: 'blue'.
 	self assert: aGame discardCardsDeskAmount equals: 4
 ]
 
@@ -1391,20 +1390,20 @@ CardsTest >> testW014VerifyThatWhenARedoCardIsDiscardARedoCardGoToTheDiscardDeck
 CardsTest >> testW015VerifyTheCorrectDesactivationOfAnAccelerationCard [
 
 	| aGame aCard aDeck |
-	aDeck := LoadedDeck with: AccelerationCard create amount: 2.
-	aDeck addCard: CancellationCard create amount: 2.
+	aDeck := LoadedDeck with: AccelerationCard new amount: 2.
+	aDeck addCard: CancellationCard new amount: 2.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
 		         using: (CardDealer with: aDeck).
-	aCard := AccelerationCard create.
+	aCard := AccelerationCard new.
 	aGame apply: aCard to: EveryPlayer new from: 'red'.
-	aCard := CancellationCard create.
+	aCard := CancellationCard new.
 	aGame
 		apply: aCard
-		to: AccelerationCard create
+		to: AccelerationCard new
 		of: EveryPlayer new
 		from: 'blue'.
 	aGame movePlayer.
@@ -1418,30 +1417,30 @@ CardsTest >> testW015VerifyTheCorrectDesactivationOfAnAccelerationCard [
 CardsTest >> testW018VerifyTheCorrectDiscardOfAnAccelerationAnTryingToReuseItThen [
 
 	| aGame aCard aDeck |
-	aDeck := LoadedDeck with: AccelerationCard create amount: 1.
-	aDeck addCard: CancellationCard create amount: 3.
+	aDeck := LoadedDeck with: AccelerationCard new amount: 1.
+	aDeck addCard: CancellationCard new amount: 3.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoardWithRandomCardBoxes
 		         usingToThrow: aShaker
 		         winningWhen: 1
 		         using: (CardDealer with: aDeck).
-	aCard := AccelerationCard create newHolder: 'red'.
+	aCard := AccelerationCard new.
 	aGame apply: aCard to: EveryPlayer new from: 'red'.
-	aCard := CancellationCard create.
+	aCard := CancellationCard new.
 	aGame
 		apply: aCard
-		to: AccelerationCard create
+		to: AccelerationCard new
 		of: EveryPlayer new
 		from: 'blue'.
 	aGame movePlayer.
 	aGame movePlayer.
-	aCard := AccelerationCard create newHolder: 'red'.
+	aCard := AccelerationCard new.
 	aGame apply: aCard to: EveryPlayer new from: 'red'.
-	aCard := CancellationCard create.
+	aCard := CancellationCard new.
 	aGame
 		apply: aCard
-		to: AccelerationCard create
+		to: AccelerationCard new
 		of: EveryPlayer new
 		from: 'blue'.
 	self
@@ -1473,49 +1472,49 @@ CardsTest >> testW019TryToDealEmptyObjects [
 CardsTest >> testW020VerifyThatWhenARedoCardIsDiscardARedoCardGoToTheDiscardDeckRedoingAnInstantCard [
 
 	| aGame aCard aDeck |
-	aDeck := LoadedDeck with: SpeedCard create amount: 2.
-	aDeck addCard: RedoCard create amount: 1.
-	aDeck addCard: CancellationCard create amount: 1.
+	aDeck := LoadedDeck with: SpeedCard new amount: 2.
+	aDeck addCard: RedoCard new amount: 1.
+	aDeck addCard: CancellationCard new amount: 1.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoardWithRandomCardBoxes
 		         usingToThrow: aShaker
 		         winningWhen: 1
 		         using: (CardDealer with: aDeck).
-	aCard := SpeedCard create.
+	aCard := SpeedCard new.
 	aGame apply: aCard to: 'red' from: 'red'.
-	aCard := SpeedCard create.
+	aCard := SpeedCard new.
 	aGame apply: aCard to: 'red' from: 'red'.
-	aCard := CancellationCard create.
+	aCard := CancellationCard new.
 	aGame
 		apply: aCard
-		to: SpeedCard create
+		to: SpeedCard new
 		of: 'red'
 		from: 'blue'.
-	aCard := RedoCard create.
+	aCard := RedoCard new.
 	aGame
 		apply: aCard
-		to: SpeedCard create
+		to: SpeedCard new
 		of: 'red'
 		from: 'blue'.
 	aGame movePlayer.
 	aGame movePlayer.
 	aGame movePlayer.
 	aGame movePlayer.
-	aCard := SpeedCard create.
+	aCard := SpeedCard new.
 	aGame apply: aCard to: 'red' from: 'red'.
-	aCard := SpeedCard create.
+	aCard := SpeedCard new.
 	aGame apply: aCard to: 'red' from: 'red'.
-	aCard := CancellationCard create.
+	aCard := CancellationCard new.
 	aGame
 		apply: aCard
-		to: SpeedCard create
+		to: SpeedCard new
 		of: 'red'
 		from: 'blue'.
-	aCard := RedoCard create.
+	aCard := RedoCard new.
 	aGame
 		apply: aCard
-		to: SpeedCard create
+		to: SpeedCard new
 		of: 'red'
 		from: 'blue'.
 	self assert: aGame discardCardsDeskAmount equals: 4

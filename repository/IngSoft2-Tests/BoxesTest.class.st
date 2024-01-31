@@ -14,7 +14,7 @@ BoxesTest >> setUp [
 	super setUp.
 
 	aColorCollection := OrderedCollection with: 'red' with: 'blue'.
-	aDeck := AveilableCardsDeck with: AccelerationCard create amount: 7.
+	aDeck := AveilableCardsDeck with: AccelerationCard new amount: 7.
 ]
 
 { #category : #tests }
@@ -603,7 +603,7 @@ BoxesTest >> testU002VerifyTheCorrectUseOfSprintBoxWhenAPlayerHave1Card [
 		         usingToThrow: aShaker
 		         winningWhen: 2
 		         using: (CardDealer with: aDeck).
-	aCard := AccelerationCard create.
+	aCard := AccelerationCard new.
 	aGame apply: aCard to: EveryPlayer new from: 'red'.
 	aGame movePlayer.
 	aGame movePlayer.
@@ -632,9 +632,9 @@ BoxesTest >> testU003VerifyTheCorrectUseOfSprintBoxWhenThePlayerDoesNotHaveCards
 		         usingToThrow: aShaker
 		         winningWhen: 2
 		         using: (CardDealer with: aDeck).
-	aCard := AccelerationCard create.
+	aCard := AccelerationCard new.
 	aGame apply: aCard to: EveryPlayer new from: 'red'.
-	aCard := AccelerationCard create.
+	aCard := AccelerationCard new.
 	aGame apply: aCard to: EveryPlayer new from: 'red'.
 	aGame movePlayer.
 	aGame movePlayer.

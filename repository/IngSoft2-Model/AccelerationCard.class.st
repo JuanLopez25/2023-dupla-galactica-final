@@ -1,23 +1,13 @@
 Class {
 	#name : #AccelerationCard,
 	#superclass : #Object,
-	#instVars : [
-		'holder',
-		'target'
-	],
 	#category : #'IngSoft2-Model'
 }
-
-{ #category : #'Intance creation' }
-AccelerationCard class >> create [
-
-	^ self new intializeCreate
-]
 
 { #category : #effect }
 AccelerationCard >> applyCardUsing: cardManager at: aGame to: anObjectiveCard [
 
-	cardManager activeCard: (self class create) to: EveryPlayer new.
+	^ EveryPlayer new.
 ]
 
 { #category : #effect }
@@ -33,19 +23,6 @@ AccelerationCard >> hasEffect [
 ]
 
 { #category : #information }
-AccelerationCard >> holder [
-
-	^ holder
-]
-
-{ #category : #initialization }
-AccelerationCard >> intializeCreate [
-
-	holder := EmptyObject new.
-	target := EveryPlayer new
-]
-
-{ #category : #information }
 AccelerationCard >> isEmpty [
 
 	^ false
@@ -55,17 +32,4 @@ AccelerationCard >> isEmpty [
 AccelerationCard >> isPermanent [
 
 	^ true
-]
-
-{ #category : #effect }
-AccelerationCard >> newHolder: aHolder [
-
-	holder := aHolder
-	
-]
-
-{ #category : #information }
-AccelerationCard >> target [
-
-	^ target
 ]

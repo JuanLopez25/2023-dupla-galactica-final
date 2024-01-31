@@ -1510,6 +1510,22 @@ CardsTest >> testW018VerifyTheCorrectDiscardOfAnAccelerationAnTryingToReuseItThe
 ]
 
 { #category : #tests }
+CardsTest >> testW019TryToDealEmptyObjects [
+
+	| aGame aDeck |
+	aDeck := AveilableCardsDeck create.
+	aDeck addCard: EmptyObject amount: 4.
+	aGame := DuplaGalacticaGameProxy
+		         with: aColorCollection
+		         and: self createBoardWithRandomCardBoxes
+		         usingToThrow: aShaker
+		         winningWhen: 1
+		         using: (CardDealer with: aDeck).
+	self assert: (aGame cardsInPosetionOf: 'red') equals: 0.
+	self assert: (aGame cardsInPosetionOf: 'blue') equals: 0
+]
+
+{ #category : #tests }
 CardsTest >> testW020VerifyThatWhenARedoCardIsDiscardARedoCardGoToTheDiscardDeckRedoingAnInstantCard [
 
 	| aGame aCard aDeck |

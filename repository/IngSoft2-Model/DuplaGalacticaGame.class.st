@@ -7,8 +7,7 @@ Class {
 		'goalLaps',
 		'turnManager',
 		'cardManager',
-		'shaker',
-		'conversor'
+		'shaker'
 	],
 	#category : #'IngSoft2-Model'
 }
@@ -167,12 +166,6 @@ DuplaGalacticaGame >> parsecs [
 DuplaGalacticaGame >> playersBox [
 
 	^ players collect: [ :player | player box ]
-]
-
-{ #category : #information }
-DuplaGalacticaGame >> playersColors [
-
-	^ players collect: [ :player | player color ]
 ]
 
 { #category : #information }

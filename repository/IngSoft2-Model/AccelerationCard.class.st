@@ -10,7 +10,7 @@ AccelerationCard >> = aCard [
 	^ aCard class = self class
 ]
 
-{ #category : #information }
+{ #category : #effect }
 AccelerationCard >> applyCardUsing: cardManager at: aGame to: anObjective [
 
 	cardManager beingUse hasEffect

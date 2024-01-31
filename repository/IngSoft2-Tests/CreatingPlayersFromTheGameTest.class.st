@@ -17,7 +17,8 @@ CreatingPlayersFromTheGameTest >> setUp [
 
 	| aDeck |
 	super setUp.
-	aDeck := AveilableCardsDeck with: OverloadCard new amount: 3.
+	aDeck := AveilableCardsDeck create.
+	aDeck addCard: OverloadCard amount: 3.
 	aColorCollection := OrderedCollection with: 'red'.
 	aLoadedDie := LoadedDie with: (OrderedCollection
 			               with: 8

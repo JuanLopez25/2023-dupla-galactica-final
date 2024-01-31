@@ -28,7 +28,7 @@ ActiveCardsDeck >> calculateEffectOn: aColorPlayer [
 
 	^ (hands select: [ :hand | 
 		   hand owner = aColorPlayer or: hand owner = EveryPlayer new ]) 
-		  sum: [ :hand | hand applyEffect ]
+		  sum: [ :hand | hand cards sum: [ :card | card applyEffect ] ]
 ]
 
 { #category : #desactivation }

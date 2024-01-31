@@ -10,10 +10,13 @@ AccelerationCard >> = aCard [
 	^ aCard class = self class
 ]
 
-{ #category : #effect }
-AccelerationCard >> applyCardUsing: cardManager at: aGame to: anObjectiveCard [
+{ #category : #information }
+AccelerationCard >> applyCardUsing: cardManager at: aGame to: anObjective [
 
-	^ EveryPlayer new.
+	cardManager beingUse hasEffect
+		ifTrue: [ cardManager active: self to: EveryPlayer new ]
+		ifFalse: [ 
+		cardManager active: cardManager beingUse to: EveryPlayer new ]
 ]
 
 { #category : #effect }

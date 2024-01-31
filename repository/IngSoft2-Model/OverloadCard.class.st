@@ -13,7 +13,11 @@ OverloadCard >> = aCard [
 { #category : #effect }
 OverloadCard >> applyCardUsing: cardManager at: aGame to: anObjective [
 
-	^ anObjective.
+	anObjective = EveryPlayer new ifFalse: [ 
+		cardManager beingUse hasEffect
+			ifTrue: [ cardManager active: self to: anObjective ]
+			ifFalse: [ 
+			cardManager active: cardManager beingUse to: anObjective ] ]
 ]
 
 { #category : #effect }

@@ -24,7 +24,7 @@ CardDealer >> cardsToDeal [
 CardDealer >> dealCard [
 
 	deck isEmpty ifTrue: [ 
-		discardDeck shuffle do: [ :card | deck addCard: card amount: 1 ].
+		discardDeck shuffle do: [ :card | deck addCard: card class amount: 1 ].
 		deck isEmpty ifTrue: [ ^ EmptyObject new ] ].
 	^ deck dealCard
 ]

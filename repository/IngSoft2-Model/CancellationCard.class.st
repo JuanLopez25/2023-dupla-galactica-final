@@ -11,10 +11,10 @@ CancellationCard >> = aCard [
 ]
 
 { #category : #effect }
-CancellationCard >> applyCardUsing: cardManager at: aGame to: anObjectiveCard [
+CancellationCard >> applyCardUsing: cardManager at: aGame to: anObjective [
 
-	cardManager desactivate: anObjectiveCard.
-	^ EmptyObject new.
+	cardManager desactivate: anObjective.
+	cardManager discard: cardManager beingUse.
 ]
 
 { #category : #information }

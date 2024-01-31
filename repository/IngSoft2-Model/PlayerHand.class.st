@@ -20,11 +20,10 @@ PlayerHand >> addCard: aCard [
 	cards addLast: aCard.
 ]
 
-{ #category : #cards }
-PlayerHand >> applyEffect [ 
+{ #category : #information }
+PlayerHand >> cards [
 
-	^ cards sum: [ :card | 
-		  card applyEffect ]
+	^ cards
 ]
 
 { #category : #information }
@@ -49,7 +48,7 @@ PlayerHand >> owner [
 	^ owner
 ]
 
-{ #category : #cards }
+{ #category : #accessing }
 PlayerHand >> size [
 
 	^ cards size

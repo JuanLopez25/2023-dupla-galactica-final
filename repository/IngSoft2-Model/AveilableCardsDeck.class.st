@@ -8,16 +8,15 @@ Class {
 }
 
 { #category : #'instance creation' }
-AveilableCardsDeck class >> with: aCard amount: anAmount [
+AveilableCardsDeck class >> create [
 
-	^ self new initializeWith: aCard amount: anAmount
+	^ self new initializeCreate.
 ]
 
 { #category : #cards }
-AveilableCardsDeck >> addCard: aCard amount: anAmount [
+AveilableCardsDeck >> addCard: aCardClass amount: anAmount [
 
-	anAmount timesRepeat: [ 
-		cardsInDeck addLast: aCard class new ].
+	anAmount timesRepeat: [ cardsInDeck addLast: aCardClass new ]
 ]
 
 { #category : #information }
@@ -37,12 +36,9 @@ AveilableCardsDeck >> dealCard [
 ]
 
 { #category : #initialization }
-AveilableCardsDeck >> initializeWith: aCard amount: anAmount [
+AveilableCardsDeck >> initializeCreate [
 
 	cardsInDeck := OrderedCollection new.
-	aCard isEmpty ifFalse: [ 
-	anAmount timesRepeat: [ 
-		cardsInDeck addLast: aCard class new ]].
 ]
 
 { #category : #information }

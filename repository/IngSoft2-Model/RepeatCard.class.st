@@ -14,7 +14,7 @@ RepeatCard >> = aCard [
 RepeatCard >> applyCardUsing: cardManager at: aGame to: anObjective [
 
 	aGame repeatEffectTo: anObjective.
-	^ EmptyObject new
+	cardManager discard: cardManager beingUse.
 ]
 
 { #category : #information }

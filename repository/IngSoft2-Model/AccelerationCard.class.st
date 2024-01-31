@@ -4,6 +4,12 @@ Class {
 	#category : #'IngSoft2-Model'
 }
 
+{ #category : #comparing }
+AccelerationCard >> = aCard [
+
+	^ aCard class = self class
+]
+
 { #category : #effect }
 AccelerationCard >> applyCardUsing: cardManager at: aGame to: anObjectiveCard [
 

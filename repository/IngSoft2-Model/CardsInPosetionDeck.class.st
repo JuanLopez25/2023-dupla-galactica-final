@@ -33,7 +33,7 @@ CardsInPosetionDeck >> cardsOf: aPlayerColor [
 CardsInPosetionDeck >> hasBeenGiven: aCard to: aPlayerColor [
 
 	playersHands
-		detect: [ :hand | hand owner = aPlayerColor and: [ hand has: aCard ] ]
+		detect: [ :hand | hand owner = aPlayerColor and: (hand has: aCard) ]
 		ifFound: [ :hand | ^ true ].
 	^ false
 ]

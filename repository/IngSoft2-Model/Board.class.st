@@ -50,7 +50,7 @@ Board >> parsecs [
 	^ lengthMeasure parsecs
 ]
 
-{ #category : #information }
+{ #category : #accessing }
 Board >> size [
 
 	^ boxes size

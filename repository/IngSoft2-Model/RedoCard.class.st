@@ -7,6 +7,12 @@ Class {
 	#category : #'IngSoft2-Model'
 }
 
+{ #category : #comparing }
+RedoCard >> = aCard [
+
+	^ aCard class = self class
+]
+
 { #category : #initialization }
 RedoCard >> applyCardUsing: cardManager at: aGame to: anObjective [
 

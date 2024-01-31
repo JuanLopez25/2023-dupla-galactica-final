@@ -4,6 +4,12 @@ Class {
 	#category : #'IngSoft2-Model'
 }
 
+{ #category : #comparing }
+CancellationCard >> = aCard [
+
+	^ aCard class = self class
+]
+
 { #category : #effect }
 CancellationCard >> applyCardUsing: cardManager at: aGame to: anObjectiveCard [
 

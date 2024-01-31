@@ -31,7 +31,7 @@ PlayerHand >> applyEffect [
 PlayerHand >> has: aCard [
 
 	cards
-		detect: [ :card | card class = aCard class ]
+		detect: [ :card | card = aCard ]
 		ifFound: [ ^ true ]
 		ifNone: [ ^ false ]
 ]
@@ -59,7 +59,7 @@ PlayerHand >> size [
 PlayerHand >> takeOut: aCard [
 
 	cards
-		detect: [ :card | (card class) = (aCard class) ]
+		detect: [ :card | card = aCard ]
 		ifFound: [ :card | 
 			cards remove: card.
 			^ card ]

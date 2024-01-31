@@ -4,6 +4,12 @@ Class {
 	#category : #'IngSoft2-Model'
 }
 
+{ #category : #comparing }
+OverloadCard >> = aCard [
+
+	^ aCard class = self class
+]
+
 { #category : #effect }
 OverloadCard >> applyCardUsing: cardManager at: aGame to: anObjective [
 

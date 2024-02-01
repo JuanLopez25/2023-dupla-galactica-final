@@ -338,6 +338,33 @@ BoxesTest >> testN011CheckHyperJumpBoxMoveTheCorrectAmountOfParsecsWhenTheyAreNo
 ]
 
 { #category : #tests }
+BoxesTest >> testN012CheckTheWormHoleEffectWhenHasPassedTheFirstLap [
+
+	| aLoadedDie aGame boxes aBoard aShaker |
+	aLoadedDie := LoadedDie with: (OrderedCollection
+			               with: 13
+			               with: 8
+			               with: 1
+			               with: 8).
+	boxes := (BoxCreator use:
+		          (OrderedCollection with: (BoxProbability using: WormHoleBox new withChance: 100))) 
+		         create: 10.
+	aBoard := Board with: boxes measure: (Parsec worth: 100).
+	aShaker := DiceShaker withDie: aLoadedDie.
+	aGame := DuplaGalacticaGameProxy
+		         with: aColorCollection
+		         and: aBoard
+		         usingToThrow: aShaker
+		         winningWhen: 1
+		         using: (CardDealer with: aDeck).
+	aGame movePlayer.
+	aGame movePlayer.
+	self
+		assert: aGame playersBox
+		equals: (OrderedCollection with: 10 with: 5)
+]
+
+{ #category : #tests }
 BoxesTest >> testR001CheckRandomCardBoxGeneratesARandomCard [
 
 	| aLoadedDie aGame boxes aBoard aShaker |

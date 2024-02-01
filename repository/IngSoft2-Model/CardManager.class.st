@@ -32,13 +32,18 @@ CardManager >> addCardTo: aColor [
 { #category : #cards }
 CardManager >> apply: aCard at: aGame to: anObjective of: aHolder from: aPlayerColor [
 
-	objectiveOwner := aHolder.
 	(cardsInPosetion hasBeenGiven: aCard to: aPlayerColor) ifFalse: [ 
-		Error signal: 'The player does not have that card in posetion' ].
+		^ self ].
+	objectiveOwner := aHolder.
 	aCard hasEffect ifTrue: [ lastCardPlay := aCard ].
 	(self haveToActive: aCard)
-		ifTrue: [ self active: aCard to: (aCard objectiveWhenTarget: anObjective using: self)  ]
-		ifFalse: [ aCard applyCardUsing: self at: aGame to: anObjective. self discard: aCard ].
+		ifTrue: [ 
+			self
+				active: aCard
+				to: (aCard objectiveWhenTarget: anObjective using: self) ]
+		ifFalse: [ 
+			aCard applyCardUsing: self at: aGame to: anObjective.
+			self discard: aCard ].
 	objectiveOwner := EmptyObject new.
 	cardsInPosetion takeOut: aCard to: aPlayerColor
 ]

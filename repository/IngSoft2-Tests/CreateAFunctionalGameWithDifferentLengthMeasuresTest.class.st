@@ -27,7 +27,7 @@ CreateAFunctionalGameWithDifferentLengthMeasuresTest >> setUp [
 ]
 
 { #category : #tests }
-CreateAFunctionalGameWithDifferentLengthMeasuresTest >> testS001CreateABordWithParsec [
+CreateAFunctionalGameWithDifferentLengthMeasuresTest >> testS001CreateABordWithParsecAndVerifyTheCorrectValue [
 
 	| aBoard oneHundredParsecs aGame |
 	oneHundredParsecs := Parsec worth: 100.
@@ -44,7 +44,7 @@ CreateAFunctionalGameWithDifferentLengthMeasuresTest >> testS001CreateABordWithP
 ]
 
 { #category : #tests }
-CreateAFunctionalGameWithDifferentLengthMeasuresTest >> testS002CreateABordWithLigthYear [
+CreateAFunctionalGameWithDifferentLengthMeasuresTest >> testS002CreateABordWithLigthYearAndVerifyTheCorrectValue [
 
 	| aBoard threeHundredLigthYears aGame|
 	threeHundredLigthYears := LigthYear worth: 300.
@@ -89,4 +89,21 @@ CreateAFunctionalGameWithDifferentLengthMeasuresTest >> testS004CreateABordWithL
 		         using: (CardDealer with: aDeck).
 
 	self assert: aGame parsecs nominalValue equals: 100
+]
+
+{ #category : #tests }
+CreateAFunctionalGameWithDifferentLengthMeasuresTest >> testS005CreateBoardWithAnotherAmountOfParsecThenValid [
+
+	| aBoard oneHundredParsecs aGame |
+	oneHundredParsecs := Parsec worth: 200.
+	aShaker := DiceShaker withDie: aLoadedDie.
+	aBoard := Board with: boxes measure: oneHundredParsecs.
+	aGame := DuplaGalacticaGameProxy
+		         with: aColorCollection
+		         and: aBoard
+		         usingToThrow: aShaker
+		         winningWhen: 1
+		         using: (CardDealer with: aDeck).
+
+	self assert: aGame parsecs nominalValue equals: 200
 ]

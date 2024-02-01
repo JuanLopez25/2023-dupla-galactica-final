@@ -104,7 +104,7 @@ CreateAFunctionalGameTest >> testD002CreateGameMoveThePlayersAndAskForWinner [
 ]
 
 { #category : #tests }
-CreateAFunctionalGameTest >> testF001CreateGameWithLoadedDie [
+CreateAFunctionalGameTest >> testF001CreateGameWithLoadedDieMoveThePlayersAndAskForTheirBoxes [
 
 	| aGame |
 	aGame := self gameWithLoadedDie.
@@ -152,7 +152,7 @@ CreateAFunctionalGameTest >> testG002CreateGameWithTwoDiceAndThrowThemTwoTimes [
 ]
 
 { #category : #tests }
-CreateAFunctionalGameTest >> testH001VerifyThatTeMovesDoNotHaveEffectAfterSomeoneWins [
+CreateAFunctionalGameTest >> testH001VerifyThatTheMovesDoNotHaveEffectAfterSomeoneWins [
 
 	| aGame |
 	aGame := self gameWithTwoLoadedDie.

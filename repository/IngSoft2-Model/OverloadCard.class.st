@@ -1,36 +1,17 @@
 Class {
 	#name : #OverloadCard,
 	#superclass : #Object,
-	#instVars : [
-		'holder',
-		'target'
-	],
 	#category : #'IngSoft2-Model'
 }
 
-{ #category : #'Instance creation' }
-OverloadCard class >> create [
-	^ self new initializeCreate.
-]
-
-{ #category : #information }
+{ #category : #comparing }
 OverloadCard >> = aCard [
 
-	(aCard isKindOf: self class)
-		ifTrue: [ ^ aCard holder = holder ]
-		ifFalse: [ ^ false ]
+	^ aCard isKindOf: self class
 ]
 
 { #category : #effect }
-OverloadCard >> applyCardUsing: cardManager at: aGame [
-
-	
-	aGame isPlaying: target.
-	cardManager activeCard: ((self class create) selectTarget: target)
-]
-
-{ #category : #effect }
-OverloadCard >> applyEffect [
+OverloadCard >> effect [
 
 	^ -2
 ]
@@ -39,18 +20,6 @@ OverloadCard >> applyEffect [
 OverloadCard >> hasEffect [
 
 	^ true
-]
-
-{ #category : #information }
-OverloadCard >> holder [
-
-	^ holder
-]
-
-{ #category : #initialization }
-OverloadCard >> initializeCreate [
-	holder:= EmptyObject new.
-	target:= EmptyObject new.
 ]
 
 { #category : #information }
@@ -65,20 +34,8 @@ OverloadCard >> isPermanent [
 	^ true
 ]
 
-{ #category : #information }
-OverloadCard >> newHolder: aHolder [
+{ #category : #effect }
+OverloadCard >> objectiveWhenTarget: anObjective using: aCardManager [
 
-	holder := aHolder
-]
-
-{ #category : #information }
-OverloadCard >> selectTarget: aNewTarget [
-
-	target:= aNewTarget.
-]
-
-{ #category : #information }
-OverloadCard >> target [
-
-	^ target
+	anObjective = EveryPlayer new ifFalse: [ ^ anObjective ] ifTrue: [ ^ EmptyObject new ]
 ]

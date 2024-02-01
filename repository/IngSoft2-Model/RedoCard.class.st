@@ -2,36 +2,37 @@ Class {
 	#name : #RedoCard,
 	#superclass : #Object,
 	#instVars : [
-		'holder',
-		'target'
+		'redoing'
 	],
 	#category : #'IngSoft2-Model'
 }
 
-{ #category : #'Instance creation' }
+{ #category : #'instance creation' }
 RedoCard class >> create [
-	^self new intializeWith.
+	
+	^self new initializeCreate.
 ]
 
-{ #category : #information }
+{ #category : #comparing }
 RedoCard >> = aCard [
 
-	(aCard isKindOf: self class)
-		ifTrue: [ ^ aCard holder = holder ]
-		ifFalse: [ ^ false ]
+	^ aCard isKindOf: self class
 ]
 
 { #category : #initialization }
-RedoCard >> applyCardUsing: cardManager at: aGame [
+RedoCard >> applyCardUsing: cardManager at: aGame to: anObjective [
 
-	cardManager lastCardPlay isEmpty
-		ifFalse: [ 
-			((cardManager lastCardPlay newHolder: self) selectTarget: target)
-				applyCardUsing: cardManager
-				at: aGame ]
-		ifTrue: [ 
-			Error signal:
-				'Redo card cannot be played because there are no cards that have been played before' ]
+	cardManager lastCardPlay isEmpty ifFalse: [ 
+		cardManager lastCardPlay
+			applyCardUsing: cardManager
+			at: aGame
+			to: anObjective ]
+]
+
+{ #category : #card }
+RedoCard >> effect [
+
+	^ redoing effect
 ]
 
 { #category : #information }
@@ -40,17 +41,10 @@ RedoCard >> hasEffect [
 	^ false
 ]
 
-{ #category : #information }
-RedoCard >> holder [
-
-	^ holder
-]
-
 { #category : #initialization }
-RedoCard >> intializeWith [
-
-	holder := EmptyObject new.
-	target := EmptyObject new.
+RedoCard >> initializeCreate [
+	
+	redoing := EmptyObject new.
 ]
 
 { #category : #information }
@@ -65,14 +59,9 @@ RedoCard >> isPermanent [
 	^ false
 ]
 
-{ #category : #information }
-RedoCard >> newHolder: aHolder [
+{ #category : #initialization }
+RedoCard >> objectiveWhenTarget: anObjective using: aCardManager [
 
-	holder := aHolder
-]
-
-{ #category : #information }
-RedoCard >> selectTarget: aNewTarget [
-
-	target:= aNewTarget.
+	redoing := aCardManager lastCardPlay.
+	^ aCardManager lastCardPlay objectiveWhenTarget: anObjective using: aCardManager
 ]

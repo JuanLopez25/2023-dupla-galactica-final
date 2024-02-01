@@ -11,14 +11,14 @@ Class {
 CreateAFunctionalGameTest >> gameWithLoadedDie [
 
 	| aLoadedGame aLoadedDie aBoard boxes aShaker aDeck |
-	aDeck := AveilableCardsDeck with:
-		         (CardAmount usingType: OverloadCard  amount: 3).
+	aDeck := CardsDeck create.
+	aDeck addCard: OverloadCard new amount: 3.
 	aLoadedDie := LoadedDie with: (OrderedCollection
 			               with: 9
 			               with: 6
 			               with: 7
 			               with: 9).
-	boxes:= (BoxCreator use: (OrderedCollection with: (BoxProbability using: NoEffectBox new withChance: 100))) create: 10.
+	boxes:= (BoxCreator use: (OrderedCollection with: (BoxProbability using: EmptyObject new withChance: 100))) create: 10.
 	aBoard := Board with: boxes measure: (Parsec worth: 100).
 	aShaker := DiceShaker withDie: aLoadedDie.
 	
@@ -35,8 +35,8 @@ CreateAFunctionalGameTest >> gameWithLoadedDie [
 CreateAFunctionalGameTest >> gameWithTwoLoadedDie [
 
 	| aLoadedDie aSecondLoadedDie aShaker aGame boxes aBoard aDeck |
-	aDeck := AveilableCardsDeck with:
-		         (CardAmount usingType: OverloadCard  amount: 3).
+	aDeck := CardsDeck create.
+	aDeck addCard: OverloadCard new amount: 3.
 	aLoadedDie := LoadedDie with: (OrderedCollection
 			               with: 4
 			               with: 5
@@ -51,7 +51,7 @@ CreateAFunctionalGameTest >> gameWithTwoLoadedDie [
 	aShaker addDie: aSecondLoadedDie.
 	
 	boxes := (BoxCreator use: (OrderedCollection with:
-			           (BoxProbability using: NoEffectBox new withChance: 100))) 
+			           (BoxProbability using: EmptyObject new withChance: 100))) 
 		         create: 10.
 	aBoard := Board with: boxes measure: (Parsec worth: 100).
 	aGame := DuplaGalacticaGameProxy
@@ -104,7 +104,7 @@ CreateAFunctionalGameTest >> testD002CreateGameMoveThePlayersAndAskForWinner [
 ]
 
 { #category : #tests }
-CreateAFunctionalGameTest >> testF001CreateGameWithLoadedDie [
+CreateAFunctionalGameTest >> testF001CreateGameWithLoadedDieMoveThePlayersAndAskForTheirBoxes [
 
 	| aGame |
 	aGame := self gameWithLoadedDie.
@@ -152,7 +152,7 @@ CreateAFunctionalGameTest >> testG002CreateGameWithTwoDiceAndThrowThemTwoTimes [
 ]
 
 { #category : #tests }
-CreateAFunctionalGameTest >> testH001VerifyThatTeMovesDoNotHaveEffectAfterSomeoneWins [
+CreateAFunctionalGameTest >> testH001VerifyThatTheMovesDoNotHaveEffectAfterSomeoneWins [
 
 	| aGame |
 	aGame := self gameWithTwoLoadedDie.

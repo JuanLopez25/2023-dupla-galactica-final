@@ -23,11 +23,9 @@ HyperJumpBox >> currentValue [
 ]
 
 { #category : #effect }
-HyperJumpBox >> effect: aGame [
+HyperJumpBox >> effect: aPlayer in: aGame [
 
-	aGame moveCurrent: self currentValue parsecs nominalValue
-		// (aGame parsecs nominalValue // aGame boxes).
-
+	aGame move: aPlayer amount: (aGame amountToBoxes: self currentValue).
 	parsecManager goNext
 ]
 
@@ -35,7 +33,7 @@ HyperJumpBox >> effect: aGame [
 HyperJumpBox >> initializeWith: aParsecCollection [
 
 	aParsecCollection sort: [ :value1 :value2 | 
-		value2 parsecs nominalValue > value1 parsecs nominalValue ].
+		value2 parsecs nominalValue < value1 parsecs nominalValue ].
 	parsecs := aParsecCollection.
 	parsecManager := QueueManager with: parsecs
 ]

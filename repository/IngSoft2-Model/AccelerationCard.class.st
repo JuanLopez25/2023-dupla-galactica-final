@@ -1,35 +1,17 @@
 Class {
 	#name : #AccelerationCard,
 	#superclass : #Object,
-	#instVars : [
-		'holder',
-		'target'
-	],
 	#category : #'IngSoft2-Model'
 }
-
-{ #category : #'Intance creation' }
-AccelerationCard class >> create [
-
-	^ self new intializeCreate
-]
 
 { #category : #comparing }
 AccelerationCard >> = aCard [
 
-	(aCard isKindOf: self class)
-		ifTrue: [ ^ aCard holder = holder ]
-		ifFalse: [ ^ false ]
+	^ aCard isKindOf: self class
 ]
 
 { #category : #effect }
-AccelerationCard >> applyCardUsing: cardManager at: aGame [
-
-	cardManager activeCard: (self class create newHolder: holder)
-]
-
-{ #category : #effect }
-AccelerationCard >> applyEffect [
+AccelerationCard >> effect [
 
 	^ 1
 ]
@@ -38,19 +20,6 @@ AccelerationCard >> applyEffect [
 AccelerationCard >> hasEffect [
 
 	^ true
-]
-
-{ #category : #information }
-AccelerationCard >> holder [
-
-	^ holder
-]
-
-{ #category : #initialization }
-AccelerationCard >> intializeCreate [
-
-	holder := EmptyObject new.
-	target := EveryPlayer new
 ]
 
 { #category : #information }
@@ -66,21 +35,7 @@ AccelerationCard >> isPermanent [
 ]
 
 { #category : #effect }
-AccelerationCard >> newHolder: aHolder [
+AccelerationCard >> objectiveWhenTarget: anObjective using: aCardManager [
 
-	holder := aHolder
-	
-]
-
-{ #category : #effect }
-AccelerationCard >> selectTarget: aPlayer [
-
-
-
-]
-
-{ #category : #information }
-AccelerationCard >> target [
-
-	^ target
+	^ EveryPlayer new
 ]

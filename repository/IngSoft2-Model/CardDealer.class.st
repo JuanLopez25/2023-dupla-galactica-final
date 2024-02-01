@@ -21,31 +21,30 @@ CardDealer >> cardsToDeal [
 ]
 
 { #category : #cards }
-CardDealer >> createCardFor: aColor [
+CardDealer >> dealCard [
 
-	| aNewDeck |
 	deck isEmpty ifTrue: [ 
-		aNewDeck := discardDeck shuffle.
-		aNewDeck do: [ :card | deck addExistingCards: card ].
+		discardDeck shuffle do: [ :card | 
+			deck addCard: card deepCopy amount: 1 ].
 		deck isEmpty ifTrue: [ ^ EmptyObject new ] ].
-	^ deck createCardFor: aColor
+	^ deck dealCard
 ]
 
 { #category : #cards }
 CardDealer >> discard: aCard [
 
-	discardDeck addCard: aCard
+	discardDeck addCard: aCard amount: 1.
 ]
 
 { #category : #information }
 CardDealer >> discardCardsDeskAmount [
 
-	^ discardDeck deckSize
+	^ discardDeck cardsToDeal
 ]
 
 { #category : #initialization }
 CardDealer >> intializeWith: aDeck [
 
-	deck := aDeck.
-	discardDeck := DiscardsCardsDeck createDeck.
+	deck := CardsDeck create.
+	discardDeck := aDeck.
 ]

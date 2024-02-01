@@ -2,45 +2,53 @@ Class {
 	#name : #CardsInPosetionDeck,
 	#superclass : #Object,
 	#instVars : [
-		'cards'
+		'playersHands'
 	],
 	#category : #'IngSoft2-Model'
 }
 
 { #category : #'Instance creation' }
-CardsInPosetionDeck class >> createDeck [
-	^ self new initializeDeck.
+CardsInPosetionDeck class >> createDeckFor: aColorCollection [
+
+	^ self new initializeDeckFor: aColorCollection
 ]
 
-{ #category : #'changing cards' }
-CardsInPosetionDeck >> addCard: aCard [
+{ #category : #cards }
+CardsInPosetionDeck >> addCard: aCard to: aColorPlayer [
 
-	(aCard isEmpty) ifFalse: [ cards addLast: aCard ].
+	aCard isEmpty ifFalse: [ 
+		playersHands
+			detect: [ :playerHand | playerHand owner = aColorPlayer ]
+			ifFound: [ :hand | hand addCard: aCard ]
+			ifNone: [ Error signal: 'That is not a valid objective' ] ]
 ]
 
-{ #category : #'changing cards' }
+{ #category : #cards }
 CardsInPosetionDeck >> cardsOf: aPlayerColor [
 
-	^ (cards select: [ :card | card holder = aPlayerColor ]) size
+	^ (playersHands detect: [ :hand | hand owner = aPlayerColor ]) size
 ]
 
-{ #category : #'changing cards' }
-CardsInPosetionDeck >> hasBeenGiven: aCard [
+{ #category : #cards }
+CardsInPosetionDeck >> hasBeenGiven: aCard to: aPlayerColor [
 
-	cards
-		detect: [ :card | card = aCard ]
-		ifFound: [ :card | ^ true ]
-		ifNone: [ ^ false ]
-]
-
-{ #category : #initialization }
-CardsInPosetionDeck >> initializeDeck [
-
-	cards := OrderedCollection new
+	playersHands
+		detect: [ :hand | hand owner = aPlayerColor and: (hand has: aCard) ]
+		ifFound: [ :hand | ^ true ].
+	^ false
 ]
 
 { #category : #initialization }
-CardsInPosetionDeck >> takeOut: aCard [
+CardsInPosetionDeck >> initializeDeckFor: aColorCollection [
 
-	cards remove: aCard.
+	playersHands := OrderedCollection new.
+	aColorCollection do: [ :color | playersHands addLast: (PlayerHand of: color) ]
+]
+
+{ #category : #initialization }
+CardsInPosetionDeck >> takeOut: aCard to: aColorPlayer [
+
+	aCard isEmpty ifFalse: [ 
+		(playersHands detect: [ :playerHand | playerHand owner = aColorPlayer ]) 
+			takeOut: aCard ]
 ]

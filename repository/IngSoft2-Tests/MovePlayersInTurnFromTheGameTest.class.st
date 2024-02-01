@@ -17,13 +17,13 @@ MovePlayersInTurnFromTheGameTest >> setUp [
 
 	| aDeck |
 	super setUp.
-	aDeck := AveilableCardsDeck with:
-		         (CardAmount usingType: OverloadCard  amount: 3).
+	aDeck := CardsDeck create.
+	aDeck addCard: OverloadCard new amount: 3.
 	aColorCollection := OrderedCollection with: 'red' with: 'blue'.
 	aLoadedDie := LoadedDie with:
 		              (OrderedCollection with: 1 with: 2 with: 3).
 	boxes := (BoxCreator use:
-		          (OrderedCollection with: (BoxProbability using: NoEffectBox new withChance: 100))) 
+		          (OrderedCollection with: (BoxProbability using: EmptyObject new withChance: 100))) 
 		         create: 10.
 	
 	aShaker := DiceShaker withDie: aLoadedDie.

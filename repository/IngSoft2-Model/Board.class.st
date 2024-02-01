@@ -19,15 +19,16 @@ Board class >> with: aBoxCollection measure: aLengthMeasure [
 ]
 
 { #category : #information }
-Board >> boxes [
+Board >> amountToBoxes: anAmount [
 
-	^ boxes size
+	^ anAmount parsecs nominalValue
+	  // (lengthMeasure parsecs nominalValue// self size)
 ]
 
 { #category : #'box effect' }
-Board >> effectAt: aPosition In: aGame [
+Board >> effectAt: aPosition in: aGame to: aPlayer [
 
-	(boxes at: aPosition) effect: aGame 
+	(boxes at: aPosition) effect: aPlayer in: aGame.
 ]
 
 { #category : #initialization }
@@ -47,4 +48,10 @@ Board >> lightYears [
 Board >> parsecs [
 
 	^ lengthMeasure parsecs
+]
+
+{ #category : #accessing }
+Board >> size [
+
+	^ boxes size
 ]

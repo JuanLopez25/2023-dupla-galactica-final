@@ -5,7 +5,7 @@ Class {
 }
 
 { #category : #effect }
-SprintBox >> effect: aGame [
+SprintBox >> effect: aPlayer in: aGame [
 
-	aGame moveCurrent: (aGame cardsInPosetionOf: aGame currentPlayer)
+	aGame move: aPlayer amount: (aGame cardsInPosetionOf: aPlayer color)
 ]

@@ -13,12 +13,12 @@ Class {
 CreateDuplaGalacticaGameTest >> createGameWithEffects [
 
 	| aGame aBoard aBoxCreator boxes boxesProbabilities aDeck |
-	aDeck := AveilableCardsDeck with:
-		         (CardAmount usingType: OverloadCard  amount: 3).
+	aDeck := CardsDeck create.
+	aDeck addCard: OverloadCard new amount: 3.
 	boxesProbabilities := OrderedCollection
 		                      with:
 		                      (BoxProbability
-			                       using: NoEffectBox new
+			                       using: EmptyObject new
 			                       withChance: 30)
 		                      with:
 		                      (BoxProbability
@@ -43,7 +43,7 @@ CreateDuplaGalacticaGameTest >> createGameWithEffects [
 							                         with: (Parsec worth: 30)))
 				                       withChance: 8).
 	boxesProbabilities addLast:
-		(BoxProbability using: (RandomCardBox dealing: 1) withChance: 10).
+		(BoxProbability using: (RandomCardBox new) withChance: 10).
 	aBoxCreator := BoxCreator use: boxesProbabilities.
 	boxes := aBoxCreator create: 10.
 	aBoard := Board with: boxes measure: (Parsec worth: 200).
@@ -81,7 +81,7 @@ CreateDuplaGalacticaGameTest >> should: anErrorBlock raise: anExceptionClass wit
 ]
 
 { #category : #tests }
-CreateDuplaGalacticaGameTest >> testP001VerifyTheCorrectCreationOfTheBoardWithEffectsLength [
+CreateDuplaGalacticaGameTest >> testP001VerifyTheCorrectCreationOfTheBoardWithEffectsAndAskForItsBoardLength [
 
 	| aGame |
 	aGame := self createGameWithEffects.
@@ -99,7 +99,7 @@ CreateDuplaGalacticaGameTest >> testP003VerifyTheCorrectUseOfTurns [
 ]
 
 { #category : #tests }
-CreateDuplaGalacticaGameTest >> testP004VerifyTheCorrectCreationOfGoalLaps [
+CreateDuplaGalacticaGameTest >> testP004VerifyTheCorrectCreationOfABoardWithOneGoalLap [
 
 	| aGame |
 	aGame := self createGameWithEffects.
@@ -107,39 +107,7 @@ CreateDuplaGalacticaGameTest >> testP004VerifyTheCorrectCreationOfGoalLaps [
 ]
 
 { #category : #tests }
-CreateDuplaGalacticaGameTest >> testP007VerifyTheParsecsWhenBoardCreated [
-
-	| aGame |
-	aGame := self createGameWithEffects.
-	self assert: aGame parsecs nominalValue equals: 200
-]
-
-{ #category : #tests }
-CreateDuplaGalacticaGameTest >> testP013VerifyTheCorrectUseOfRankingInRandomGame [
-
-	| aGame |
-	aGame := self createGameWithEffects.
-	self assert: aGame ranking size identicalTo: 2
-]
-
-{ #category : #tests }
-CreateDuplaGalacticaGameTest >> testP014VerifyTheCorrectUseOfLaps [
-
-	| aGame |
-	aGame := self createGameWithEffects.
-	self assert: aGame playersLaps size identicalTo: 2
-]
-
-{ #category : #tests }
-CreateDuplaGalacticaGameTest >> testP015VerifyTheCorrectUseOfPositions [
-
-	| aGame |
-	aGame := self createGameWithEffects.
-	self assert: aGame playersBox size identicalTo: 2
-]
-
-{ #category : #tests }
-CreateDuplaGalacticaGameTest >> testP016VerifyTheCorrectUseOfWinner [
+CreateDuplaGalacticaGameTest >> testP016AskingForAWinnerBeforeAnyoneMoves [
 
 	| aGame |
 	aGame := self createGameWithEffects.
@@ -150,22 +118,28 @@ CreateDuplaGalacticaGameTest >> testP016VerifyTheCorrectUseOfWinner [
 ]
 
 { #category : #tests }
-CreateDuplaGalacticaGameTest >> testP017VerifyTheCorrectCreationOfGameWhenNoColorHasBeenPass [
+CreateDuplaGalacticaGameTest >> testP017TryToCreatAGameWhenNoColorHasBeenPassThenRaiseAnError [
 
 	self
 		should: [ 
 			DuplaGalacticaGameProxy
 				with: OrderedCollection new
-				and: (Board with: (OrderedCollection with: (NoEffectBox new) with: (NoEffectBox new) with: (NoEffectBox new) with: (NoEffectBox new)) measure: (Parsec worth: 200))
+				and: (Board
+						 with: (OrderedCollection
+								  with: EmptyObject new
+								  with: EmptyObject new
+								  with: EmptyObject new
+								  with: EmptyObject new)
+						 measure: (Parsec worth: 200))
 				usingToThrow: (OrderedCollection with: aLoadedDie)
 				winningWhen: 1
-				using: CardDealer new]
+				using: CardDealer new ]
 		raise: Error
 		withMessage: 'Cannot create a game with no players'
 ]
 
 { #category : #tests }
-CreateDuplaGalacticaGameTest >> testP018VerifyTheCorrectCreationOfGameWhenTheGoalLapsAreInvalid [
+CreateDuplaGalacticaGameTest >> testP018TryToCreateAGameWhenTheGoalLapsAreInvalidThenRaiseAnError [
 
 	self
 		should: [ 
@@ -173,10 +147,10 @@ CreateDuplaGalacticaGameTest >> testP018VerifyTheCorrectCreationOfGameWhenTheGoa
 				with: aColorCollection
 				and: (Board
 						 with: (OrderedCollection
-								  with: NoEffectBox new
-								  with: NoEffectBox new
-								  with: NoEffectBox new
-								  with: NoEffectBox new)
+								  with: EmptyObject new
+								  with: EmptyObject new
+								  with: EmptyObject new
+								  with: EmptyObject new)
 						 measure: (Parsec worth: 200))
 				usingToThrow: (DiceShaker withDie: aLoadedDie)
 				winningWhen: -1
@@ -186,7 +160,7 @@ CreateDuplaGalacticaGameTest >> testP018VerifyTheCorrectCreationOfGameWhenTheGoa
 ]
 
 { #category : #tests }
-CreateDuplaGalacticaGameTest >> testP019VerifyTheCorrectCreationOfGameWhenTheParsecsAmountAreInvalid [
+CreateDuplaGalacticaGameTest >> testP019TryToCreateAGameWhenTheParsecsAmountAreInvalidThenRaiseAnError [
 
 	self
 		should: [ 
@@ -201,13 +175,13 @@ CreateDuplaGalacticaGameTest >> testP019VerifyTheCorrectCreationOfGameWhenThePar
 ]
 
 { #category : #tests }
-CreateDuplaGalacticaGameTest >> testP020TryToCreateAGameWithDuplicateColorsThenInvalid [
+CreateDuplaGalacticaGameTest >> testP020TryToCreateAGameWithDuplicateColorsThenRaiseAnError [
 
 	| aDuplicateColorCollection boxes aBoard |
 	aDuplicateColorCollection := OrderedCollection
 		                             with: 'red'
 		                             with: 'red'.
-	boxes := (BoxCreator use: (OrderedCollection with: (BoxProbability using: NoEffectBox new withChance: 100))) create: 10.
+	boxes := (BoxCreator use: (OrderedCollection with: (BoxProbability using: EmptyObject new withChance: 100))) create: 10.
 	aBoard := Board with: boxes measure: (Parsec worth: 100).
 	self
 		should: [ 

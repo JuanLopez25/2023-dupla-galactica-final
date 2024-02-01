@@ -5,7 +5,7 @@ Class {
 }
 
 { #category : #effect }
-AtomicBombBox >> effect: aGame [
+AtomicBombBox >> effect: aPlayer in: aGame [
 
 	aGame moveAllToTheStart
 ]

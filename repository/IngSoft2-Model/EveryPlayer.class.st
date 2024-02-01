@@ -5,7 +5,7 @@ Class {
 }
 
 { #category : #comparing }
-EveryPlayer >> = aPlayer [
+EveryPlayer >> = aCard [
 
-	^ true
+	^ aCard isKindOf: self class
 ]

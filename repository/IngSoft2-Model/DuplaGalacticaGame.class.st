@@ -6,9 +6,7 @@ Class {
 		'board',
 		'goalLaps',
 		'turnManager',
-		'current',
 		'cardManager',
-		'boxes',
 		'shaker'
 	],
 	#category : #'IngSoft2-Model'
@@ -17,12 +15,15 @@ Class {
 { #category : #'Instance creation' }
 DuplaGalacticaGame class >> with: aColorCollection and: aBoard usingToThrow: aDiceShaker winningWhen: aValue using: aCardDealer [
 
+	| duplicateColors |
 	aColorCollection size <= 0 ifTrue: [ 
 		Error signal: 'Cannot create a game with no players' ].
-	aColorCollection do: [ :colorToTest | 
-		(aColorCollection select: [ :color | color = colorToTest ]) size > 1 
-			ifTrue: [ 
-			Error signal: 'Cannot create a game with duplicate colors' ] ].
+	duplicateColors := aColorCollection
+		                   detect: [ :color | 
+		                   (aColorCollection occurrencesOf: color) > 1 ]
+		                   ifNone: [ nil ].
+	duplicateColors ifNotNil: [ 
+		Error signal: 'Cannot create a game with duplicate colors' ].
 	aValue <= 0 ifTrue: [ 
 		Error signal: 'Cannot create a game with that goal laps' ].
 	^ self new
@@ -34,24 +35,30 @@ DuplaGalacticaGame class >> with: aColorCollection and: aBoard usingToThrow: aDi
 ]
 
 { #category : #cards }
-DuplaGalacticaGame >> addAmountOfCards: anAmountOfCard [ 
+DuplaGalacticaGame >> addCardTo: aPlayer [
 	
-	cardManager addAmountOfCards: anAmountOfCard to: current color.
+	cardManager addCardTo: aPlayer color.
+]
+
+{ #category : #Information }
+DuplaGalacticaGame >> amountToBoxes: anAmount [
+	
+	^ board amountToBoxes: anAmount.
 ]
 
 { #category : #cards }
-DuplaGalacticaGame >> apply: aCard [
+DuplaGalacticaGame >> apply: aCard to: anObjective of: aHolder from: aPlayerColor [
 	
-	(cardManager canBeUse: aCard whenPlay: current color) ifFalse: [ 
+	(cardManager canBeUse: aCard whenPlay: turnManager current color from: aPlayerColor) ifFalse: [ 
 		Error signal:
 			'A permanent card can only be use when it is your turn' ].
-	cardManager apply: aCard at: self.
+	cardManager apply: aCard at: self to: anObjective of: aHolder from: aPlayerColor.
 ]
 
 { #category : #information }
 DuplaGalacticaGame >> boxes [
 
-	^ boxes
+	^ board size
 ]
 
 { #category : #information }
@@ -69,7 +76,7 @@ DuplaGalacticaGame >> cardsToDeal [
 { #category : #information }
 DuplaGalacticaGame >> currentPlayer [
 
-	^ current color
+	^ turnManager current color
 ]
 
 { #category : #information }
@@ -92,19 +99,7 @@ DuplaGalacticaGame >> initializeWith: aColorsCollection and: aBoard usingToThrow
 	shaker := aDiceShaker.
 	turnManager := QueueManager with: players.
 	goalLaps := aValue.
-	boxes:= aBoard boxes.
-	current:= turnManager current.
-	cardManager := CardManager using: aCardDealer with: aColorsCollection.
-]
-
-{ #category : #cards }
-DuplaGalacticaGame >> isPlaying: objective [
-
-	objective isEmpty ifTrue: [ Error signal: 'The objective has not been specify' ].
-	self playersColors
-		detect: [ :color | color = objective ]
-		ifFound: [ ^ true ]
-		ifNone: [ Error signal: 'That is not a valid objective' ]
+	cardManager := CardManager using: aCardDealer with: aColorsCollection
 ]
 
 { #category : #information }
@@ -114,23 +109,24 @@ DuplaGalacticaGame >> lightYears [
 ]
 
 { #category : #player }
+DuplaGalacticaGame >> move: aPlayer amount: anAmount [
+
+	aPlayer move: anAmount andUpdateLap: board size
+]
+
+{ #category : #player }
 DuplaGalacticaGame >> moveAllToTheStart [
 
-	players do: [ :player | player move: ((player box)*(-1) + 1) andUpdateLap: boxes ]
+	players do: [ :player | 
+		player move: player box * -1 + 1 andUpdateLap: board size ]
 ]
 
 { #category : #player }
-DuplaGalacticaGame >> moveCurrent: aValue [
-
-	current move: aValue andUpdateLap: boxes
-]
-
-{ #category : #player }
-DuplaGalacticaGame >> moveOthers: aValue [
+DuplaGalacticaGame >> moveEveryone: effectValue except: aPlayer [
 
 	(players reject: [ :player | 
-		 player color == current color ]) do: [ :player | 
-		player move: aValue andUpdateLap: boxes]
+		 player color == aPlayer color ]) do: [ :player | 
+		player move: effectValue andUpdateLap: board size]
 ]
 
 { #category : #player }
@@ -139,12 +135,16 @@ DuplaGalacticaGame >> movePlayer [
 	| boxesToMove |
 	self winnerExists ifTrue: [ ^ self ].
 	boxesToMove := shaker throwDice.
-	boxesToMove := boxesToMove + (cardManager calculateEffectOn: current color).
-	self winnerExists ifTrue: [ ^ self ].
-	current move: boxesToMove andUpdateLap: boxes.
-	board effectAt: current box In: self.
-	turnManager goNext.
-	current := turnManager current
+	boxesToMove := boxesToMove
+	               +
+	               (cardManager calculateEffectOn:
+		                turnManager current color).
+	turnManager current move: boxesToMove andUpdateLap: board size.
+	board
+		effectAt: turnManager current box
+		in: self
+		to: turnManager current.
+	turnManager goNext
 ]
 
 { #category : #information }
@@ -160,23 +160,9 @@ DuplaGalacticaGame >> playersBox [
 ]
 
 { #category : #information }
-DuplaGalacticaGame >> playersColors [
-
-	^ players collect: [ :player | player color ]
-]
-
-{ #category : #information }
 DuplaGalacticaGame >> playersLaps [
 
 	^ players collect: [ :player | player lap ]
-]
-
-{ #category : #information }
-DuplaGalacticaGame >> playersPositions [
-
-	^ players collect: [ :player | 
-		  Position atTheBeginning move:
-			  boxes * player lap + player box - 1 ]
 ]
 
 { #category : #finalization }
@@ -190,13 +176,11 @@ DuplaGalacticaGame >> ranking [
 ]
 
 { #category : #cards }
-DuplaGalacticaGame >> repeatEffectTo: aPlayerColor [
+DuplaGalacticaGame >> repeatEffectTo: aColorPlayer [
 
-	| lastPosition |
-	lastPosition := current box.
-	current := players detect: [ :player | player color = aPlayerColor ].
-	board effectAt: lastPosition In: self.
-	current := turnManager current
+	board effectAt: turnManager current box in: self to: (players
+			 detect: [ :player | player color = aColorPlayer ]
+			 ifNone: [ Error signal: 'That is not a valid objective' ])
 ]
 
 { #category : #finalization }

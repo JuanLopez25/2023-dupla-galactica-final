@@ -5,7 +5,7 @@ Class {
 }
 
 { #category : #effect }
-WormHoleBox >> effect: aGame [
+WormHoleBox >> effect: aPlayer in: aGame [
 
-	aGame moveCurrent: -4
+	aGame move: aPlayer amount: -4.
 ]

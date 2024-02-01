@@ -14,9 +14,9 @@ MoonWalkBox class >> with: aValue [
 ]
 
 { #category : #effect }
-MoonWalkBox >> effect: aGame [
+MoonWalkBox >> effect: aPlayer in: aGame [
 
-	aGame moveOthers: effectValue
+	aGame moveEveryone: effectValue except: aPlayer.
 ]
 
 { #category : #initialization }

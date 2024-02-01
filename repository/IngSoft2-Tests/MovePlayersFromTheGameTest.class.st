@@ -11,10 +11,10 @@ Class {
 MovePlayersFromTheGameTest >> gameWithMoreParsecs: aLoadedDie [
 
 	| boxes aBoard aLoadedGame aShaker aDeck |
-	aDeck := AveilableCardsDeck with:
-		         (CardAmount usingType: OverloadCard  amount: 3).
+	aDeck := CardsDeck create.
+	aDeck addCard: OverloadCard new amount: 3.
 	boxes := (BoxCreator use: (OrderedCollection with:
-			           (BoxProbability using: NoEffectBox new withChance: 100))) 
+			           (BoxProbability using: EmptyObject new withChance: 100))) 
 		         create: 10.
 	aBoard := Board with: boxes measure: (Parsec worth: 200).
 
@@ -32,10 +32,10 @@ MovePlayersFromTheGameTest >> gameWithMoreParsecs: aLoadedDie [
 MovePlayersFromTheGameTest >> gameWithOneLap: aLoadedDie [
 
 	| aGame boxes aBoard aShaker aDeck |
-	aDeck := AveilableCardsDeck with:
-		         (CardAmount usingType: OverloadCard  amount: 3).
+	aDeck := CardsDeck create.
+	aDeck addCard: OverloadCard new amount: 3.
 	boxes := (BoxCreator use: (OrderedCollection with:
-			           (BoxProbability using: NoEffectBox new withChance: 100))) 
+			           (BoxProbability using: EmptyObject new withChance: 100))) 
 		         create: 10.
 	aBoard := Board with: boxes measure: (Parsec worth: 100).
 
@@ -54,10 +54,10 @@ MovePlayersFromTheGameTest >> gameWithOneLap: aLoadedDie [
 MovePlayersFromTheGameTest >> gameWithTwoLaps: aLoadedDie [
 
 	| boxes aBoard aLoadedGame aShaker aDeck |
-	aDeck := AveilableCardsDeck with:
-		         (CardAmount usingType: OverloadCard  amount: 3).
+	aDeck := CardsDeck create.
+	aDeck addCard: OverloadCard new amount: 3.
 	boxes := (BoxCreator use: (OrderedCollection with:
-			           (BoxProbability using: NoEffectBox new withChance: 100))) 
+			           (BoxProbability using: EmptyObject new withChance: 100))) 
 		         create: 10.
 	aBoard := Board with: boxes measure: (Parsec worth: 100).
 
@@ -157,7 +157,7 @@ MovePlayersFromTheGameTest >> testM005MovePlayersTwoEntireLapsInOnlyOneThrowThen
 ]
 
 { #category : #tests }
-MovePlayersFromTheGameTest >> testM006MovePlayerToTheLastBox [
+MovePlayersFromTheGameTest >> testM006MovePlayerToTheLastBoxThenValid [
 
 	| aLoadedDie aGame |
 	aLoadedDie := LoadedDie with: (OrderedCollection
@@ -173,7 +173,7 @@ MovePlayersFromTheGameTest >> testM006MovePlayerToTheLastBox [
 ]
 
 { #category : #tests }
-MovePlayersFromTheGameTest >> testM007MovePlayerToTheGoalAndAskForWinner [
+MovePlayersFromTheGameTest >> testM007MovePlayerToTheGoalAndAskForWinnerThenValid [
 
 	| aLoadedDie aGame |
 	aLoadedDie := LoadedDie with: (OrderedCollection
@@ -205,7 +205,7 @@ MovePlayersFromTheGameTest >> testM008MovePlayerALotOfTimesAndVerifyThatItDoesNo
 ]
 
 { #category : #tests }
-MovePlayersFromTheGameTest >> testM009MovePlayersTwoTimesAndAskForTheirPositions [
+MovePlayersFromTheGameTest >> testM009MovePlayersTwoTimesAndAskForTheirPositionsThenValid [
 
 	| aLoadedDie aGame |
 	aLoadedDie := LoadedDie with: (OrderedCollection
@@ -222,48 +222,4 @@ MovePlayersFromTheGameTest >> testM009MovePlayersTwoTimesAndAskForTheirPositions
 		assert: aGame playersBox
 		equals: (OrderedCollection with: 2 with: 2).
 	self assert: aGame winner equals: 'blue'
-]
-
-{ #category : #tests }
-MovePlayersFromTheGameTest >> testO001CreateBoardWithParsec [
-
-	| aLoadedDie aGame |
-	aLoadedDie := LoadedDie with: (OrderedCollection
-			               with: 7
-			               with: 8
-			               with: 9
-			               with: 6).
-	aGame := self gameWithOneLap: aLoadedDie.
-	self assert: aGame parsecs nominalValue equals: 100
-]
-
-{ #category : #tests }
-MovePlayersFromTheGameTest >> testO002CreateBoardWithAnotherAmountOfParsecThenValid [
-
-	| aLoadedDie aGame |
-	aLoadedDie := LoadedDie with: (OrderedCollection
-			               with: 7
-			               with: 8
-			               with: 9
-			               with: 6).
-	aGame := self gameWithMoreParsecs: aLoadedDie.
-	self assert: aGame parsecs nominalValue equals: 200
-]
-
-{ #category : #tests }
-MovePlayersFromTheGameTest >> testO003CheckTheWormHoleEffectWhenHasPassedTheFirstLap [
-
-	| aLoadedDie aGame |
-	aLoadedDie := LoadedDie with: (OrderedCollection
-			               with: 8
-			               with: 9
-			               with: 5
-			               with: 6).
-	aGame := self gameWithTwoLaps: aLoadedDie.
-	aGame movePlayer.
-	aGame movePlayer.
-	aGame movePlayer.
-	self
-		assert: aGame playersBox
-		equals: (OrderedCollection with: 4 with: 10)
 ]

@@ -9,17 +9,9 @@ Class {
 }
 
 { #category : #'Instance creation' }
-Position class >> atTheBeginning [
+Position class >> create [
 
-	^ self new initializeAtTheBeginning
-]
-
-{ #category : #comparing }
-Position >> = aPosition [
-
-	(lap = aPosition lap and: box = aPosition boxNumber)
-		ifTrue: [ ^ true ]
-		ifFalse: [ ^ false ]
+	^ self new initializeCreate
 ]
 
 { #category : #information }
@@ -28,14 +20,8 @@ Position >> box [
 	^ box
 ]
 
-{ #category : #information }
-Position >> boxNumber [
-
-	^ box
-]
-
 { #category : #initialization }
-Position >> initializeAtTheBeginning [
+Position >> initializeCreate [
 
 	box := 1.
 	lap := 0

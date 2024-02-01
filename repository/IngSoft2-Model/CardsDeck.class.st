@@ -1,5 +1,5 @@
 Class {
-	#name : #AveilableCardsDeck,
+	#name : #CardsDeck,
 	#superclass : #Object,
 	#instVars : [
 		'cardsInDeck'
@@ -8,25 +8,34 @@ Class {
 }
 
 { #category : #'instance creation' }
-AveilableCardsDeck class >> create [
+CardsDeck class >> create [
 
 	^ self new initializeCreate.
 ]
 
 { #category : #cards }
-AveilableCardsDeck >> addCard: aCardClass amount: anAmount [
+CardsDeck >> addCard: aCardClass amount: anAmount [
 
-	anAmount timesRepeat: [ cardsInDeck addLast: aCardClass new ]
+	anAmount timesRepeat: [ cardsInDeck addLast: aCardClass class new ]
 ]
 
 { #category : #information }
-AveilableCardsDeck >> cardsToDeal [
+CardsDeck >> cards [
+
+	| aNewDeck |
+	aNewDeck := cardsInDeck.
+	cardsInDeck := OrderedCollection new.
+	^ aNewDeck
+]
+
+{ #category : #information }
+CardsDeck >> cardsToDeal [
 
 	^ cardsInDeck size
 ]
 
 { #category : #cards }
-AveilableCardsDeck >> dealCard [
+CardsDeck >> dealCard [
 
 	| selectedCard aRandomValue |
 	aRandomValue := cardsInDeck size atRandom.
@@ -36,13 +45,13 @@ AveilableCardsDeck >> dealCard [
 ]
 
 { #category : #initialization }
-AveilableCardsDeck >> initializeCreate [
+CardsDeck >> initializeCreate [
 
 	cardsInDeck := OrderedCollection new.
 ]
 
 { #category : #information }
-AveilableCardsDeck >> isEmpty [
+CardsDeck >> isEmpty [
 
 	^ cardsInDeck isEmpty
 ]

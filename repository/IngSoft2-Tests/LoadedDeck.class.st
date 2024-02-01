@@ -17,7 +17,7 @@ LoadedDeck class >> create [
 LoadedDeck >> addCard: aCard amount: anAmount [
 
 	anAmount timesRepeat: [ 
-		cardsInDeck addLast: aCard new ].
+		cardsInDeck addLast: ((aCard class) new) ].
 ]
 
 { #category : #initialization }

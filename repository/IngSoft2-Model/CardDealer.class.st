@@ -24,7 +24,7 @@ CardDealer >> cardsToDeal [
 CardDealer >> dealCard [
 
 	deck isEmpty ifTrue: [ 
-		discardDeck shuffle do: [ :card | deck addCard: card class amount: 1 ].
+		discardDeck cards do: [ :card | deck addCard: (card class) new amount: 1 ].
 		deck isEmpty ifTrue: [ ^ EmptyObject new ] ].
 	^ deck dealCard
 ]
@@ -32,18 +32,18 @@ CardDealer >> dealCard [
 { #category : #cards }
 CardDealer >> discard: aCard [
 
-	discardDeck addCard: aCard
+	discardDeck addCard: aCard amount: 1.
 ]
 
 { #category : #information }
 CardDealer >> discardCardsDeskAmount [
 
-	^ discardDeck deckSize
+	^ discardDeck cardsToDeal
 ]
 
 { #category : #initialization }
 CardDealer >> intializeWith: aDeck [
 
 	deck := aDeck.
-	discardDeck := DiscardsCardsDeck createDeck.
+	discardDeck := CardsDeck create.
 ]

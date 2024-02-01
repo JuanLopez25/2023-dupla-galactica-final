@@ -14,8 +14,8 @@ BoxesTest >> setUp [
 	super setUp.
 
 	aColorCollection := OrderedCollection with: 'red' with: 'blue'.
-	aDeck := AveilableCardsDeck create.
-	aDeck addCard: AccelerationCard amount: 7.
+	aDeck := CardsDeck create.
+	aDeck addCard: AccelerationCard new amount: 7.
 ]
 
 { #category : #tests }

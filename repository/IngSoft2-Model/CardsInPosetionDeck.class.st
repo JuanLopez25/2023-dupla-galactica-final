@@ -13,7 +13,7 @@ CardsInPosetionDeck class >> createDeckFor: aColorCollection [
 	^ self new initializeDeckFor: aColorCollection
 ]
 
-{ #category : #'changing cards' }
+{ #category : #cards }
 CardsInPosetionDeck >> addCard: aCard to: aColorPlayer [
 
 	aCard isEmpty ifFalse: [ 
@@ -23,13 +23,13 @@ CardsInPosetionDeck >> addCard: aCard to: aColorPlayer [
 			ifNone: [ Error signal: 'That is not a valid objective' ] ]
 ]
 
-{ #category : #'changing cards' }
+{ #category : #cards }
 CardsInPosetionDeck >> cardsOf: aPlayerColor [
 
 	^ (playersHands detect: [ :hand | hand owner = aPlayerColor ]) size
 ]
 
-{ #category : #'changing cards' }
+{ #category : #cards }
 CardsInPosetionDeck >> hasBeenGiven: aCard to: aPlayerColor [
 
 	playersHands

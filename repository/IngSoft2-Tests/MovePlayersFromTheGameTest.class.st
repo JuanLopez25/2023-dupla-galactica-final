@@ -11,8 +11,8 @@ Class {
 MovePlayersFromTheGameTest >> gameWithMoreParsecs: aLoadedDie [
 
 	| boxes aBoard aLoadedGame aShaker aDeck |
-	aDeck := AveilableCardsDeck create.
-	aDeck addCard: OverloadCard amount: 3.
+	aDeck := CardsDeck create.
+	aDeck addCard: OverloadCard new amount: 3.
 	boxes := (BoxCreator use: (OrderedCollection with:
 			           (BoxProbability using: EmptyObject new withChance: 100))) 
 		         create: 10.
@@ -32,8 +32,8 @@ MovePlayersFromTheGameTest >> gameWithMoreParsecs: aLoadedDie [
 MovePlayersFromTheGameTest >> gameWithOneLap: aLoadedDie [
 
 	| aGame boxes aBoard aShaker aDeck |
-	aDeck := AveilableCardsDeck create.
-	aDeck addCard: OverloadCard amount: 3.
+	aDeck := CardsDeck create.
+	aDeck addCard: OverloadCard new amount: 3.
 	boxes := (BoxCreator use: (OrderedCollection with:
 			           (BoxProbability using: EmptyObject new withChance: 100))) 
 		         create: 10.
@@ -54,8 +54,8 @@ MovePlayersFromTheGameTest >> gameWithOneLap: aLoadedDie [
 MovePlayersFromTheGameTest >> gameWithTwoLaps: aLoadedDie [
 
 	| boxes aBoard aLoadedGame aShaker aDeck |
-	aDeck := AveilableCardsDeck create.
-	aDeck addCard: OverloadCard amount: 3.
+	aDeck := CardsDeck create.
+	aDeck addCard: OverloadCard new amount: 3.
 	boxes := (BoxCreator use: (OrderedCollection with:
 			           (BoxProbability using: EmptyObject new withChance: 100))) 
 		         create: 10.

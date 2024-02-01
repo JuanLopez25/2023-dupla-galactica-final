@@ -24,8 +24,8 @@ RedoCard >> applyCardUsing: cardManager at: aGame to: anObjective [
 
 	cardManager lastCardPlay isEmpty
 		ifFalse: [ 
-		redoing:= cardManager lastCardPlay.
-		^ redoing applyCardUsing: cardManager at: aGame to: anObjective ]
+			redoing := cardManager lastCardPlay.
+			redoing applyCardUsing: cardManager at: aGame to: anObjective ]
 		ifTrue: [ 
 			Error signal:
 				'Redo card cannot be played because there are no cards that have been played before' ]

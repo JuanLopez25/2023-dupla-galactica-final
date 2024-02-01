@@ -16,7 +16,7 @@ CardsDeck class >> create [
 { #category : #cards }
 CardsDeck >> addCard: aCardClass amount: anAmount [
 
-	anAmount timesRepeat: [ cardsInDeck addLast: aCardClass class new ]
+	anAmount timesRepeat: [ cardsInDeck addLast: aCardClass deepCopy ]
 ]
 
 { #category : #information }

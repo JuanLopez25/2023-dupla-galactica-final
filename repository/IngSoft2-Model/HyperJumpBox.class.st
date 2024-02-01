@@ -22,12 +22,6 @@ HyperJumpBox >> currentValue [
 	^ parsecManager current
 ]
 
-{ #category : #creation }
-HyperJumpBox >> duplicate [
-
-	^ self class with: parsecs
-]
-
 { #category : #effect }
 HyperJumpBox >> effect: aPlayer in: aGame [
 

@@ -13,12 +13,6 @@ MoonWalkBox class >> with: aValue [
 	^ self new initializeWith: aValue
 ]
 
-{ #category : #creation }
-MoonWalkBox >> duplicate [
-
-	^ self class with: effectValue.
-]
-
 { #category : #effect }
 MoonWalkBox >> effect: aPlayer in: aGame [
 

@@ -172,7 +172,7 @@ BoxesTest >> testN006CheckHyperJumpBoxMoveTheCorrectAmountOfParsecsWhenTheyAreEn
 	| aLoadedDie aGame boxes aBoard aShaker |
 	aLoadedDie := LoadedDie with: (OrderedCollection
 			               with: 3
-			               with: 3
+			               with: 4
 			               with: 5
 			               with: 8).
 	boxes := (BoxCreator use: (OrderedCollection with: (BoxProbability
@@ -188,12 +188,12 @@ BoxesTest >> testN006CheckHyperJumpBoxMoveTheCorrectAmountOfParsecsWhenTheyAreEn
 		         and: aBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
-		         using: (CardDealer with:aDeck).
+		         using: (CardDealer with: aDeck).
 	aGame movePlayer.
 	aGame movePlayer.
 	self
 		assert: aGame playersBox
-		equals: (OrderedCollection with: 7 with: 8)
+		equals: (OrderedCollection with: 8 with: 9)
 ]
 
 { #category : #tests }
@@ -278,7 +278,7 @@ BoxesTest >> testN009CheckHyperJumpBoxDoesNotAllowPlayersToBeAtANegativePosition
 	aGame movePlayer.
 	self
 		assert: aGame playersBox
-		equals: (OrderedCollection with: 1 with: 3)
+		equals: (OrderedCollection with: 3 with: 1)
 ]
 
 { #category : #tests }
@@ -334,7 +334,7 @@ BoxesTest >> testN011CheckHyperJumpBoxMoveTheCorrectAmountOfParsecsWhenTheyAreNo
 	aGame movePlayer.
 	self
 		assert: aGame playersBox
-		equals: (OrderedCollection with: 7 with: 8)
+		equals: (OrderedCollection with: 8 with: 7)
 ]
 
 { #category : #tests }
@@ -454,7 +454,7 @@ BoxesTest >> testT001CheckHyperJumpBoxMoveTheCorrectAmountOfBoxesWhenTheValuesAr
 	aGame movePlayer.
 	self
 		assert: aGame playersBox
-		equals: (OrderedCollection with: 7 with: 8)
+		equals: (OrderedCollection with: 8 with: 7)
 ]
 
 { #category : #tests }
@@ -483,7 +483,7 @@ BoxesTest >> testT002CheckHyperJumpBoxMoveTheCorrectAmountOfBoxesWhenTheValuesAr
 	aGame movePlayer.
 	self
 		assert: aGame playersBox
-		equals: (OrderedCollection with: 7 with: 8)
+		equals: (OrderedCollection with: 8 with: 7)
 ]
 
 { #category : #tests }
@@ -525,7 +525,7 @@ BoxesTest >> testT004CheckHyperJumpBoxMoveTheCorrectAmountOfBoxesWhenTheValuesAr
 	aGame movePlayer.
 	self
 		assert: aGame playersBox
-		equals: (OrderedCollection with: 1 with: 2)
+		equals: (OrderedCollection with: 2 with: 1)
 ]
 
 { #category : #tests }

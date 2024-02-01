@@ -22,6 +22,12 @@ HyperJumpBox >> currentValue [
 	^ parsecManager current
 ]
 
+{ #category : #creation }
+HyperJumpBox >> duplicate [
+
+	^ self class with: parsecs
+]
+
 { #category : #effect }
 HyperJumpBox >> effect: aPlayer in: aGame [
 
@@ -33,7 +39,7 @@ HyperJumpBox >> effect: aPlayer in: aGame [
 HyperJumpBox >> initializeWith: aParsecCollection [
 
 	aParsecCollection sort: [ :value1 :value2 | 
-		value2 parsecs nominalValue > value1 parsecs nominalValue ].
+		value2 parsecs nominalValue < value1 parsecs nominalValue ].
 	parsecs := aParsecCollection.
 	parsecManager := QueueManager with: parsecs
 ]

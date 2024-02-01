@@ -40,5 +40,5 @@ BoxCreator >> oneRandomBoxOf [
 	aRandomValue := 100 atRandom.
 	^ (boxes detect: [ :box |
 		sum := sum + box probability.
-		aRandomValue <= sum]) box.
+		aRandomValue <= sum]) box duplicate.
 ]

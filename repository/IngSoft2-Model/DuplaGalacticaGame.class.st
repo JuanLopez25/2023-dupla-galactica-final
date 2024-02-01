@@ -47,21 +47,12 @@ DuplaGalacticaGame >> amountToBoxes: anAmount [
 ]
 
 { #category : #cards }
-DuplaGalacticaGame >> apply: aCard to: anObjective from: aPlayerColor [
+DuplaGalacticaGame >> apply: aCard to: anObjective of: aHolder from: aPlayerColor [
 	
 	(cardManager canBeUse: aCard whenPlay: turnManager current color from: aPlayerColor) ifFalse: [ 
 		Error signal:
 			'A permanent card can only be use when it is your turn' ].
-	cardManager apply: aCard at: self to: anObjective from: aPlayerColor.
-]
-
-{ #category : #cards }
-DuplaGalacticaGame >> apply: aCard to: anObjectiveCard of: aHolder from: aPlayerColor [
-	
-	(cardManager canBeUse: aCard whenPlay: turnManager current color from: aPlayerColor) ifFalse: [ 
-		Error signal:
-			'A permanent card can only be use when it is your turn' ].
-	cardManager apply: aCard at: self to: anObjectiveCard of: aHolder from: aPlayerColor.
+	cardManager apply: aCard at: self to: anObjective of: aHolder from: aPlayerColor.
 ]
 
 { #category : #information }

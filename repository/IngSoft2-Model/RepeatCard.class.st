@@ -7,14 +7,14 @@ Class {
 { #category : #comparing }
 RepeatCard >> = aCard [
 
-	^ aCard class = self class
+	^ aCard isKindOf: self class
 ]
 
 { #category : #effect }
 RepeatCard >> applyCardUsing: cardManager at: aGame to: anObjective [
 
+	
 	aGame repeatEffectTo: anObjective.
-	cardManager discard: cardManager beingUse.
 ]
 
 { #category : #information }

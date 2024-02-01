@@ -7,21 +7,11 @@ Class {
 { #category : #comparing }
 SpeedCard >> = aCard [
 
-	^ aCard class = self class
+	^ aCard isKindOf: self class
 ]
 
 { #category : #effect }
-SpeedCard >> applyCardUsing: cardManager at: aGame to: anObjective [
-
-	anObjective = EveryPlayer new ifFalse: [ 
-		cardManager beingUse hasEffect
-			ifTrue: [ cardManager active: self to: anObjective ]
-			ifFalse: [ 
-			cardManager active: cardManager beingUse to: anObjective ] ]
-]
-
-{ #category : #effect }
-SpeedCard >> applyEffect [
+SpeedCard >> effect [
 
 	^ 1
 ]
@@ -42,4 +32,10 @@ SpeedCard >> isEmpty [
 SpeedCard >> isPermanent [
 
 	^ true
+]
+
+{ #category : #effect }
+SpeedCard >> objectiveWhenTarget: anObjective using: aCardManager [
+
+	anObjective = EveryPlayer new ifFalse: [ ^ anObjective ] ifTrue: [ ^ EmptyObject new ]
 ]

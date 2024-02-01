@@ -4,12 +4,6 @@ Class {
 	#category : #'IngSoft2-Model'
 }
 
-{ #category : #creation }
-EmptyObject >> duplicate [
-
-	^ self class new
-]
-
 { #category : #Information }
 EmptyObject >> effect: aPlayer in: aGame [ 
 

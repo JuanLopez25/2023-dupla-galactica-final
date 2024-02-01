@@ -645,7 +645,7 @@ CardsTest >> testQ026TryToUseACancellationCardWithANonValidObjective [
 	aGame apply: aCard to: 'blue' from: 'red'.
 	aCard := CancellationCard new.
 	self
-		should: [ aGame apply: aCard to: 'red' from: 'blue' ]
+		should: [ aGame apply: aCard to: OverloadCard new of: EmptyObject new from: 'blue' ]
 		raise: Error
 		withMessage:
 		'There are no that type of cards activate in this player or is not a valid objective'
@@ -693,7 +693,7 @@ CardsTest >> testQ029VerifyTheCorrectUseOfRedoCardWhenLastCardPlayIsAnOverloadCa
 	| aGame aCard aDeck |
 	aDeck := LoadedDeck create.
 	aDeck addCard: OverloadCard new amount: 2.
-	aDeck addCard: RedoCard new amount: 2.
+	aDeck addCard: RedoCard create amount: 2.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: (self createBoard)
@@ -718,7 +718,7 @@ CardsTest >> testQ030VerifyTheCorrectUseOfRedoCardWhenLastCardPlayedIsACancellat
 	aDeck := LoadedDeck create.
 	aDeck addCard: SpeedCard new amount: 2.
 	aDeck addCard: CancellationCard new amount: 1.
-	aDeck addCard: RedoCard new amount: 1.
+	aDeck addCard: RedoCard create amount: 1.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
@@ -754,7 +754,7 @@ CardsTest >> testQ031VerifyTheCorrectUseOfRedoCardWhenLastCardPlayedIsASpeedCard
 	| aGame aCard aDeck |
 	aDeck := LoadedDeck create.
 	aDeck addCard: SpeedCard new amount: 2.
-	aDeck addCard: RedoCard new amount: 2.
+	aDeck addCard: RedoCard create amount: 2.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
@@ -778,7 +778,7 @@ CardsTest >> testQ032VerifyTheCorrectUseOfRedoCardWhenLastCardPlayedIsAnAccelera
 	| aGame aCard aDeck |
 	aDeck := LoadedDeck create.
 	aDeck addCard: AccelerationCard new amount: 2.
-	aDeck addCard: RedoCard new amount: 2.
+	aDeck addCard: RedoCard create amount: 2.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
@@ -802,7 +802,7 @@ CardsTest >> testQ033VerifyTheCorrectUseOfRedoCardWhenLastCardPlayedIsARedoCard 
 	| aGame aCard aDeck |
 	aDeck := LoadedDeck create.
 	aDeck addCard: AccelerationCard new amount: 2.
-	aDeck addCard: RedoCard new amount: 2.
+	aDeck addCard: RedoCard create amount: 2.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
@@ -1047,7 +1047,7 @@ CardsTest >> testQ043VerifyThatRedoCardCanBePlayWheneverThePlayerWants [
 	| aGame aCard aDeck |
 	aDeck := LoadedDeck create.
 	aDeck addCard: AccelerationCard new amount: 2.
-	aDeck addCard: RedoCard new amount: 2.
+	aDeck addCard: RedoCard create amount: 2.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
@@ -1096,7 +1096,7 @@ CardsTest >> testQ045VerifyThatRedoCardCanRepeatTheEffectOfTheRepeatCard [
 	| aGame aCard aDeck |
 	aDeck := LoadedDeck create.
 	aDeck addCard: RepeatCard new amount: 2.
-	aDeck addCard: RedoCard new amount: 2.
+	aDeck addCard: RedoCard create amount: 2.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoardWithRandomCardBoxes
@@ -1172,11 +1172,11 @@ CardsTest >> testQ051VerifyThatWhenUsingARepeatCardTheObjectiveMustBeAValidPlaye
 ]
 
 { #category : #tests }
-CardsTest >> testQ052VerifyThatWhenUsingARedoCardACardHasToBeenPlayedBefore [
+CardsTest >> testQ052VerifyThatWhenUsingARedoCardIfACardHasNotToBeenPlayedBeforeThereIsNoEffect [
 
 	| aGame aCard aDeck |
 	aDeck := CardsDeck create.
-	aDeck addCard: RedoCard new amount: 5.
+	aDeck addCard: RedoCard create amount: 5.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
@@ -1184,11 +1184,12 @@ CardsTest >> testQ052VerifyThatWhenUsingARedoCardACardHasToBeenPlayedBefore [
 		         winningWhen: 1
 		         using: (CardDealer with: aDeck).
 	aCard := RedoCard create.
+	aGame apply: aCard to: 'pepe' from: 'red'.
+	aGame movePlayer.
+	aGame movePlayer.
 	self
-		should: [ aGame apply: aCard to: 'pepe' from: 'red' ]
-		raise: Error
-		withMessage:
-		'Redo card cannot be played because there are no cards that have been played before'
+		assert: aGame playersBox
+		equals: (OrderedCollection with: 2 with: 3)
 ]
 
 { #category : #tests }
@@ -1196,7 +1197,7 @@ CardsTest >> testV001VerifyThatNoCardsHasBeenDiscardAtTheBeggining [
 
 	| aGame aDeck |
 	aDeck := CardsDeck create.
-	aDeck addCard: RedoCard new amount: 5.
+	aDeck addCard: RedoCard create amount: 5.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: (self createBoard)
@@ -1397,7 +1398,7 @@ CardsTest >> testW014VerifyThatWhenARedoCardIsDiscardARedoCardGoToTheDiscardDeck
 	| aGame aCard aDeck |
 	aDeck := LoadedDeck create.
 	aDeck addCard: SpeedCard new amount: 1.
-	aDeck addCard: RedoCard new amount: 1.
+	aDeck addCard: RedoCard create amount: 1.
 	aDeck addCard: CancellationCard new amount: 2.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
@@ -1532,7 +1533,7 @@ CardsTest >> testW020VerifyThatWhenARedoCardIsDiscardARedoCardGoToTheDiscardDeck
 	aDeck := LoadedDeck create.
 	aDeck addCard: SpeedCard new amount: 2.
 	aDeck addCard: CancellationCard new amount: 1.
-	aDeck addCard: RedoCard new amount: 1.
+	aDeck addCard: RedoCard create amount: 1.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoardWithRandomCardBoxes

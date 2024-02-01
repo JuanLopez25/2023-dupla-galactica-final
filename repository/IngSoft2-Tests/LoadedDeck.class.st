@@ -16,8 +16,13 @@ LoadedDeck class >> create [
 { #category : #cards }
 LoadedDeck >> addCard: aCard amount: anAmount [
 
-	anAmount timesRepeat: [ 
-		cardsInDeck addLast: ((aCard class) new) ].
+	anAmount timesRepeat: [ cardsInDeck addLast: aCard deepCopy ]
+]
+
+{ #category : #cards }
+LoadedDeck >> cardsToDeal [
+
+	^cardsInDeck size
 ]
 
 { #category : #initialization }
@@ -39,4 +44,13 @@ LoadedDeck >> initializeCreate [
 LoadedDeck >> isEmpty [
 
 	^ cardsInDeck isEmpty
+]
+
+{ #category : #cards }
+LoadedDeck >> shuffle [
+
+	|newDeck|
+	newDeck := cardsInDeck.
+	cardsInDeck := OrderedCollection new.
+	^ newDeck
 ]

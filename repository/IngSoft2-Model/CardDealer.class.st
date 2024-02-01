@@ -24,7 +24,8 @@ CardDealer >> cardsToDeal [
 CardDealer >> dealCard [
 
 	deck isEmpty ifTrue: [ 
-		discardDeck cards do: [ :card | deck addCard: (card class) new amount: 1 ].
+		discardDeck shuffle do: [ :card | 
+			deck addCard: card deepCopy amount: 1 ].
 		deck isEmpty ifTrue: [ ^ EmptyObject new ] ].
 	^ deck dealCard
 ]
@@ -44,6 +45,6 @@ CardDealer >> discardCardsDeskAmount [
 { #category : #initialization }
 CardDealer >> intializeWith: aDeck [
 
-	deck := aDeck.
-	discardDeck := CardsDeck create.
+	deck := CardsDeck create.
+	discardDeck := aDeck.
 ]

@@ -7,21 +7,11 @@ Class {
 { #category : #comparing }
 OverloadCard >> = aCard [
 
-	^ aCard class = self class
+	^ aCard isKindOf: self class
 ]
 
 { #category : #effect }
-OverloadCard >> applyCardUsing: cardManager at: aGame to: anObjective [
-
-	anObjective = EveryPlayer new ifFalse: [ 
-		cardManager beingUse hasEffect
-			ifTrue: [ cardManager active: self to: anObjective ]
-			ifFalse: [ 
-			cardManager active: cardManager beingUse to: anObjective ] ]
-]
-
-{ #category : #effect }
-OverloadCard >> applyEffect [
+OverloadCard >> effect [
 
 	^ -2
 ]
@@ -42,4 +32,10 @@ OverloadCard >> isEmpty [
 OverloadCard >> isPermanent [
 
 	^ true
+]
+
+{ #category : #effect }
+OverloadCard >> objectiveWhenTarget: anObjective using: aCardManager [
+
+	anObjective = EveryPlayer new ifFalse: [ ^ anObjective ] ifTrue: [ ^ EmptyObject new ]
 ]

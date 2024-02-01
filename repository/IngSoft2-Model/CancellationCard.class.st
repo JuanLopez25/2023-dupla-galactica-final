@@ -7,14 +7,13 @@ Class {
 { #category : #comparing }
 CancellationCard >> = aCard [
 
-	^ aCard class = self class
+	^ aCard isKindOf: self class
 ]
 
 { #category : #effect }
 CancellationCard >> applyCardUsing: cardManager at: aGame to: anObjective [
 
 	cardManager desactivate: anObjective.
-	cardManager discard: cardManager beingUse.
 ]
 
 { #category : #information }

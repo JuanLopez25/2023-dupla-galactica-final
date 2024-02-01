@@ -16,27 +16,23 @@ RedoCard class >> create [
 { #category : #comparing }
 RedoCard >> = aCard [
 
-	^ aCard class = self class
+	^ aCard isKindOf: self class
 ]
 
 { #category : #initialization }
 RedoCard >> applyCardUsing: cardManager at: aGame to: anObjective [
 
-	cardManager lastCardPlay isEmpty
-		ifFalse: [ 
-			redoing := cardManager lastCardPlay.
-			redoing applyCardUsing: cardManager at: aGame to: anObjective ]
-		ifTrue: [ 
-			Error signal:
-				'Redo card cannot be played because there are no cards that have been played before' ]
+	cardManager lastCardPlay isEmpty ifFalse: [ 
+		cardManager lastCardPlay
+			applyCardUsing: cardManager
+			at: aGame
+			to: anObjective ]
 ]
 
 { #category : #card }
-RedoCard >> applyEffect [
+RedoCard >> effect [
 
-	(redoing isEmpty not and: [ redoing isPermanent ]) ifTrue: [ 
-		^ redoing applyEffect ].
-	Error signal: 'No card to imitate has been set'
+	^ redoing effect
 ]
 
 { #category : #information }
@@ -61,4 +57,11 @@ RedoCard >> isEmpty [
 RedoCard >> isPermanent [
 
 	^ false
+]
+
+{ #category : #initialization }
+RedoCard >> objectiveWhenTarget: anObjective using: aCardManager [
+
+	redoing := aCardManager lastCardPlay.
+	^ aCardManager lastCardPlay objectiveWhenTarget: anObjective using: aCardManager
 ]

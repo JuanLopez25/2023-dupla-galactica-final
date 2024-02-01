@@ -20,15 +20,6 @@ CardsDeck >> addCard: aCardClass amount: anAmount [
 ]
 
 { #category : #information }
-CardsDeck >> cards [
-
-	| aNewDeck |
-	aNewDeck := cardsInDeck.
-	cardsInDeck := OrderedCollection new.
-	^ aNewDeck
-]
-
-{ #category : #information }
 CardsDeck >> cardsToDeal [
 
 	^ cardsInDeck size
@@ -37,9 +28,8 @@ CardsDeck >> cardsToDeal [
 { #category : #cards }
 CardsDeck >> dealCard [
 
-	| selectedCard aRandomValue |
-	aRandomValue := cardsInDeck size atRandom.
-	selectedCard := cardsInDeck at: aRandomValue.
+	| selectedCard |
+	selectedCard := cardsInDeck at: 1.
 	cardsInDeck remove: selectedCard.
 	^ selectedCard
 ]
@@ -54,4 +44,18 @@ CardsDeck >> initializeCreate [
 CardsDeck >> isEmpty [
 
 	^ cardsInDeck isEmpty
+]
+
+{ #category : #information }
+CardsDeck >> shuffle [
+
+	| aNewDeck aRandomValue selectedCard |
+	aNewDeck := OrderedCollection new.
+	cardsInDeck size timesRepeat: [ 
+		aRandomValue := cardsInDeck size atRandom.
+		selectedCard := cardsInDeck at: aRandomValue.
+		cardsInDeck remove: selectedCard.
+		aNewDeck addLast: selectedCard ].
+	cardsInDeck := OrderedCollection new.
+	^ aNewDeck
 ]

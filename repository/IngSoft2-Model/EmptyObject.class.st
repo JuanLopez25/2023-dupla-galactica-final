@@ -4,7 +4,7 @@ Class {
 	#category : #'IngSoft2-Model'
 }
 
-{ #category : #Information }
+{ #category : #information }
 EmptyObject >> effect: aPlayer in: aGame [ 
 
 

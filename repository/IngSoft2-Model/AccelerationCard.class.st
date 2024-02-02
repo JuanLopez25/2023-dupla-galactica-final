@@ -34,7 +34,7 @@ AccelerationCard >> isPermanent [
 	^ true
 ]
 
-{ #category : #effect }
+{ #category : #information }
 AccelerationCard >> objectiveWhenTarget: anObjective using: aCardManager [
 
 	^ EveryPlayer new

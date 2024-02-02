@@ -25,7 +25,7 @@ CardDealer >> dealCard [
 
 	deck isEmpty ifTrue: [ 
 		discardDeck shuffle do: [ :card | 
-			deck addCard: card deepCopy amount: 1 ].
+			deck addCard: card amount: 1 ].
 		deck isEmpty ifTrue: [ ^ EmptyObject new ] ].
 	^ deck dealCard
 ]

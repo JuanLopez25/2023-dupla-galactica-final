@@ -20,7 +20,7 @@ ActiveCardsDeck >> activeCard: aCard to: aPlayer [
 		ifFound: [ :hand | hand addCard: aCard ]
 		ifNone: [ 
 			Error signal:
-				'There are no that type of cards activate in this player or is not a valid objective' ]
+				'That is not a valid player' ]
 ]
 
 { #category : #effects }
@@ -39,7 +39,7 @@ ActiveCardsDeck >> desactivate: aCard to: aPlayer [
 		ifFound: [ :hand | ^ hand takeOut: aCard ]
 		ifNone: [ 
 			Error signal:
-				'There are no that type of cards activate in this player or is not a valid objective' ]
+				'There are no that type of cards activate in this player or is not valid' ]
 ]
 
 { #category : #initialization }

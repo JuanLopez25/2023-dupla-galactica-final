@@ -53,6 +53,12 @@ Player >> move: aValue andUpdateLap: aLength [
 	self updateLap: aLength
 ]
 
+{ #category : #'position control' }
+Player >> moveToTheStart [
+	
+	position move: (self box * -1) + 1.
+]
+
 { #category : #information }
 Player >> updateLap: aLength [
 

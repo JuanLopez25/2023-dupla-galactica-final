@@ -20,13 +20,14 @@ RedoCard >> = aCard [
 ]
 
 { #category : #initialization }
-RedoCard >> applyCardUsing: cardManager at: aGame to: anObjective [
+RedoCard >> applyCardUsing: cardManager at: aGame to: anObjective of: aHolder [
 
 	cardManager lastCardPlay isEmpty ifFalse: [ 
 		cardManager lastCardPlay
 			applyCardUsing: cardManager
 			at: aGame
-			to: anObjective ]
+			to: anObjective
+			of: aHolder ]
 ]
 
 { #category : #card }

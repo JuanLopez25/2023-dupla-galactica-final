@@ -109,7 +109,7 @@ DuplaGalacticaGame >> initializeWith: aColorsCollection and: aBoard usingToThrow
 	cardManager := CardManager using: aCardDealer with: aColorsCollection
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #Information }
 DuplaGalacticaGame >> isPlaying: aPlayer [
 
 	players

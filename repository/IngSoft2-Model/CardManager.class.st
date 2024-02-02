@@ -5,8 +5,7 @@ Class {
 		'cardsInPosetion',
 		'lastCardPlay',
 		'activeCards',
-		'cardDealer',
-		'objectiveOwner'
+		'cardDealer'
 	],
 	#category : #'IngSoft2-Model'
 }
@@ -30,21 +29,25 @@ CardManager >> addCardTo: aColor [
 ]
 
 { #category : #cards }
+CardManager >> apply: aCard at: aGame to: anObjective from: aPlayerColor [
+
+	self apply: aCard at: aGame to: anObjective of: EmptyObject new from: aPlayerColor
+]
+
+{ #category : #cards }
 CardManager >> apply: aCard at: aGame to: anObjective of: aHolder from: aPlayerColor [
 
 	(cardsInPosetion hasBeenGiven: aCard to: aPlayerColor) ifFalse: [ 
 		^ self ].
-	objectiveOwner := aHolder.
 	aCard hasEffect ifTrue: [ lastCardPlay := aCard ].
-	(self haveToActive: aCard)
+	(self hasToActive: aCard)
 		ifTrue: [ 
 			self
 				active: aCard
 				to: (aCard objectiveWhenTarget: anObjective using: self) ]
 		ifFalse: [ 
-			aCard applyCardUsing: self at: aGame to: anObjective.
+			aCard applyCardUsing: self at: aGame to: anObjective of: aHolder.
 			self discard: aCard ].
-	objectiveOwner := EmptyObject new.
 	cardsInPosetion takeOut: aCard to: aPlayerColor
 ]
 
@@ -74,9 +77,9 @@ CardManager >> cardsToDeal [
 ]
 
 { #category : #cards }
-CardManager >> desactivate: anObjectiveCard [
+CardManager >> desactivate: anObjectiveCard of: aHolder [
 
-	cardDealer discard: (activeCards desactivate: anObjectiveCard to: objectiveOwner)
+	cardDealer discard: (activeCards desactivate: anObjectiveCard to: aHolder)
 ]
 
 { #category : #cards }
@@ -92,7 +95,7 @@ CardManager >> discardCardsDeskAmount [
 ]
 
 { #category : #cards }
-CardManager >> haveToActive: aCard [
+CardManager >> hasToActive: aCard [
 
 	^ lastCardPlay isEmpty not and: [aCard isPermanent or: [ 
 		 lastCardPlay isPermanent and: aCard hasEffect not ]]
@@ -103,7 +106,6 @@ CardManager >> initializeUsing: aCardDealer with: aColorCollection [
 
 	lastCardPlay := EmptyObject new.
 	cardDealer := aCardDealer.
-	objectiveOwner := EmptyObject new.
 	activeCards := ActiveCardsDeck createDeckFor: aColorCollection.
 	cardsInPosetion := CardsInPosetionDeck createDeckFor: aColorCollection.
 	aColorCollection do: [ :color | 

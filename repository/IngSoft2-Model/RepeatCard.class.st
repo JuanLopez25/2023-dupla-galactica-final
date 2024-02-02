@@ -11,7 +11,7 @@ RepeatCard >> = aCard [
 ]
 
 { #category : #effect }
-RepeatCard >> applyCardUsing: cardManager at: aGame to: anObjective [
+RepeatCard >> applyCardUsing: cardManager at: aGame to: anObjective of: aHolder [
 
 	
 	aGame repeatEffectTo: anObjective.

@@ -2,7 +2,6 @@ Class {
 	#name : #HyperJumpBox,
 	#superclass : #Object,
 	#instVars : [
-		'parsecs',
 		'parsecManager'
 	],
 	#category : #'IngSoft2-Model'
@@ -16,16 +15,10 @@ HyperJumpBox class >> with: aParsecCollection [
 	^ self new initializeWith: aParsecCollection
 ]
 
-{ #category : #information }
-HyperJumpBox >> currentValue [
-
-	^ parsecManager current
-]
-
 { #category : #effect }
 HyperJumpBox >> effect: aPlayer in: aGame [
 
-	aGame move: aPlayer amount: (aGame amountToBoxes: self currentValue).
+	aGame move: aPlayer amount: (aGame amountToBoxes: parsecManager current).
 	parsecManager goNext
 ]
 
@@ -34,6 +27,5 @@ HyperJumpBox >> initializeWith: aParsecCollection [
 
 	aParsecCollection sort: [ :value1 :value2 | 
 		value2 parsecs nominalValue < value1 parsecs nominalValue ].
-	parsecs := aParsecCollection.
-	parsecManager := QueueManager with: parsecs
+	parsecManager := QueueManager with: aParsecCollection
 ]

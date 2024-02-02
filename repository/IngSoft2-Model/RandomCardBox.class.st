@@ -1,9 +1,6 @@
 Class {
 	#name : #RandomCardBox,
 	#superclass : #Object,
-	#instVars : [
-		'cardsAmount'
-	],
 	#category : #'IngSoft2-Model'
 }
 

@@ -21,7 +21,7 @@ DuplaGalacticaGameProxy class >> with: aColorCollection and: aBoard usingToThrow
 { #category : #cards }
 DuplaGalacticaGameProxy >> apply: aCard to: anObjective from: aPlayerColor [
 
-	game apply: aCard to: anObjective of: EmptyObject new from: aPlayerColor
+	game apply: aCard to: anObjective from: aPlayerColor
 ]
 
 { #category : #cards }

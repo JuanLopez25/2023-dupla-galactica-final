@@ -8,47 +8,43 @@ Class {
 }
 
 { #category : #'Instance creation' }
-CardsInPosetionDeck class >> createDeckFor: aColorCollection [
+CardsInPosetionDeck class >> create [
 
-	^ self new initializeDeckFor: aColorCollection
+	^ self new initializeCreate
 ]
 
 { #category : #cards }
 CardsInPosetionDeck >> addCard: aCard to: aColorPlayer [
 
 	aCard isEmpty ifFalse: [ 
-		playersHands
-			detect: [ :playerHand | playerHand owner = aColorPlayer ]
-			ifFound: [ :hand | hand addCard: aCard ]
-			ifNone: [ Error signal: 'That is not a valid objective' ] ]
+		playersHands addLast: (PosetionCard with: aCard of: aColorPlayer)]
 ]
 
 { #category : #cards }
 CardsInPosetionDeck >> cardsOf: aPlayerColor [
 
-	^ (playersHands detect: [ :hand | hand owner = aPlayerColor ]) size
+	^ (playersHands select: [ :posetionCard | posetionCard holder = aPlayerColor ]) size
 ]
 
 { #category : #cards }
 CardsInPosetionDeck >> hasBeenGiven: aCard to: aPlayerColor [
 
 	playersHands
-		detect: [ :hand | hand owner = aPlayerColor and: (hand has: aCard) ]
+		detect: [ :posetionCard |( posetionCard holder = aPlayerColor) and: (posetionCard card = aCard) ]
 		ifFound: [ :hand | ^ true ].
 	^ false
 ]
 
 { #category : #initialization }
-CardsInPosetionDeck >> initializeDeckFor: aColorCollection [
+CardsInPosetionDeck >> initializeCreate [
 
 	playersHands := OrderedCollection new.
-	aColorCollection do: [ :color | playersHands addLast: (PlayerHand of: color) ]
 ]
 
 { #category : #initialization }
 CardsInPosetionDeck >> takeOut: aCard to: aColorPlayer [
 
 	aCard isEmpty ifFalse: [ 
-		(playersHands detect: [ :playerHand | playerHand owner = aColorPlayer ]) 
-			takeOut: aCard ]
+		playersHands remove: (playersHands detect: [ :posetionCard | 
+				 posetionCard card = aCard and: posetionCard holder = aColorPlayer ]) ]
 ]

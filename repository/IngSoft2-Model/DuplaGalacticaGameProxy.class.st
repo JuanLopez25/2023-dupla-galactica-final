@@ -24,12 +24,6 @@ DuplaGalacticaGameProxy >> apply: aCard to: anObjective from: aPlayerColor [
 	game apply: aCard to: anObjective from: aPlayerColor
 ]
 
-{ #category : #cards }
-DuplaGalacticaGameProxy >> apply: aCard to: anObjectiveCard of: aHolder from: aPlayerColor [
-
-	game apply: aCard to: anObjectiveCard of: aHolder from: aPlayerColor
-]
-
 { #category : #information }
 DuplaGalacticaGameProxy >> boxes [
 

@@ -20,14 +20,13 @@ RedoCard >> = aCard [
 ]
 
 { #category : #initialization }
-RedoCard >> applyCardUsing: cardManager at: aGame to: anObjective of: aHolder [
+RedoCard >> applyCardUsing: cardManager at: aGame to: anObjective [
 
 	cardManager lastCardPlay isEmpty ifFalse: [ 
 		cardManager lastCardPlay
 			applyCardUsing: cardManager
 			at: aGame
-			to: anObjective
-			of: aHolder ]
+			to: anObjective ]
 ]
 
 { #category : #card }
@@ -64,5 +63,5 @@ RedoCard >> isPermanent [
 RedoCard >> objectiveWhenTarget: anObjective using: aCardManager [
 
 	redoing := aCardManager lastCardPlay.
-	^ aCardManager lastCardPlay objectiveWhenTarget: anObjective using: aCardManager
+	^ redoing objectiveWhenTarget: anObjective using: aCardManager
 ]

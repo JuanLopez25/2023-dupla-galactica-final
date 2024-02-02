@@ -48,20 +48,18 @@ DuplaGalacticaGame >> amountToBoxes: anAmount [
 
 { #category : #cards }
 DuplaGalacticaGame >> apply: aCard to: anObjective from: aPlayerColor [
-	
-	(cardManager canBeUse: aCard whenPlay: turnManager current color from: aPlayerColor) ifFalse: [ 
-		Error signal:
-			'A permanent card can only be use when it is your turn' ].
-	cardManager apply: aCard at: self to: anObjective from: aPlayerColor.
-]
 
-{ #category : #cards }
-DuplaGalacticaGame >> apply: aCard to: anObjective of: aHolder from: aPlayerColor [
-	
-	(cardManager canBeUse: aCard whenPlay: turnManager current color from: aPlayerColor) ifFalse: [ 
+	(cardManager
+		 canBeUse: aCard
+		 whenPlay: turnManager current color
+		 from: aPlayerColor) ifFalse: [ 
 		Error signal:
 			'A permanent card can only be use when it is your turn' ].
-	cardManager apply: aCard at: self to: anObjective of: aHolder from: aPlayerColor.
+	cardManager
+		apply: aCard
+		at: self
+		to: anObjective
+		from: aPlayerColor
 ]
 
 { #category : #information }
@@ -109,6 +107,16 @@ DuplaGalacticaGame >> initializeWith: aColorsCollection and: aBoard usingToThrow
 	turnManager := QueueManager with: players.
 	goalLaps := aValue.
 	cardManager := CardManager using: aCardDealer with: aColorsCollection
+]
+
+{ #category : #'as yet unclassified' }
+DuplaGalacticaGame >> isPlaying: aPlayer [
+
+	players
+		detect: [ :player | 
+		player color = aPlayer or: aPlayer = EveryPlayer new ]
+		ifFound: [ ^ true ].
+	^ false
 ]
 
 { #category : #information }

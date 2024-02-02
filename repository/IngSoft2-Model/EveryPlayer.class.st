@@ -9,3 +9,9 @@ EveryPlayer >> = aCard [
 
 	^ aCard isKindOf: self class
 ]
+
+{ #category : #information }
+EveryPlayer >> isEmpty [
+
+	^ false
+]

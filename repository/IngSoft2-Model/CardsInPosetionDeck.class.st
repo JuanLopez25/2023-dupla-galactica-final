@@ -2,7 +2,7 @@ Class {
 	#name : #CardsInPosetionDeck,
 	#superclass : #Object,
 	#instVars : [
-		'playersHands'
+		'posetionsCards'
 	],
 	#category : #'IngSoft2-Model'
 }
@@ -17,19 +17,19 @@ CardsInPosetionDeck class >> create [
 CardsInPosetionDeck >> addCard: aCard to: aColorPlayer [
 
 	aCard isEmpty ifFalse: [ 
-		playersHands addLast: (PosetionCard with: aCard of: aColorPlayer)]
+		posetionsCards addLast: (PosetionCard with: aCard of: aColorPlayer)]
 ]
 
 { #category : #cards }
 CardsInPosetionDeck >> cardsOf: aPlayerColor [
 
-	^ (playersHands select: [ :posetionCard | posetionCard holder = aPlayerColor ]) size
+	^ (posetionsCards select: [ :posetionCard | posetionCard holder = aPlayerColor ]) size
 ]
 
 { #category : #cards }
 CardsInPosetionDeck >> hasBeenGiven: aCard to: aPlayerColor [
 
-	playersHands
+	posetionsCards
 		detect: [ :posetionCard |( posetionCard holder = aPlayerColor) and: (posetionCard card = aCard) ]
 		ifFound: [ :hand | ^ true ].
 	^ false
@@ -38,13 +38,12 @@ CardsInPosetionDeck >> hasBeenGiven: aCard to: aPlayerColor [
 { #category : #initialization }
 CardsInPosetionDeck >> initializeCreate [
 
-	playersHands := OrderedCollection new.
+	posetionsCards := OrderedCollection new.
 ]
 
 { #category : #initialization }
 CardsInPosetionDeck >> takeOut: aCard to: aColorPlayer [
 
-	aCard isEmpty ifFalse: [ 
-		playersHands remove: (playersHands detect: [ :posetionCard | 
-				 posetionCard card = aCard and: posetionCard holder = aColorPlayer ]) ]
+	posetionsCards remove: (posetionsCards detect: [ :posetionCard | 
+			 posetionCard card = aCard and: posetionCard holder = aColorPlayer ])
 ]

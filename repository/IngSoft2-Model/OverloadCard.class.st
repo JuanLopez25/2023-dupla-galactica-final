@@ -37,5 +37,7 @@ OverloadCard >> isPermanent [
 { #category : #effect }
 OverloadCard >> objectiveWhenTarget: anObjective using: aCardManager [
 
-	anObjective = EveryPlayer new ifFalse: [ ^ anObjective ] ifTrue: [ ^ EmptyObject new ]
+	anObjective = EveryPlayer new
+		ifFalse: [ ^ anObjective ]
+		ifTrue: [ ^ EmptyObject new ]
 ]

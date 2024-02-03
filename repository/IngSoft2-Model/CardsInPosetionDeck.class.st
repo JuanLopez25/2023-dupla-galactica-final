@@ -2,48 +2,52 @@ Class {
 	#name : #CardsInPosetionDeck,
 	#superclass : #Object,
 	#instVars : [
-		'posetionsCards'
+		'playersHands'
 	],
 	#category : #'IngSoft2-Model'
 }
 
 { #category : #'Instance creation' }
-CardsInPosetionDeck class >> create [
+CardsInPosetionDeck class >> createFor: aColorCollection [
 
-	^ self new initializeCreate
+	^ self new initializeCreateFor: aColorCollection
 ]
 
 { #category : #cards }
 CardsInPosetionDeck >> addCard: aCard to: aColorPlayer [
 
-	aCard isEmpty ifFalse: [ 
-		posetionsCards addLast: (PosetionCard with: aCard of: aColorPlayer)]
+	playersHands
+		detect: [ :hand | hand holder = aColorPlayer ]
+		ifFound: [ :hand | hand addCard: aCard ]
 ]
 
 { #category : #cards }
 CardsInPosetionDeck >> cardsOf: aPlayerColor [
 
-	^ (posetionsCards select: [ :posetionCard | posetionCard holder = aPlayerColor ]) size
+	^ (playersHands detect: [ :hand | hand holder = aPlayerColor ]) cards size
 ]
 
 { #category : #cards }
 CardsInPosetionDeck >> hasBeenGiven: aCard to: aPlayerColor [
 
-	posetionsCards
-		detect: [ :posetionCard |( posetionCard holder = aPlayerColor) and: (posetionCard card = aCard) ]
-		ifFound: [ :hand | ^ true ].
+	playersHands
+		detect: [ :posetionCard | posetionCard holder = aPlayerColor]
+		ifFound: [ :posetionCard | ^  posetionCard has: aCard ].
 	^ false
 ]
 
 { #category : #initialization }
-CardsInPosetionDeck >> initializeCreate [
+CardsInPosetionDeck >> initializeCreateFor: aColorCollection [
 
-	posetionsCards := OrderedCollection new.
+	playersHands := OrderedCollection new.
+	aColorCollection do: [ :color | 
+		playersHands addLast: (PlayerPosetionCards with: EmptyObject new of: color) ]
 ]
 
 { #category : #initialization }
 CardsInPosetionDeck >> takeOut: aCard to: aColorPlayer [
 
-	posetionsCards remove: (posetionsCards detect: [ :posetionCard | 
-			 posetionCard card = aCard and: posetionCard holder = aColorPlayer ])
+	playersHands
+		detect: [ :posetionCard | posetionCard holder = aColorPlayer ]
+		ifFound: [ :posetionCard | posetionCard takeOut: aCard ]
 ]

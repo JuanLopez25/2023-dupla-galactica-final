@@ -109,16 +109,6 @@ DuplaGalacticaGame >> initializeWith: aColorsCollection and: aBoard usingToThrow
 	cardManager := CardManager using: aCardDealer with: aColorsCollection
 ]
 
-{ #category : #Information }
-DuplaGalacticaGame >> isPlaying: aPlayer [
-
-	players
-		detect: [ :player | 
-		player color = aPlayer or: aPlayer = EveryPlayer new ]
-		ifFound: [ ^ true ].
-	^ false
-]
-
 { #category : #information }
 DuplaGalacticaGame >> lightYears [
 

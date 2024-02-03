@@ -65,3 +65,9 @@ RedoCard >> objectiveWhenTarget: anObjective using: aCardManager [
 	redoing := aCardManager lastCardPlay.
 	^ redoing objectiveWhenTarget: anObjective using: aCardManager
 ]
+
+{ #category : #information }
+RedoCard >> redoing [
+
+	^ redoing
+]

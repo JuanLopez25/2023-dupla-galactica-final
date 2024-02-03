@@ -8,14 +8,17 @@ Class {
 }
 
 { #category : #'Instance creation' }
-ActiveCardsDeck class >> create [
-	^ self new initializeCreate.
+ActiveCardsDeck class >> createFor: aColorCollection [
+
+	^ self new initializeCreateFor: aColorCollection
 ]
 
 { #category : #activation }
 ActiveCardsDeck >> activeCard: aCard to: aPlayer [
 
-	posetionCards addLast: (PosetionCard with: aCard of: aPlayer)
+	posetionCards
+		detect: [ :hand | hand holder = aPlayer ]
+		ifFound: [ :hand | hand addCard: aCard ]
 ]
 
 { #category : #effects }
@@ -24,31 +27,26 @@ ActiveCardsDeck >> calculateEffectOn: aColorPlayer [
 	^ (posetionCards select: [ :posetionCard | 
 		   posetionCard holder = aColorPlayer or:
 			   posetionCard holder = EveryPlayer new ]) sum: [ :posetionCard | 
-		  posetionCard card effect ]
+		  posetionCard cards sum: [ :card | card effect ] ]
 ]
 
 { #category : #desactivation }
 ActiveCardsDeck >> desactivate: aPosetionCard [
 
-	aPosetionCard class = PosetionCard
-		ifTrue: [ 
-			posetionCards
-				detect: [ :posetionCard | 
-					posetionCard holder = aPosetionCard holder and:
-						posetionCard card = aPosetionCard card ]
-				ifFound: [ :posetionCard | 
-					posetionCards remove: posetionCard.
-					^ posetionCard card]
-				ifNone: [ 
-					Error signal:
-						'There are no that type of cards activate in this player or is not valid' ] ]
-		ifFalse: [ 
-			Error signal:
-				'There are no that type of cards activate in this player or is not valid' ]
+	posetionCards
+		detect: [ :posetionCard | posetionCard = aPosetionCard ]
+		ifFound: [ :posetionCard | 
+		^ posetionCard takeOut: aPosetionCard topCard ]
+		ifNone: [ Error signal: 'The objective is not valid' ]
 ]
 
 { #category : #initialization }
-ActiveCardsDeck >> initializeCreate [
+ActiveCardsDeck >> initializeCreateFor: aColorCollection [
 
-	posetionCards := OrderedCollection new.
+	posetionCards := OrderedCollection with:
+		                 (PlayerPosetionCards
+			                  with: EmptyObject new
+			                  of: EveryPlayer new).
+	aColorCollection do: [ :color | 
+		posetionCards addLast: (PlayerPosetionCards with: EmptyObject new of: color) ]
 ]

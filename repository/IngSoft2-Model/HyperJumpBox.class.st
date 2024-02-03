@@ -18,7 +18,9 @@ HyperJumpBox class >> with: aParsecCollection [
 { #category : #effect }
 HyperJumpBox >> effect: aPlayer in: aGame [
 
-	aGame move: aPlayer amount: (aGame amountToBoxes: parsecManager current).
+	aGame
+		move: aPlayer
+		amount: (aGame amountToBoxes: parsecManager current).
 	parsecManager goNext
 ]
 

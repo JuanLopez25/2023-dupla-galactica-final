@@ -36,11 +36,9 @@ CardManager >> apply: aCard at: aGame to: anObjective from: aPlayerColor [
 	aCard hasEffect ifTrue: [ lastCardPlay := aCard ].
 	(self hasToActive: aCard)
 		ifTrue: [ 
-			(aGame isPlaying: (aCard objectiveWhenTarget: anObjective using: self))
-				ifTrue: [ 
-					self
-						active: aCard
-						to: (aCard objectiveWhenTarget: anObjective using: self)]]
+			self
+				active: aCard
+				to: (aCard objectiveWhenTarget: anObjective using: self) ]
 		ifFalse: [ 
 			aCard applyCardUsing: self at: aGame to: anObjective.
 			self discard: aCard ].
@@ -102,8 +100,8 @@ CardManager >> initializeUsing: aCardDealer with: aColorCollection [
 
 	lastCardPlay := EmptyObject new.
 	cardDealer := aCardDealer.
-	activeCards := ActiveCardsDeck create.
-	cardsInPosetion := CardsInPosetionDeck create.
+	activeCards := ActiveCardsDeck createFor: aColorCollection.
+	cardsInPosetion := CardsInPosetionDeck createFor: aColorCollection..
 	aColorCollection do: [ :color | 
 		2 timesRepeat: [ 
 			cardsInPosetion addCard: (cardDealer dealCard) to: color ] ]

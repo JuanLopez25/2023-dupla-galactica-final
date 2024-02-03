@@ -73,7 +73,7 @@ CardManager >> cardsToDeal [
 { #category : #cards }
 CardManager >> desactivate: aPosetionCard [
 
-	cardDealer discard: (activeCards desactivate: aPosetionCard)
+	self discard: (activeCards desactivate: aPosetionCard)
 ]
 
 { #category : #cards }

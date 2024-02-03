@@ -33,10 +33,15 @@ ActiveCardsDeck >> calculateEffectOn: aColorPlayer [
 { #category : #desactivation }
 ActiveCardsDeck >> desactivate: aPosetionCard [
 
+	| aCard |
 	posetionCards
 		detect: [ :posetionCard | posetionCard = aPosetionCard ]
 		ifFound: [ :posetionCard | 
-		^ posetionCard takeOut: aPosetionCard topCard ]
+			aCard := posetionCard takeOut: aPosetionCard topCard.
+			aCard isEmpty
+				ifTrue: [ 
+				Error signal: 'The player does not have that type of card active' ]
+				ifFalse: [ ^ aCard ] ]
 		ifNone: [ Error signal: 'The objective is not valid' ]
 ]
 

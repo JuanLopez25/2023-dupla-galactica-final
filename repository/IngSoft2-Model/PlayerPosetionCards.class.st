@@ -64,8 +64,7 @@ PlayerPosetionCards >> takeOut: aCard [
 		ifFound: [ :card | 
 			cards remove: card.
 			^ card ]
-		ifNone: [ 
-		Error signal: 'The player does not have that type of card active' ]
+		ifNone: [ ^ EmptyObject new ]
 ]
 
 { #category : #information }

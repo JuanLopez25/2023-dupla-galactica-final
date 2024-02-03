@@ -31,12 +31,6 @@ CardManager >> addCardTo: aColor [
 { #category : #cards }
 CardManager >> apply: aCard at: aGame to: anObjective from: aPlayerColor [
 
-	self apply: aCard at: aGame to: anObjective of: EmptyObject new from: aPlayerColor
-]
-
-{ #category : #cards }
-CardManager >> apply: aCard at: aGame to: anObjective of: aHolder from: aPlayerColor [
-
 	(cardsInPosetion hasBeenGiven: aCard to: aPlayerColor) ifFalse: [ 
 		^ self ].
 	aCard hasEffect ifTrue: [ lastCardPlay := aCard ].
@@ -46,7 +40,7 @@ CardManager >> apply: aCard at: aGame to: anObjective of: aHolder from: aPlayerC
 				active: aCard
 				to: (aCard objectiveWhenTarget: anObjective using: self) ]
 		ifFalse: [ 
-			aCard applyCardUsing: self at: aGame to: anObjective of: aHolder.
+			aCard applyCardUsing: self at: aGame to: anObjective.
 			self discard: aCard ].
 	cardsInPosetion takeOut: aCard to: aPlayerColor
 ]
@@ -77,9 +71,9 @@ CardManager >> cardsToDeal [
 ]
 
 { #category : #cards }
-CardManager >> desactivate: anObjectiveCard of: aHolder [
+CardManager >> desactivate: aPosetionCard [
 
-	cardDealer discard: (activeCards desactivate: anObjectiveCard to: aHolder)
+	self discard: (activeCards desactivate: aPosetionCard)
 ]
 
 { #category : #cards }
@@ -106,8 +100,8 @@ CardManager >> initializeUsing: aCardDealer with: aColorCollection [
 
 	lastCardPlay := EmptyObject new.
 	cardDealer := aCardDealer.
-	activeCards := ActiveCardsDeck createDeckFor: aColorCollection.
-	cardsInPosetion := CardsInPosetionDeck createDeckFor: aColorCollection.
+	activeCards := ActiveCardsDeck createFor: aColorCollection.
+	cardsInPosetion := CardsInPosetionDeck createFor: aColorCollection..
 	aColorCollection do: [ :color | 
 		2 timesRepeat: [ 
 			cardsInPosetion addCard: (cardDealer dealCard) to: color ] ]

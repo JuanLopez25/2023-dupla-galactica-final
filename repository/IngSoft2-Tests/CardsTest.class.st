@@ -277,8 +277,7 @@ CardsTest >> testQ011VerifyTheCorrectUseOfCancellationCard [
 	aCard := CancellationCard new.
 	aGame
 		apply: aCard
-		to: OverloadCard new
-		of: 'blue'
+		to: (PlayerPosetionCards with: OverloadCard new of: 'blue')
 		from: 'blue'.
 	aGame movePlayer.
 	aGame movePlayer.
@@ -307,8 +306,7 @@ CardsTest >> testQ012VerifyTheCorrectUseOfCancellationCardWhenThePlayerHasMoreTh
 	aCard := CancellationCard new.
 	aGame
 		apply: aCard
-		to: SpeedCard new
-		of: 'red'
+		to: (PlayerPosetionCards with: SpeedCard new of: 'red')
 		from: 'blue'.
 	aGame movePlayer.
 	self
@@ -336,14 +334,12 @@ CardsTest >> testQ013VerifyTheCorrectUseOfTwoCancellationCards [
 	aCard := CancellationCard new.
 	aGame
 		apply: aCard
-		to: SpeedCard new
-		of: 'red'
+		to: (PlayerPosetionCards with: SpeedCard new of: 'red')
 		from: 'blue'.
 	aCard := CancellationCard new.
 	aGame
 		apply: aCard
-		to: SpeedCard new
-		of: 'red'
+		to: (PlayerPosetionCards with: SpeedCard new of: 'red')
 		from: 'blue'.
 	aGame movePlayer.
 	aGame movePlayer.
@@ -369,11 +365,10 @@ CardsTest >> testQ014TryToCancellAPermanentCardWhenThePlayerDoesNotHaveOne [
 		should: [ 
 			aGame
 				apply: aCard
-				to: OverloadCard new
-				of: 'red'
+				to: (PlayerPosetionCards with: OverloadCard new of: 'red')
 				from: 'red' ]
 		raise: Error
-		withMessage: 'There are no that type of cards activate in this player or is not a valid objective'
+		withMessage: 'The player does not have that type of card active'
 ]
 
 { #category : #tests }
@@ -399,12 +394,11 @@ CardsTest >> testQ015TryToCancellAPermanentCardWithATypeOfCardThatIsNotActivate 
 		should: [ 
 			aGame
 				apply: aCard
-				to: OverloadCard new
-				of: 'red'
+				to: (PlayerPosetionCards with: OverloadCard new of: 'red')
 				from: 'blue' ]
 		raise: Error
 		withMessage:
-		'There are no that type of cards activate in this player or is not a valid objective'
+		'The player does not have that type of card active'
 ]
 
 { #category : #tests }
@@ -632,7 +626,10 @@ CardsTest >> testQ026TryToUseACancellationCardWhenThePlayerDoesNotHaveOne [
 	aCard := OverloadCard new.
 	aGame apply: aCard to: 'blue' from: 'red'.
 	aCard := CancellationCard new.
-	aGame apply: aCard to: OverloadCard new of: 'blue' from: 'red'.
+	aGame
+		apply: aCard
+		to: (PlayerPosetionCards with: OverloadCard new of: 'blue')
+		from: 'red'.
 	aGame movePlayer.
 	aGame movePlayer.
 	self
@@ -657,10 +654,14 @@ CardsTest >> testQ026TryToUseACancellationCardWithANonValidObjective [
 	aGame apply: aCard to: 'blue' from: 'red'.
 	aCard := CancellationCard new.
 	self
-		should: [ aGame apply: aCard to: OverloadCard new of: EmptyObject new from: 'blue' ]
+		should: [ 
+			aGame
+				apply: aCard
+				to: (PlayerPosetionCards with: OverloadCard new of: EmptyObject new)
+				from: 'blue' ]
 		raise: Error
 		withMessage:
-		'There are no that type of cards activate in this player or is not valid'
+		'The objective is not valid'
 ]
 
 { #category : #tests }
@@ -683,14 +684,12 @@ CardsTest >> testQ027UseTwoCancellationCardsFromTheSamePlayer [
 	aCard := CancellationCard new.
 	aGame
 		apply: aCard
-		to: OverloadCard new
-		of: 'blue'
+		to: (PlayerPosetionCards with: OverloadCard new of: 'blue')
 		from: 'blue'.
 	aCard := CancellationCard new.
 	aGame
 		apply: aCard
-		to: OverloadCard new
-		of: 'blue'
+		to: (PlayerPosetionCards with: OverloadCard new of: 'blue')
 		from: 'blue'.
 	aGame movePlayer.
 	aGame movePlayer.
@@ -719,15 +718,14 @@ CardsTest >> testQ028TryToUseTwoCancellationCardsFromTheSamePlayerButWithoutSett
 	aCard := CancellationCard new.
 	aGame
 		apply: aCard
-		to: OverloadCard new
-		of: 'blue'
+		to: (PlayerPosetionCards with: OverloadCard new of: 'blue')
 		from: 'blue'.
 	aCard := CancellationCard new.
 	self
 		should: [ aGame apply: aCard to: OverloadCard new from: 'blue' ]
 		raise: Error
 		withMessage:
-		'There are no that type of cards activate in this player or is not valid'
+		'The objective is not valid'
 ]
 
 { #category : #tests }
@@ -775,14 +773,12 @@ CardsTest >> testQ030VerifyTheCorrectUseOfRedoCardWhenLastCardPlayedIsACancellat
 	aCard := CancellationCard new.
 	aGame
 		apply: aCard
-		to: SpeedCard new
-		of: 'red'
+		to: (PlayerPosetionCards with: SpeedCard  new of: 'red')
 		from: 'blue'.
 	aCard := RedoCard create.
 	aGame
 		apply: aCard
-		to: SpeedCard new
-		of: 'red'
+		to: (PlayerPosetionCards with: SpeedCard  new of: 'red')
 		from: 'blue'.
 	aGame movePlayer.
 	aGame movePlayer.
@@ -1074,8 +1070,7 @@ CardsTest >> testQ042VerifyThatCancellationCardCanBePlayWheneverThePlayerWants [
 	aCard := CancellationCard new.
 	aGame
 		apply: aCard
-		to: AccelerationCard new
-		of: EveryPlayer new
+		to: (PlayerPosetionCards with: AccelerationCard new of: EveryPlayer new)
 		from: 'red'.
 	aGame movePlayer.
 
@@ -1170,10 +1165,12 @@ CardsTest >> testQ048VerifyThatWhenUsingAnOverloadCardTheObjectiveMustBeAValidPl
 		         winningWhen: 1
 		         using: (CardDealer with: aDeck).
 	aCard := OverloadCard new.
+	aGame apply: aCard to: AccelerationCard new from: 'red'.
+	aGame movePlayer.
+	aGame movePlayer.
 	self
-		should: [ aGame apply: aCard to: AccelerationCard new from: 'red' ]
-		raise: Error
-		withMessage: 'That is not a valid player'
+		assert: aGame playersBox
+		equals: (OrderedCollection with: 2 with: 3)
 ]
 
 { #category : #tests }
@@ -1189,10 +1186,12 @@ CardsTest >> testQ049VerifyThatWhenUsingAnOverloadCardTheObjectiveCannotBeEveryP
 		         winningWhen: 1
 		         using: (CardDealer with: aDeck).
 	aCard := OverloadCard new.
+	aGame apply: aCard to: EveryPlayer new from: 'red'.
+	aGame movePlayer.
+	aGame movePlayer.
 	self
-		should: [ aGame apply: aCard to: EveryPlayer  new from: 'red' ]
-		raise: Error
-		withMessage: 'That is not a valid player'
+		assert: aGame playersBox
+		equals: (OrderedCollection with: 2 with: 3)
 ]
 
 { #category : #tests }
@@ -1208,10 +1207,12 @@ CardsTest >> testQ050VerifyThatWhenUsingASpeedCardTheObjectiveMustBeAValidPlayer
 		         winningWhen: 1
 		         using: (CardDealer with: aDeck).
 	aCard := SpeedCard new.
+	aGame apply: aCard to: AccelerationCard new from: 'red'.
+	aGame movePlayer.
+	aGame movePlayer.
 	self
-		should: [ aGame apply: aCard to: AccelerationCard new from: 'red' ]
-		raise: Error
-		withMessage: 'That is not a valid player'
+		assert: aGame playersBox
+		equals: (OrderedCollection with: 2 with: 3)
 ]
 
 { #category : #tests }
@@ -1431,8 +1432,7 @@ CardsTest >> testW013VerifyTheAmountOfDiscardCardsAfterDesactivatingOne [
 	aCard := CancellationCard new.
 	aGame
 		apply: aCard
-		to: SpeedCard new
-		of: 'red'
+		to: (PlayerPosetionCards with: SpeedCard new of: 'red')
 		from: 'blue'.
 	self assert: aGame discardCardsDeskAmount equals: 2
 ]
@@ -1458,14 +1458,12 @@ CardsTest >> testW014VerifyThatWhenARedoCardIsDiscardARedoCardGoToTheDiscardDeck
 	aCard := CancellationCard new.
 	aGame
 		apply: aCard
-		to: SpeedCard new
-		of: 'red'
+		to: (PlayerPosetionCards with: SpeedCard new of: 'red')
 		from: 'blue'.
 	aCard := CancellationCard new.
 	aGame
 		apply: aCard
-		to: RedoCard create
-		of: 'red'
+		to: (PlayerPosetionCards with: SpeedCard new of: 'red')
 		from: 'blue'.
 	aGame movePlayer.
 	aGame movePlayer.
@@ -1478,14 +1476,12 @@ CardsTest >> testW014VerifyThatWhenARedoCardIsDiscardARedoCardGoToTheDiscardDeck
 	aCard := CancellationCard new.
 	aGame
 		apply: aCard
-		to: SpeedCard new
-		of: 'red'
+		to: (PlayerPosetionCards with: SpeedCard new of: 'red')
 		from: 'blue'.
 	aCard := CancellationCard new.
 	aGame
 		apply: aCard
-		to: RedoCard create
-		of: 'red'
+		to: (PlayerPosetionCards with: SpeedCard new of: 'red')
 		from: 'blue'.
 	self assert: aGame discardCardsDeskAmount equals: 4
 ]
@@ -1508,8 +1504,7 @@ CardsTest >> testW015VerifyTheCorrectDesactivationOfAnAccelerationCard [
 	aCard := CancellationCard new.
 	aGame
 		apply: aCard
-		to: AccelerationCard new
-		of: EveryPlayer new
+		to: (PlayerPosetionCards with: AccelerationCard new of: EveryPlayer new)
 		from: 'blue'.
 	aGame movePlayer.
 	aGame movePlayer.
@@ -1536,8 +1531,7 @@ CardsTest >> testW016VerifyTheCorrectDesactivationOfAnAccelerationCardAndOneCard
 	aCard := CancellationCard new.
 	aGame
 		apply: aCard
-		to: AccelerationCard new
-		of: EveryPlayer new
+		to: (PlayerPosetionCards with: AccelerationCard new of: EveryPlayer new)
 		from: 'blue'.
 	aGame movePlayer.
 	aGame movePlayer.
@@ -1564,8 +1558,7 @@ CardsTest >> testW018VerifyTheCorrectDiscardOfAnAccelerationAnTryingToReuseItThe
 	aCard := CancellationCard new.
 	aGame
 		apply: aCard
-		to: AccelerationCard new
-		of: EveryPlayer new
+		to: (PlayerPosetionCards with: AccelerationCard new of: EveryPlayer new)
 		from: 'blue'.
 	aGame movePlayer.
 	aGame movePlayer.
@@ -1574,8 +1567,7 @@ CardsTest >> testW018VerifyTheCorrectDiscardOfAnAccelerationAnTryingToReuseItThe
 	aCard := CancellationCard new.
 	aGame
 		apply: aCard
-		to: AccelerationCard new
-		of: EveryPlayer new
+		to: (PlayerPosetionCards with: AccelerationCard new of: EveryPlayer new)
 		from: 'blue'.
 	self
 		assert: aGame playersBox
@@ -1620,14 +1612,12 @@ CardsTest >> testW020VerifyThatWhenARedoCardIsDiscardARedoCardGoToTheDiscardDeck
 	aCard := CancellationCard new.
 	aGame
 		apply: aCard
-		to: SpeedCard new
-		of: 'red'
+		to: (PlayerPosetionCards with: SpeedCard new of: 'red')
 		from: 'blue'.
 	aCard := RedoCard create.
 	aGame
 		apply: aCard
-		to: SpeedCard new
-		of: 'red'
+		to: (PlayerPosetionCards with: SpeedCard new of: 'red')
 		from: 'blue'.
 	aGame movePlayer.
 	aGame movePlayer.
@@ -1640,14 +1630,12 @@ CardsTest >> testW020VerifyThatWhenARedoCardIsDiscardARedoCardGoToTheDiscardDeck
 	aCard := CancellationCard new.
 	aGame
 		apply: aCard
-		to: SpeedCard new
-		of: 'red'
+		to: (PlayerPosetionCards with: SpeedCard new of: 'red')
 		from: 'blue'.
 	aCard := RedoCard create.
 	aGame
 		apply: aCard
-		to: SpeedCard new
-		of: 'red'
+		to: (PlayerPosetionCards with: SpeedCard new of: 'red')
 		from: 'blue'.
 	self assert: aGame discardCardsDeskAmount equals: 4
 ]

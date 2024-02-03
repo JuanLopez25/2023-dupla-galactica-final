@@ -63,8 +63,8 @@ Player >> moveToTheStart [
 Player >> updateLap: aLength [
 
 	position box  > aLength ifTrue: [ 
-		position moveForwardLaps: aLength ].
+		position moveForwardLapsWithLength: aLength ].
 
 	position box <= 0 ifFalse: [ ^ self ].
-		position moveBackwardsLaps: aLength
+		position moveBackwardsLapsWithLength: aLength
 ]

@@ -40,7 +40,7 @@ Position >> move: aValue [
 ]
 
 { #category : #movement }
-Position >> moveBackwardsLaps: aLength [
+Position >> moveBackwardsLapsWithLength: aLength [
 
 	lap := lap - (box abs // aLength + 1).
 	lap < 0
@@ -54,7 +54,7 @@ Position >> moveBackwardsLaps: aLength [
 ]
 
 { #category : #movement }
-Position >> moveForwardLaps: aLength [
+Position >> moveForwardLapsWithLength: aLength [
 
 	lap := lap + (box // aLength).
 	box := box % aLength

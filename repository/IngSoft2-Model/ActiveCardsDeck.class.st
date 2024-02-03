@@ -2,49 +2,56 @@ Class {
 	#name : #ActiveCardsDeck,
 	#superclass : #Object,
 	#instVars : [
-		'hands'
+		'posetionCards'
 	],
 	#category : #'IngSoft2-Model'
 }
 
 { #category : #'Instance creation' }
-ActiveCardsDeck class >> createDeckFor: aColorCollection [
-	^ self new initializeDeckFor: aColorCollection.
+ActiveCardsDeck class >> createFor: aColorCollection [
+
+	^ self new initializeCreateFor: aColorCollection
 ]
 
 { #category : #activation }
 ActiveCardsDeck >> activeCard: aCard to: aPlayer [
 
-	hands
-		detect: [ :hand | hand owner = aPlayer ]
+	posetionCards
+		detect: [ :hand | hand holder = aPlayer ]
 		ifFound: [ :hand | hand addCard: aCard ]
-		ifNone: [ 
-			Error signal:
-				'That is not a valid player' ]
 ]
 
 { #category : #effects }
 ActiveCardsDeck >> calculateEffectOn: aColorPlayer [
 
-	^ (hands select: [ :hand | 
-		   hand owner = aColorPlayer or: hand owner = EveryPlayer new ]) 
-		  sum: [ :hand | hand cards sum: [ :card | card effect ] ]
+	^ (posetionCards select: [ :posetionCard | 
+		   posetionCard holder = aColorPlayer or:
+			   posetionCard holder = EveryPlayer new ]) sum: [ :posetionCard | 
+		  posetionCard cards sum: [ :card | card effect ] ]
 ]
 
 { #category : #desactivation }
-ActiveCardsDeck >> desactivate: aCard to: aPlayer [
+ActiveCardsDeck >> desactivate: aPosetionCard [
 
-	hands
-		detect: [ :hand | hand owner = aPlayer ]
-		ifFound: [ :hand | ^ hand takeOut: aCard ]
-		ifNone: [ 
-			Error signal:
-				'There are no that type of cards activate in this player or is not valid' ]
+	| aCard |
+	posetionCards
+		detect: [ :posetionCard | posetionCard = aPosetionCard ]
+		ifFound: [ :posetionCard | 
+			aCard := posetionCard takeOut: aPosetionCard topCard.
+			aCard isEmpty
+				ifTrue: [ 
+				Error signal: 'The player does not have that type of card active' ]
+				ifFalse: [ ^ aCard ] ]
+		ifNone: [ Error signal: 'The objective is not valid' ]
 ]
 
 { #category : #initialization }
-ActiveCardsDeck >> initializeDeckFor: aColorCollection [
+ActiveCardsDeck >> initializeCreateFor: aColorCollection [
 
-	hands := OrderedCollection with: (PlayerHand of: EveryPlayer new).
-	aColorCollection do: [ :color | hands addLast: (PlayerHand of: color) ]
+	posetionCards := OrderedCollection with:
+		                 (PlayerPosetionCards
+			                  with: EmptyObject new
+			                  of: EveryPlayer new).
+	aColorCollection do: [ :color | 
+		posetionCards addLast: (PlayerPosetionCards with: EmptyObject new of: color) ]
 ]

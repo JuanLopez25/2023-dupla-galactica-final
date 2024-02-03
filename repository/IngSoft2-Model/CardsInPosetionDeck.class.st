@@ -8,47 +8,46 @@ Class {
 }
 
 { #category : #'Instance creation' }
-CardsInPosetionDeck class >> createDeckFor: aColorCollection [
+CardsInPosetionDeck class >> createFor: aColorCollection [
 
-	^ self new initializeDeckFor: aColorCollection
+	^ self new initializeCreateFor: aColorCollection
 ]
 
 { #category : #cards }
 CardsInPosetionDeck >> addCard: aCard to: aColorPlayer [
 
-	aCard isEmpty ifFalse: [ 
-		playersHands
-			detect: [ :playerHand | playerHand owner = aColorPlayer ]
-			ifFound: [ :hand | hand addCard: aCard ]
-			ifNone: [ Error signal: 'That is not a valid objective' ] ]
+	playersHands
+		detect: [ :hand | hand holder = aColorPlayer ]
+		ifFound: [ :hand | hand addCard: aCard ]
 ]
 
 { #category : #cards }
 CardsInPosetionDeck >> cardsOf: aPlayerColor [
 
-	^ (playersHands detect: [ :hand | hand owner = aPlayerColor ]) size
+	^ (playersHands detect: [ :hand | hand holder = aPlayerColor ]) cards size
 ]
 
 { #category : #cards }
 CardsInPosetionDeck >> hasBeenGiven: aCard to: aPlayerColor [
 
 	playersHands
-		detect: [ :hand | hand owner = aPlayerColor and: (hand has: aCard) ]
-		ifFound: [ :hand | ^ true ].
+		detect: [ :posetionCard | posetionCard holder = aPlayerColor]
+		ifFound: [ :posetionCard | ^  posetionCard has: aCard ].
 	^ false
 ]
 
 { #category : #initialization }
-CardsInPosetionDeck >> initializeDeckFor: aColorCollection [
+CardsInPosetionDeck >> initializeCreateFor: aColorCollection [
 
 	playersHands := OrderedCollection new.
-	aColorCollection do: [ :color | playersHands addLast: (PlayerHand of: color) ]
+	aColorCollection do: [ :color | 
+		playersHands addLast: (PlayerPosetionCards with: EmptyObject new of: color) ]
 ]
 
 { #category : #initialization }
 CardsInPosetionDeck >> takeOut: aCard to: aColorPlayer [
 
-	aCard isEmpty ifFalse: [ 
-		(playersHands detect: [ :playerHand | playerHand owner = aColorPlayer ]) 
-			takeOut: aCard ]
+	playersHands
+		detect: [ :posetionCard | posetionCard holder = aColorPlayer ]
+		ifFound: [ :posetionCard | posetionCard takeOut: aCard ]
 ]

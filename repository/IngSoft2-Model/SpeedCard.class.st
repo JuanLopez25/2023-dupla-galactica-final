@@ -37,5 +37,7 @@ SpeedCard >> isPermanent [
 { #category : #effect }
 SpeedCard >> objectiveWhenTarget: anObjective using: aCardManager [
 
-	anObjective = EveryPlayer new ifFalse: [ ^ anObjective ] ifTrue: [ ^ EmptyObject new ]
+	anObjective = EveryPlayer new
+		ifFalse: [ ^ anObjective ]
+		ifTrue: [ ^ EmptyObject new ]
 ]

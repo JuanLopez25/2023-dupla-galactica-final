@@ -8,9 +8,9 @@ Class {
 }
 
 { #category : #'instance creation' }
-CardsDeck class >> create [
+CardsDeck class >> with: aCardCollection [
 
-	^ self new initializeCreate.
+	^ self new initializeWith: aCardCollection.
 ]
 
 { #category : #cards }
@@ -35,9 +35,11 @@ CardsDeck >> dealCard [
 ]
 
 { #category : #initialization }
-CardsDeck >> initializeCreate [
+CardsDeck >> initializeWith: aCardCollection [
 
 	cardsInDeck := OrderedCollection new.
+	aCardCollection isEmpty ifFalse: [ 
+		aCardCollection do: [ :card | self addCard: card amount: 1 ] ]
 ]
 
 { #category : #information }

@@ -10,11 +10,14 @@ Class {
 { #category : #Games }
 MovePlayersFromTheGameTest >> gameWithMoreParsecs: aLoadedDie [
 
-	| boxes aBoard aLoadedGame aShaker aDeck |
-	aDeck := CardsDeck create.
-	aDeck addCard: OverloadCard new amount: 3.
-	boxes := (BoxCreator use: (OrderedCollection with:
-			           (BoxProbability using: EmptyObject new withChance: 100))) 
+	| boxes aBoard aLoadedGame aShaker aDeck cards |
+	cards := (Creator use: (OrderedCollection with:
+			           (ObjectProbability
+				            using: OverloadCard new
+				            withChance: 100))) create: 3.
+	aDeck := CardsDeck with: cards.
+	boxes := (Creator use: (OrderedCollection with:
+			           (ObjectProbability using: EmptyObject new withChance: 100))) 
 		         create: 10.
 	aBoard := Board with: boxes measure: (Parsec worth: 200).
 
@@ -31,11 +34,14 @@ MovePlayersFromTheGameTest >> gameWithMoreParsecs: aLoadedDie [
 { #category : #Games }
 MovePlayersFromTheGameTest >> gameWithOneLap: aLoadedDie [
 
-	| aGame boxes aBoard aShaker aDeck |
-	aDeck := CardsDeck create.
-	aDeck addCard: OverloadCard new amount: 3.
-	boxes := (BoxCreator use: (OrderedCollection with:
-			           (BoxProbability using: EmptyObject new withChance: 100))) 
+	| aGame boxes aBoard aShaker aDeck cards |
+	cards := (Creator use: (OrderedCollection with:
+			           (ObjectProbability
+				            using: OverloadCard new
+				            withChance: 100))) create: 3.
+	aDeck := CardsDeck with: cards.
+	boxes := (Creator use: (OrderedCollection with:
+			           (ObjectProbability using: EmptyObject new withChance: 100))) 
 		         create: 10.
 	aBoard := Board with: boxes measure: (Parsec worth: 100).
 
@@ -53,11 +59,14 @@ MovePlayersFromTheGameTest >> gameWithOneLap: aLoadedDie [
 { #category : #Games }
 MovePlayersFromTheGameTest >> gameWithTwoLaps: aLoadedDie [
 
-	| boxes aBoard aLoadedGame aShaker aDeck |
-	aDeck := CardsDeck create.
-	aDeck addCard: OverloadCard new amount: 3.
-	boxes := (BoxCreator use: (OrderedCollection with:
-			           (BoxProbability using: EmptyObject new withChance: 100))) 
+	| boxes aBoard aLoadedGame aShaker aDeck cards |
+	cards := (Creator use: (OrderedCollection with:
+			           (ObjectProbability
+				            using: OverloadCard new
+				            withChance: 100))) create: 3.
+	aDeck := CardsDeck with: cards.
+	boxes := (Creator use: (OrderedCollection with:
+			           (ObjectProbability using: EmptyObject new withChance: 100))) 
 		         create: 10.
 	aBoard := Board with: boxes measure: (Parsec worth: 100).
 

@@ -10,15 +10,18 @@ Class {
 { #category : #Games }
 CreateAFunctionalGameTest >> gameWithLoadedDie [
 
-	| aLoadedGame aLoadedDie aBoard boxes aShaker aDeck |
-	aDeck := CardsDeck create.
-	aDeck addCard: OverloadCard new amount: 3.
+	| aLoadedGame aLoadedDie aBoard boxes aShaker aDeck cards |
+	cards := (Creator use: (OrderedCollection with:
+			           (ObjectProbability
+				            using: OverloadCard new
+				            withChance: 100))) create: 3.
+	aDeck := CardsDeck with: cards.
 	aLoadedDie := LoadedDie with: (OrderedCollection
 			               with: 9
 			               with: 6
 			               with: 7
 			               with: 9).
-	boxes:= (BoxCreator use: (OrderedCollection with: (BoxProbability using: EmptyObject new withChance: 100))) create: 10.
+	boxes:= (Creator use: (OrderedCollection with: (ObjectProbability using: EmptyObject new withChance: 100))) create: 10.
 	aBoard := Board with: boxes measure: (Parsec worth: 100).
 	aShaker := DiceShaker withDie: aLoadedDie.
 	
@@ -34,9 +37,12 @@ CreateAFunctionalGameTest >> gameWithLoadedDie [
 { #category : #Games }
 CreateAFunctionalGameTest >> gameWithTwoLoadedDie [
 
-	| aLoadedDie aSecondLoadedDie aShaker aGame boxes aBoard aDeck |
-	aDeck := CardsDeck create.
-	aDeck addCard: OverloadCard new amount: 3.
+	| aLoadedDie aSecondLoadedDie aShaker aGame boxes aBoard aDeck cards |
+	cards := (Creator use: (OrderedCollection with:
+			           (ObjectProbability
+				            using: OverloadCard new
+				            withChance: 100))) create: 3.
+	aDeck := CardsDeck with: cards.
 	aLoadedDie := LoadedDie with: (OrderedCollection
 			               with: 4
 			               with: 5
@@ -50,8 +56,8 @@ CreateAFunctionalGameTest >> gameWithTwoLoadedDie [
 	aShaker := DiceShaker withDie: aLoadedDie.
 	aShaker addDie: aSecondLoadedDie.
 	
-	boxes := (BoxCreator use: (OrderedCollection with:
-			           (BoxProbability using: EmptyObject new withChance: 100))) 
+	boxes := (Creator use: (OrderedCollection with:
+			           (ObjectProbability using: EmptyObject new withChance: 100))) 
 		         create: 10.
 	aBoard := Board with: boxes measure: (Parsec worth: 100).
 	aGame := DuplaGalacticaGameProxy

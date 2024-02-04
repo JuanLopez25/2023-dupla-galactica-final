@@ -1,14 +1,14 @@
 Class {
-	#name : #BoxCreator,
+	#name : #Creator,
 	#superclass : #Object,
 	#instVars : [
-		'boxes'
+		'objects'
 	],
 	#category : #'IngSoft2-Model'
 }
 
 { #category : #'instance creation' }
-BoxCreator class >> use: aBoxesProbabilitiesCollection [
+Creator class >> use: aBoxesProbabilitiesCollection [
 
 	(aBoxesProbabilitiesCollection sum: [ :boxProbability | 
 		 boxProbability probability ]) = 100 ifFalse: [ 
@@ -17,28 +17,28 @@ BoxCreator class >> use: aBoxesProbabilitiesCollection [
 ]
 
 { #category : #creation }
-BoxCreator >> create: aNumberOfBoxes [
+Creator >> create: aNumberOfBoxes [
 
 	| boxesCreated |
 	boxesCreated := OrderedCollection new.
 	aNumberOfBoxes timesRepeat: [ 
-		boxesCreated addLast: (self oneRandomBox) ].
+		boxesCreated addLast: (self oneRandomObject) ].
 	^ boxesCreated
 ]
 
 { #category : #initialization }
-BoxCreator >> initializeUse: aBoxesProbabilityCollection [
+Creator >> initializeUse: anObjectProbabilityCollection [
 
-	boxes := aBoxesProbabilityCollection
+	objects := anObjectProbabilityCollection
 ]
 
 { #category : #creation }
-BoxCreator >> oneRandomBox [
+Creator >> oneRandomObject [
 
 	| aRandomValue sum|
 	sum := 0.
 	aRandomValue := 100 atRandom.
-	^ ((boxes detect: [ :box |
-		sum := sum + box probability.
-		aRandomValue <= sum]) box) deepCopy.
+	^ ((objects detect: [ :object |
+		sum := sum + object probability.
+		aRandomValue <= sum]) object) deepCopy.
 ]

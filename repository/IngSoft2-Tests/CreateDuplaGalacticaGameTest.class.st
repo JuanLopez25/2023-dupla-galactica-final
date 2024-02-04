@@ -12,39 +12,42 @@ Class {
 { #category : #Games }
 CreateDuplaGalacticaGameTest >> createGameWithEffects [
 
-	| aGame aBoard aBoxCreator boxes boxesProbabilities aDeck |
-	aDeck := CardsDeck create.
-	aDeck addCard: OverloadCard new amount: 3.
+	| aGame aBoard aBoxCreator boxes boxesProbabilities aDeck cards |
+	cards := (Creator use: (OrderedCollection with:
+			           (ObjectProbability
+				            using: OverloadCard new
+				            withChance: 100))) create: 3.
+	aDeck := CardsDeck with: cards.
 	boxesProbabilities := OrderedCollection
 		                      with:
-		                      (BoxProbability
+		                      (ObjectProbability
 			                       using: EmptyObject new
 			                       withChance: 30)
 		                      with:
-		                      (BoxProbability
+		                      (ObjectProbability
 			                       using: WormHoleBox new
 			                       withChance: 20)
 		                      with:
-		                      (BoxProbability
+		                      (ObjectProbability
 			                       using: SpeedUpBox new
 			                       withChance: 20)
 		                      with:
-		                      (BoxProbability
+		                      (ObjectProbability
 			                       using: (MoonWalkBox with: -2)
 			                       withChance: 10)
 		                      with:
-		                      (BoxProbability
+		                      (ObjectProbability
 			                       using: AtomicBombBox new
 			                       withChance: 2)
-		                      with: (BoxProbability
+		                      with: (ObjectProbability
 				                       using: (HyperJumpBox with:
 						                        (OrderedCollection
 							                         with: (Parsec worth: 40)
 							                         with: (Parsec worth: 30)))
 				                       withChance: 8).
 	boxesProbabilities addLast:
-		(BoxProbability using: (RandomCardBox new) withChance: 10).
-	aBoxCreator := BoxCreator use: boxesProbabilities.
+		(ObjectProbability using: (RandomCardBox new) withChance: 10).
+	aBoxCreator := Creator use: boxesProbabilities.
 	boxes := aBoxCreator create: 10.
 	aBoard := Board with: boxes measure: (Parsec worth: 200).
 	aGame := DuplaGalacticaGameProxy
@@ -181,7 +184,7 @@ CreateDuplaGalacticaGameTest >> testP020TryToCreateAGameWithDuplicateColorsThenR
 	aDuplicateColorCollection := OrderedCollection
 		                             with: 'red'
 		                             with: 'red'.
-	boxes := (BoxCreator use: (OrderedCollection with: (BoxProbability using: EmptyObject new withChance: 100))) create: 10.
+	boxes := (Creator use: (OrderedCollection with: (ObjectProbability using: EmptyObject new withChance: 100))) create: 10.
 	aBoard := Board with: boxes measure: (Parsec worth: 100).
 	self
 		should: [ 

@@ -14,8 +14,10 @@ BoxesTest >> setUp [
 	super setUp.
 
 	aColorCollection := OrderedCollection with: 'red' with: 'blue'.
-	aDeck := CardsDeck create.
-	aDeck addCard: AccelerationCard new amount: 7.
+	aDeck := CardsDeck with: ((Creator use: (OrderedCollection with:
+			           (ObjectProbability
+				            using: AccelerationCard new
+				            withChance: 100))) create: 7).
 ]
 
 { #category : #tests }
@@ -37,8 +39,8 @@ BoxesTest >> testN001CheckNoEffectBoxDoesNotApplyAnyEffectThenValuePositions [
 			               with: 8
 			               with: 5
 			               with: 8).
-	boxes := boxes := (BoxCreator use: (OrderedCollection with:
-			                    (BoxProbability
+	boxes := boxes := (Creator use: (OrderedCollection with:
+			                    (ObjectProbability
 				                     using: EmptyObject new
 				                     withChance: 100))) create: 10.
 	aBoard := Board with: boxes measure: (Parsec worth: 100).
@@ -66,8 +68,8 @@ BoxesTest >> testN002CheckTheWormHoleBoxApplyANegativeEffectThenValuePositions [
 			               with: 8
 			               with: 5
 			               with: 8).
-	boxes := (BoxCreator use:
-		          (OrderedCollection with:  (BoxProbability using: WormHoleBox new withChance: 100))) 
+	boxes := (Creator use:
+		          (OrderedCollection with:  (ObjectProbability using: WormHoleBox new withChance: 100))) 
 		         create: 10.
 	aBoard := Board with: boxes measure: (Parsec worth: 100).
 	aShaker := DiceShaker withDie: aLoadedDie.
@@ -94,9 +96,9 @@ BoxesTest >> testN003CheckSpeedUpBoxApplyAPositiveEffectOnThePositionThenValuePo
 			               with: 8
 			               with: 5
 			               with: 8).
-	boxes := boxes := (BoxCreator use:
+	boxes := boxes := (Creator use:
 		                   (OrderedCollection with:
-			                     (BoxProbability using: SpeedUpBox new withChance: 100))) create: 10.
+			                     (ObjectProbability using: SpeedUpBox new withChance: 100))) create: 10.
 	aBoard := Board with: boxes measure: (Parsec worth: 100).
 	aShaker := DiceShaker withDie: aLoadedDie.
 	
@@ -122,8 +124,8 @@ BoxesTest >> testN004CheckMoonWalkBoxApplyTheCorrectEffectOnTheOtherPlayersThenV
 			               with: 3
 			               with: 5
 			               with: 8).
-	boxes := (BoxCreator
-		          use: (OrderedCollection with:  (BoxProbability using: (MoonWalkBox with: -2) withChance: 100))) create:
+	boxes := (Creator
+		          use: (OrderedCollection with:  (ObjectProbability using: (MoonWalkBox with: -2) withChance: 100))) create:
 		         10.
 	aBoard := Board with: boxes measure: (Parsec worth: 100).
 	aShaker := DiceShaker withDie: aLoadedDie.
@@ -150,8 +152,8 @@ BoxesTest >> testN005CheckAtomicBombBoxMoveAllPlayersToTheBeginning [
 			               with: 7
 			               with: 5
 			               with: 8).
-	boxes := (BoxCreator use:
-		          (OrderedCollection with:  (BoxProbability using: AtomicBombBox new withChance: 100))) 
+	boxes := (Creator use:
+		          (OrderedCollection with:  (ObjectProbability using: AtomicBombBox new withChance: 100))) 
 		         create: 10.
 	aBoard := Board with: boxes measure: (Parsec worth: 100).
 	aShaker := DiceShaker withDie: aLoadedDie.
@@ -175,7 +177,7 @@ BoxesTest >> testN006CheckHyperJumpBoxMoveTheCorrectAmountOfParsecsWhenTheyAreEn
 			               with: 4
 			               with: 5
 			               with: 8).
-	boxes := (BoxCreator use: (OrderedCollection with: (BoxProbability
+	boxes := (Creator use: (OrderedCollection with: (ObjectProbability
 				            using: (HyperJumpBox with:
 						             (OrderedCollection
 							              with: (Parsec worth: 40)
@@ -205,8 +207,8 @@ BoxesTest >> testN007CheckWormHoleBoxDoesNotAllowPlayerToBeAtANegativePosition [
 			               with: 8
 			               with: 5
 			               with: 8).
-	boxes := (BoxCreator use:
-		          (OrderedCollection with: (BoxProbability using: WormHoleBox new withChance: 100))) 
+	boxes := (Creator use:
+		          (OrderedCollection with: (ObjectProbability using: WormHoleBox new withChance: 100))) 
 		         create: 10.
 	aBoard := Board with: boxes measure: (Parsec worth: 100).
 	aShaker := DiceShaker withDie: aLoadedDie.
@@ -232,8 +234,8 @@ BoxesTest >> testN008CheckMoonWalkBoxDoesNotAllowPlayersToBeAtANegativePosition 
 			               with: 4
 			               with: 5
 			               with: 8).
-	boxes := (BoxCreator use: (OrderedCollection with:
-			           (BoxProbability
+	boxes := (Creator use: (OrderedCollection with:
+			           (ObjectProbability
 				            using: (MoonWalkBox with: -4)
 				            withChance: 100))) create: 10.
 	aBoard := Board with: boxes measure: (Parsec worth: 100).
@@ -260,7 +262,7 @@ BoxesTest >> testN009CheckHyperJumpBoxDoesNotAllowPlayersToBeAtANegativePosition
 			               with: 3
 			               with: 5
 			               with: 8).
-	boxes := (BoxCreator use: (OrderedCollection with: (BoxProbability
+	boxes := (Creator use: (OrderedCollection with: (ObjectProbability
 				            using: (HyperJumpBox with:
 						             (OrderedCollection
 							              with: (Parsec worth: -40)
@@ -290,8 +292,8 @@ BoxesTest >> testN010CheckTheEffectApplysAlsoWhenTheSpaceshipReachTheGoal [
 			               with: 3
 			               with: 5
 			               with: 8).
-	boxes := (BoxCreator use:
-		          (OrderedCollection with: (BoxProbability using: WormHoleBox new withChance: 100))) 
+	boxes := (Creator use:
+		          (OrderedCollection with: (ObjectProbability using: WormHoleBox new withChance: 100))) 
 		         create: 10.
 	aBoard := Board with: boxes measure: (Parsec worth: 100).
 	aShaker := DiceShaker withDie: aLoadedDie.
@@ -317,7 +319,7 @@ BoxesTest >> testN011CheckHyperJumpBoxMoveTheCorrectAmountOfParsecsWhenTheyAreNo
 			               with: 3
 			               with: 5
 			               with: 8).
-	boxes := (BoxCreator use: (OrderedCollection with: (BoxProbability
+	boxes := (Creator use: (OrderedCollection with: (ObjectProbability
 				            using: (HyperJumpBox with: (OrderedCollection
 							              with: (Parsec worth: 45.5)
 							              with: (Parsec worth: 34.9)))
@@ -346,8 +348,8 @@ BoxesTest >> testN012CheckTheWormHoleEffectWhenHasPassedTheFirstLap [
 			               with: 8
 			               with: 1
 			               with: 8).
-	boxes := (BoxCreator use:
-		          (OrderedCollection with: (BoxProbability using: WormHoleBox new withChance: 100))) 
+	boxes := (Creator use:
+		          (OrderedCollection with: (ObjectProbability using: WormHoleBox new withChance: 100))) 
 		         create: 10.
 	aBoard := Board with: boxes measure: (Parsec worth: 100).
 	aShaker := DiceShaker withDie: aLoadedDie.
@@ -373,8 +375,8 @@ BoxesTest >> testR001CheckRandomCardBoxGeneratesARandomCard [
 			               with: 5
 			               with: 5
 			               with: 8).
-	boxes := (BoxCreator use:
-		          (OrderedCollection with: (BoxProbability using: (RandomCardBox new)  withChance: 100))) 
+	boxes := (Creator use:
+		          (OrderedCollection with: (ObjectProbability using: (RandomCardBox new)  withChance: 100))) 
 		         create: 10.
 	aBoard := Board with: boxes measure: (Parsec worth: 100).
 	aShaker := DiceShaker withDie: aLoadedDie.
@@ -402,8 +404,8 @@ BoxesTest >> testR002CheckRandomCardBoxGeneratesARandomCardMoreThanOneTimeIfNece
 			               with: 3
 			               with: 3
 			               with: 8).
-	boxes := (BoxCreator use:
-		          (OrderedCollection with: (BoxProbability using: (RandomCardBox new) withChance: 100))) 
+	boxes := (Creator use:
+		          (OrderedCollection with: (ObjectProbability using: (RandomCardBox new) withChance: 100))) 
 		         create: 10.
 	aBoard := Board with: boxes measure: (Parsec worth: 100).
 	aShaker := DiceShaker withDie: aLoadedDie.
@@ -433,8 +435,8 @@ BoxesTest >> testR003CheckRandomCardBoxGeneratesAsRandomCardsAsSpecify [
 			               with: 3
 			               with: 3
 			               with: 8).
-	boxes := (BoxCreator use:
-		          (OrderedCollection with: (BoxProbability using: (RandomCardBox new) withChance: 100))) 
+	boxes := (Creator use:
+		          (OrderedCollection with: (ObjectProbability using: (RandomCardBox new) withChance: 100))) 
 		         create: 10.
 	aBoard := Board with: boxes measure: (Parsec worth: 100).
 	aShaker := DiceShaker withDie: aLoadedDie.
@@ -464,7 +466,7 @@ BoxesTest >> testT001CheckHyperJumpBoxMoveTheCorrectAmountOfBoxesWhenTheValuesAr
 			               with: 3
 			               with: 5
 			               with: 8).
-	boxes := (BoxCreator use: (OrderedCollection with: (BoxProbability
+	boxes := (Creator use: (OrderedCollection with: (ObjectProbability
 				            using: (HyperJumpBox with: (OrderedCollection
 							              with: (LigthYear worth: 120)
 							              with: (LigthYear worth: 90)))
@@ -493,7 +495,7 @@ BoxesTest >> testT002CheckHyperJumpBoxMoveTheCorrectAmountOfBoxesWhenTheValuesAr
 			               with: 3
 			               with: 5
 			               with: 8).
-	boxes := (BoxCreator use: (OrderedCollection with: (BoxProbability
+	boxes := (Creator use: (OrderedCollection with: (ObjectProbability
 				            using: (HyperJumpBox with: (OrderedCollection
 							              with: (LigthYear worth: 120)
 							              with: (Parsec worth: 30)))
@@ -518,8 +520,8 @@ BoxesTest >> testT003CheckHyperJumpBoxCannotBeCreatedIfDoesNotHaveValuesToUse [
 
 	self
 		should: [ 
-			(BoxCreator use: (OrderedCollection with:
-					  (BoxProbability using: (HyperJumpBox with: OrderedCollection new) withChance: 100))) 
+			(Creator use: (OrderedCollection with:
+					  (ObjectProbability using: (HyperJumpBox with: OrderedCollection new) withChance: 100))) 
 				create: 10 ]
 		raise: Error
 		withMessage: 'There are no values to use in the hyper jump box'
@@ -535,7 +537,7 @@ BoxesTest >> testT004CheckHyperJumpBoxMoveTheCorrectAmountOfBoxesWhenTheValuesAr
 			               with: 3
 			               with: 5
 			               with: 8).
-	boxes := (BoxCreator use: (OrderedCollection with: (BoxProbability
+	boxes := (Creator use: (OrderedCollection with: (ObjectProbability
 				            using: (HyperJumpBox with: (OrderedCollection
 							              with: (LigthYear worth: -60)
 							              with: (Parsec worth: -30)))
@@ -564,7 +566,7 @@ BoxesTest >> testT005CheckPlayerMoveBackwardAsManyLapsAsRequest [
 			               with: 10
 			               with: 5
 			               with: 8).
-	boxes := (BoxCreator use: (OrderedCollection with: (BoxProbability
+	boxes := (Creator use: (OrderedCollection with: (ObjectProbability
 				            using:
 				            (HyperJumpBox with:
 					             (OrderedCollection with: (Parsec worth: -120)))
@@ -593,8 +595,8 @@ BoxesTest >> testU001VerifyTheCorrectUseOfSprintBox [
 			               with: 1
 			               with: 5
 			               with: 8).
-	boxes := (BoxCreator use: (OrderedCollection with:
-			           (BoxProbability using: SprintBox new withChance: 100))) 
+	boxes := (Creator use: (OrderedCollection with:
+			           (ObjectProbability using: SprintBox new withChance: 100))) 
 		         create: 10.
 	aBoard := Board with: boxes measure: (Parsec worth: 100).
 	aShaker := DiceShaker withDie: aLoadedDie.
@@ -620,8 +622,8 @@ BoxesTest >> testU002VerifyTheCorrectUseOfSprintBoxWhenAPlayerHave1Card [
 			               with: 1
 			               with: 5
 			               with: 8).
-	boxes := (BoxCreator use: (OrderedCollection with:
-			           (BoxProbability using: SprintBox new withChance: 100))) 
+	boxes := (Creator use: (OrderedCollection with:
+			           (ObjectProbability using: SprintBox new withChance: 100))) 
 		         create: 10.
 	aBoard := Board with: boxes measure: (Parsec worth: 100).
 	aShaker := DiceShaker withDie: aLoadedDie.
@@ -649,8 +651,8 @@ BoxesTest >> testU003VerifyTheCorrectUseOfSprintBoxWhenThePlayerDoesNotHaveCards
 			               with: 1
 			               with: 5
 			               with: 8).
-	boxes := (BoxCreator use: (OrderedCollection with:
-			           (BoxProbability using: SprintBox new withChance: 100))) 
+	boxes := (Creator use: (OrderedCollection with:
+			           (ObjectProbability using: SprintBox new withChance: 100))) 
 		         create: 10.
 	aBoard := Board with: boxes measure: (Parsec worth: 100).
 	aShaker := DiceShaker withDie: aLoadedDie.

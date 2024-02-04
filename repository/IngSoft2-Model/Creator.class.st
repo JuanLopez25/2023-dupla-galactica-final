@@ -8,12 +8,12 @@ Class {
 }
 
 { #category : #'instance creation' }
-Creator class >> use: aBoxesProbabilitiesCollection [
+Creator class >> use: anObjectProbabilitiesCollection [
 
-	(aBoxesProbabilitiesCollection sum: [ :boxProbability | 
-		 boxProbability probability ]) = 100 ifFalse: [ 
+	(anObjectProbabilitiesCollection sum: [ :objectProbability | 
+		 objectProbability probability ]) = 100 ifFalse: [ 
 		Error signal: 'The sum of probabilities must be 100' ].
-	^ self new initializeUse: aBoxesProbabilitiesCollection
+	^ self new initializeUse: anObjectProbabilitiesCollection
 ]
 
 { #category : #creation }

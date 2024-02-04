@@ -9,9 +9,9 @@ Class {
 }
 
 { #category : #'Instance creation' }
-ObjectProbability class >> using: aBox withChance: aProbability [
+ObjectProbability class >> using: anObject withChance: aProbability [
 
-	^ self new initializeUsing: aBox withChance: aProbability
+	^ self new initializeUsing: anObject withChance: aProbability
 ]
 
 { #category : #initialization }

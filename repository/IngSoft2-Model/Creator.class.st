@@ -17,13 +17,13 @@ Creator class >> use: anObjectProbabilitiesCollection [
 ]
 
 { #category : #creation }
-Creator >> create: aNumberOfBoxes [
+Creator >> create: aNumberOfObjects [
 
-	| boxesCreated |
-	boxesCreated := OrderedCollection new.
-	aNumberOfBoxes timesRepeat: [ 
-		boxesCreated addLast: (self oneRandomObject) ].
-	^ boxesCreated
+	| objectCreated |
+	objectCreated := OrderedCollection new.
+	aNumberOfObjects timesRepeat: [ 
+		objectCreated addLast: (self oneRandomObject) ].
+	^ objectCreated
 ]
 
 { #category : #initialization }

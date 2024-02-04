@@ -15,15 +15,18 @@ Class {
 { #category : #running }
 MovePlayersInTurnFromTheGameTest >> setUp [
 
-	| aDeck |
+	| aDeck cards |
 	super setUp.
-	aDeck := CardsDeck create.
-	aDeck addCard: OverloadCard new amount: 3.
+	cards := (Creator use: (OrderedCollection with:
+			           (ObjectProbability
+				            using: OverloadCard new
+				            withChance: 100))) create: 3.
+	aDeck := CardsDeck with: cards.
 	aColorCollection := OrderedCollection with: 'red' with: 'blue'.
 	aLoadedDie := LoadedDie with:
 		              (OrderedCollection with: 1 with: 2 with: 3).
-	boxes := (BoxCreator use:
-		          (OrderedCollection with: (BoxProbability using: EmptyObject new withChance: 100))) 
+	boxes := (Creator use:
+		          (OrderedCollection with: (ObjectProbability using: EmptyObject new withChance: 100))) 
 		         create: 10.
 	
 	aShaker := DiceShaker withDie: aLoadedDie.

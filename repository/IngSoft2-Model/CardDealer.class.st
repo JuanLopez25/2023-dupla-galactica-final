@@ -45,6 +45,6 @@ CardDealer >> discardCardsDeskAmount [
 { #category : #initialization }
 CardDealer >> intializeWith: aDeck [
 
-	deck := CardsDeck create.
+	deck := CardsDeck with: EmptyObject new.
 	discardDeck := aDeck.
 ]

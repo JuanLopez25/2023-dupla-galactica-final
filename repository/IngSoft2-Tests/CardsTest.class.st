@@ -12,7 +12,7 @@ Class {
 CardsTest >> createBoard [
 
 	| boxes aBoard |
-	boxes := (BoxCreator use: (OrderedCollection with: (BoxProbability using: EmptyObject new withChance: 100))) create: 10.
+	boxes := (Creator use: (OrderedCollection with: (ObjectProbability using: EmptyObject new withChance: 100))) create: 10.
 	^ aBoard := Board with: boxes measure: (Parsec worth: 100).
 ]
 
@@ -20,7 +20,7 @@ CardsTest >> createBoard [
 CardsTest >> createBoardWithRandomCardBoxes [
 
 	| boxes |
-	boxes := (BoxCreator use: (OrderedCollection with: (BoxProbability
+	boxes := (Creator use: (OrderedCollection with: (ObjectProbability
 				            using: (RandomCardBox new)
 				            withChance: 100))) create: 10.
 	^ Board with: boxes measure: (Parsec worth: 100)
@@ -53,9 +53,12 @@ CardsTest >> should: anErrorBlock raise: anExceptionClass withMessage: anErrorMe
 { #category : #tests }
 CardsTest >> testQ001VerifyTheCorrectUseOfOverloadCard [
 
-	| aGame aCard aDeck |
-	aDeck := CardsDeck create.
-	aDeck addCard: OverloadCard new amount: 3.
+	| aGame aCard aDeck cards |
+	cards:= ((Creator use: (OrderedCollection with:
+			           (ObjectProbability
+				            using: OverloadCard new
+				            withChance: 100))) create: 3).
+	aDeck := CardsDeck with: cards.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
@@ -74,9 +77,12 @@ CardsTest >> testQ001VerifyTheCorrectUseOfOverloadCard [
 { #category : #tests }
 CardsTest >> testQ003VerifyTheCorrectUseOfOverloadCardWhenThePlayerHasToGoBackwardsDueToANegativeEffect [
 
-	| aGame aCard aDeck |
-	aDeck := CardsDeck create.
-	aDeck addCard: OverloadCard new amount: 3.
+	| aGame aCard aDeck cards |
+	cards:= ((Creator use: (OrderedCollection with:
+			           (ObjectProbability
+				            using: OverloadCard new
+				            withChance: 100))) create: 3).
+	aDeck := CardsDeck with: cards.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
@@ -97,9 +103,12 @@ CardsTest >> testQ003VerifyTheCorrectUseOfOverloadCardWhenThePlayerHasToGoBackwa
 { #category : #tests }
 CardsTest >> testQ004VerifyTheCorrectUseOfOverloadCardWhenThePlayerHasToGoBackwardsInTheFirstLapDueToANegativeEffect [
 
-	| aGame aCard aDeck |
-	aDeck := CardsDeck create.
-	aDeck addCard: OverloadCard new amount: 3.
+	| aGame aCard aDeck cards |
+	cards:= ((Creator use: (OrderedCollection with:
+			           (ObjectProbability
+				            using: OverloadCard new
+				            withChance: 100))) create: 3).
+	aDeck := CardsDeck with: cards.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
@@ -121,9 +130,12 @@ CardsTest >> testQ004VerifyTheCorrectUseOfOverloadCardWhenThePlayerHasToGoBackwa
 { #category : #tests }
 CardsTest >> testQ005VerifyTheCorrectUseOfASpeedCard [
 
-	| aGame aCard aDeck |
-	aDeck := CardsDeck create.
-	aDeck addCard: SpeedCard new amount: 3.
+	| aGame aCard aDeck cards |
+	cards:= ((Creator use: (OrderedCollection with:
+			           (ObjectProbability
+				            using: SpeedCard new
+				            withChance: 100))) create: 3).
+	aDeck := CardsDeck with: cards.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
@@ -142,9 +154,12 @@ CardsTest >> testQ005VerifyTheCorrectUseOfASpeedCard [
 { #category : #tests }
 CardsTest >> testQ006VerifyTheCorrectUseOfASpeedCardWhenThrowingMoreThanOneTime [
 
-	| aGame aCard aDeck |
-	aDeck := CardsDeck create.
-	aDeck addCard: SpeedCard new amount: 3.
+	| aGame aCard aDeck cards |
+	cards:= ((Creator use: (OrderedCollection with:
+			           (ObjectProbability
+				            using: SpeedCard new
+				            withChance: 100))) create: 3).
+	aDeck := CardsDeck with: cards.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
@@ -165,15 +180,18 @@ CardsTest >> testQ006VerifyTheCorrectUseOfASpeedCardWhenThrowingMoreThanOneTime 
 { #category : #tests }
 CardsTest >> testQ007VerifyTheCorrectUseOfASpeedCardWhenHasToRaiseALap [
 
-	| aGame aCard aDeck aDie aLoadedShaker |
+	| aGame aCard aDeck aDie aLoadedShaker cards |
 	aDie := LoadedDie with: (OrderedCollection
 			         with: 9
 			         with: 2
 			         with: 3
 			         with: 5).
 	aLoadedShaker := DiceShaker withDie: aDie.
-	aDeck := CardsDeck create.
-	aDeck addCard: SpeedCard new amount: 3.
+	cards:= ((Creator use: (OrderedCollection with:
+			           (ObjectProbability
+				            using: SpeedCard new
+				            withChance: 100))) create: 3).
+	aDeck := CardsDeck with: cards.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
@@ -192,9 +210,12 @@ CardsTest >> testQ007VerifyTheCorrectUseOfASpeedCardWhenHasToRaiseALap [
 { #category : #tests }
 CardsTest >> testQ008VerifyTheCorrectUseOfPermanentCardsWhenAPlayerHasMoreThanOneActive [
 
-	| aGame aCard aDeck |
-	aDeck := CardsDeck create.
-	aDeck addCard: SpeedCard new amount: 3.
+	| aGame aCard aDeck cards |
+	cards:= ((Creator use: (OrderedCollection with:
+			           (ObjectProbability
+				            using: SpeedCard new
+				            withChance: 100))) create: 3).
+	aDeck := CardsDeck with: cards.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
@@ -215,9 +236,12 @@ CardsTest >> testQ008VerifyTheCorrectUseOfPermanentCardsWhenAPlayerHasMoreThanOn
 { #category : #tests }
 CardsTest >> testQ009VerifyTheCorrectUseOfAccelerationCard [
 
-	| aGame aCard aDeck |
-	aDeck := CardsDeck create.
-	aDeck addCard: AccelerationCard new amount: 3.
+	| aGame aCard aDeck cards |
+	cards:= ((Creator use: (OrderedCollection with:
+			           (ObjectProbability
+				            using: AccelerationCard new
+				            withChance: 100))) create: 3).
+	aDeck := CardsDeck with: cards.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
@@ -236,9 +260,12 @@ CardsTest >> testQ009VerifyTheCorrectUseOfAccelerationCard [
 { #category : #tests }
 CardsTest >> testQ010VerifyTheCorrectUseOfAccelerationCardWhenHasToRaiseALap [
 
-	| aGame aCard aDeck |
-	aDeck := CardsDeck create.
-	aDeck addCard: AccelerationCard new amount: 3.
+	| aGame aCard aDeck cards |
+	cards:= ((Creator use: (OrderedCollection with:
+			           (ObjectProbability
+				            using: AccelerationCard new
+				            withChance: 100))) create: 3).
+	aDeck := CardsDeck with: cards.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
@@ -351,9 +378,12 @@ CardsTest >> testQ013VerifyTheCorrectUseOfTwoCancellationCards [
 { #category : #tests }
 CardsTest >> testQ014TryToCancellAPermanentCardWhenThePlayerDoesNotHaveOne [
 
-	| aGame aCard aDeck |
-	aDeck := CardsDeck create.
-	aDeck addCard: CancellationCard new amount: 4.
+	| aGame aCard aDeck cards |
+	cards:= ((Creator use: (OrderedCollection with:
+			           (ObjectProbability
+				            using: CancellationCard new
+				            withChance: 100))) create: 4).
+	aDeck := CardsDeck with: cards.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
@@ -404,9 +434,12 @@ CardsTest >> testQ015TryToCancellAPermanentCardWithATypeOfCardThatIsNotActivate 
 { #category : #tests }
 CardsTest >> testQ017TryToUseAnOverLoadCardWhenThePlayerDoesNotHaveOne [
 
-	| aGame aCard aDeck |
-	aDeck := CardsDeck create.
-	aDeck addCard: AccelerationCard new amount: 4.
+	| aGame aCard aDeck cards |
+	cards := (Creator use: (OrderedCollection with:
+			           (ObjectProbability
+				            using: AccelerationCard new
+				            withChance: 100))) create: 4.
+	aDeck := CardsDeck with: cards.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
@@ -418,16 +451,19 @@ CardsTest >> testQ017TryToUseAnOverLoadCardWhenThePlayerDoesNotHaveOne [
 	aGame movePlayer.
 	aGame movePlayer.
 	self
-		assert: aGame playersBox 
+		assert: aGame playersBox
 		equals: (OrderedCollection with: 2 with: 3)
 ]
 
 { #category : #tests }
 CardsTest >> testQ018TryToUseASpeedCardWhenThePlayerDoesNotHaveOne [
 
-	| aGame aCard aDeck |
-	aDeck := CardsDeck create.
-	aDeck addCard: AccelerationCard new amount: 4.
+	| aGame aCard aDeck cards |
+	cards:= ((Creator use: (OrderedCollection with:
+			           (ObjectProbability
+				            using: AccelerationCard new
+				            withChance: 100))) create: 4).
+	aDeck := CardsDeck with: cards.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
@@ -446,9 +482,12 @@ CardsTest >> testQ018TryToUseASpeedCardWhenThePlayerDoesNotHaveOne [
 { #category : #tests }
 CardsTest >> testQ019TryToUseAnAccelerationCardWhenThePlayerDoesNotHaveOne [
 
-	| aGame aCard aDeck |
-	aDeck := CardsDeck create.
-	aDeck addCard: SpeedCard new amount: 4.
+	| aGame aCard aDeck cards |
+	cards:= ((Creator use: (OrderedCollection with:
+			           (ObjectProbability
+				            using: SpeedCard new
+				            withChance: 100))) create: 4).
+	aDeck := CardsDeck with: cards.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
@@ -467,9 +506,12 @@ CardsTest >> testQ019TryToUseAnAccelerationCardWhenThePlayerDoesNotHaveOne [
 { #category : #tests }
 CardsTest >> testQ020UseTwoOverLoadCardsFromTheSamePlayerToTheSamePlayer [
 
-	| aGame aCard aDeck |
-	aDeck := CardsDeck create.
-	aDeck addCard: OverloadCard new amount: 4.
+	| aGame aCard aDeck cards |
+	cards := (Creator use: (OrderedCollection with:
+			           (ObjectProbability
+				            using: OverloadCard new
+				            withChance: 100))) create: 4.
+	aDeck := CardsDeck with: cards.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
@@ -516,9 +558,12 @@ CardsTest >> testQ021UseAnOverLoadCardAndThenTryToUseItAgainButItHasGoneAway [
 { #category : #tests }
 CardsTest >> testQ022UseTwoSpeedCardsFromTheSamePlayerToTheSamePlayer [
 
-	| aGame aCard aDeck |
-	aDeck := CardsDeck create.
-	aDeck addCard: SpeedCard new amount: 4.
+	| aGame aCard aDeck cards |
+	cards:= ((Creator use: (OrderedCollection with:
+			           (ObjectProbability
+				            using: SpeedCard new
+				            withChance: 100))) create: 4).
+	aDeck := CardsDeck with: cards.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
@@ -565,9 +610,12 @@ CardsTest >> testQ023UseASpeedCardAndThenTryToUseItAgainButItHasGoneAway [
 { #category : #tests }
 CardsTest >> testQ024UseTwoAccelerationCardsFromTheSamePlayer [
 
-	| aGame aCard aDeck |
-	aDeck := CardsDeck create.
-	aDeck addCard: AccelerationCard new amount: 4.
+	| aGame aCard aDeck cards |
+	cards := (Creator use: (OrderedCollection with:
+			           (ObjectProbability
+				            using: AccelerationCard new
+				            withChance: 100))) create: 4.
+	aDeck := CardsDeck with: cards.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
@@ -614,9 +662,12 @@ CardsTest >> testQ025UseAnAccelerationCardAnThenTryToUseItAgainButItHasGoneAway 
 { #category : #tests }
 CardsTest >> testQ026TryToUseACancellationCardWhenThePlayerDoesNotHaveOne [
 
-	| aGame aCard aDeck |
-	aDeck := CardsDeck create.
-	aDeck addCard: OverloadCard new amount: 4.
+	| aGame aCard aDeck cards |
+	cards:= ((Creator use: (OrderedCollection with:
+			           (ObjectProbability
+				            using: OverloadCard new
+				            withChance: 100))) create: 4).
+	aDeck := CardsDeck with: cards.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
@@ -865,11 +916,14 @@ CardsTest >> testQ033VerifyTheCorrectUseOfRedoCardWhenLastCardPlayedIsARedoCard 
 { #category : #tests }
 CardsTest >> testQ034VerifyTheCorrectUseOfRepeatCardWhenLastBoxIsASpeedUpOne [
 
-	| aGame aCard aDeck boxes aBoard |
-	aDeck := CardsDeck create.
-	aDeck addCard: RepeatCard new amount: 4.
-	boxes := (BoxCreator use: (OrderedCollection with:
-			           (BoxProbability using: SpeedUpBox new withChance: 100))) 
+	| aGame aCard aDeck boxes aBoard cards |
+	cards:= ((Creator use: (OrderedCollection with:
+			           (ObjectProbability
+				            using: RepeatCard new
+				            withChance: 100))) create: 4).
+	aDeck := CardsDeck with: cards.
+	boxes := (Creator use: (OrderedCollection with:
+			           (ObjectProbability using: SpeedUpBox new withChance: 100))) 
 		         create: 10.
 	aBoard := Board with: boxes measure: (Parsec worth: 100).
 	aGame := DuplaGalacticaGameProxy
@@ -891,17 +945,20 @@ CardsTest >> testQ034VerifyTheCorrectUseOfRepeatCardWhenLastBoxIsASpeedUpOne [
 { #category : #tests }
 CardsTest >> testQ035VerifyTheCorrectUseOfRepeatCardWhenLastBoxIsAWormHoleOne [
 
-	| aGame boxes aBoard aCard aDeck aDie aLoadedShaker |
-	aDeck := CardsDeck create.
-	aDeck addCard: RepeatCard new amount: 4.
+	| aGame boxes aBoard aCard aDeck aDie aLoadedShaker cards |
+	cards:= ((Creator use: (OrderedCollection with:
+			           (ObjectProbability
+				            using: RepeatCard new
+				            withChance: 100))) create: 4).
+	aDeck := CardsDeck with: cards.
 	aDie := LoadedDie with: (OrderedCollection
 			         with: 4
 			         with: 9
 			         with: 3
 			         with: 4).
 	aLoadedShaker := DiceShaker withDie: aDie.
-	boxes := (BoxCreator use: (OrderedCollection with:
-			           (BoxProbability using: WormHoleBox new withChance: 100))) 
+	boxes := (Creator use: (OrderedCollection with:
+			           (ObjectProbability using: WormHoleBox new withChance: 100))) 
 		         create: 10.
 	aBoard := Board with: boxes measure: (Parsec worth: 100).
 	aGame := DuplaGalacticaGameProxy
@@ -923,17 +980,20 @@ CardsTest >> testQ035VerifyTheCorrectUseOfRepeatCardWhenLastBoxIsAWormHoleOne [
 { #category : #tests }
 CardsTest >> testQ036VerifyTheCorrectUseOfRepeatCardWhenLastBoxIsAMoonWalkOne [
 
-	| aGame aLoadedDie boxes aBoard aLoadedShaker aCard aDeck |
-	aDeck := CardsDeck create.
-	aDeck addCard: RepeatCard new amount: 4.
+	| aGame aLoadedDie boxes aBoard aLoadedShaker aCard aDeck cards |
+	cards:= ((Creator use: (OrderedCollection with:
+			           (ObjectProbability
+				            using: RepeatCard new
+				            withChance: 100))) create: 4).
+	aDeck := CardsDeck with: cards.
 	aLoadedDie := LoadedDie with: (OrderedCollection
 			               with: 4
 			               with: 5
 			               with: 3
 			               with: 4).
 	aLoadedShaker := DiceShaker withDie: aLoadedDie.
-	boxes := (BoxCreator use: (OrderedCollection with:
-			           (BoxProbability
+	boxes := (Creator use: (OrderedCollection with:
+			           (ObjectProbability
 				            using: (MoonWalkBox with: -2)
 				            withChance: 100))) create: 10.
 	aBoard := Board with: boxes measure: (Parsec worth: 100).
@@ -958,11 +1018,14 @@ CardsTest >> testQ036VerifyTheCorrectUseOfRepeatCardWhenLastBoxIsAMoonWalkOne [
 { #category : #tests }
 CardsTest >> testQ037VerifyTheCorrectUseOfRepeatCardWhenLastBoxIsAnAtomicBombOne [
 
-	| aGame boxes aBoard aCard aDeck |
-	aDeck := CardsDeck create.
-	aDeck addCard: RepeatCard new amount: 4.
-	boxes := (BoxCreator use: (OrderedCollection with:
-			           (BoxProbability using: AtomicBombBox new withChance: 100))) 
+	| aGame boxes aBoard aCard aDeck cards |
+	cards:= ((Creator use: (OrderedCollection with:
+			           (ObjectProbability
+				            using: RepeatCard new
+				            withChance: 100))) create: 4).
+	aDeck := CardsDeck with: cards.
+	boxes := (Creator use: (OrderedCollection with:
+			           (ObjectProbability using: AtomicBombBox new withChance: 100))) 
 		         create: 10.
 	aBoard := Board with: boxes measure: (Parsec worth: 100).
 	aGame := DuplaGalacticaGameProxy
@@ -985,10 +1048,13 @@ CardsTest >> testQ037VerifyTheCorrectUseOfRepeatCardWhenLastBoxIsAnAtomicBombOne
 { #category : #tests }
 CardsTest >> testQ038VerifyTheCorrectUseOfRepeatCardWhenLastBoxIsHyperJumpOne [
 
-	| aGame boxes aBoard aCard aDeck |
-	aDeck := CardsDeck create.
-	aDeck addCard: RepeatCard new amount: 4.
-	boxes := (BoxCreator use: (OrderedCollection with: (BoxProbability
+	| aGame boxes aBoard aCard aDeck cards |
+	cards:= ((Creator use: (OrderedCollection with:
+			           (ObjectProbability
+				            using: RepeatCard new
+				            withChance: 100))) create: 4).
+	aDeck := CardsDeck with: cards.
+	boxes := (Creator use: (OrderedCollection with: (ObjectProbability
 				            using:
 				            (HyperJumpBox with:
 					             (OrderedCollection with: (Parsec worth: 40)))
@@ -1014,9 +1080,12 @@ CardsTest >> testQ038VerifyTheCorrectUseOfRepeatCardWhenLastBoxIsHyperJumpOne [
 { #category : #tests }
 CardsTest >> testQ039VerifyThatAccelerationCardCanOnlyBePlayedAtPlayersTurns [
 
-	| aGame aDeck |
-	aDeck := CardsDeck create.
-	aDeck addCard: AccelerationCard new amount: 4.
+	| aGame aDeck cards |
+	cards:= ((Creator use: (OrderedCollection with:
+			           (ObjectProbability
+				            using: AccelerationCard new
+				            withChance: 100))) create: 4).
+	aDeck := CardsDeck with: cards.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
@@ -1034,9 +1103,12 @@ CardsTest >> testQ039VerifyThatAccelerationCardCanOnlyBePlayedAtPlayersTurns [
 { #category : #tests }
 CardsTest >> testQ041VerifyThatSpeedCardCanOnlyBePlayedAtPlayersTurns [
 
-	| aGame aCard aDeck |
-	aDeck := CardsDeck create.
-	aDeck addCard: SpeedCard new amount: 4.
+	| aGame aCard aDeck cards |
+	cards:= ((Creator use: (OrderedCollection with:
+			           (ObjectProbability
+				            using: SpeedCard new
+				            withChance: 100))) create: 4).
+	aDeck := CardsDeck with: cards.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
@@ -1105,11 +1177,14 @@ CardsTest >> testQ043VerifyThatRedoCardCanBePlayWheneverThePlayerWants [
 { #category : #tests }
 CardsTest >> testQ044VerifyThatRepeatCardCanBePlayWheneverThePlayerWants [
 
-	| aGame boxes aBoard aCard aDeck |
-	aDeck := CardsDeck create.
-	aDeck addCard: RepeatCard new amount: 4.
-	boxes := (BoxCreator use: (OrderedCollection with:
-			           (BoxProbability using: SpeedUpBox new withChance: 100))) 
+	| aGame boxes aBoard aCard aDeck cards |
+	cards:= ((Creator use: (OrderedCollection with:
+			           (ObjectProbability
+				            using: RepeatCard new
+				            withChance: 100))) create: 4).
+	aDeck := CardsDeck with: cards.
+	boxes := (Creator use: (OrderedCollection with:
+			           (ObjectProbability using: SpeedUpBox new withChance: 100))) 
 		         create: 10.
 	aBoard := Board with: boxes measure: (Parsec worth: 100).
 	aGame := DuplaGalacticaGameProxy
@@ -1155,9 +1230,12 @@ CardsTest >> testQ045VerifyThatRedoCardCanRepeatTheEffectOfTheRepeatCard [
 { #category : #tests }
 CardsTest >> testQ048VerifyThatWhenUsingAnOverloadCardTheObjectiveMustBeAValidPlayer [
 
-	| aGame aCard aDeck |
-	aDeck := CardsDeck create.
-	aDeck addCard: OverloadCard new amount: 5.
+	| aGame aCard aDeck cards |
+	cards := (Creator use: (OrderedCollection with:
+			           (ObjectProbability
+				            using: OverloadCard new
+				            withChance: 100))) create: 5.
+	aDeck := CardsDeck with: cards.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
@@ -1176,9 +1254,12 @@ CardsTest >> testQ048VerifyThatWhenUsingAnOverloadCardTheObjectiveMustBeAValidPl
 { #category : #tests }
 CardsTest >> testQ049VerifyThatWhenUsingAnOverloadCardTheObjectiveCannotBeEveryPlayer [
 
-	| aGame aCard aDeck |
-	aDeck := CardsDeck create.
-	aDeck addCard: OverloadCard new amount: 5.
+	| aGame aCard aDeck cards |
+	cards := (Creator use: (OrderedCollection with:
+			           (ObjectProbability
+				            using: OverloadCard new
+				            withChance: 100))) create: 5.
+	aDeck := CardsDeck with: cards.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
@@ -1197,9 +1278,12 @@ CardsTest >> testQ049VerifyThatWhenUsingAnOverloadCardTheObjectiveCannotBeEveryP
 { #category : #tests }
 CardsTest >> testQ050VerifyThatWhenUsingASpeedCardTheObjectiveMustBeAValidPlayer [
 
-	| aGame aCard aDeck |
-	aDeck := CardsDeck create.
-	aDeck addCard: SpeedCard new amount: 5.
+	| aGame aCard aDeck cards |
+	cards := (Creator use: (OrderedCollection with:
+			           (ObjectProbability
+				            using: SpeedCard new
+				            withChance: 100))) create: 5.
+	aDeck := CardsDeck with: cards.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
@@ -1218,9 +1302,12 @@ CardsTest >> testQ050VerifyThatWhenUsingASpeedCardTheObjectiveMustBeAValidPlayer
 { #category : #tests }
 CardsTest >> testQ051VerifyThatWhenUsingARepeatCardTheObjectiveMustBeAValidPlayer [
 
-	| aGame aCard aDeck |
-	aDeck := CardsDeck create.
-	aDeck addCard: RepeatCard new amount: 5.
+	| aGame aCard aDeck cards |
+	cards := (Creator use: (OrderedCollection with:
+			           (ObjectProbability
+				            using: RepeatCard new
+				            withChance: 100))) create: 5.
+	aDeck := CardsDeck with: cards.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
@@ -1237,9 +1324,12 @@ CardsTest >> testQ051VerifyThatWhenUsingARepeatCardTheObjectiveMustBeAValidPlaye
 { #category : #tests }
 CardsTest >> testQ052VerifyThatWhenUsingARedoCardIfACardHasNotToBeenPlayedBeforeThereIsNoEffect [
 
-	| aGame aCard aDeck |
-	aDeck := CardsDeck create.
-	aDeck addCard: RedoCard create amount: 5.
+	| aGame aCard aDeck cards |
+	cards := (Creator use: (OrderedCollection with:
+			           (ObjectProbability
+				            using: RedoCard create
+				            withChance: 100))) create: 5.
+	aDeck := CardsDeck with: cards.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
@@ -1258,27 +1348,30 @@ CardsTest >> testQ052VerifyThatWhenUsingARedoCardIfACardHasNotToBeenPlayedBefore
 { #category : #tests }
 CardsTest >> testV001VerifyThatNoCardsHasBeenDiscardAtTheBeggining [
 
-	| aGame aDeck |
-	aDeck := CardsDeck create.
-	aDeck addCard: RedoCard create amount: 5.
+	| aGame aDeck cards |
+	cards := (Creator use: (OrderedCollection with:
+			           (ObjectProbability
+				            using: RedoCard create
+				            withChance: 100))) create: 10.
+	aDeck := CardsDeck with: cards.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
-		         and: (self createBoard)
+		         and: self createBoard
 		         usingToThrow: aShaker
 		         winningWhen: 1
-		         using:
-		         (CardDealer with: aDeck).
-	self
-		assert: (aGame discardCardsDeskAmount)
-		equals: 0.
+		         using: (CardDealer with: aDeck).
+	self assert: aGame discardCardsDeskAmount equals: 0
 ]
 
 { #category : #tests }
 CardsTest >> testV002VerifyThatOneCardHasNotBeenDiscardWhenItIsUsedBecauseItIsPermanent [
 
-	| aGame aCard aDeck |
-	aDeck := CardsDeck create.
-	aDeck addCard: OverloadCard new amount: 5.
+	| aGame aCard aDeck cards |
+	cards := (Creator use: (OrderedCollection with:
+			           (ObjectProbability
+				            using: OverloadCard new
+				            withChance: 100))) create: 5.
+	aDeck := CardsDeck with: cards.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
@@ -1293,9 +1386,12 @@ CardsTest >> testV002VerifyThatOneCardHasNotBeenDiscardWhenItIsUsedBecauseItIsPe
 { #category : #tests }
 CardsTest >> testV003VerifyThatTwoCardsHasNotBeenDiscardWhenAreUsedBecauseTheyArePermanent [
 
-	| aGame aCard aDeck |
-	aDeck := CardsDeck create.
-	aDeck addCard: OverloadCard new amount: 5.
+	| aGame aCard aDeck cards |
+	cards := (Creator use: (OrderedCollection with:
+			           (ObjectProbability
+				            using: OverloadCard new
+				            withChance: 100))) create: 5.
+	aDeck := CardsDeck with: cards.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoard
@@ -1312,9 +1408,12 @@ CardsTest >> testV003VerifyThatTwoCardsHasNotBeenDiscardWhenAreUsedBecauseTheyAr
 { #category : #tests }
 CardsTest >> testV005VerifyThatExistAFiniteAmountOfCardsToDeal [
 
-	| aGame aDeck|
-	aDeck := CardsDeck create.
-	aDeck addCard: OverloadCard new amount: 5.
+	| aGame aDeck cards |
+	cards := (Creator use: (OrderedCollection with:
+			           (ObjectProbability
+				            using: OverloadCard new
+				            withChance: 100))) create: 5.
+	aDeck := CardsDeck with: cards.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: (self createBoard)
@@ -1327,9 +1426,12 @@ CardsTest >> testV005VerifyThatExistAFiniteAmountOfCardsToDeal [
 { #category : #tests }
 CardsTest >> testV006VerifyThatExistAFiniteAmountOfCardsToDealWhenTheyAreStolenFromARandomCardBox [
 
-	| aGame aDeck |
-	aDeck := CardsDeck create.
-	aDeck addCard: OverloadCard new amount: 6.
+	| aGame aDeck cards |
+	cards := (Creator use: (OrderedCollection with:
+			           (ObjectProbability
+				            using: OverloadCard new
+				            withChance: 100))) create: 6.
+	aDeck := CardsDeck with: cards.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: (self createBoardWithRandomCardBoxes)
@@ -1343,9 +1445,12 @@ CardsTest >> testV006VerifyThatExistAFiniteAmountOfCardsToDealWhenTheyAreStolenF
 { #category : #tests }
 CardsTest >> testV007VerifyThatExistAFiniteAmountOfCardsToDealWhenTheyAreShuffle [
 
-	| aGame aDeck |
-	aDeck := CardsDeck create.
-	aDeck addCard: SpeedCard new amount: 5.
+	| aGame aDeck cards |
+	cards := (Creator use: (OrderedCollection with:
+			           (ObjectProbability
+				            using: SpeedCard new
+				            withChance: 100))) create: 5.
+	aDeck := CardsDeck with: cards.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: (self createBoardWithRandomCardBoxes)
@@ -1360,9 +1465,12 @@ CardsTest >> testV007VerifyThatExistAFiniteAmountOfCardsToDealWhenTheyAreShuffle
 { #category : #tests }
 CardsTest >> testV008VerifyThatExistAFiniteAmountOfCardsToDealAndTheyAreNotDealDespiteThePlayerIsInARandomCardBox [
 
-	| aGame aDeck |
-	aDeck := CardsDeck create.
-	aDeck addCard: SpeedCard new amount: 5.
+	| aGame aDeck cards |
+	cards := (Creator use: (OrderedCollection with:
+			           (ObjectProbability
+				            using: SpeedCard new
+				            withChance: 100))) create: 5.
+	aDeck := CardsDeck with: cards.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: (self createBoardWithRandomCardBoxes)
@@ -1379,9 +1487,12 @@ CardsTest >> testV008VerifyThatExistAFiniteAmountOfCardsToDealAndTheyAreNotDealD
 { #category : #tests }
 CardsTest >> testV009VerifyThatWhenThereAreMoreThanOneCardAmountOfTheSameCardEverythingWorksCorrect [
 
-	| aGame aDeck |
-	aDeck := CardsDeck create.
-	aDeck addCard: SpeedCard new amount: 3.
+	| aGame aDeck cards |
+	cards := (Creator use: (OrderedCollection with:
+			           (ObjectProbability
+				            using: SpeedCard new
+				            withChance: 100))) create: 3.
+	aDeck := CardsDeck with: cards.
 	aDeck addCard: SpeedCard new amount: 2.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
@@ -1399,9 +1510,12 @@ CardsTest >> testV009VerifyThatWhenThereAreMoreThanOneCardAmountOfTheSameCardEve
 { #category : #tests }
 CardsTest >> testV010VerifyThatOneCardHasBeenDiscardWhenItIsUsed [
 
-	| aGame aCard aDeck |
-	aDeck := CardsDeck create.
-	aDeck addCard: RepeatCard new amount: 10.
+	| aGame aCard aDeck cards |
+	cards := (Creator use: (OrderedCollection with:
+			           (ObjectProbability
+				            using: RepeatCard new
+				            withChance: 100))) create: 10.
+	aDeck := CardsDeck with: cards.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoardWithRandomCardBoxes
@@ -1578,9 +1692,12 @@ CardsTest >> testW018VerifyTheCorrectDiscardOfAnAccelerationAnTryingToReuseItThe
 { #category : #tests }
 CardsTest >> testW019TryToDealEmptyObjects [
 
-	| aGame aDeck |
-	aDeck := CardsDeck create.
-	aDeck addCard: EmptyObject new amount: 4.
+	| aGame aDeck cards |
+	cards := (Creator use: (OrderedCollection with:
+			           (ObjectProbability
+				            using: EmptyObject new
+				            withChance: 100))) create: 4.
+	aDeck := CardsDeck with: cards.
 	aGame := DuplaGalacticaGameProxy
 		         with: aColorCollection
 		         and: self createBoardWithRandomCardBoxes
